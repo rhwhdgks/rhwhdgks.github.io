@@ -626,6 +626,73 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
     return results
 
 
+ENG_KOR_MAP = {
+    "nice": "나이스",
+    "nexon": "넥슨",
+    "kakao": "카카오",
+    "naver": "네이버",
+    "line": "라인",
+    "toss": "토스",
+    "sk": "에스케이",
+    "kt": "케이티",
+    "lg": "엘지",
+}
+
+
+def clean_org_for_dedup(name: str) -> str:
+    t = name.lower()
+    for eng, kor in ENG_KOR_MAP.items():
+        t = t.replace(eng, kor)
+    t = re.sub(r"\[.*?\]|\(.*?\)", "", t)
+    t = re.sub(r"\(주\)|주식회사|\(유\)|유한회사|주\)", "", t)
+    t = re.sub(r"코리아|한국|그룹", "", t)
+    t = re.sub(r"[^a-zA-Z0-9가-힣]", "", t)
+    return t.strip()
+
+
+def clean_title_for_dedup(title: str, org_clean: str) -> str:
+    t = title.lower()
+    t = re.sub(r"\[.*?\]|\(.*?\)", "", t)
+    if org_clean and len(org_clean) >= 2:
+        t = t.replace(org_clean, "")
+    stopwords = ["채용", "모집", "공고", "인턴", "신입", "사원", "정규직", "전환형", "채용연계형", "체험형", "부문", "분야", "상시", "수시", "영입"]
+    for sw in stopwords:
+        t = t.replace(sw, "")
+    t = re.sub(r"[^a-zA-Z0-9가-힣]", "", t)
+    return t.strip()
+
+
+def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) -> Dict[str, Any]:
+    """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합"""
+    source_priority = {
+        "금융투자협회(KOFIA)": 4,
+        "점핏(Jumpit)": 3,
+        "원티드": 3,
+        "프로그래머스": 3,
+        "링커리어": 2,
+        "위비티(Wevity)": 1,
+    }
+    p_score = source_priority.get(primary.get("source", ""), 0)
+    s_score = source_priority.get(secondary.get("source", ""), 0)
+
+    base = primary if p_score >= s_score else secondary
+    other = secondary if p_score >= s_score else primary
+
+    # 태그 병합
+    merged_tags = list(base.get("tags", []))
+    for tag in other.get("tags", []):
+        if tag not in merged_tags:
+            merged_tags.append(tag)
+    base["tags"] = merged_tags[:5]
+
+    # 더 정확하거나 구체적인 마감일 유지
+    if not base.get("deadline") and other.get("deadline"):
+        base["deadline"] = other["deadline"]
+        base["isAlwaysOpen"] = False
+
+    return base
+
+
 def main() -> None:
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(base_dir, "public", "data")
@@ -651,10 +718,9 @@ def main() -> None:
     all_items.extend(crawl_linkareer())
     all_items.extend(crawl_wevity())
 
-    deduped: List[Dict[str, Any]] = []
-    seen_keys = set()
+    # 1단계: 유효기간 및 마감 텍스트 필터링
+    valid_items: List[Dict[str, Any]] = []
     for item in all_items:
-        # 1) 신청/접수 기한이 오늘 이전으로 이미 지난 공고는 전면 배제 (대회 진행 중이어도 참가 신청 종료된 건 제외)
         dl = item.get("deadline")
         if dl and not item.get("isAlwaysOpen"):
             try:
@@ -663,16 +729,49 @@ def main() -> None:
             except ValueError:
                 pass
 
-        # 2) 제목/요약에 접수 마감 표기가 있는 경우 제외
         combined_text = f"{item.get('title', '')} {item.get('summary', '')}"
         if any(m in combined_text for m in ["접수마감", "접수 마감", "신청마감", "신청 마감", "모집마감", "모집 마감", "접수종료", "신청종료"]):
             continue
 
-        key = (item.get("title", "").strip().lower(), item.get("organization", "").strip().lower())
-        if key in seen_keys:
+        valid_items.append(item)
+
+    # 2단계: 크로스 플랫폼 스마트 중복 제거 및 단일화
+    deduped: List[Dict[str, Any]] = []
+    seen_indices = set()
+
+    for i in range(len(valid_items)):
+        if i in seen_indices:
             continue
-        seen_keys.add(key)
-        deduped.append(item)
+        item_a = valid_items[i]
+        org_a = clean_org_for_dedup(item_a.get("organization", ""))
+        title_a = clean_title_for_dedup(item_a.get("title", ""), org_a)
+
+        merged_item = item_a
+        for j in range(i + 1, len(valid_items)):
+            if j in seen_indices:
+                continue
+            item_b = valid_items[j]
+            org_b = clean_org_for_dedup(item_b.get("organization", ""))
+            title_b = clean_title_for_dedup(item_b.get("title", ""), org_b)
+
+            org_match = False
+            if org_a == org_b:
+                org_match = True
+            elif org_a and org_b and (org_a in org_b or org_b in org_a):
+                org_match = True
+
+            title_match = False
+            if title_a == title_b and len(title_a) >= 2:
+                title_match = True
+            elif title_a and title_b and len(title_a) >= 4 and len(title_b) >= 4:
+                if title_a in title_b or title_b in title_a:
+                    title_match = True
+
+            if org_match and title_match:
+                seen_indices.add(j)
+                merged_item = merge_duplicate_items(merged_item, item_b)
+
+        deduped.append(merged_item)
 
     def sort_key(x: Dict[str, Any]):
         dl = x.get("deadline")
