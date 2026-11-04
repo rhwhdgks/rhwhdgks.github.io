@@ -1135,13 +1135,25 @@ export function App() {
                             </span>
                             <span
                               className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-lg border ${
-                                fit.matchScore >= 90
+                                fit.matchScore >= 78
                                   ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                  : 'bg-indigo-50 text-indigo-700 border-indigo-200'
+                                  : fit.matchScore >= 68
+                                  ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                  : fit.matchScore >= 50
+                                  ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                  : 'bg-slate-100 text-slate-600 border-slate-200'
                               }`}
-                              title={`내 스택 맞춤 직무: ${fit.targetRole}`}
+                              title={`내 스택 맞춤 직무: ${fit.targetRole} (${fit.matchLevel})`}
                             >
-                              <Sparkles className="w-3 h-3 text-emerald-600" />
+                              <Sparkles
+                                className={`w-3 h-3 ${
+                                  fit.matchScore >= 78
+                                    ? 'text-emerald-600'
+                                    : fit.matchScore >= 68
+                                    ? 'text-blue-600'
+                                    : 'text-amber-600'
+                                }`}
+                              />
                               <span>매칭 {fit.matchScore}%</span>
                             </span>
                           </div>
@@ -1220,8 +1232,18 @@ export function App() {
 
                         {/* 내 맞춤 추천 직무 */}
                         <div className="mb-2">
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-50/70 border border-indigo-100 text-[11px] font-semibold text-indigo-800">
-                            <Sparkles className="w-3 h-3 text-indigo-600 shrink-0" />
+                          <span
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[11px] font-semibold ${
+                              fit.matchScore >= 78
+                                ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                                : fit.matchScore >= 68
+                                ? 'bg-indigo-50 border-indigo-200 text-indigo-800'
+                                : fit.matchScore >= 50
+                                ? 'bg-amber-50 border-amber-200 text-amber-800'
+                                : 'bg-slate-100 border-slate-200 text-slate-600'
+                            }`}
+                          >
+                            <Sparkles className="w-3 h-3 shrink-0" />
                             <span className="truncate max-w-[220px]">맞춤: {fit.targetRole}</span>
                           </span>
                         </div>
