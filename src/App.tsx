@@ -1227,8 +1227,8 @@ export function App() {
                             <span className="inline-flex items-center gap-1">
                               <Clock className="w-3.5 h-3.5 text-slate-400" />
                               {item.isAlwaysOpen || !item.deadline
-                                ? '상시채용'
-                                : `~ ${item.deadline}`}
+                                ? '상시'
+                                : `신청마감: ~ ${item.deadline}`}
                             </span>
                             {item.location && (
                               <span className="hidden sm:inline-flex items-center gap-0.5 text-slate-400 truncate">

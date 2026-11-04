@@ -109,7 +109,7 @@ export const OpportunityModal: React.FC<OpportunityModalProps> = ({
             <div className="flex items-center gap-2.5 text-slate-700">
               <Calendar className="w-4 h-4 text-indigo-500 shrink-0" />
               <div>
-                <div className="text-[11px] text-slate-400">마감 일정</div>
+                <div className="text-[11px] text-slate-400">신청(접수) 마감일</div>
                 <div className="font-semibold">
                   {item.isAlwaysOpen || !item.deadline
                     ? '상시/채용시 마감'
@@ -141,6 +141,10 @@ export const OpportunityModal: React.FC<OpportunityModalProps> = ({
                 <div className="font-semibold">{item.source}</div>
               </div>
             </div>
+          </div>
+
+          <div className="text-[11px] text-slate-400 px-1">
+            * 표시된 기한은 대회/행사 최종 종료일이 아닌 <strong>참가 신청 및 지원서 접수 마감일</strong> 기준입니다.
           </div>
 
           {/* 요약 설명 */}

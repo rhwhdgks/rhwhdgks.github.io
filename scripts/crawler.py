@@ -257,7 +257,8 @@ def crawl_kofia() -> List[Dict[str, Any]]:
         if deadline:
             try:
                 dl_date = datetime.date.fromisoformat(deadline)
-                if (dl_date - NOW.date()).days < -1:
+                # 접수 기한이 오늘 이전이면 이미 마감된 공고이므로 즉시 제외
+                if dl_date < NOW.date():
                     continue
             except ValueError:
                 pass
@@ -320,6 +321,14 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
                 closed_at = pos.get("closedAt") or ""
                 deadline = closed_at[:10] if len(closed_at) >= 10 else None
                 always_open = bool(pos.get("alwaysOpen", False))
+
+                # 접수 기한이 오늘 이전이면 이미 마감된 공고
+                if deadline and not always_open:
+                    try:
+                        if datetime.date.fromisoformat(deadline) < NOW.date():
+                            continue
+                    except ValueError:
+                        pass
                 locations = pos.get("locations") or ["서울"]
 
                 tags = ["신입/인턴"] + job_cat[:2] + tech_stacks[:3]
@@ -390,6 +399,10 @@ def crawl_wevity() -> List[Dict[str, Any]]:
 
                 day_match = re.search(r"<div class=\"day\"[^>]*>(.*?)</div>", item, re.S)
                 day_text = clean_html_text(day_match.group(1)) if day_match else ""
+
+                # 이미 접수마감/종료된 대회는 제외 (대회 본선 기간이 남아있어도 신청 기한 지난 것 방지)
+                if any(k in day_text for k in ["마감", "종료", "발표", "종결"]):
+                    continue
 
                 dday_num_match = re.search(r"D-(\d+)", day_text)
                 if dday_num_match:
@@ -481,10 +494,14 @@ def _linkareer_query(filter_by: str, page: int, page_size: int) -> List[Dict[str
 
 
 def _linkareer_deadline(close_ts: Any) -> Optional[str]:
+    """링커리어의 모집/신청 마감일(recruitCloseAt)을 YYYY-MM-DD로 반환 (이미 지난 날짜는 제외)"""
     if not close_ts:
         return None
     try:
         dt = datetime.datetime.fromtimestamp(int(close_ts) / 1000.0, tz=KST)
+        # 대회 종료일이 아닌 '신청/접수 기한' 기준이므로 오늘 이전 마감은 제외
+        if dt.date() < NOW.date():
+            return None
         return dt.strftime("%Y-%m-%d")
     except Exception:
         return None
@@ -510,6 +527,9 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
         cats = [c.get("name", "") for c in (node.get("categories") or []) if c.get("name") and c.get("name") != "전체"]
         job_types = node.get("jobTypes") or []
         deadline = _linkareer_deadline(node.get("recruitCloseAt"))
+        # 공모전/해커톤의 경우 대회 종료일이 아닌 '신청/접수 기한'이 살아있는 공고만 수집
+        if category in ["contest", "hackathon"] and not deadline:
+            return
 
         tags: List[str] = []
         if "INTERN" in job_types or "인턴" in title:
@@ -634,6 +654,20 @@ def main() -> None:
     deduped: List[Dict[str, Any]] = []
     seen_keys = set()
     for item in all_items:
+        # 1) 신청/접수 기한이 오늘 이전으로 이미 지난 공고는 전면 배제 (대회 진행 중이어도 참가 신청 종료된 건 제외)
+        dl = item.get("deadline")
+        if dl and not item.get("isAlwaysOpen"):
+            try:
+                if datetime.date.fromisoformat(dl[:10]) < NOW.date():
+                    continue
+            except ValueError:
+                pass
+
+        # 2) 제목/요약에 접수 마감 표기가 있는 경우 제외
+        combined_text = f"{item.get('title', '')} {item.get('summary', '')}"
+        if any(m in combined_text for m in ["접수마감", "접수 마감", "신청마감", "신청 마감", "모집마감", "모집 마감", "접수종료", "신청종료"]):
+            continue
+
         key = (item.get("title", "").strip().lower(), item.get("organization", "").strip().lower())
         if key in seen_keys:
             continue
