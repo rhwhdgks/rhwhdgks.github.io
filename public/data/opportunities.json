@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-04 20:11 KST",
+  "updatedAt": "2026-11-04 20:12 KST",
   "totalCount": 43,
   "sourceCounts": {
     "점핏(Jumpit)": 11,
-    "금융투자협회(KOFIA)": 5,
     "링커리어": 26,
+    "금융투자협회(KOFIA)": 5,
     "위비티(Wevity)": 1
   },
   "items": [
@@ -28,26 +28,6 @@
       "location": "경기 안양시 동안구",
       "reward": "IT 신입/인턴",
       "summary": "포스로직 | 이미지 프로세싱 알고리즘 개발 신입 | 기술스택: C, C++, DeepLearning, MachineLearning, AI/인공지능, CUDA",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-05",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "에프앤자산평가 채용 공고 ([에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08))",
       "isFeatured": true
     },
     {
@@ -174,6 +154,26 @@
       "location": "서울 여의도",
       "reward": "인턴십",
       "summary": "미래에셋자산운용 채용 공고 ([미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용)",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-42803",
+      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
+      "organization": "에프앤자산평가",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
+      "startDate": "2026-10-22",
+      "deadline": "2026-11-08",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
       "isFeatured": true
     },
     {
@@ -421,6 +421,26 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-42944",
+      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-42943",
       "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
       "organization": "카디안자산운용",
@@ -514,26 +534,6 @@
       "location": "국내",
       "reward": "대외활동/교육",
       "summary": "북극성 정치경제 연구소 | AI Agent·Automation을 실제 조직에 적용할 AI Tech Lead / Developer 추가 모집 ㅣAI혁신부 | 직무: 기타",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42944",
-      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기))",
       "isFeatured": true
     },
     {
