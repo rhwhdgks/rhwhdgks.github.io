@@ -49,13 +49,13 @@ const DISMISSED_STORAGE_KEY = 'career_radar_dismissed_v1';
 const POPULAR_KEYWORDS = [
   '인턴',
   '신입',
+  '퀀트',
+  '운용',
+  '파생',
+  '금융데이터',
   'AI',
   '백엔드',
-  '프론트엔드',
-  'IT/전산',
-  '금융권',
-  '정보보호',
-  '데이터',
+  'Python',
   '해커톤',
 ];
 

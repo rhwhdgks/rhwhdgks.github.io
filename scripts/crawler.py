@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CareerRadar 자동 공고 수집기 (GitHub Actions & 로컬 실행 호환)
-외부 패키지 설치 없이 Python 표준 라이브러리만으로 동작하여 빠르고 안정적입니다.
-
-수집 대상:
-1. 금융투자협회 (KOFIA) 채용안내 (https://www.kofia.or.kr/brd/m_96/list.do)
-2. 점핏 (Jumpit) IT/SW 신입·인턴 채용 API
-3. 링커리어 (Linkareer) 공모전·해커톤·대외활동·인턴 GraphQL API
-4. 위비티 (Wevity) 웹/모바일/IT 및 게임/SW 공모전·해커톤
-5. Devpost 글로벌 AI/SW 해커톤 API
-6. 수동 관리 공고 (public/data/manual.json - 데이콘, 원티드, 프로그래머스, 자소설닷컴 등)
+CareerRadar 맞춤형 공고 수집기
+사용자 프로필(고려대 컴퓨터공학 · 금융 데이터 분석 / 퀀트 연구 / 거래 시스템 개발 / Python·FastAPI·PyTorch·SQL)에
+정확히 부합하는 인턴십·신입 채용·해커톤·데이터/금융 경진대회만 엄선하여 수집합니다.
 """
 
 import datetime
@@ -24,7 +17,6 @@ import urllib.parse
 import urllib.request
 from typing import Any, Dict, List, Optional
 
-# KST (UTC+9) 기준 현재 시각
 KST = datetime.timezone(datetime.timedelta(hours=9))
 NOW = datetime.datetime.now(KST)
 TODAY_STR = NOW.strftime("%Y-%m-%d")
@@ -37,6 +29,51 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 )
+
+# ==============================================================================
+# 도메인 필터링 규칙 (컴퓨터공학 · 퀀트 · 금융데이터 · AI/데이터 · 백엔드 SW 신입/인턴 특화)
+# ==============================================================================
+
+# 1. 공모전/해커톤/대외활동에서 즉시 제외할 비개발·비데이터·마케팅 키워드
+CONTEST_BLACKLIST = [
+    "광고", "숏폼", "영상", "사진", "웹툰", "웹소설", "영화", "단편영화",
+    "캐릭터", "동화", "설화", "일러스트", "디자인", "미술", "창조공모",
+    "그래픽", "시나리오", "수기", "에세이", "독후감", "슬로건", "네이밍",
+    "굿즈", "태권도", "체육", "관광", "홍보", "이벤트", "서포터즈", "기자단",
+    "봉사", "멘토링", "컨설턴트", "고교생", "청소년", "어린이", "초등", "중학",
+    "게임창작", "인디게임", "꿀팁", "플레이 콘텐츠", "게임·콘텐츠", "창업 공모",
+    "IR 챔피언십", "어워드", "AWARDS", "세미나", "박람회", "EXPO",
+    "햇반", "AI디어", "식품", "차량용 앱", "인포테인먼트"
+]
+
+# 2. 공모전/해커톤 제목에 반드시 포함되어야 하는 기술·데이터·금융 키워드
+CONTEST_REQUIRED_TITLE_KEYWORDS = [
+    "해커톤", "HACKATHON", "경진대회", "데이터", "DATA", "AI", "인공지능",
+    "머신러닝", "딥러닝", "LLM", "RAG", "알고리즘", "퀀트", "QUANT",
+    "금융", "핀테크", "트레이딩", "파생", "벤치마크", "AX CHALLENGE"
+]
+
+# 3. 채용/인턴에서 즉시 제외할 무관 직무(하드웨어/설비/영업/디자인/순수경력 등) 키워드
+JOB_BLACKLIST = [
+    "디자이너", "이펙트", "원화가", "아트", "물류", "LOGISTICS", "화장품",
+    "스킨케어", "영업", "SALES", "마케팅", "마케터", "고객상담", "CS",
+    "해외 메시지", "파트너사", "기구설계", "회로설계", "펌웨어", "임베디드",
+    "반도체 MES", "헬프데스크", "테크니컬 서포트", "기술지원", "전직자", "보충역",
+    "산업기능요원", "전략기획", "경영관리", "펀드회계", "내부감사", "총무",
+    "비서", "인사", "HR", "홍보", "PR", "PB", "지점", "창구", "연금가입자",
+    "퇴직자", "경력단절", "결제 담당자", "SETTLEMENT", "전산장비", "유지보수",
+    "광통신", "네트워크 엔지니어", "RF", "ANALOG", "MMIC", "LAYOUT",
+    "제어기술", "로보틱스", "로봇", "머신비전", "응용SW", "크로스플랫폼",
+    "모바일 앱", "악성코드", "경력 채용", "경력직", "컴파일러"
+]
+
+# 4. 채용/인턴에서 허용할 핵심 직무(Python·백엔드·데이터·AI·금융·퀀트) 키워드
+JOB_REQUIRED_KEYWORDS = [
+    "PYTHON", "백엔드", "BACKEND", "서버", "FASTAPI", "DJANGO", "SPRING",
+    "데이터", "DATA", "AI", "인공지능", "머신러닝", "딥러닝", "ML", "LLM",
+    "NLP", "PYTORCH", "TENSORFLOW", "퀀트", "QUANT", "트레이딩", "알고리즘",
+    "금융", "핀테크", "블록체인", "SQL", "풀스택", "풀스텍"
+]
 
 
 def fetch_text(url: str, timeout: int = 10, headers: Optional[Dict[str, str]] = None) -> str:
@@ -60,6 +97,65 @@ def clean_html_text(raw_html: str) -> str:
     return re.sub(r"\s+", " ", no_tags).strip()
 
 
+def is_valid_contest_or_hackathon(title: str, summary: str = "") -> bool:
+    t_upper = title.upper()
+    combined = f"{title} {summary}".upper()
+    if any(b.upper() in combined for b in CONTEST_BLACKLIST):
+        return False
+    if not any(req.upper() in t_upper for req in CONTEST_REQUIRED_TITLE_KEYWORDS):
+        return False
+    return True
+
+
+def is_valid_tech_job(title: str, tags_and_cat: str = "") -> bool:
+    combined = f"{title} {tags_and_cat}".upper()
+    if any(b.upper() in combined for b in JOB_BLACKLIST):
+        return False
+    if not any(req.upper() in combined for req in JOB_REQUIRED_KEYWORDS):
+        return False
+    return True
+
+
+def is_valid_kofia_posting(title: str, summary: str) -> bool:
+    """
+    금융투자협회(KOFIA) 공고 필터링:
+    1) 과장/차장/부장 등 순수 경력직 제외 (인턴, 신입, 채용연계형만 허용)
+    2) PB/지점영업/내부감사/경영관리/펀드회계/결제 등 무관 직무 제외
+    3) 퀀트, 운용(주식/채권/파생/ETF/패시브), 리서치, 채권평가, 리스크, IT/전산/데이터/AI 직무만 허용
+    """
+    t_upper = title.upper()
+    combined = f"{title} {summary}".upper()
+
+    kofia_blacklist = [
+        "PB", "지점", "자산관리영업", "연금가입자", "퇴직자", "내부감사", "준법감시",
+        "컴플라이언스", "변호사", "회계사", "세무사", "펀드회계", "경영관리", "총무",
+        "비서", "인사", "홍보", "결제 담당", "SETTLEMENT", "부동산", "대체투자본부 경력",
+        "법인영업", "리테일", "콜센터", "고객만족"
+    ]
+    if any(b in combined for b in kofia_blacklist):
+        return False
+
+    is_entry_or_intern = any(
+        k in combined for k in ["인턴", "INTERN", "신입", "채용연계", "채용전환", "공채"]
+    )
+    is_pure_experienced = any(
+        k in t_upper for k in ["경력직", "경력직원", "경력 채용", "경력모집", "과장", "차장", "부장", "팀장", "본부장", "SR."]
+    ) and not any(k in t_upper for k in ["인턴", "신입"])
+
+    if is_pure_experienced or not is_entry_or_intern:
+        return False
+
+    kofia_target_domains = [
+        "퀀트", "QUANT", "운용", "파생", "패시브", "ETF", "채권", "주식", "리서치",
+        "리스크", "위험관리", "트레이딩", "데이터", "AI", "IT", "전산", "디지털",
+        "개발", "시스템", "보안", "정보보호", "외화채권", "채권평가", "알고리즘", "PE"
+    ]
+    if not any(d in combined for d in kofia_target_domains):
+        return False
+
+    return True
+
+
 def infer_kofia_tags(title: str, content: str) -> List[str]:
     tags: List[str] = ["금융권"]
     combined = f"{title} {content}".upper()
@@ -68,32 +164,31 @@ def infer_kofia_tags(title: str, content: str) -> List[str]:
         tags.append("인턴")
     if "신입" in combined or "공채" in combined or "채용연계" in combined:
         tags.append("신입")
-    if any(k in combined for k in ["IT", "전산", "개발", "SW", "소프트웨어", "시스템", "프로그래머", "엔지니어"]):
-        tags.append("IT/전산")
-    if any(k in combined for k in ["정보보호", "보안", "ISMS", "시큐리티"]):
-        tags.append("정보보호/보안")
-    if any(k in combined for k in ["AI", "인공지능", "데이터", "퀀트", "QUANT", "디지털", "DT"]):
+    if any(k in combined for k in ["퀀트", "QUANT", "파생", "패시브", "ETF", "알고리즘"]):
+        tags.append("퀀트/파생")
+    if any(k in combined for k in ["운용", "주식", "채권", "리서치", "평가"]):
+        tags.append("운용/리서치")
+    if any(k in combined for k in ["IT", "전산", "개발", "SW", "시스템", "보안", "정보보호"]):
+        tags.append("금융IT/보안")
+    if any(k in combined for k in ["AI", "인공지능", "데이터", "디지털"]):
         tags.append("AI/데이터")
-    if "경력" in title and "신입" not in title and "인턴" not in title:
-        tags.append("경력")
 
     return tags[:5]
 
 
 def crawl_kofia() -> List[Dict[str, Any]]:
-    """금융투자협회 (https://www.kofia.or.kr/brd/m_96/list.do) 채용안내 크롤링"""
-    print("[1/5] 금융투자협회(KOFIA) 채용안내 수집 중...")
+    """금융투자협회 (https://www.kofia.or.kr/brd/m_96/list.do) 맞춤형 채용/인턴 수집"""
+    print("[1/5] 금융투자협회(KOFIA) 퀀트·운용·금융IT 신입/인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_seqs = set()
 
-    # 최신 페이지 + IT/인턴/신입/데이터 특화 검색어를 함께 수집
+    search_words = ["인턴", "신입", "퀀트", "파생", "운용", "IT", "전산", "데이터", "리서치", "ETF"]
     queries = [
         "https://www.kofia.or.kr/brd/m_96/list.do?page=1",
-        "https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord=" + urllib.parse.quote("인턴"),
-        "https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord=" + urllib.parse.quote("신입"),
-        "https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord=" + urllib.parse.quote("IT"),
-        "https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord=" + urllib.parse.quote("전산"),
-        "https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord=" + urllib.parse.quote("데이터"),
+        "https://www.kofia.or.kr/brd/m_96/list.do?page=2",
+    ] + [
+        f"https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord={urllib.parse.quote(w)}"
+        for w in search_words
     ]
 
     candidate_rows = []
@@ -118,19 +213,22 @@ def crawl_kofia() -> List[Dict[str, Any]]:
                     continue
                 company = clean_html_text(tds[1])
                 raw_title = clean_html_text(tds[2])
-                # 끝에 붙은 'new' 아이콘 텍스트 제거
                 raw_title = re.sub(r"\s*new$", "", raw_title, flags=re.I).strip()
                 reg_date = clean_html_text(tds[4])
                 candidate_rows.append((seq, company, raw_title, reg_date))
         except Exception as e:
             print(f"  - KOFIA 목록 조회 오류 ({url}): {e}")
 
-    # 상위 22개 공고의 상세 페이지에서 접수기간(마감일)과 본문 요약을 추출
-    for seq, company, title, reg_date in candidate_rows[:22]:
+    for seq, company, title, reg_date in candidate_rows[:40]:
+        if any(b in title.upper() for b in ["경력직", "경력직원", "PB", "지점", "내부감사", "펀드회계", "경영관리"]) and not any(
+            k in title for k in ["인턴", "신입"]
+        ):
+            continue
+
         detail_url = f"https://www.kofia.or.kr/brd/m_96/view.do?seq={seq}"
         start_date = reg_date if re.match(r"^\d{4}-\d{2}-\d{2}$", reg_date) else TODAY_STR
         deadline: Optional[str] = None
-        is_always_open = "상시" in title or "수시" in title
+        is_always_open = "상시" in title or "수시" in title or "채용 시" in title or "채용시" in title
         summary_text = f"{company} 채용 공고 ({title})"
 
         try:
@@ -147,31 +245,31 @@ def crawl_kofia() -> List[Dict[str, Any]]:
             if content_match:
                 extracted = clean_html_text(content_match.group(1))
                 if len(extracted) > 15:
-                    summary_text = extracted[:200] + ("..." if len(extracted) > 200 else "")
+                    summary_text = extracted[:220] + ("..." if len(extracted) > 220 else "")
         except Exception:
             pass
 
-        # 이미 너무 오래전에 마감된 공고(예: 7일 이상 지난 공고)는 제외
+        if not is_valid_kofia_posting(title, summary_text):
+            continue
+
         if deadline:
             try:
                 dl_date = datetime.date.fromisoformat(deadline)
-                if (dl_date - NOW.date()).days < -3:
+                if (dl_date - NOW.date()).days < -1:
                     continue
             except ValueError:
                 pass
         else:
-            # 마감일이 명시되지 않고 상시채용이 아닌 경우 등록일 + 14일로 추정하거나 상시로 표시
             if not is_always_open:
                 try:
                     base_d = datetime.date.fromisoformat(start_date)
-                    if (NOW.date() - base_d).days > 30:
+                    if (NOW.date() - base_d).days > 25:
                         continue
                     deadline = (base_d + datetime.timedelta(days=14)).isoformat()
                 except ValueError:
                     is_always_open = True
 
         tags = infer_kofia_tags(title, summary_text)
-        # 카테고리 분류: 금융권 탭에서도 볼 수 있고, 인턴/채용으로도 분류
         results.append({
             "id": f"kofia-{seq}",
             "title": title,
@@ -183,22 +281,22 @@ def crawl_kofia() -> List[Dict[str, Any]]:
             "deadline": deadline,
             "isAlwaysOpen": is_always_open,
             "tags": tags,
-            "location": "서울 여의도 / 전국",
-            "reward": "인턴십" if "인턴" in tags else ("신입채용" if "신입" in tags else "금융권 채용"),
+            "location": "서울 여의도",
+            "reward": "인턴십" if "인턴" in tags else "신입/인턴 채용",
             "summary": summary_text,
-            "isFeatured": any(t in tags for t in ["인턴", "신입", "IT/전산", "AI/데이터", "정보보호/보안"]),
+            "isFeatured": True,
         })
 
-    print(f"  -> KOFIA 공고 {len(results)}건 수집 완료")
+    print(f"  -> KOFIA 맞춤형 공고 {len(results)}건 선별 완료")
     return results
 
 
 def crawl_jumpit() -> List[Dict[str, Any]]:
-    """점핏 (Jumpit) IT 신입/인턴 포지션 API 수집"""
-    print("[2/5] 점핏(Jumpit) IT 신입·인턴 채용 공고 수집 중...")
+    """점핏 (Jumpit) 백엔드·AI·데이터·금융IT 신입/인턴 포지션만 엄선 수집"""
+    print("[2/5] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     try:
-        for page in [1, 2]:
+        for page in [1, 2, 3, 4]:
             url = f"https://api.jumpit.co.kr/api/positions?page={page}&sort=reg_dt&career=0"
             raw = fetch_text(url, timeout=10)
             data = json.loads(raw)
@@ -210,15 +308,19 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
                 if not pos_id or not title:
                     continue
 
+                tech_stacks = pos.get("techStacks") or []
+                job_cat = [c.strip() for c in (pos.get("jobCategory") or "").split(",") if c.strip()]
+                combined_meta = f"{company} {' '.join(job_cat)} {' '.join(tech_stacks)}"
+
+                if not is_valid_tech_job(title, combined_meta):
+                    continue
+
                 closed_at = pos.get("closedAt") or ""
                 deadline = closed_at[:10] if len(closed_at) >= 10 else None
                 always_open = bool(pos.get("alwaysOpen", False))
-                tech_stacks = pos.get("techStacks") or []
-                job_cat = [c.strip() for c in (pos.get("jobCategory") or "").split(",") if c.strip()]
                 locations = pos.get("locations") or ["서울"]
 
                 tags = ["신입/인턴"] + job_cat[:2] + tech_stacks[:3]
-                # 중복 제거
                 dedup_tags = []
                 for t in tags:
                     if t and t not in dedup_tags:
@@ -237,19 +339,19 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
                     "tags": dedup_tags[:5],
                     "location": ", ".join(locations[:2]),
                     "reward": "IT 신입/인턴",
-                    "summary": f"{company}에서 {title} 포지션을 모집합니다. 주요 기술스택: {', '.join(tech_stacks) if tech_stacks else 'IT/SW 개발'}",
-                    "isFeatured": "인턴" in title or any(k in " ".join(dedup_tags).upper() for k in ["AI", "백엔드", "프론트엔드", "SPRING", "REACT", "PYTHON"]),
+                    "summary": f"{company} | {title} | 기술스택: {', '.join(tech_stacks) if tech_stacks else 'Python/AI/백엔드'}",
+                    "isFeatured": True,
                 })
     except Exception as e:
         print(f"  - Jumpit 수집 오류: {e}")
 
-    print(f"  -> Jumpit 공고 {len(results[:18])}건 수집 완료")
-    return results[:18]
+    print(f"  -> Jumpit 맞춤형 공고 {len(results[:15])}건 선별 완료")
+    return results[:15]
 
 
 def crawl_wevity() -> List[Dict[str, Any]]:
-    """위비티 (Wevity) 웹/모바일/IT(cidx=20) 및 게임/소프트웨어(cidx=21) 공모전/해커톤 수집"""
-    print("[3/5] 위비티(Wevity) IT·SW 공모전/해커톤 수집 중...")
+    """위비티 (Wevity) 실제 AI · 데이터 분석 · SW 개발 해커톤/경진대회만 선별 수집"""
+    print("[3/5] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ix = set()
 
@@ -272,7 +374,6 @@ def crawl_wevity() -> List[Dict[str, Any]]:
                     continue
                 seen_ix.add(ix)
 
-                # <span class='stat ...'> 제거
                 raw_title = re.sub(r"<span[^>]*>.*?</span>", "", raw_title, flags=re.S)
                 title = clean_html_text(raw_title)
 
@@ -281,6 +382,9 @@ def crawl_wevity() -> List[Dict[str, Any]]:
 
                 sub_match = re.search(r"<div class=\"sub-tit\"[^>]*>(.*?)</div>", item, re.S)
                 sub_tit = clean_html_text(sub_match.group(1)).replace("분야 :", "").strip() if sub_match else "웹/모바일/IT"
+
+                if not is_valid_contest_or_hackathon(title, f"{organ} {sub_tit}"):
+                    continue
 
                 day_match = re.search(r"<div class=\"day\"[^>]*>(.*?)</div>", item, re.S)
                 day_text = clean_html_text(day_match.group(1)) if day_match else ""
@@ -294,51 +398,39 @@ def crawl_wevity() -> List[Dict[str, Any]]:
                 else:
                     continue
 
-                is_hackathon = any(k in title.upper() for k in ["해커톤", "HACKATHON", "경진대회", "챌린지", "AI", "개발대회", "SW"])
-                category = "hackathon" if is_hackathon else "contest"
-
-                raw_tags = [t.strip() for t in sub_tit.split(",") if t.strip()]
-                tags = (["해커톤"] if is_hackathon else ["공모전"]) + ["IT/SW"] + raw_tags[:3]
-
+                tags = ["해커톤/경진대회", "AI/데이터", "SW개발"]
                 results.append({
                     "id": f"wevity-{ix}",
                     "title": title,
                     "organization": organ,
-                    "category": category,
+                    "category": "hackathon",
                     "source": "위비티(Wevity)",
                     "sourceUrl": f"https://www.wevity.com/{html.unescape(rel_href)}",
                     "startDate": TODAY_STR,
                     "deadline": deadline,
                     "isAlwaysOpen": False,
-                    "tags": tags[:5],
+                    "tags": tags,
                     "location": "온/오프라인",
-                    "reward": "공모전/해커톤 시상",
-                    "summary": f"{organ} 주최 | 분야: {sub_tit}",
-                    "isFeatured": is_hackathon or (dday_num_match and int(dday_num_match.group(1)) <= 14),
+                    "reward": "시상금 및 상장",
+                    "summary": f"{organ} 주최 | {title}",
+                    "isFeatured": True,
                 })
         except Exception as e:
             print(f"  - Wevity 수집 오류 (cidx={cidx}): {e}")
 
-    print(f"  -> Wevity 공모전/해커톤 {len(results[:18])}건 수집 완료")
-    return results[:18]
+    print(f"  -> Wevity 맞춤형 해커톤/공모전 {len(results)}건 선별 완료")
+    return results
 
 
 def crawl_linkareer() -> List[Dict[str, Any]]:
-    """링커리어 (Linkareer) GraphQL API를 통한 공모전·대외활동·인턴 수집"""
-    print("[4/5] 링커리어(Linkareer) 공모전·대외활동·인턴 수집 중...")
+    """링커리어 (Linkareer) GraphQL API — CS·데이터·AI·금융만 선별"""
+    print("[4/5] 링커리어(Linkareer) 맞춤형 인턴·해커톤 수집 중...")
     results: List[Dict[str, Any]] = []
 
-    # activityTypeID: "3" (공모전), "1" (대외활동), "5" (채용/인턴)
     configs = [
-        ("3", "contest", 30),
-        ("1", "activity", 25),
-        ("5", "intern", 35),
-    ]
-
-    it_keywords = [
-        "IT", "SW", "소프트웨어", "개발", "AI", "인공지능", "데이터", "해커톤", "디지털",
-        "클라우드", "보안", "프로그래밍", "코딩", "앱", "웹", "프론트엔드", "백엔드",
-        "인턴", "테크", "핀테크", "빅데이터", "ICT", "아이디어", "기획", "창업", "아카데미", "부트캠프"
+        ("3", "contest", 50),
+        ("1", "activity", 40),
+        ("5", "intern", 50),
     ]
 
     for act_type_id, default_cat, page_size in configs:
@@ -369,7 +461,6 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                 payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
 
             nodes = payload.get("data", {}).get("activities", {}).get("nodes", [])
-            count_for_type = 0
             for node in nodes:
                 node_id = node.get("id")
                 title = (node.get("title") or "").strip()
@@ -381,17 +472,14 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                 if not node_id or not title:
                     continue
 
-                combined_text = f"{title} {org} {' '.join(cats)} {' '.join(job_types)}".upper()
-
-                # 채용(5)의 경우 신입/인턴 또는 IT/기획 관련만 필터링
                 if act_type_id == "5":
                     is_intern_or_new = any(j in job_types for j in ["INTERN", "NEW"]) or "인턴" in title or "신입" in title
-                    is_it = any(k in combined_text for k in it_keywords)
-                    if not (is_intern_or_new or is_it):
+                    if not is_intern_or_new:
+                        continue
+                    if not is_valid_tech_job(title, f"{org} {' '.join(cats)}"):
                         continue
                 else:
-                    # 공모전/대외활동도 IT·데이터·기획 관련 공고 우선 선별
-                    if not any(k in combined_text for k in it_keywords):
+                    if not is_valid_contest_or_hackathon(title, f"{org} {' '.join(cats)}"):
                         continue
 
                 deadline = None
@@ -406,10 +494,8 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                 if any(k in title.upper() for k in ["해커톤", "HACKATHON", "경진대회"]):
                     category = "hackathon"
 
-                badge_label = "인턴/신입" if category == "intern" else ("해커톤" if category == "hackathon" else ("공모전" if category == "contest" else "대외활동"))
+                badge_label = "인턴/신입" if category == "intern" else ("해커톤" if category == "hackathon" else ("공모전" if category == "contest" else "교육/대외활동"))
                 tags = [badge_label] + cats[:3]
-                if "INTERN" in job_types and "인턴" not in tags:
-                    tags.insert(0, "인턴")
 
                 results.append({
                     "id": f"linkareer-{node_id}",
@@ -424,26 +510,21 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                     "tags": tags[:5],
                     "location": "국내",
                     "reward": badge_label,
-                    "summary": f"{org}에서 진행하는 {title} ({', '.join(cats) if cats else badge_label})",
-                    "isFeatured": "인턴" in title or category == "hackathon",
+                    "summary": f"{org} | {title}",
+                    "isFeatured": True,
                 })
-                count_for_type += 1
-                if count_for_type >= 8:
-                    break
         except Exception as e:
             print(f"  - Linkareer 수집 오류 (type={act_type_id}): {e}")
 
-    print(f"  -> Linkareer 공고 {len(results)}건 수집 완료")
+    print(f"  -> Linkareer 맞춤형 공고 {len(results)}건 선별 완료")
     return results
 
 
 def parse_devpost_dates(date_str: str) -> Optional[str]:
-    """예: 'Oct 01 - Nov 12, 2026' 또는 'Nov 04, 2026' 에서 마감일 YYYY-MM-DD 추출"""
     if not date_str:
         return None
     parts = date_str.split("-")
     end_part = parts[-1].strip()
-    # 만약 연도가 없으면 현재 연도 추가
     if not re.search(r"\d{4}", end_part):
         end_part = f"{end_part}, {NOW.year}"
     for fmt in ["%b %d, %Y", "%B %d, %Y"]:
@@ -456,15 +537,15 @@ def parse_devpost_dates(date_str: str) -> Optional[str]:
 
 
 def crawl_devpost() -> List[Dict[str, Any]]:
-    """Devpost 글로벌 AI/SW 해커톤 수집"""
-    print("[5/5] Devpost 글로벌 AI·SW 해커톤 수집 중...")
+    """Devpost 글로벌 AI/ML · 핀테크 · 데이터 해커톤만 선별 수집"""
+    print("[5/5] Devpost 글로벌 AI·핀테크·데이터 해커톤 수집 중...")
     results: List[Dict[str, Any]] = []
     try:
         url = "https://devpost.com/api/hackathons?status[]=upcoming&status[]=open"
         raw = fetch_text(url, timeout=10)
         data = json.loads(raw)
         hackathons = data.get("hackathons", [])
-        for h in hackathons[:10]:
+        for h in hackathons[:15]:
             h_id = h.get("id")
             title = (h.get("title") or "").strip()
             org = (h.get("organization_name") or "Devpost").strip()
@@ -474,6 +555,12 @@ def crawl_devpost() -> List[Dict[str, Any]]:
             loc = (h.get("displayed_location") or {}).get("location") or "Online"
             prize_raw = clean_html_text(h.get("prize_amount") or "")
             themes = [t.get("name", "") for t in (h.get("themes") or []) if t.get("name")]
+
+            combined = f"{title} {org} {' '.join(themes)}".upper()
+            if any(b in combined for b in ["LEARN AR", "VR START", "GAMING", "QNX", "KIROWEEN"]):
+                continue
+            if not any(k in combined for k in ["AI", "MACHINE LEARNING", "FINTECH", "DATA", "CLOUD", "BLOCKCHAIN"]):
+                continue
 
             tags = ["글로벌 해커톤"] + themes[:4]
             results.append({
@@ -495,7 +582,7 @@ def crawl_devpost() -> List[Dict[str, Any]]:
     except Exception as e:
         print(f"  - Devpost 수집 오류: {e}")
 
-    print(f"  -> Devpost 해커톤 {len(results)}건 수집 완료")
+    print(f"  -> Devpost 해커톤 {len(results)}건 선별 완료")
     return results
 
 
@@ -509,25 +596,22 @@ def main() -> None:
 
     all_items: List[Dict[str, Any]] = []
 
-    # 1. 수동/추천 공고 로드 (DACON, 원티드, 프로그래머스, 자소설닷컴, Kaggle 등)
     if os.path.exists(manual_path):
         try:
             with open(manual_path, "r", encoding="utf-8") as f:
                 manual_items = json.load(f)
                 if isinstance(manual_items, list):
                     all_items.extend(manual_items)
-                    print(f"[0/5] 수동/추천 공고(manual.json) {len(manual_items)}건 로드 완료")
+                    print(f"[0/5] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
         except Exception as e:
             print(f"manual.json 로드 오류: {e}")
 
-    # 2. 실시간 크롤러 실행
     all_items.extend(crawl_kofia())
     all_items.extend(crawl_jumpit())
     all_items.extend(crawl_wevity())
     all_items.extend(crawl_linkareer())
     all_items.extend(crawl_devpost())
 
-    # 3. 중복 제거 (id 또는 (title, organization) 기준)
     deduped: List[Dict[str, Any]] = []
     seen_keys = set()
     for item in all_items:
@@ -537,7 +621,6 @@ def main() -> None:
         seen_keys.add(key)
         deduped.append(item)
 
-    # 4. 마감일 임박순 정렬 (상시채용은 뒤로, 마감 지난 공고는 맨 뒤로)
     def sort_key(x: Dict[str, Any]):
         dl = x.get("deadline")
         if not dl or x.get("isAlwaysOpen"):
@@ -552,7 +635,6 @@ def main() -> None:
 
     deduped.sort(key=sort_key)
 
-    # 출처별 통계
     source_counts: Dict[str, int] = {}
     for item in deduped:
         src = item.get("source", "기타")
@@ -568,7 +650,7 @@ def main() -> None:
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output_payload, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ 총 {len(deduped)}건의 공고 데이터가 {output_path} 에 저장되었습니다.")
+    print(f"\n✅ 총 {len(deduped)}건의 맞춤형 공고 데이터가 {output_path} 에 저장되었습니다.")
 
 
 if __name__ == "__main__":
