@@ -30,7 +30,7 @@ export interface OpportunitiesPayload {
   items: OpportunityItem[];
 }
 
-export type SortOption = 'deadline-asc' | 'latest' | 'deadline-desc';
+export type SortOption = 'fit-desc' | 'deadline-asc' | 'latest' | 'deadline-desc';
 
 export type ViewMode = 'list' | 'my-progress' | 'calendar';
 

@@ -37,6 +37,7 @@ import {
   ViewMode,
 } from './types';
 import { getDdayInfo } from './utils/date';
+import { analyzeOpportunityFit } from './utils/fitAnalysis';
 import { CalendarView } from './components/CalendarView';
 import { OpportunityModal } from './components/OpportunityModal';
 import { MyProgressView } from './components/MyProgressView';
@@ -72,7 +73,7 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
   const [selectedSource, setSelectedSource] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<SortOption>('deadline-asc');
+  const [sortBy, setSortBy] = useState<SortOption>('fit-desc');
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [hideClosed, setHideClosed] = useState<boolean>(true);
   const [onlyUrgent, setOnlyUrgent] = useState<boolean>(false);
@@ -373,6 +374,21 @@ export function App() {
     return filtered.sort((a, b) => {
       const ddayA = getDdayInfo(a.deadline, a.isAlwaysOpen);
       const ddayB = getDdayInfo(b.deadline, b.isAlwaysOpen);
+
+      if (sortBy === 'fit-desc') {
+        const scoreA = analyzeOpportunityFit(a).matchScore;
+        const scoreB = analyzeOpportunityFit(b).matchScore;
+        if (scoreB !== scoreA) {
+          return scoreB - scoreA;
+        }
+        // 동점인 경우 마감 임박순
+        const rank = (d: ReturnType<typeof getDdayInfo>) => {
+          if (d.status === 'closed') return 999999;
+          if (d.daysLeft === null) return 99999;
+          return d.daysLeft;
+        };
+        return rank(ddayA) - rank(ddayB);
+      }
 
       if (sortBy === 'deadline-asc') {
         const rank = (d: ReturnType<typeof getDdayInfo>) => {
@@ -950,8 +966,9 @@ export function App() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 rounded-xl border border-indigo-200 bg-white text-sm font-semibold text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-xs"
                   >
+                    <option value="fit-desc">🎯 내 스택 맞춤 추천순 (적합도순)</option>
                     <option value="deadline-asc">⚡ 마감 임박순 (D-Day)</option>
                     <option value="latest">🆕 최신 등록순</option>
                     <option value="deadline-desc">📅 마감 여유순</option>
@@ -1090,6 +1107,7 @@ export function App() {
                   const isBookmarked = bookmarkedIds.includes(item.id);
                   const progressEntry = progressMap.get(item.id);
                   const inProgress = Boolean(progressEntry);
+                  const fit = analyzeOpportunityFit(item);
 
                   return (
                     <article
@@ -1114,6 +1132,17 @@ export function App() {
                               className={`px-2 py-0.5 text-xs rounded-lg border ${dday.badgeStyle}`}
                             >
                               {dday.label}
+                            </span>
+                            <span
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-lg border ${
+                                fit.matchScore >= 90
+                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                  : 'bg-indigo-50 text-indigo-700 border-indigo-200'
+                              }`}
+                              title={`내 스택 맞춤 직무: ${fit.targetRole}`}
+                            >
+                              <Sparkles className="w-3 h-3 text-emerald-600" />
+                              <span>매칭 {fit.matchScore}%</span>
                             </span>
                           </div>
 
@@ -1187,6 +1216,14 @@ export function App() {
                           <span className="truncate text-slate-700">{item.organization}</span>
                           <span className="text-slate-300">•</span>
                           <span className="text-slate-400 shrink-0">{item.source}</span>
+                        </div>
+
+                        {/* 내 맞춤 추천 직무 */}
+                        <div className="mb-2">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-50/70 border border-indigo-100 text-[11px] font-semibold text-indigo-800">
+                            <Sparkles className="w-3 h-3 text-indigo-600 shrink-0" />
+                            <span className="truncate max-w-[220px]">맞춤: {fit.targetRole}</span>
+                          </span>
                         </div>
 
                         {/* 공고 제목 */}
