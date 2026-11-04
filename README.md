@@ -1,0 +1,49 @@
+# CareerRadar — IT·금융 인턴, 공모전, 해커톤 실시간 알림 사이트 (`github.io`)
+
+IT/SW/AI 개발 직군 및 금융권(금융투자협회 KOFIA)의 **인턴십, 신입 채용, 해커톤, 공모전, 대외활동** 정보를 자동으로 수집하여 한눈에 보여주는 정적 웹 애플리케이션입니다.
+
+## ✨ 주요 기능
+
+1. **자동 공고 크롤링 (`scripts/crawler.py`)**
+   - **금융투자협회 (KOFIA)** 채용안내 (`https://www.kofia.or.kr/brd/m_96/list.do`) 실시간 공고 및 상세 접수기간 파싱
+   - **점핏 (Jumpit)** IT/SW 신입·인턴 개발자 채용 공고 및 기술스택 수집
+   - **링커리어 (Linkareer)** 인턴, IT 공모전, 대외활동 GraphQL API 수집
+   - **위비티 (Wevity)** 웹/모바일/IT 및 게임/SW 공모전·해커톤 수집
+   - **Devpost** 글로벌 AI·SW 해커톤 수집
+   - **수동/추천 공고 병합 (`public/data/manual.json`)**: 데이콘(DACON), 원티드, 프로그래머스, 자소설닷컴, 캐글 등 원하는 공고를 직접 추가하면 크롤러 결과와 자동 병합됩니다.
+2. **직관적인 필터링 & 키워드 검색**
+   - 분야별 탭 (`전체`, `인턴·신입 채용`, `해커톤·AI 경진대회`, `IT·기획 공모전`, `금융투자협회(KOFIA)`, `대외활동`)
+   - 수집 출처별 필터 및 `#인턴`, `#AI`, `#백엔드`, `#금융권`, `#정보보호` 등 추천 키워드 원클릭 검색
+   - 마감일 D-Day 뱃지 (`오늘마감`, `D-3`, `상시모집` 등) 및 **마감 임박순 / 최신순 정렬**
+3. **리스트 뷰 & 월별 캘린더 뷰**
+   - **리스트 뷰**: 카드 형태로 요약 및 태그, D-Day 확인
+   - **월별 캘린더 뷰**: 달력에서 날짜별 마감 공고를 색상별로 확인하고 클릭하여 상세 조회
+4. **관심 공고 북마크**
+   - 브라우저 `localStorage`를 활용해 로그인 없이도 내 관심 공고를 찜하고 모아볼 수 있습니다.
+
+---
+
+## 🚀 로컬 실행 방법
+
+```bash
+# 1. 패키지 설치
+npm install
+
+# 2. 최신 공고 데이터 크롤링 (public/data/opportunities.json 갱신)
+npm run crawl
+
+# 3. 개발 서버 실행
+npm run dev
+```
+
+---
+
+## 🌐 GitHub Pages (`github.io`) 배포 설정 방법
+
+이 프로젝트에는 `.github/workflows/deploy.yml` 워크플로우가 포함되어 있어 **GitHub에 푸시하기만 하면 하루 2번(오전 8시, 오후 6시 KST) 자동으로 최신 공고를 크롤링하고 배포**합니다.
+
+1. GitHub에서 새 저장소(예: `<username>.github.io` 또는 원하는 프로젝트 이름)를 생성하고 코드를 푸시합니다.
+2. GitHub 저장소의 **Settings → Pages** 메뉴로 이동합니다.
+3. **Build and deployment** 아래의 **Source**를 **`GitHub Actions`**로 변경합니다.
+4. **Actions** 탭에서 `Crawl Opportunities & Deploy to GitHub Pages` 워크플로우가 실행되며 배포가 완료됩니다!
+

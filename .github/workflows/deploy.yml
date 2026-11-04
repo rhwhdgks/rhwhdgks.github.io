@@ -1,0 +1,70 @@
+name: Crawl Opportunities & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main", "master"]
+  schedule:
+    # 매일 한국 시간(KST) 오전 9시(UTC 00:00), 오후 2시(UTC 05:00), 저녁 8시(UTC 11:00) 하루 3번 자동 수집 및 배포
+    - cron: "0 0,5,11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Opportunity Crawler
+        run: python3 scripts/crawler.py
+
+      - name: Commit updated opportunities.json (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/opportunities.json
+          git diff --staged --quiet || git commit -m "chore(data): update crawled opportunities [skip ci]"
+          git push || true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
