@@ -192,18 +192,6 @@ export const QUICK_PORTALS: QuickPortal[] = [
     color: 'hover:border-slate-400 hover:bg-slate-100 text-slate-900',
   },
   {
-    name: '자소설닷컴',
-    category: '공채 달력',
-    url: 'https://jasoseol.com/recruit',
-    color: 'hover:border-orange-400 hover:bg-orange-50/60 text-orange-900',
-  },
-  {
-    name: 'Devpost',
-    category: '글로벌 해커톤',
-    url: 'https://devpost.com/hackathons',
-    color: 'hover:border-teal-400 hover:bg-teal-50/60 text-teal-900',
-  },
-  {
     name: '캠퍼스픽',
     category: '대외활동/공모전',
     url: 'https://www.campuspick.com/',

@@ -9,7 +9,13 @@
     "startDate": "2026-10-15",
     "deadline": "2026-12-15",
     "isAlwaysOpen": false,
-    "tags": ["퀀트(Quant)", "시장미시구조", "시계열예측", "Python", "PyTorch"],
+    "tags": [
+      "퀀트(Quant)",
+      "시장미시구조",
+      "시계열예측",
+      "Python",
+      "PyTorch"
+    ],
     "location": "글로벌 온라인",
     "reward": "총 상금 $120,000",
     "summary": "실시간 금융 시장 호가·체결 시계열 데이터를 기반으로 수익률 반응 변수를 예측하는 글로벌 퀀트/머신러닝 대회.",
@@ -25,7 +31,13 @@
     "startDate": "2026-10-20",
     "deadline": "2026-11-25",
     "isAlwaysOpen": false,
-    "tags": ["금융데이터", "AI/머신러닝", "Python", "FDS", "해커톤"],
+    "tags": [
+      "금융데이터",
+      "AI/머신러닝",
+      "Python",
+      "FDS",
+      "해커톤"
+    ],
     "location": "온라인",
     "reward": "총 상금 1,500만원",
     "summary": "금융 거래 로그 및 시계열 데이터를 활용한 AI 기반 이상거래 탐지 모델 개발 해커톤.",
@@ -41,7 +53,13 @@
     "startDate": "2026-11-01",
     "deadline": "2026-12-04",
     "isAlwaysOpen": false,
-    "tags": ["LLM", "RAG", "금융공시", "Python", "PyTorch"],
+    "tags": [
+      "LLM",
+      "RAG",
+      "금융공시",
+      "Python",
+      "PyTorch"
+    ],
     "location": "온라인",
     "reward": "총 상금 1,000만원",
     "summary": "한국어 금융·기업 공시 및 재무제표 문서 대상 검색 증강 생성(RAG) 파이프라인 정확도 고도화 경진대회.",
@@ -57,7 +75,13 @@
     "startDate": "2026-10-25",
     "deadline": "2026-11-27",
     "isAlwaysOpen": false,
-    "tags": ["퀀트", "파생상품", "선물/옵션", "금융데이터", "알고리즘트레이딩"],
+    "tags": [
+      "퀀트",
+      "파생상품",
+      "선물/옵션",
+      "금융데이터",
+      "알고리즘트레이딩"
+    ],
     "location": "서울 여의도 / 온라인",
     "reward": "최우수상 1,000만원 및 입사지원 우대",
     "summary": "국내 선물·옵션·ETF 시장 데이터를 활용한 위험관리, 차익거래 및 퀀트 투자전략 리서치 공모전.",
@@ -73,7 +97,13 @@
     "startDate": "2026-11-01",
     "deadline": "2026-11-18",
     "isAlwaysOpen": false,
-    "tags": ["인턴", "백엔드", "트레이딩시스템", "핀테크", "Python/Kotlin"],
+    "tags": [
+      "인턴",
+      "백엔드",
+      "트레이딩시스템",
+      "핀테크",
+      "Python/Kotlin"
+    ],
     "location": "서울 강남구",
     "reward": "채용연계형 (월 300만원)",
     "summary": "대용량 실시간 호가·체결 시세 파이프라인 및 주문 실행 시스템 백엔드 개발 인턴십.",
@@ -89,7 +119,13 @@
     "startDate": "2026-11-02",
     "deadline": "2026-11-22",
     "isAlwaysOpen": false,
-    "tags": ["인턴", "디지털자산", "온체인데이터", "거래시스템", "Python/SQL"],
+    "tags": [
+      "인턴",
+      "디지털자산",
+      "온체인데이터",
+      "거래시스템",
+      "Python/SQL"
+    ],
     "location": "서울 강남구 역삼",
     "reward": "채용연계형 인턴",
     "summary": "디지털 자산 거래소 체결·호가 데이터 파이프라인 구축 및 시장 지표 분석 엔지니어 인턴 모집.",
@@ -105,26 +141,16 @@
     "startDate": "2026-11-02",
     "deadline": "2026-11-20",
     "isAlwaysOpen": false,
-    "tags": ["신입/인턴", "백엔드", "데이터엔지니어링", "핀테크", "SQL"],
+    "tags": [
+      "신입/인턴",
+      "백엔드",
+      "데이터엔지니어링",
+      "핀테크",
+      "SQL"
+    ],
     "location": "경기 성남시 판교",
     "reward": "신입/인턴 정규채용",
     "summary": "결제·자산관리·증권 데이터 플랫폼 및 서버 백엔드 개발을 담당할 신입 및 채용연계형 인턴 모집.",
-    "isFeatured": true
-  },
-  {
-    "id": "manual-jasoseol-navercloud",
-    "title": "2026 동계 네이버클라우드 AI·백엔드·데이터 학부생 인턴십 모집",
-    "organization": "네이버클라우드",
-    "category": "intern",
-    "source": "자소설닷컴",
-    "sourceUrl": "https://jasoseol.com/recruit",
-    "startDate": "2026-11-03",
-    "deadline": "2026-11-15",
-    "isAlwaysOpen": false,
-    "tags": ["인턴", "AI/ML", "백엔드", "FastAPI", "Python"],
-    "location": "경기 성남시 분당구",
-    "reward": "동계 인턴십 (8주)",
-    "summary": "초거대 AI(LLM) API 서빙 및 클라우드 데이터 플랫폼 엔지니어링 실무를 경험할 학부생 인턴 모집.",
     "isFeatured": true
   }
 ]

@@ -43,7 +43,9 @@ CONTEST_BLACKLIST = [
     "봉사", "멘토링", "컨설턴트", "고교생", "청소년", "어린이", "초등", "중학",
     "게임창작", "인디게임", "꿀팁", "플레이 콘텐츠", "게임·콘텐츠", "창업 공모",
     "IR 챔피언십", "어워드", "AWARDS", "세미나", "박람회", "EXPO",
-    "햇반", "AI디어", "식품", "차량용 앱", "인포테인먼트"
+    "햇반", "AI디어", "식품", "차량용 앱", "인포테인먼트",
+    "창업", "아이디어", "평가단", "체험단", "베타 테스터", "사회적기업",
+    "기획 공모전", "PM/PO", "활용사례", "드래프톤", "우수사례"
 ]
 
 # 2. 공모전/해커톤 제목에 반드시 포함되어야 하는 기술·데이터·금융 키워드
@@ -178,7 +180,7 @@ def infer_kofia_tags(title: str, content: str) -> List[str]:
 
 def crawl_kofia() -> List[Dict[str, Any]]:
     """금융투자협회 (https://www.kofia.or.kr/brd/m_96/list.do) 맞춤형 채용/인턴 수집"""
-    print("[1/5] 금융투자협회(KOFIA) 퀀트·운용·금융IT 신입/인턴 공고 수집 중...")
+    print("[1/4] 금융투자협회(KOFIA) 퀀트·운용·금융IT 신입/인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_seqs = set()
 
@@ -293,7 +295,7 @@ def crawl_kofia() -> List[Dict[str, Any]]:
 
 def crawl_jumpit() -> List[Dict[str, Any]]:
     """점핏 (Jumpit) 백엔드·AI·데이터·금융IT 신입/인턴 포지션만 엄선 수집"""
-    print("[2/5] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
+    print("[2/4] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     try:
         for page in [1, 2, 3, 4]:
@@ -351,7 +353,7 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
 
 def crawl_wevity() -> List[Dict[str, Any]]:
     """위비티 (Wevity) 실제 AI · 데이터 분석 · SW 개발 해커톤/경진대회만 선별 수집"""
-    print("[3/5] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
+    print("[4/4] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ix = set()
 
@@ -422,167 +424,185 @@ def crawl_wevity() -> List[Dict[str, Any]]:
     return results
 
 
-def crawl_linkareer() -> List[Dict[str, Any]]:
-    """링커리어 (Linkareer) GraphQL API — CS·데이터·AI·금융만 선별"""
-    print("[4/5] 링커리어(Linkareer) 맞춤형 인턴·해커톤 수집 중...")
-    results: List[Dict[str, Any]] = []
+# 링커리어 직무 카테고리 ID (list/recruit 페이지 Apollo State에서 확인)
+LINKAREER_CAT_IT = "100003"       # IT/개발
+LINKAREER_CAT_FINANCE = "100008"  # 금융 (자산운용/펀드, 재무 등)
 
-    configs = [
-        ("3", "contest", 50),
-        ("1", "activity", 40),
-        ("5", "intern", 50),
-    ]
+# 링커리어 금융 카테고리 중 사용자와 무관한 세부 직무 제외용
+LINKAREER_FINANCE_BLACKLIST = [
+    "회계", "세무", "결산", "재무제표", "매입", "GA채널", "보험영업", "영업지원",
+    "대출", "여신", "수납", "텔러", "창구", "콜센터", "채권추심",
+]
 
-    for act_type_id, default_cat, page_size in configs:
-        query = f"""
-        {{
-          activities(
-            filterBy: {{ status: OPEN, activityTypeID: "{act_type_id}" }},
-            pagination: {{ pageSize: {page_size}, page: 1 }}
-          ) {{
-            nodes {{
-              id
-              title
-              organizationName
-              categories {{ name }}
-              jobTypes
-              recruitCloseAt
-            }}
-          }}
-        }}
-        """
-        try:
-            req = urllib.request.Request(
-                "https://api.linkareer.com/graphql",
-                data=json.dumps({"query": query}).encode("utf-8"),
-                headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
-            )
-            with urllib.request.urlopen(req, context=SSL_CTX, timeout=10) as resp:
-                payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+# 링커리어 채용 공고 중 일반 공채/행정직·비개발 직무 제외
+LINKAREER_RECRUIT_BLACKLIST = [
+    "직원 채용", "정기 채용", "정기채용", "공개채용", "신규직원", "임용", "정직원(",
+    "경영행정", "일반행정", "사무", "애니메이션", "콘텐츠 AI 제작", "박사",
+    "AML", "PM/PO", "기획자", "기획 담당", "보육", "계리", "사업 담당",
+    "커뮤니케이션", "Communication", "유료화 기획",
+]
 
-            nodes = payload.get("data", {}).get("activities", {}).get("nodes", [])
-            for node in nodes:
-                node_id = node.get("id")
-                title = (node.get("title") or "").strip()
-                org = (node.get("organizationName") or "주최기관").strip()
-                cats = [c.get("name", "") for c in (node.get("categories") or []) if c.get("name")]
-                job_types = node.get("jobTypes") or []
-                close_ts = node.get("recruitCloseAt")
-
-                if not node_id or not title:
-                    continue
-
-                if act_type_id == "5":
-                    is_intern_or_new = any(j in job_types for j in ["INTERN", "NEW"]) or "인턴" in title or "신입" in title
-                    if not is_intern_or_new:
-                        continue
-                    if not is_valid_tech_job(title, f"{org} {' '.join(cats)}"):
-                        continue
-                else:
-                    if not is_valid_contest_or_hackathon(title, f"{org} {' '.join(cats)}"):
-                        continue
-
-                deadline = None
-                if close_ts:
-                    try:
-                        dt = datetime.datetime.fromtimestamp(int(close_ts) / 1000.0, tz=KST)
-                        deadline = dt.strftime("%Y-%m-%d")
-                    except Exception:
-                        pass
-
-                category = default_cat
-                if any(k in title.upper() for k in ["해커톤", "HACKATHON", "경진대회"]):
-                    category = "hackathon"
-
-                badge_label = "인턴/신입" if category == "intern" else ("해커톤" if category == "hackathon" else ("공모전" if category == "contest" else "교육/대외활동"))
-                tags = [badge_label] + cats[:3]
-
-                results.append({
-                    "id": f"linkareer-{node_id}",
-                    "title": title,
-                    "organization": org,
-                    "category": category,
-                    "source": "링커리어",
-                    "sourceUrl": f"https://linkareer.com/activity/{node_id}",
-                    "startDate": TODAY_STR,
-                    "deadline": deadline,
-                    "isAlwaysOpen": deadline is None,
-                    "tags": tags[:5],
-                    "location": "국내",
-                    "reward": badge_label,
-                    "summary": f"{org} | {title}",
-                    "isFeatured": True,
-                })
-        except Exception as e:
-            print(f"  - Linkareer 수집 오류 (type={act_type_id}): {e}")
-
-    print(f"  -> Linkareer 맞춤형 공고 {len(results)}건 선별 완료")
-    return results
+# 제목에 하나라도 있어야 하는 링커리어 채용 키워드 (카테고리 태그만으로는 통과 불가)
+LINKAREER_TITLE_REQUIRED = [
+    "개발", "엔지니어", "ENGINEER", "데이터", "DATA", "AI", "ML", "머신러닝",
+    "백엔드", "BACK-END", "BACKEND", "서버", "프론트엔드", "웹", "SW", "소프트웨어",
+    "퀀트", "QUANT", "운용", "애널리스트", "리서치", "RESEARCH", "투자", "트레이딩",
+    "DATABASE", "인프라", "클라우드", "보안",
+]
 
 
-def parse_devpost_dates(date_str: str) -> Optional[str]:
-    if not date_str:
+def _linkareer_query(filter_by: str, page: int, page_size: int) -> List[Dict[str, Any]]:
+    query = """
+    {
+      activities(
+        filterBy: %s,
+        orderBy: { direction: DESC, field: RECENT },
+        pagination: { pageSize: %d, page: %d }
+      ) {
+        nodes {
+          id
+          title
+          organizationName
+          categories { name }
+          jobTypes
+          recruitCloseAt
+        }
+      }
+    }
+    """ % (filter_by, page_size, page)
+    req = urllib.request.Request(
+        "https://api.linkareer.com/graphql",
+        data=json.dumps({"query": query}).encode("utf-8"),
+        headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
+    )
+    with urllib.request.urlopen(req, context=SSL_CTX, timeout=15) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    return payload.get("data", {}).get("activities", {}).get("nodes", []) or []
+
+
+def _linkareer_deadline(close_ts: Any) -> Optional[str]:
+    if not close_ts:
         return None
-    parts = date_str.split("-")
-    end_part = parts[-1].strip()
-    if not re.search(r"\d{4}", end_part):
-        end_part = f"{end_part}, {NOW.year}"
-    for fmt in ["%b %d, %Y", "%B %d, %Y"]:
-        try:
-            dt = datetime.datetime.strptime(end_part, fmt)
-            return dt.strftime("%Y-%m-%d")
-        except ValueError:
-            continue
-    return None
-
-
-def crawl_devpost() -> List[Dict[str, Any]]:
-    """Devpost 글로벌 AI/ML · 핀테크 · 데이터 해커톤만 선별 수집"""
-    print("[5/5] Devpost 글로벌 AI·핀테크·데이터 해커톤 수집 중...")
-    results: List[Dict[str, Any]] = []
     try:
-        url = "https://devpost.com/api/hackathons?status[]=upcoming&status[]=open"
-        raw = fetch_text(url, timeout=10)
-        data = json.loads(raw)
-        hackathons = data.get("hackathons", [])
-        for h in hackathons[:15]:
-            h_id = h.get("id")
-            title = (h.get("title") or "").strip()
-            org = (h.get("organization_name") or "Devpost").strip()
-            h_url = h.get("url") or "https://devpost.com/hackathons"
-            sub_dates = h.get("submission_period_dates") or ""
-            deadline = parse_devpost_dates(sub_dates)
-            loc = (h.get("displayed_location") or {}).get("location") or "Online"
-            prize_raw = clean_html_text(h.get("prize_amount") or "")
-            themes = [t.get("name", "") for t in (h.get("themes") or []) if t.get("name")]
+        dt = datetime.datetime.fromtimestamp(int(close_ts) / 1000.0, tz=KST)
+        return dt.strftime("%Y-%m-%d")
+    except Exception:
+        return None
 
-            combined = f"{title} {org} {' '.join(themes)}".upper()
-            if any(b in combined for b in ["LEARN AR", "VR START", "GAMING", "QNX", "KIROWEEN"]):
+
+def crawl_linkareer() -> List[Dict[str, Any]]:
+    """
+    링커리어 (Linkareer) GraphQL API 수집 (메인 수집원)
+    - 채용: IT/개발 · 금융 카테고리 + 인턴/신입 jobType 서버 필터 → 직무 키워드 2차 필터
+    - 공모전/대외활동: 최신 공고 다수 조회 → AI/데이터/금융/해커톤 키워드 필터
+    """
+    print("[3/4] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
+    results: List[Dict[str, Any]] = []
+    seen_ids = set()
+
+    def add_item(node: Dict[str, Any], category: str, badge: str) -> None:
+        node_id = node.get("id")
+        title = (node.get("title") or "").strip()
+        if not node_id or not title or node_id in seen_ids:
+            return
+        seen_ids.add(node_id)
+        org = (node.get("organizationName") or "주최기관").strip()
+        cats = [c.get("name", "") for c in (node.get("categories") or []) if c.get("name") and c.get("name") != "전체"]
+        job_types = node.get("jobTypes") or []
+        deadline = _linkareer_deadline(node.get("recruitCloseAt"))
+
+        tags: List[str] = []
+        if "INTERN" in job_types or "인턴" in title:
+            tags.append("인턴")
+        if "NEW" in job_types or "신입" in title:
+            tags.append("신입")
+        if not tags:
+            tags.append(badge)
+        for c in cats:
+            if c not in tags:
+                tags.append(c)
+
+        results.append({
+            "id": f"linkareer-{node_id}",
+            "title": title,
+            "organization": org,
+            "category": category,
+            "source": "링커리어",
+            "sourceUrl": f"https://linkareer.com/activity/{node_id}",
+            "startDate": TODAY_STR,
+            "deadline": deadline,
+            "isAlwaysOpen": deadline is None,
+            "tags": tags[:5],
+            "location": "국내",
+            "reward": badge,
+            "summary": f"{org} | {title}" + (f" | 직무: {', '.join(cats)}" if cats else ""),
+            "isFeatured": True,
+        })
+
+    # 1) 채용 (activityTypeID 5): IT/개발 + 금융 카테고리, 인턴/신입만
+    recruit_filter = (
+        '{ status: OPEN, activityTypeID: "5", '
+        f'categoryIDs: ["{LINKAREER_CAT_IT}", "{LINKAREER_CAT_FINANCE}"], '
+        "jobTypes: [INTERN, NEW] }"
+    )
+    recruit_count = 0
+    for page in [1, 2, 3]:
+        try:
+            nodes = _linkareer_query(recruit_filter, page, 50)
+        except Exception as e:
+            print(f"  - Linkareer 채용 수집 오류 (page={page}): {e}")
+            break
+        if not nodes:
+            break
+        for node in nodes:
+            title = (node.get("title") or "").strip()
+            org = (node.get("organizationName") or "").strip()
+            cats = " ".join(c.get("name", "") for c in (node.get("categories") or []))
+            combined = f"{title} {cats}".upper()
+
+            is_finance_cat = any(k in cats for k in ["자산운용", "펀드", "투자", "증권", "금융"])
+            if any(b in combined for b in LINKAREER_FINANCE_BLACKLIST):
                 continue
-            if not any(k in combined for k in ["AI", "MACHINE LEARNING", "FINTECH", "DATA", "CLOUD", "BLOCKCHAIN"]):
+            if any(b.upper() in title.upper() for b in LINKAREER_RECRUIT_BLACKLIST):
+                continue
+            if not any(k in title.upper() for k in LINKAREER_TITLE_REQUIRED):
+                continue
+            # 금융 자산운용/투자 직무는 퀀트/운용 관점에서 허용, 그 외는 기술 직무 필터 적용
+            if is_finance_cat and not any(b.upper() in combined for b in ["영업", "SALES", "회계", "세무"]):
+                pass
+            elif not is_valid_tech_job(title, f"{org} {cats}"):
                 continue
 
-            tags = ["글로벌 해커톤"] + themes[:4]
-            results.append({
-                "id": f"devpost-{h_id}",
-                "title": title,
-                "organization": org,
-                "category": "hackathon",
-                "source": "Devpost",
-                "sourceUrl": h_url,
-                "startDate": TODAY_STR,
-                "deadline": deadline,
-                "isAlwaysOpen": deadline is None,
-                "tags": tags[:5],
-                "location": loc,
-                "reward": f"상금 {prize_raw}" if prize_raw else "글로벌 해커톤",
-                "summary": f"{org} 주최 글로벌 해커톤 | 일정: {sub_dates} | 테마: {', '.join(themes)}",
-                "isFeatured": True,
-            })
-    except Exception as e:
-        print(f"  - Devpost 수집 오류: {e}")
+            before = len(results)
+            add_item(node, "intern", "인턴/신입")
+            recruit_count += len(results) - before
 
-    print(f"  -> Devpost 해커톤 {len(results)}건 선별 완료")
+    # 2) 공모전 (activityTypeID 3) + 대외활동/교육 (activityTypeID 1): 키워드 필터
+    contest_count = 0
+    for act_type_id, default_cat, badge in [("3", "contest", "공모전"), ("1", "activity", "대외활동/교육")]:
+        type_filter = f'{{ status: OPEN, activityTypeID: "{act_type_id}" }}'
+        for page in [1, 2, 3]:
+            try:
+                nodes = _linkareer_query(type_filter, page, 100)
+            except Exception as e:
+                print(f"  - Linkareer 수집 오류 (type={act_type_id}, page={page}): {e}")
+                break
+            if not nodes:
+                break
+            for node in nodes:
+                title = (node.get("title") or "").strip()
+                org = (node.get("organizationName") or "").strip()
+                cats = " ".join(c.get("name", "") for c in (node.get("categories") or []))
+                if not is_valid_contest_or_hackathon(title, f"{org} {cats}"):
+                    continue
+                category = default_cat
+                if any(k in title.upper() for k in ["해커톤", "HACKATHON", "경진대회", "챌린지", "CHALLENGE"]):
+                    category = "hackathon"
+                before = len(results)
+                add_item(node, category, "해커톤/경진대회" if category == "hackathon" else badge)
+                contest_count += len(results) - before
+
+    print(f"  -> Linkareer 채용 {recruit_count}건 · 공모전/대외활동 {contest_count}건 선별 완료")
     return results
 
 
@@ -602,15 +622,14 @@ def main() -> None:
                 manual_items = json.load(f)
                 if isinstance(manual_items, list):
                     all_items.extend(manual_items)
-                    print(f"[0/5] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
+                    print(f"[0/4] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
         except Exception as e:
             print(f"manual.json 로드 오류: {e}")
 
     all_items.extend(crawl_kofia())
     all_items.extend(crawl_jumpit())
-    all_items.extend(crawl_wevity())
     all_items.extend(crawl_linkareer())
-    all_items.extend(crawl_devpost())
+    all_items.extend(crawl_wevity())
 
     deduped: List[Dict[str, Any]] = []
     seen_keys = set()

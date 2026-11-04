@@ -1,13 +1,10 @@
 {
-  "updatedAt": "2026-11-04 14:28 KST",
-  "totalCount": 38,
+  "updatedAt": "2026-11-04 19:35 KST",
+  "totalCount": 47,
   "sourceCounts": {
     "점핏(Jumpit)": 11,
     "위비티(Wevity)": 3,
-    "금융투자협회(KOFIA)": 11,
-    "링커리어": 1,
-    "Devpost": 4,
-    "자소설닷컴": 1,
+    "링커리어": 26,
     "원티드": 2,
     "프로그래머스": 1,
     "DACON": 2,
@@ -55,26 +52,6 @@
       "location": "온/오프라인",
       "reward": "시상금 및 상장",
       "summary": "롯데지주 주최 | LOTTE AX CHALLENGE 2026",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42799",
-      "title": "[한양증권] 리서치센터 인턴 채용 공고",
-      "organization": "한양증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42799",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-05",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "한양증권 채용 공고 ([한양증권] 리서치센터 인턴 채용 공고)",
       "isFeatured": true
     },
     {
@@ -143,104 +120,138 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-359723",
-      "title": "[NOPLAN] 대학생 AI 코스 베타 테스터 1기 모집",
-      "organization": "앤오피",
-      "category": "activity",
+      "id": "linkareer-360219",
+      "title": "[법무법인세종] 전산실 생성형 AI·KM 운영 담당 채용",
+      "organization": "법무법인세종",
+      "category": "intern",
       "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/359723",
+      "sourceUrl": "https://linkareer.com/activity/360219",
       "startDate": "2026-11-04",
       "deadline": "2026-11-06",
       "isAlwaysOpen": false,
       "tags": [
-        "교육/대외활동",
-        "체험단"
+        "신입",
+        "AI/ML엔지니어"
       ],
       "location": "국내",
-      "reward": "교육/대외활동",
-      "summary": "앤오피 | [NOPLAN] 대학생 AI 코스 베타 테스터 1기 모집",
+      "reward": "인턴/신입",
+      "summary": "법무법인세종 | [법무법인세종] 전산실 생성형 AI·KM 운영 담당 채용 | 직무: AI/ML엔지니어",
       "isFeatured": true
     },
     {
-      "id": "kofia-42810",
-      "title": "[미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용",
-      "organization": "미래에셋자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42810",
-      "startDate": "2026-10-23",
+      "id": "linkareer-359582",
+      "title": "[11/6 마감·참가비 0원] AI 헬스케어 미니 데이터 챌린지 | 데이콘 수강권·수료증 제공",
+      "organization": "넥스트러너스",
+      "category": "hackathon",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/359582",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "과학/공학",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "해커톤/경진대회",
+      "summary": "넥스트러너스 | [11/6 마감·참가비 0원] AI 헬스케어 미니 데이터 챌린지 | 데이콘 수강권·수료증 제공 | 직무: 과학/공학, 기타",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-360887",
+      "title": "[EY한영] 컨설팅부문 수요예측 데이터 분석 인턴",
+      "organization": "EY한영",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360887",
+      "startDate": "2026-11-04",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
+        "데이터분석"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "미래에셋자산운용 채용 공고 ([미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용)",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "EY한영 | [EY한영] 컨설팅부문 수요예측 데이터 분석 인턴 | 직무: 데이터분석",
       "isFeatured": true
     },
     {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
+      "id": "linkareer-360373",
+      "title": "[SK인텔릭스] 데이터 분석 체험형 인턴 채용",
+      "organization": "SK인텔릭스",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360373",
+      "startDate": "2026-11-04",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치"
+        "데이터분석"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "SK인텔릭스 | [SK인텔릭스] 데이터 분석 체험형 인턴 채용 | 직무: 데이터분석",
       "isFeatured": true
     },
     {
-      "id": "kofia-42836",
-      "title": "[아이엠증권] 2026년 신입사원 채용",
-      "organization": "아이엠증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42836",
-      "startDate": "2026-10-26",
+      "id": "linkareer-360144",
+      "title": "[오스템임플란트] 3D GUI 어플리케이션 개발",
+      "organization": "오스템임플란트",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360144",
+      "startDate": "2026-11-04",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "신입",
-        "금융IT/보안"
+        "프론트엔드개발",
+        "백엔드/서버개발"
       ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "[iM증권 2026년 신입사원 채용] ※상세 공고내용은 채용홈페이지(https://imfnsec.recruiter.co.kr/career/jobs/132000) 또는 공고문(첨부파일)을 참조해 주시기 바랍니다.",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "오스템임플란트 | [오스템임플란트] 3D GUI 어플리케이션 개발 | 직무: 프론트엔드개발, 백엔드/서버개발",
       "isFeatured": true
     },
     {
-      "id": "kofia-42851",
-      "title": "[프라핏자산운용㈜] 자산운용본부 신입사원 채용공고",
-      "organization": "프라핏자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42851",
-      "startDate": "2026-10-26",
+      "id": "linkareer-358557",
+      "title": "[나이스신용평가] 신용평가 애널리스트",
+      "organization": "나이스신용평가",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358557",
+      "startDate": "2026-11-04",
       "deadline": "2026-11-09",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "신입",
-        "운용/리서치"
+        "증권/투자/애널리스트"
       ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "프라핏자산운용㈜ 자산운용본부 신입사원 채용공고 [ 모집분야 ] ▶ 채용인원 : 신입사원 1명 ▶ 담당업무 : 공모주 메자닌 (CB, BW 등) 비상장주식 등 유가증권 운용업무 지원 및 기업 산업 분석 등 ▶ 자격요건 : 일반사모운용사에 대한 이해가 있고, 자산운용업에서 업무를 하고 싶은 분 ▶ 우대사항 - 자산운용사 및 금융회사 유경험자 - 투자자산운용사 자격보유 - 금융관련 자격증(CPA,...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "나이스신용평가 | [나이스신용평가] 신용평가 애널리스트 | 직무: 증권/투자/애널리스트",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-358503",
+      "title": "[NICE신용평가] 신용평가 애널리스트",
+      "organization": "NICE신용평가",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358503",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "증권/투자/애널리스트"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "NICE신용평가 | [NICE신용평가] 신용평가 애널리스트 | 직무: 증권/투자/애널리스트",
       "isFeatured": true
     },
     {
@@ -286,27 +297,6 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42920",
-      "title": "[유안타증권] 업무혁신팀 신입직원 채용(~11/12)",
-      "organization": "유안타증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42920",
-      "startDate": "2026-10-29",
-      "deadline": "2026-11-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "[유안타증권] 업무혁신팀 신입직원 채용(~11/12) [주요업무] · 주식매매 결제 업무 기획 및 프로세스 개발 지원 · 신용공여 업무 기획 및 개발 지원 · 신종증권 매매 프로세스 개발 지원 [지원자격 및 우대사항] · 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) · 영어 또는 중국어 능력 우수자 우대 [근무형태] · 계약직 입사(6개월 계약기간 종료 후 정규직...",
-      "isFeatured": true
-    },
-    {
       "id": "jumpit-55277855",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -329,24 +319,22 @@
       "isFeatured": true
     },
     {
-      "id": "devpost-31302",
-      "title": "PayPal AI Hackathon",
-      "organization": "PayPal",
-      "category": "hackathon",
-      "source": "Devpost",
-      "sourceUrl": "https://paypalaihackathon.devpost.com/",
+      "id": "linkareer-361115",
+      "title": "[참가자 모집] AI를 활용한 웹서비스 제작, 개발부터 배포까지",
+      "organization": "주식회사 패스파인더",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361115",
       "startDate": "2026-11-04",
       "deadline": "2026-11-12",
       "isAlwaysOpen": false,
       "tags": [
-        "글로벌 해커톤",
-        "Low/No Code",
-        "Machine Learning/AI",
-        "Web"
+        "대외활동/교육",
+        "강연"
       ],
-      "location": "Online",
-      "reward": "상금 $ 67,500",
-      "summary": "PayPal 주최 글로벌 해커톤 | 일정: Oct 01 - Nov 12, 2026 | 테마: Low/No Code, Machine Learning/AI, Web",
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "주식회사 패스파인더 | [참가자 모집] AI를 활용한 웹서비스 제작, 개발부터 배포까지 | 직무: 강연",
       "isFeatured": true
     },
     {
@@ -369,6 +357,25 @@
       "location": "서울 금천구",
       "reward": "IT 신입/인턴",
       "summary": "파이오링크 | 프라이빗 클라우드(HCI) 가상화 전문연구요원 | 기술스택: Git, Go, Kubernetes, Linux, Python, AWS, AZURE, OpenStack",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-359552",
+      "title": "[엘리스] 과기부 × 엘리스 AI 챌린지 : 일상 속 문제, AI로 해결하다 (전국민 AI 경진대회)",
+      "organization": "엘리스",
+      "category": "hackathon",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/359552",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-13",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "과학/공학"
+      ],
+      "location": "국내",
+      "reward": "해커톤/경진대회",
+      "summary": "엘리스 | [엘리스] 과기부 × 엘리스 AI 챌린지 : 일상 속 문제, AI로 해결하다 (전국민 AI 경진대회) | 직무: 과학/공학",
       "isFeatured": true
     },
     {
@@ -416,107 +423,100 @@
       "isFeatured": true
     },
     {
-      "id": "manual-jasoseol-navercloud",
-      "title": "2026 동계 네이버클라우드 AI·백엔드·데이터 학부생 인턴십 모집",
-      "organization": "네이버클라우드",
+      "id": "linkareer-361593",
+      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
+      "organization": "카디안자산운용",
       "category": "intern",
-      "source": "자소설닷컴",
-      "sourceUrl": "https://jasoseol.com/recruit",
-      "startDate": "2026-11-03",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361593",
+      "startDate": "2026-11-04",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
         "인턴",
-        "AI/ML",
-        "백엔드",
-        "FastAPI",
-        "Python"
+        "자산운용/펀드"
       ],
-      "location": "경기 성남시 분당구",
-      "reward": "동계 인턴십 (8주)",
-      "summary": "초거대 AI(LLM) API 서빙 및 클라우드 데이터 플랫폼 엔지니어링 실무를 경험할 학부생 인턴 모집.",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
       "isFeatured": true
     },
     {
-      "id": "kofia-42944",
-      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "id": "linkareer-361582",
+      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
       "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기))",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42943",
-      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기))",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42977",
-      "title": "[신영증권] 2026년도 하반기 신입사원 공개채용",
-      "organization": "신영증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42977",
-      "startDate": "2026-11-03",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "■ 모집인원: 00명 ■ 접수기간: 2026년 11월 03일 (화) ~ 2025년 11월 16일 (월) 오전 10시까지 ■ 모집내용 -. 모집분야 : 자산관리서비스, 본사영업, IB, 운용, 리서치, IT, 본사관리 -. 근무지: 본사 및 영업점(서울, 대전, 대구, 광주) ※ 직무에 대한 상세 내용은 채용사이트 > 채용안내 > 직무소개에서 확인하실 수 있습니다. ■ 지원자격 -. 학사 이상...",
-      "isFeatured": true
-    },
-    {
-      "id": "devpost-31552",
-      "title": "UGREEN Hackathon 2026 on AI NAS",
-      "organization": "UGREEN",
-      "category": "hackathon",
-      "source": "Devpost",
-      "sourceUrl": "https://ugreenhackathon.devpost.com/",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361582",
       "startDate": "2026-11-04",
-      "deadline": "2026-11-16",
+      "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "글로벌 해커톤",
-        "Lifehacks",
-        "Machine Learning/AI",
-        "Productivity"
+        "인턴",
+        "증권/투자/애널리스트"
       ],
-      "location": "Online",
-      "reward": "상금 $ 46,000",
-      "summary": "UGREEN 주최 글로벌 해커톤 | 일정: Oct 22 - Nov 16, 2026 | 테마: Lifehacks, Machine Learning/AI, Productivity",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-361523",
+      "title": "[올거나이즈] [KR] Back-end Engineer Internship (3개월 / 정규직 전환형)",
+      "organization": "올거나이즈",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361523",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드/서버개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "올거나이즈 | [올거나이즈] [KR] Back-end Engineer Internship (3개월 / 정규직 전환형) | 직무: 백엔드/서버개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-361807",
+      "title": "AI Agent·Automation을 실제 조직에 적용할 AI Tech Lead / Developer 추가 모집 ㅣAI혁신부",
+      "organization": "북극성 정치경제 연구소",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361807",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "북극성 정치경제 연구소 | AI Agent·Automation을 실제 조직에 적용할 AI Tech Lead / Developer 추가 모집 ㅣAI혁신부 | 직무: 기타",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-360576",
+      "title": "[나이스디앤알] 웹 서비스(Back-end, Front-end) 개발 및 운영(신입/경력)",
+      "organization": "나이스디앤알",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360576",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "프론트엔드개발",
+        "백엔드/서버개발",
+        "시스템/ERP개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "나이스디앤알 | [나이스디앤알] 웹 서비스(Back-end, Front-end) 개발 및 운영(신입/경력) | 직무: 프론트엔드개발, 백엔드/서버개발, 시스템/ERP개발",
       "isFeatured": true
     },
     {
@@ -738,86 +738,234 @@
       "isFeatured": true
     },
     {
-      "id": "devpost-30789",
-      "title": "Arbiter Hacks V1",
-      "organization": "Arbiter",
-      "category": "hackathon",
-      "source": "Devpost",
-      "sourceUrl": "https://arbiter-hacks-v1.devpost.com/",
+      "id": "linkareer-360208",
+      "title": "[캐시워크] 데이터분석 담당 채용전환형 인턴",
+      "organization": "넛지헬스케어",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360208",
       "startDate": "2026-11-04",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
-        "글로벌 해커톤",
-        "Beginner Friendly",
-        "Machine Learning/AI",
-        "Open Ended"
-      ],
-      "location": "Online",
-      "reward": "상금 $ 7,800",
-      "summary": "Arbiter 주최 글로벌 해커톤 | 일정: Oct 20 - Dec 21, 2026 | 테마: Beginner Friendly, Machine Learning/AI, Open Ended",
-      "isFeatured": true
-    },
-    {
-      "id": "devpost-31572",
-      "title": "Codegeist 2026: Build with context. Ship with confidence.",
-      "organization": "Atlassian",
-      "category": "hackathon",
-      "source": "Devpost",
-      "sourceUrl": "https://codegeist2026.devpost.com/",
-      "startDate": "2026-11-04",
-      "deadline": "2026-12-22",
-      "isAlwaysOpen": false,
-      "tags": [
-        "글로벌 해커톤",
-        "Machine Learning/AI",
-        "Enterprise",
-        "Productivity"
-      ],
-      "location": "Online",
-      "reward": "상금 $ 120,000",
-      "summary": "Atlassian 주최 글로벌 해커톤 | 일정: Oct 27 - Dec 22, 2026 | 테마: Machine Learning/AI, Enterprise, Productivity",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42934",
-      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
-      "organization": "알파자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
-      "startDate": "2026-10-30",
-      "deadline": null,
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치"
+        "데이터분석",
+        "AI/ML엔지니어"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "알파자산운용 채용 공고 ([알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지))",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "넛지헬스케어 | [캐시워크] 데이터분석 담당 채용전환형 인턴 | 직무: 데이터분석, AI/ML엔지니어",
       "isFeatured": true
     },
     {
-      "id": "kofia-42891",
-      "title": "[BNK자산운용] 주식운용본부 리서치센터 채용(신입/경력)",
-      "organization": "비엔케이자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42891",
-      "startDate": "2026-10-28",
-      "deadline": "2026-11-03",
+      "id": "linkareer-360204",
+      "title": "[캐시워크] 데이터엔지니어 채용전환형 인턴",
+      "organization": "넛지헬스케어",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360204",
+      "startDate": "2026-11-04",
+      "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
-        "신입",
-        "퀀트/파생",
-        "운용/리서치"
+        "인턴",
+        "데이터분석",
+        "AI/ML엔지니어"
       ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "[BNK자산운용] 주식운용본부 리서치센터 채용(신입/경력) BNK자산운용에서 함께 성장할 능력있는 인재를 채용하고 있습니다. BNK자산운용은 BNK금융그룹의 계열사이며 '고객으로부터 가장 신뢰받는 자산운용사'라는 경영방침 아래, 전통적인 증권형 펀드뿐만 아니라, TDF, ETF 및 대체투자 상품까지 다양한 투자상품을 운용 중인 종합자산운용사입니다. 1. 모집부문 : 주식운용본부 리서치센터(사...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "넛지헬스케어 | [캐시워크] 데이터엔지니어 채용전환형 인턴 | 직무: 데이터분석, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-358038",
+      "title": "[인피니언테크놀로지스코리아] Internship - Edge AI",
+      "organization": "인피니언테크놀로지스코리아",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358038",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Edge AI | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-358036",
+      "title": "[인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions)",
+      "organization": "인피니언테크놀로지스코리아",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358036",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions) | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-357837",
+      "title": "메이아이 머신러닝 엔지니어 (ML Engineer) 채용",
+      "organization": "(주)메이아이",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/357837",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "(주)메이아이 | 메이아이 머신러닝 엔지니어 (ML Engineer) 채용 | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-357809",
+      "title": "[LG경영개발원] AI Engineer Internship - Agentic AI (Backend)",
+      "organization": "LG경영개발원",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/357809",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드/서버개발",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "LG경영개발원 | [LG경영개발원] AI Engineer Internship - Agentic AI (Backend) | 직무: 백엔드/서버개발, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-358421",
+      "title": "[넥슨] [AI본부] 웹 프론트엔드 엔지니어 (인턴)",
+      "organization": "넥슨",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358421",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-18",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "프론트엔드개발",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "넥슨 | [넥슨] [AI본부] 웹 프론트엔드 엔지니어 (인턴) | 직무: 프론트엔드개발, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-358498",
+      "title": "[넥슨코리아] [AI본부] 웹 프론트엔드 엔지니어 (인턴)",
+      "organization": "넥슨코리아",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358498",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "프론트엔드개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "넥슨코리아 | [넥슨코리아] [AI본부] 웹 프론트엔드 엔지니어 (인턴) | 직무: 프론트엔드개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-359944",
+      "title": "[뉴빌리티] [Physical AI] SW Engineer 인턴",
+      "organization": "뉴빌리티",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/359944",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "뉴빌리티 | [뉴빌리티] [Physical AI] SW Engineer 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-359878",
+      "title": "[크래프톤] [AI Research Div.] Research Scientist - World Action Models (경력무관 / 인턴)",
+      "organization": "크래프톤",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/359878",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "크래프톤 | [크래프톤] [AI Research Div.] Research Scientist - World Action Models (경력무관 / 인턴) | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-360652",
+      "title": "[스탠다드] 웹 개발자 인턴 채용 (청주 우대·서울 하이브리드 가능)",
+      "organization": "스탠다드(standard)",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360652",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-27",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "프론트엔드개발",
+        "백엔드/서버개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "스탠다드(standard) | [스탠다드] 웹 개발자 인턴 채용 (청주 우대·서울 하이브리드 가능) | 직무: 프론트엔드개발, 백엔드/서버개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-361425",
+      "title": "[카카오엔터프라이즈] [인프라실] Database Engineer 영입",
+      "organization": "카카오엔터프라이즈",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361425",
+      "startDate": "2026-11-04",
+      "deadline": "2027-01-31",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카카오엔터프라이즈 | [카카오엔터프라이즈] [인프라실] Database Engineer 영입",
       "isFeatured": true
     }
   ]
