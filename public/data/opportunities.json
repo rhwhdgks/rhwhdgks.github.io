@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-05 03:30 KST",
-  "totalCount": 44,
+  "updatedAt": "2026-11-05 14:49 KST",
+  "totalCount": 41,
   "sourceCounts": {
     "점핏(Jumpit)": 11,
-    "링커리어": 24,
-    "금융투자협회(KOFIA)": 8,
+    "금융투자협회(KOFIA)": 4,
+    "링커리어": 25,
     "위비티(Wevity)": 1
   },
   "items": [
@@ -31,24 +31,25 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55205420",
-      "title": "[AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당",
-      "organization": "써큘러랩스",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55205420",
-      "startDate": "2026-11-05",
-      "deadline": "2026-11-05",
+      "id": "kofia-42872",
+      "title": "[KIS자산평가] 금융컨설팅본부 솔루션실 신입/경력(1년 이상) 채용 공고",
+      "organization": "KIS자산평가",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42872",
+      "startDate": "2026-10-27",
+      "deadline": "2026-11-06",
       "isAlwaysOpen": false,
       "tags": [
-        "신입/인턴",
-        "Windows",
-        "OpenCV",
-        "CUDA"
+        "금융권",
+        "신입",
+        "퀀트/파생",
+        "운용/리서치",
+        "금융IT/보안"
       ],
-      "location": "경기 구리시",
-      "reward": "IT 신입/인턴",
-      "summary": "써큘러랩스 | [AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당 | 기술스택: Windows, OpenCV, CUDA",
+      "location": "서울 여의도",
+      "reward": "신입/인턴 채용",
+      "summary": "KIS자산평가는 세계적인 신용평가사인 Moody's 계열의 채권평가 전문업체로, 진취적이고 역량있는 직원을 아래와 같이 모집합니다. ■ 모집부문: 금융컨설팅본부 솔루션실 (신입/경력(1년 이상)) ■ 주요업무 - 금융상품 평가방법론 연구개발 - 파생상품 평가모델 개발 - 상품평가 모델 유지보수 및 고객 지원 ■ 자격요건 및 우대사항 1) 신입 - 프로그래밍(C/C++, VBA, Python ...",
       "isFeatured": true
     },
     {
@@ -132,13 +133,13 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42810",
+      "id": "kofia-43011",
       "title": "[미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용",
       "organization": "미래에셋자산운용",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42810",
-      "startDate": "2026-10-23",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43011",
+      "startDate": "2025-10-23",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
@@ -151,26 +152,6 @@
       "location": "서울 여의도",
       "reward": "인턴십",
       "summary": "1. 회사 미래에셋자산운용 2. Job Position IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용 3. 담당할 업무 - 정보보안 운영 업무 * 서버·웹·단말 취약점 점검 및 조치 요청 대응 지원 * 보안솔루션(EDR·DLP·방화벽 등) 운영 및 상시 모니터링 * 보안관제(Secudium)·위협 인텔리전스(FCTI) 이벤트 분석 보조 * 감사·규제 대응 증빙 자료 작성 지원 * ...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-08",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
       "isFeatured": true
     },
     {
@@ -229,26 +210,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "오스템임플란트 | [오스템임플란트] 3D GUI 어플리케이션 개발 | 직무: 프론트엔드개발, 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42851",
-      "title": "[프라핏자산운용㈜] 자산운용본부 신입사원 채용공고",
-      "organization": "프라핏자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42851",
-      "startDate": "2026-10-26",
-      "deadline": "2026-11-09",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "프라핏자산운용 채용 공고 ([프라핏자산운용㈜] 자산운용본부 신입사원 채용공고)",
       "isFeatured": true
     },
     {
@@ -440,6 +401,44 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-361593",
+      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361593",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "자산운용/펀드"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-361582",
+      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361582",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "증권/투자/애널리스트"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-361523",
       "title": "[올거나이즈] [KR] Back-end Engineer Internship (3개월 / 정규직 전환형)",
       "organization": "올거나이즈",
@@ -475,48 +474,6 @@
       "location": "국내",
       "reward": "대외활동/교육",
       "summary": "북극성 정치경제 연구소 | AI Agent·Automation을 실제 조직에 적용할 AI Tech Lead / Developer 추가 모집 ㅣAI혁신부 | 직무: 기타",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42944",
-      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치",
-        "증권/투자/애널리스트"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기))",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42943",
-      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치",
-        "자산운용/펀드"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기))",
       "isFeatured": true
     },
     {
@@ -591,7 +548,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
       "startDate": "2026-11-05",
-      "deadline": "2026-11-21",
+      "deadline": "2026-11-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -645,6 +602,27 @@
       "location": "경기 안양시 동안구",
       "reward": "IT 신입/인턴",
       "summary": "포스로직 | 이미지 프로세싱 알고리즘 개발 신입 | 기술스택: C, C++, DeepLearning, MachineLearning, AI/인공지능, CUDA",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55490249",
+      "title": "[AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당",
+      "organization": "써큘러랩스",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55490249",
+      "startDate": "2026-11-05",
+      "deadline": "2026-12-05",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "Windows",
+        "OpenCV",
+        "CUDA"
+      ],
+      "location": "경기 구리시",
+      "reward": "IT 신입/인턴",
+      "summary": "써큘러랩스 | [AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당 | 기술스택: Windows, OpenCV, CUDA",
       "isFeatured": true
     },
     {
@@ -723,25 +701,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions) | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-357837",
-      "title": "메이아이 머신러닝 엔지니어 (ML Engineer) 채용",
-      "organization": "(주)메이아이",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/357837",
-      "startDate": "2026-11-05",
-      "deadline": "2027-01-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "(주)메이아이 | 메이아이 머신러닝 엔지니어 (ML Engineer) 채용 | 직무: AI/ML엔지니어",
       "isFeatured": true
     },
     {
@@ -874,26 +833,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "(주)힐링페이퍼 | [강남언니] AI Research Engineer 인턴 - Agent Evaluation (체험형)",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42934",
-      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
-      "organization": "알파자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
-      "startDate": "2026-10-30",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
