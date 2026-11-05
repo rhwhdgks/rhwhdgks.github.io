@@ -474,12 +474,12 @@ export function App() {
               </div>
             )}
 
-            {/* 메인 뷰 전환 (전체 공고 / 내 진행 현황 / 캘린더) */}
-            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200">
+            {/* 메인 뷰 전환 (전체 공고 / 내 진행 현황 / 캘린더 / 자소서 치트시트) */}
+            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 overflow-x-auto shrink-0 max-w-[calc(100vw-3rem)]">
               <button
                 type="button"
                 onClick={() => setViewMode('list')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
                   viewMode === 'list'
                     ? 'bg-white text-indigo-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -492,14 +492,14 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setViewMode('my-progress')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
                   viewMode === 'my-progress'
                     ? 'bg-emerald-600 text-white shadow-xs'
                     : 'text-slate-700 hover:text-emerald-700'
                 }`}
               >
                 <FolderKanban className="w-3.5 h-3.5" />
-                <span>내 진행 현황</span>
+                <span>진행 현황</span>
                 <span
                   className={`px-1.5 py-0.2 rounded-full text-[11px] ${
                     viewMode === 'my-progress'
@@ -514,7 +514,7 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setViewMode('calendar')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
                   viewMode === 'calendar'
                     ? 'bg-white text-indigo-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -527,7 +527,7 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setViewMode('cheatsheet')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
                   viewMode === 'cheatsheet'
                     ? 'bg-indigo-600 text-white shadow-xs'
                     : 'text-indigo-700 hover:bg-indigo-50/60'
