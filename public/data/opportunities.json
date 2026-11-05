@@ -1,33 +1,13 @@
 {
-  "updatedAt": "2026-11-05 15:30 KST",
-  "totalCount": 43,
+  "updatedAt": "2026-11-05 15:41 KST",
+  "totalCount": 39,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 8,
     "점핏(Jumpit)": 11,
+    "금융투자협회(KOFIA)": 4,
     "링커리어": 23,
     "위비티(Wevity)": 1
   },
   "items": [
-    {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-05",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "에프앤자산평가 채용 공고 ([에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08))",
-      "isFeatured": true
-    },
     {
       "id": "jumpit-55224024",
       "title": "웹 풀스택 개발자 (주언어: .NET) 신입",
@@ -421,45 +401,41 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42944",
-      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "id": "linkareer-361593",
+      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
       "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
-      "startDate": "2026-11-02",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361593",
+      "startDate": "2026-11-05",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치",
-        "증권/투자/애널리스트"
+        "자산운용/펀드"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
       "isFeatured": true
     },
     {
-      "id": "kofia-42943",
-      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
+      "id": "linkareer-361582",
+      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
       "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
-      "startDate": "2026-11-02",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361582",
+      "startDate": "2026-11-05",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치",
-        "자산운용/펀드"
+        "증권/투자/애널리스트"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 채권운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office 능통자 우대 - Visua...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
       "isFeatured": true
     },
     {
@@ -690,44 +666,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-358038",
-      "title": "[인피니언테크놀로지스코리아] Internship - Edge AI",
-      "organization": "인피니언테크놀로지스코리아",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/358038",
-      "startDate": "2026-11-05",
-      "deadline": "2027-01-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Edge AI | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-358036",
-      "title": "[인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions)",
-      "organization": "인피니언테크놀로지스코리아",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/358036",
-      "startDate": "2026-11-05",
-      "deadline": "2027-01-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions) | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-358498",
       "title": "[넥슨코리아] [AI본부] 웹 프론트엔드 엔지니어 (인턴)",
       "organization": "넥슨코리아",
@@ -857,26 +795,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "(주)힐링페이퍼 | [강남언니] AI Research Engineer 인턴 - Agent Evaluation (체험형)",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42934",
-      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
-      "organization": "알파자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
-      "startDate": "2026-10-30",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
