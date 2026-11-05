@@ -22,6 +22,7 @@ import {
   Plus,
   EyeOff,
   RotateCcw,
+  FileText,
 } from 'lucide-react';
 import {
   CATEGORY_META,
@@ -42,6 +43,7 @@ import { CalendarView } from './components/CalendarView';
 import { OpportunityModal } from './components/OpportunityModal';
 import { MyProgressView } from './components/MyProgressView';
 import { DismissedModal } from './components/DismissedModal';
+import { ResumeCheatsheetView } from './components/ResumeCheatsheetView';
 
 const BOOKMARK_STORAGE_KEY = 'career_radar_bookmarks_v1';
 const PROGRESS_STORAGE_KEY = 'career_radar_progress_v1';
@@ -521,6 +523,29 @@ export function App() {
                 <CalendarIcon className="w-3.5 h-3.5" />
                 <span>캘린더</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => setViewMode('cheatsheet')}
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                  viewMode === 'cheatsheet'
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'text-indigo-700 hover:bg-indigo-50/60'
+                }`}
+                title="내 깃허브 프로젝트 & 학회 연구 자소서 치트시트"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>자소서 치트시트</span>
+                <span
+                  className={`px-1.5 py-0.2 rounded-full text-[10px] font-black ${
+                    viewMode === 'cheatsheet'
+                      ? 'bg-amber-400 text-amber-950'
+                      : 'bg-indigo-100 text-indigo-800'
+                  }`}
+                >
+                  MY
+                </span>
+              </button>
             </div>
 
             {/* 북마크(찜) 필터 버튼 */}
@@ -875,8 +900,10 @@ export function App() {
           </button>
         </section>
 
-        {/* "내 진행 현황" 뷰일 때는 전용 워크스페이스 렌더링 */}
-        {viewMode === 'my-progress' ? (
+        {/* "자소서 치트시트" 뷰일 때는 전용 치트시트 저장소 렌더링 */}
+        {viewMode === 'cheatsheet' ? (
+          <ResumeCheatsheetView />
+        ) : viewMode === 'my-progress' ? (
           <MyProgressView
             entries={progressEntries}
             onUpdateStage={handleUpdateProgressStage}

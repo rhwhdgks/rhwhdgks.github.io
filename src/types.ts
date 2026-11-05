@@ -32,7 +32,7 @@ export interface OpportunitiesPayload {
 
 export type SortOption = 'fit-desc' | 'deadline-asc' | 'latest' | 'deadline-desc';
 
-export type ViewMode = 'list' | 'my-progress' | 'calendar';
+export type ViewMode = 'list' | 'my-progress' | 'calendar' | 'cheatsheet';
 
 export type ProgressStage = 'preparing' | 'applied' | 'ongoing';
 
