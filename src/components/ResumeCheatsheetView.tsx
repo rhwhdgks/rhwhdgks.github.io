@@ -95,6 +95,66 @@ const PROJECTS_STRUCTURED: ProjectStructure[] = [
       '정형화된 재무제표 표는 100% 정확하게 파싱하고 계산하지만, 비정형 서술형 주석에 담긴 복잡한 조건부 계약 조항은 여전히 LLM의 텍스트 해석력에 의존해야 하며, DART 표준 서식이 정착되기 전 과거 공시는 파싱 성공률이 떨어집니다.',
   },
   {
+    id: 'camp-molding',
+    title: '제6회 KAMP 제조데이터 경진대회 - 사출성형 품질불량 예측',
+    repo: 'rhwhdgks/camp-molding',
+    repoUrl: 'https://github.com/rhwhdgks/camp-molding',
+    category: '제조 AI · 머신러닝 & 시계열 공정 분석',
+    motivation:
+      '중소벤처기업부 주최 제6회 K-인공지능 제조데이터(KAMP) 경진대회에 참가하여, 플라스틱 사출성형 공정의 센서 데이터(온도, 압력, 시간 등)로부터 불량을 사전에 예측하고, 한정된 검사 리소스 환경에서 어떤 샷(Shot)을 우선 검사해야 하는지 데이터 기반의 최적 품질 관리 정책을 수립하고자 시작했습니다.',
+    summary:
+      '사출성형 센서 시계열 데이터로부터 불량 확률을 예측하고, 부품별(CN7, RG3) 맞춤 통계 규칙과 머신러닝(Logistic, CatBoost, GAM, SVM 등)을 비교 검증하여, 전수 검사가 아닌 효율적인 "검사 권고 우선순위 정책"을 산출한 프로젝트입니다.',
+    risksAndSolutions: [
+      {
+        risk: '1번의 사출 샷(Shot)에서 2개 부품(LH/RH)이 생산되는데, 같은 샷이 학습-검증셋으로 쪼개져 공정값을 공유하는 심각한 Data/Group Leakage 발생',
+        solution:
+          '샷(Shot) 단위의 엄격한 그룹 교차검증(Group K-Fold)을 적용하여, 동일 샷의 부품이 학습셋과 시험셋에 절대 나뉘어 들어가지 않도록 물리적 독립성을 보장했습니다.',
+      },
+      {
+        risk: '장비 노후화 및 운전 조건 변화로 인한 센서 분포 드리프트(Drift)와 극심한 불량 불균형',
+        solution:
+          '센서 0값 및 조건 외 이상치 필터링, z-score 기반 공정 개념 드리프트 탐지(Grade v2)를 도입하고, 상위 2% 위험 샷 및 비정상 등급 샷에 대해 2단계 차등 검사 정책(전수 검사 vs 우선 캐비티 검사)을 설계했습니다.',
+      },
+      {
+        risk: '모델 개선 수치가 우연한 시드 효과일 가능성',
+        solution:
+          '모델 변경 시 03_모델 ➔ 05_실험기록 ➔ 잠금 파일 순서로 변경 내역을 동결하고, GAM과 SVM 등 시드별 평균 개선과 후퇴를 투명하게 전수 기록하여 과적합을 방지했습니다.',
+      },
+    ],
+    limitations:
+      '동일한 샷에서 나온 좌/우 부품은 센서 공정값을 100% 공유하므로, 센서값만으로는 "왼쪽 부품이 불량인지 오른쪽 부품이 불량인지"를 완벽히 분리해 특정할 수 없으며, 금형 캐비티 자체의 물리적 편차를 모델링하는 데는 한계가 있었습니다.',
+  },
+  {
+    id: 'air-force-hackathon',
+    title: '제7회 공군 창의·혁신 해커톤 - 무단투기 감지 및 쓰레기통 최적 배치',
+    repo: 'rhwhdgks/Air-Force-Hackathon',
+    repoUrl: 'https://github.com/rhwhdgks/Air-Force-Hackathon',
+    category: 'Computer Vision · 공간정보 GIS & 최적화',
+    motivation:
+      '제7회 공군 창의·혁신 아이디어 공모 해커톤 지정공모 과제("깨끗한 거리 조성을 위한 쓰레기 무단투기 감소 대책")에 참가하여, 사후 민원 처리와 인력 순찰에 의존하던 기존 단속 체계를 혁신하고, CCTV AI 영상 분석과 공간정보 데이터를 결합해 한정된 예산 내에서 쓰레기통 최적 입지를 도출하고자 시작했습니다.',
+    summary:
+      'YOLOv8 기반 실시간 CCTV 무단투기 객체 탐지 + 강남구 공간정보(유동인구, POI, 도로, 단속 이력) 기반 무단투기량 회귀 예측(Multi-Scale Regression/Random Forest) + K-Means / Greedy / 1·2-Swap 휴리스틱 쓰레기통 최적 배치 알고리즘 + Flask/Leaflet 기반 실시간 대시보드 및 SSE 스트리밍 시각화를 결합한 통합 플랫폼입니다.',
+    risksAndSolutions: [
+      {
+        risk: '수천 개 격자 후보지에 대해 전역 최적해를 구하려 하면 연산량이 폭증해 실시간 시뮬레이션 불가 (조합 폭발)',
+        solution:
+          '1차로 K-Means 군집화를 통해 후보 지역을 압축한 뒤, 커버리지 한계수익(Marginal Gain) 기준 Greedy 탐색과 1·2-Swap 국소 교환 휴리스틱을 결합하여 수 초 내에 최적 입지안을 도출했습니다.',
+      },
+      {
+        risk: '대규모 공간정보 시뮬레이션 연산 중 웹 화면이 멈추거나 진행률을 알 수 없음',
+        solution:
+          'Flask 백엔드에서 SSE(Server-Sent Events) 스트리밍 엔드포인트를 구축하여, 최적화 진행률과 지도 오버레이 갱신 데이터를 브라우저에 끊김 없이 실시간 전달했습니다.',
+      },
+      {
+        risk: '단순 통계 데이터와 현장 단속 데이터 간의 공간적 스케일 불일치',
+        solution:
+          '50m 격자 단위로 공간 데이터를 리샘플링하고, PostGIS 기반 공간 인덱싱을 통해 인접 쓰레기통과의 거리 및 유동인구 밀도를 통합 변수화했습니다.',
+      },
+    ],
+    limitations:
+      '알고리즘이 산출한 최적 입지라도 실제 현장에서는 상가 앞 설치 기피 민원, 지자체 도로 점용 조례, 청소차 수거 동선 등 비수학적 행정 규제가 존재하므로, 현장 실사와 행정 협의가 병행되어야 한다는 정책적 한계를 확인했습니다.',
+  },
+  {
     id: 'etf-image-alpha-ode',
     title: 'ETF 차트 이미지 예측 연구 (Find-A 학회)',
     repo: 'rhwhdgks/etf-image-alpha-ode',
@@ -191,9 +251,11 @@ export const ResumeCheatsheetView: React.FC = () => {
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
     'funding-arb-engine': true,
     'mirae-asset-dart': true,
-    'etf-image-alpha-ode': true,
-    'crypto-order-flow': true,
-    'crypto-herding': true,
+    'camp-molding': true,
+    'air-force-hackathon': true,
+    'etf-image-alpha-ode': false,
+    'crypto-order-flow': false,
+    'crypto-herding': false,
   });
 
   const handleCopy = (text: string, id: string) => {
@@ -224,14 +286,14 @@ export const ResumeCheatsheetView: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold mb-2">
               <FileText className="w-3.5 h-3.5" />
-              <span>포트폴리오 자소서·면접 4단계 정리</span>
+              <span>포트폴리오 자소서·면접 4단계 정리 (총 7개 프로젝트)</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
               [계기] ➔ [요약] ➔ [위험상황 및 해결한 방법] ➔ [한계]
             </h1>
             <p className="mt-1.5 text-xs sm:text-sm text-slate-300">
-              고려대학교 컴퓨터공학 전공 / 퀀트 학회 Find-A 활동과 깃허브 대표 프로젝트 5선을
-              자소서와 면접에서 즉시 활용할 수 있도록 사실에 기반해 구조화했습니다.
+              선물 체결 엔진, 미래에셋 DART AI, KAMP 제조 경진대회, 공군 해커톤, Find-A 학회 연구 등
+              대표 프로젝트 7선을 자소서와 면접에서 즉시 꺼내 쓸 수 있도록 4단계로 구조화했습니다.
             </p>
           </div>
 
@@ -248,7 +310,7 @@ export const ResumeCheatsheetView: React.FC = () => {
         </div>
       </div>
 
-      {/* 5대 프로젝트 카드 리스트 */}
+      {/* 7대 프로젝트 카드 리스트 */}
       <div className="space-y-4">
         {PROJECTS_STRUCTURED.map((p, idx) => {
           const isExp = Boolean(expandedIds[p.id]);
@@ -303,7 +365,7 @@ export const ResumeCheatsheetView: React.FC = () => {
                   </button>
 
                   <button type="button" className="p-1 text-slate-400">
-                    {isExp ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    {isExp ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
