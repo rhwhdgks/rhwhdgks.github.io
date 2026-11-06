@@ -1,113 +1,31 @@
 {
-  "updatedAt": "2026-11-06 14:43 KST",
-  "totalCount": 44,
+  "updatedAt": "2026-11-07 02:51 KST",
+  "totalCount": 40,
   "sourceCounts": {
-    "점핏(Jumpit)": 11,
-    "링커리어": 26,
-    "금융투자협회(KOFIA)": 6,
+    "금융투자협회(KOFIA)": 7,
+    "링커리어": 22,
+    "점핏(Jumpit)": 10,
     "위비티(Wevity)": 1
   },
   "items": [
     {
-      "id": "jumpit-55242853",
-      "title": "AI Agent Engineer(LLM · TypeScript) [신입]",
-      "organization": "이우소프트",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55242853",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "인공지능/머신러닝",
-        "Confluence",
-        "Docker",
-        "Docker Cloud"
-      ],
-      "location": "경기 화성시",
-      "reward": "IT 신입/인턴",
-      "summary": "이우소프트 | AI Agent Engineer(LLM · TypeScript) [신입] | 기술스택: Confluence, Docker, Docker Cloud, Git, Jira, NestJS, Node.js, PostgreSQL, TypeScript, pnpm",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-360219",
-      "title": "[법무법인세종] 전산실 생성형 AI·KM 운영 담당 채용",
-      "organization": "법무법인세종",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/360219",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "법무법인세종 | [법무법인세종] 전산실 생성형 AI·KM 운영 담당 채용 | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-362194",
-      "title": "비전공자도 완성하는 의료AI 해커톤 ​",
-      "organization": "넥스트러너스",
-      "category": "hackathon",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/362194",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "과학/공학"
-      ],
-      "location": "국내",
-      "reward": "해커톤/경진대회",
-      "summary": "넥스트러너스 | 비전공자도 완성하는 의료AI 해커톤 ​ | 직무: 과학/공학",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-359582",
-      "title": "[11/6 마감·참가비 0원] AI 헬스케어 미니 데이터 챌린지 | 데이콘 수강권·수료증 제공",
-      "organization": "넥스트러너스",
-      "category": "hackathon",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/359582",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "과학/공학",
-        "기타"
-      ],
-      "location": "국내",
-      "reward": "해커톤/경진대회",
-      "summary": "넥스트러너스 | [11/6 마감·참가비 0원] AI 헬스케어 미니 데이터 챌린지 | 데이콘 수강권·수료증 제공 | 직무: 과학/공학, 기타",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43011",
-      "title": "[미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용",
-      "organization": "미래에셋자산운용",
+      "id": "kofia-42803",
+      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
+      "organization": "에프앤자산평가",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43011",
-      "startDate": "2025-10-23",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
+      "startDate": "2026-10-22",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
         "인턴",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
+        "운용/리서치"
       ],
       "location": "서울 여의도",
       "reward": "인턴십",
-      "summary": "1. 회사 미래에셋자산운용 2. Job Position IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용 3. 담당할 업무 - 정보보안 운영 업무 * 서버·웹·단말 취약점 점검 및 조치 요청 대응 지원 * 보안솔루션(EDR·DLP·방화벽 등) 운영 및 상시 모니터링 * 보안관제(Secudium)·위협 인텔리전스(FCTI) 이벤트 분석 보조 * 감사·규제 대응 증빙 자료 작성 지원 * ...",
+      "summary": "에프앤자산평가 채용 공고 ([에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08))",
       "isFeatured": true
     },
     {
@@ -117,7 +35,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360887",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
@@ -136,7 +54,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360373",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
@@ -155,7 +73,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360144",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-08",
       "isAlwaysOpen": false,
       "tags": [
@@ -169,13 +87,33 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-42963",
+      "title": "[포트코리아자산운용] 인턴/사원 채용 공고 (~11/9)",
+      "organization": "포트코리아자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42963",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "포트코리아자산운용 채용 공고 ([포트코리아자산운용] 인턴/사원 채용 공고 (~11/9))",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-358557",
       "title": "[나이스신용평가] 신용평가 애널리스트",
       "organization": "나이스신용평가",
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358557",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-09",
       "isAlwaysOpen": false,
       "tags": [
@@ -194,7 +132,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55273186",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -210,34 +148,13 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42920",
-      "title": "[유안타증권] 업무혁신팀 신입직원 채용(~11/12)",
-      "organization": "유안타증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42920",
-      "startDate": "2026-10-29",
-      "deadline": "2026-11-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "[유안타증권] 업무혁신팀 신입직원 채용(~11/12) [주요업무] · 주식매매 결제 업무 기획 및 프로세스 개발 지원 · 신용공여 업무 기획 및 개발 지원 · 신종증권 매매 프로세스 개발 지원 [지원자격 및 우대사항] · 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) · 영어 또는 중국어 능력 우수자 우대 [근무형태] · 계약직 입사(6개월 계약기간 종료 후 정규직...",
-      "isFeatured": true
-    },
-    {
       "id": "jumpit-55277855",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55277855",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -259,7 +176,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361115",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -278,7 +195,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55285736",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-13",
       "isAlwaysOpen": false,
       "tags": [
@@ -300,7 +217,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/359552",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-13",
       "isAlwaysOpen": false,
       "tags": [
@@ -319,7 +236,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55300890",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-14",
       "isAlwaysOpen": false,
       "tags": [
@@ -341,7 +258,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55300900",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-14",
       "isAlwaysOpen": false,
       "tags": [
@@ -357,61 +274,45 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43022",
-      "title": "[웰컴자산운용] 채권운용본부 채권운용팀 신입/경력직 채용(~11/15)",
-      "organization": "웰컴자산운용",
+      "id": "kofia-42944",
+      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43022",
-      "startDate": "2026-11-05",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
+      "startDate": "2026-11-02",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "웰컴금융그룹의 중추로 성장해 나갈 웰컴자산운용에서, 새로운 내일을 이끌어갈 창의적이고 도전적인 인재를 모집합니다. 1. 모집부문 * 채권운용본부 채권운용팀 팀원 (사원~대리급) 2. 담당업무 * 국내채권형/MMF/혼합형 펀드 운용 보조 * 채권 관련 리서치 보조 * 보고서 및 제안서 작성 보조 * 채권운용팀 업무 보조 3. 자격요건 * 국내외 4년제 학사 이상 교육기관 졸업자 * 투자자산운용...",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-361593",
-      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361593",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-15",
-      "isAlwaysOpen": false,
-      "tags": [
         "인턴",
-        "자산운용/펀드"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-361582",
-      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361582",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-15",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
+        "운용/리서치",
         "증권/투자/애널리스트"
       ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-42943",
+      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치",
+        "자산운용/펀드"
+      ],
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기))",
       "isFeatured": true
     },
     {
@@ -421,7 +322,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361523",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
@@ -440,7 +341,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361807",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
@@ -453,34 +354,13 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42977",
-      "title": "[신영증권] 2026년도 하반기 신입사원 공개채용",
-      "organization": "신영증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42977",
-      "startDate": "2026-11-03",
-      "deadline": "2026-11-16",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치",
-        "금융IT/보안"
-      ],
-      "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "■ 모집인원: 00명 ■ 접수기간: 2026년 11월 03일 (화) ~ 2025년 11월 16일 (월) 오전 10시까지 ■ 모집내용 -. 모집분야 : 자산관리서비스, 본사영업, IB, 운용, 리서치, IT, 본사관리 -. 근무지: 본사 및 영업점(서울, 대전, 대구, 광주) ※ 직무에 대한 상세 내용은 채용사이트 > 채용안내 > 직무소개에서 확인하실 수 있습니다. ■ 지원자격 -. 학사 이상...",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-360576",
       "title": "[나이스디앤알] 웹 서비스(Back-end, Front-end) 개발 및 운영(신입/경력)",
       "organization": "나이스디앤알",
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360576",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -501,7 +381,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55299151",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-18",
       "isAlwaysOpen": false,
       "tags": [
@@ -517,23 +397,25 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43021",
-      "title": "[토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력)",
-      "organization": "토러스자산운용",
+      "id": "kofia-43011",
+      "title": "[미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용",
+      "organization": "미래에셋자산운용",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43021",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43011",
       "startDate": "2026-11-05",
-      "deadline": "2026-11-20",
+      "deadline": "2026-11-19",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
+        "인턴",
         "신입",
-        "운용/리서치"
+        "운용/리서치",
+        "금융IT/보안"
       ],
       "location": "서울 여의도",
-      "reward": "신입/인턴 채용",
-      "summary": "토러스자산운용 채용 공고 ([토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력))",
+      "reward": "인턴십",
+      "summary": "미래에셋자산운용 채용 공고 ([미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용)",
       "isFeatured": true
     },
     {
@@ -543,8 +425,8 @@
       "category": "hackathon",
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-20",
+      "startDate": "2026-11-07",
+      "deadline": "2026-11-21",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -557,13 +439,33 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-362801",
+      "title": "[겨울방학] 금융 프로그램 6기",
+      "organization": "토스인슈어런스 주식회사",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/362801",
+      "startDate": "2026-11-07",
+      "deadline": "2026-11-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "강연",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "토스인슈어런스 주식회사 | [겨울방학] 금융 프로그램 6기 | 직무: 강연, 기타",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-362416",
       "title": "[11/11 서류 접수] 2026 AI 인턴십 (게임개발/기획 통합 직무, 채용전환형)",
       "organization": "넷마블네오",
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362416",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-24",
       "isAlwaysOpen": false,
       "tags": [
@@ -582,7 +484,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55451145",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-01",
       "isAlwaysOpen": false,
       "tags": [
@@ -604,7 +506,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55485091",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -626,7 +528,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55496355",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -648,7 +550,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55490249",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -669,7 +571,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360208",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -689,7 +591,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360204",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -709,7 +611,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358038",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -728,7 +630,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358036",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -747,7 +649,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358498",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-19",
       "isAlwaysOpen": false,
       "tags": [
@@ -767,7 +669,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/359944",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -785,7 +687,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/359878",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -804,7 +706,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360652",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-27",
       "isAlwaysOpen": false,
       "tags": [
@@ -824,7 +726,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361425",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-01-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -842,7 +744,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362167",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -861,7 +763,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362159",
-      "startDate": "2026-11-06",
+      "startDate": "2026-11-07",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -890,6 +792,26 @@
       "location": "서울 여의도",
       "reward": "인턴십",
       "summary": "[IBK투자증권] 경력직 채용 공고 1. 모집분야 및 주요요건 (인턴경력 제외) □ 모집직위 : 대리급 이상 □ 고용형태 : 계약직 □ 담당업무 - 초고액자산(UHNW) / 패밀리오피스고객 종합자산관리 컨설팅 - IB연계, 승계컨설팅, 글로벌상품 등 통합솔루션 설계 및 관리 - 주요고객 관계관리 및 신규 패밀리오피스 고객 개발 □ 자격요건 : 관련 경력 1년 이상 2. 채용절차 : 서류전형 ...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-42934",
+      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
+      "organization": "알파자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
+      "startDate": "2026-10-30",
+      "deadline": "2026-11-30",
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울 여의도",
+      "reward": "인턴십",
+      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
