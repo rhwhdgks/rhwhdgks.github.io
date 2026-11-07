@@ -1,33 +1,13 @@
 {
-  "updatedAt": "2026-11-07 02:51 KST",
-  "totalCount": 40,
+  "updatedAt": "2026-11-07 14:15 KST",
+  "totalCount": 36,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 7,
-    "링커리어": 22,
+    "링커리어": 24,
     "점핏(Jumpit)": 10,
+    "금융투자협회(KOFIA)": 1,
     "위비티(Wevity)": 1
   },
   "items": [
-    {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-08",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "에프앤자산평가 채용 공고 ([에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08))",
-      "isFeatured": true
-    },
     {
       "id": "linkareer-360887",
       "title": "[EY한영] 컨설팅부문 수요예측 데이터 분석 인턴",
@@ -84,26 +64,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "오스템임플란트 | [오스템임플란트] 3D GUI 어플리케이션 개발 | 직무: 프론트엔드개발, 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42963",
-      "title": "[포트코리아자산운용] 인턴/사원 채용 공고 (~11/9)",
-      "organization": "포트코리아자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42963",
-      "startDate": "2026-11-02",
-      "deadline": "2026-11-09",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "포트코리아자산운용 채용 공고 ([포트코리아자산운용] 인턴/사원 채용 공고 (~11/9))",
       "isFeatured": true
     },
     {
@@ -274,45 +234,41 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-42944",
-      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "id": "linkareer-361593",
+      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
       "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
-      "startDate": "2026-11-02",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361593",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치",
-        "증권/투자/애널리스트"
+        "자산운용/펀드"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
       "isFeatured": true
     },
     {
-      "id": "kofia-42943",
-      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
+      "id": "linkareer-361582",
+      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
       "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
-      "startDate": "2026-11-02",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361582",
+      "startDate": "2026-11-07",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
         "인턴",
-        "운용/리서치",
-        "자산운용/펀드"
+        "증권/투자/애널리스트"
       ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "카디안자산운용 채용 공고 ([카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기))",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
       "isFeatured": true
     },
     {
@@ -397,25 +353,23 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43011",
-      "title": "[미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용",
-      "organization": "미래에셋자산운용",
+      "id": "kofia-43021",
+      "title": "[토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력)",
+      "organization": "토러스자산운용",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43011",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43021",
       "startDate": "2026-11-05",
       "deadline": "2026-11-19",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
-        "인턴",
         "신입",
-        "운용/리서치",
-        "금융IT/보안"
+        "운용/리서치"
       ],
       "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "미래에셋자산운용 채용 공고 ([미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용)",
+      "reward": "신입/인턴 채용",
+      "summary": "토러스자산운용 채용 공고 ([토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력))",
       "isFeatured": true
     },
     {
@@ -426,7 +380,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
       "startDate": "2026-11-07",
-      "deadline": "2026-11-21",
+      "deadline": "2026-11-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -772,46 +726,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "(주)힐링페이퍼 | [강남언니] AI Research Engineer 인턴 - Agent Evaluation (체험형)",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43031",
-      "title": "[IBK투자증권] IBKS Family Office 영업직(패밀리오피스 영업) 채용 공고 (상시)",
-      "organization": "IBK투자증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43031",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "금융IT/보안"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "[IBK투자증권] 경력직 채용 공고 1. 모집분야 및 주요요건 (인턴경력 제외) □ 모집직위 : 대리급 이상 □ 고용형태 : 계약직 □ 담당업무 - 초고액자산(UHNW) / 패밀리오피스고객 종합자산관리 컨설팅 - IB연계, 승계컨설팅, 글로벌상품 등 통합솔루션 설계 및 관리 - 주요고객 관계관리 및 신규 패밀리오피스 고객 개발 □ 자격요건 : 관련 경력 1년 이상 2. 채용절차 : 서류전형 ...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42934",
-      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
-      "organization": "알파자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
-      "startDate": "2026-10-30",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
