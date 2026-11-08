@@ -141,10 +141,12 @@ export function analyzeOpportunityFit(item: OpportunityItem): ProfileMatchAnalys
   // -------------------------------------------------------------
   // 2. 퀀트 / 운용 / 채권·파생평가 / 금융데이터 리서치
   // -------------------------------------------------------------
+  const isDataAnalystTitle = /데이터\s*애널리스트|DATA\s*ANALYST/.test(combined);
   const isQuant =
-    /QUANT|퀀트|주식운용|채권운용|외화채권|파생상품|파생|자산평가|신용평가|\bPE\b|PE본부|사모펀드|애널리스트/.test(
-      combined
-    ) ||
+    (!isDataAnalystTitle &&
+      /QUANT|퀀트|주식운용|채권운용|외화채권|파생상품|파생|자산평가|신용평가|FINANCIAL\s*MARKETS|PRIVATE\s*EQUITY|IB\/M&A|\bPE\b|PE본부|사모펀드|애널리스트/.test(
+        combined
+      )) ||
     (/(자산운용|투자자문|투자운용)/.test(combined) &&
       !/(디자인|마케팅|총무)/.test(combined));
 
@@ -202,7 +204,7 @@ export function analyzeOpportunityFit(item: OpportunityItem): ProfileMatchAnalys
   // 3. 데이터 엔지니어링 / 정량 데이터 분석 (DE / DA)
   // -------------------------------------------------------------
   const isData =
-    /데이터\s*분석|데이터\s*엔지니어|DATA\s*ANALYST|DATA\s*ENGINEER|수요예측|인포맥스/.test(
+    /데이터\s*분석|데이터\s*애널리스트|데이터\s*엔지니어|DATA\s*ANALYST|DATA\s*ENGINEER|수요예측|인포맥스/.test(
       combined
     );
 
@@ -254,7 +256,7 @@ export function analyzeOpportunityFit(item: OpportunityItem): ProfileMatchAnalys
   // 4. AI / 머신러닝 리서치 & LLM / 비전 엔지니어
   // -------------------------------------------------------------
   const isAi =
-    /\bAI\b|머신러닝|딥러닝|\bML\b|\bLLM\b|AGENT|경진대회|해커톤|YOLO|VISION/.test(
+    /\bAI\b|머신러닝|딥러닝|멀티모달|MULTIMODAL|음성번역|\bML\b|\bLLM\b|AGENT|경진대회|해커톤|YOLO|VISION/.test(
       combined
     );
 
