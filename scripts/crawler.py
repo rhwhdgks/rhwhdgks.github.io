@@ -62,7 +62,7 @@ JOB_BLACKLIST = [
     "해외 메시지", "파트너사", "기구설계", "회로설계", "펌웨어", "임베디드",
     "반도체 MES", "헬프데스크", "테크니컬 서포트", "기술지원", "전직자", "보충역",
     "산업기능요원", "전략기획", "경영관리", "펀드회계", "내부감사", "총무",
-    "비서", "인사", "HR", "홍보", "PR", "PB", "지점", "창구", "연금가입자",
+    "사무/문서관리", "비서", "인사", "HR", "홍보", "PR", "PB", "지점", "창구", "연금가입자",
     "퇴직자", "경력단절", "결제 담당자", "SETTLEMENT", "전산장비", "유지보수",
     "광통신", "네트워크 엔지니어", "RF", "ANALOG", "MMIC", "LAYOUT",
     "제어기술", "로보틱스", "로봇", "머신비전", "응용SW", "크로스플랫폼",
@@ -71,11 +71,26 @@ JOB_BLACKLIST = [
 
 # 4. 채용/인턴에서 허용할 핵심 직무(Python·백엔드·데이터·AI·금융·퀀트) 키워드
 JOB_REQUIRED_KEYWORDS = [
-    "PYTHON", "백엔드", "BACKEND", "서버", "FASTAPI", "DJANGO", "SPRING",
-    "데이터", "DATA", "AI", "인공지능", "머신러닝", "딥러닝", "ML", "LLM",
-    "NLP", "PYTORCH", "TENSORFLOW", "퀀트", "QUANT", "트레이딩", "알고리즘",
-    "금융", "핀테크", "블록체인", "SQL", "풀스택", "풀스텍"
+    "PYTHON", "백엔드", "BACKEND", "BACK-END", "서버", "FASTAPI", "DJANGO", "SPRING",
+    "데이터", "DATA", "AI", "GENAI", "OPENAI", "인공지능", "머신러닝", "딥러닝",
+    "멀티모달", "MULTIMODAL", "ML", "MLOPS", "LLM", "NLP", "PYTORCH", "TENSORFLOW",
+    "퀀트", "QUANT", "트레이딩", "알고리즘", "금융", "핀테크", "블록체인", "SQL",
+    "풀스택", "풀스텍", "FULLSTACK", "FULL-STACK", "SW", "소프트웨어",
+    "ENGINEERING FOCUSED", "SOFTWARE ENGINEER", "DATABASE", "클라우드", "CLOUD",
+    "보안", "SECURITY"
 ]
+
+
+def _match_kw(text_upper: str, kw: str) -> bool:
+    """짧은 영문 약어(AI, ML, SW, CS, PR, PE, IB 등)가 다른 영단어 내부에 부분 매칭되는 오탐 방지"""
+    kw_u = kw.upper()
+    if re.match(r"^[A-Z]{2,3}$", kw_u):
+        return bool(re.search(rf"(?<![A-Z]){re.escape(kw_u)}(?![A-Z])", text_upper))
+    return kw_u in text_upper
+
+
+def has_any_kw(text_upper: str, keywords: List[str]) -> bool:
+    return any(_match_kw(text_upper, k) for k in keywords)
 
 
 def fetch_text(url: str, timeout: int = 10, headers: Optional[Dict[str, str]] = None) -> str:
@@ -102,18 +117,18 @@ def clean_html_text(raw_html: str) -> str:
 def is_valid_contest_or_hackathon(title: str, summary: str = "") -> bool:
     t_upper = title.upper()
     combined = f"{title} {summary}".upper()
-    if any(b.upper() in combined for b in CONTEST_BLACKLIST):
+    if has_any_kw(combined, CONTEST_BLACKLIST):
         return False
-    if not any(req.upper() in t_upper for req in CONTEST_REQUIRED_TITLE_KEYWORDS):
+    if not has_any_kw(t_upper, CONTEST_REQUIRED_TITLE_KEYWORDS):
         return False
     return True
 
 
 def is_valid_tech_job(title: str, tags_and_cat: str = "") -> bool:
     combined = f"{title} {tags_and_cat}".upper()
-    if any(b.upper() in combined for b in JOB_BLACKLIST):
+    if has_any_kw(combined, JOB_BLACKLIST):
         return False
-    if not any(req.upper() in combined for req in JOB_REQUIRED_KEYWORDS):
+    if not has_any_kw(combined, JOB_REQUIRED_KEYWORDS):
         return False
     return True
 
@@ -441,26 +456,30 @@ def crawl_wevity() -> List[Dict[str, Any]]:
 LINKAREER_CAT_IT = "100003"       # IT/개발
 LINKAREER_CAT_FINANCE = "100008"  # 금융 (자산운용/펀드, 재무 등)
 
-# 링커리어 금융 카테고리 중 사용자와 무관한 세부 직무 제외용
+# 링커리어 금융 카테고리 중 사용자와 무관한 세부 직무 제외용 (조직명 제외 제목 기준 검사하여 회계법인의 AI연구소 오탐 방지)
 LINKAREER_FINANCE_BLACKLIST = [
-    "회계", "세무", "결산", "재무제표", "매입", "GA채널", "보험영업", "영업지원",
-    "대출", "여신", "수납", "텔러", "창구", "콜센터", "채권추심",
+    "회계감사", "감사지원", "회계업무", "재무회계", "세무회계", "회계아웃소싱", "펀드회계",
+    "사업비정산", "세무", "결산", "재무제표", "매입", "GA채널", "보험영업", "영업지원",
+    "대출", "여신", "수납", "텔러", "창구", "콜센터", "채권추심", "PAYROLL",
 ]
 
 # 링커리어 채용 공고 중 일반 공채/행정직·비개발 직무 제외
 LINKAREER_RECRUIT_BLACKLIST = [
-    "직원 채용", "정기 채용", "정기채용", "공개채용", "신규직원", "임용", "정직원(",
-    "경영행정", "일반행정", "사무", "애니메이션", "콘텐츠 AI 제작", "박사",
-    "AML", "PM/PO", "기획자", "기획 담당", "보육", "계리", "사업 담당",
-    "커뮤니케이션", "Communication", "유료화 기획",
+    "직원 채용", "정기 채용", "정기채용", "공개채용", "신규직원", "정규직 직원", "임용", "정직원(",
+    "경영행정", "일반행정", "사무", "애니메이션", "콘텐츠 AI 제작", "AI콘텐츠", "콘텐츠 제작",
+    "캐릭터", "일러스트", "크리에이터", "박사", "AML", "PM/PO", "기획자", "기획 담당",
+    "보육", "계리", "사업 담당", "커뮤니케이션", "COMMUNICATION", "유료화 기획",
+    "UX 리서치", "UX RESEARCH", "프로덕트 디자인", "PRODUCT DESIGN", "기업지배구조",
+    "SUSTAINABILITY", "HEALTHCARE PRACTICE", "PROJECT ASSISTANT", "현장 엔지니어",
 ]
 
 # 제목에 하나라도 있어야 하는 링커리어 채용 키워드 (카테고리 태그만으로는 통과 불가)
 LINKAREER_TITLE_REQUIRED = [
-    "개발", "엔지니어", "ENGINEER", "데이터", "DATA", "AI", "ML", "머신러닝",
-    "백엔드", "BACK-END", "BACKEND", "서버", "프론트엔드", "웹", "SW", "소프트웨어",
-    "퀀트", "QUANT", "운용", "애널리스트", "리서치", "RESEARCH", "투자", "트레이딩",
-    "DATABASE", "인프라", "클라우드", "보안",
+    "개발", "엔지니어", "ENGINEER", "ENGINEERING", "데이터", "DATA", "AI", "GENAI", "ML", "머신러닝",
+    "멀티모달", "MULTIMODAL", "백엔드", "BACK-END", "BACKEND", "서버", "프론트엔드", "웹", "SW", "소프트웨어",
+    "퀀트", "QUANT", "운용", "애널리스트", "ANALYST", "리서치", "RESEARCH", "연구",
+    "투자", "트레이딩", "TRADING", "PRIVATE EQUITY", "PE", "IB", "FINANCIAL MARKETS",
+    "DATABASE", "인프라", "클라우드", "보안", "SECURITY",
 ]
 
 
@@ -510,7 +529,7 @@ def _linkareer_deadline(close_ts: Any) -> Optional[str]:
 def crawl_linkareer() -> List[Dict[str, Any]]:
     """
     링커리어 (Linkareer) GraphQL API 수집 (메인 수집원)
-    - 채용: IT/개발 · 금융 카테고리 + 인턴/신입 jobType 서버 필터 → 직무 키워드 2차 필터
+    - 채용: (1) 인턴 전체 최신순 스캔(카테고리 오분류 알짜 공고 포착) + (2) IT/개발·금융 인턴/신입 스캔
     - 공모전/대외활동: 최신 공고 다수 조회 → AI/데이터/금융/해커톤 키워드 필터
     """
     print("[3/4] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
@@ -526,7 +545,11 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
         org = (node.get("organizationName") or "주최기관").strip()
         cats = [c.get("name", "") for c in (node.get("categories") or []) if c.get("name") and c.get("name") != "전체"]
         job_types = node.get("jobTypes") or []
-        deadline = _linkareer_deadline(node.get("recruitCloseAt"))
+        close_ts = node.get("recruitCloseAt")
+        deadline = _linkareer_deadline(close_ts)
+        # 마감 타임스탬프가 명시되어 있는데 이미 지난 날짜인 경우 제외
+        if close_ts and not deadline:
+            return
         # 공모전/해커톤의 경우 대회 종료일이 아닌 '신청/접수 기한'이 살아있는 공고만 수집
         if category in ["contest", "hackathon"] and not deadline:
             return
@@ -559,43 +582,62 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
             "isFeatured": True,
         })
 
-    # 1) 채용 (activityTypeID 5): IT/개발 + 금융 카테고리, 인턴/신입만
-    recruit_filter = (
-        '{ status: OPEN, activityTypeID: "5", '
-        f'categoryIDs: ["{LINKAREER_CAT_IT}", "{LINKAREER_CAT_FINANCE}"], '
-        "jobTypes: [INTERN, NEW] }"
-    )
+    # 1) 채용 (activityTypeID 5):
+    #    - list/intern 전체 최신순(1~6페이지): 인사담당자가 컨설팅/리서치 등으로 분류해 둔 AI·데이터·금융시장 인턴까지 포착
+    #    - IT/개발 + 금융 카테고리 [INTERN, NEW](1~4페이지): 신입 및 핵심 직군 포착
+    recruit_queries = [
+        ('{ status: OPEN, activityTypeID: "5", jobTypes: [INTERN] }', [1, 2, 3, 4, 5, 6]),
+        (
+            '{ status: OPEN, activityTypeID: "5", '
+            f'categoryIDs: ["{LINKAREER_CAT_IT}", "{LINKAREER_CAT_FINANCE}"], '
+            "jobTypes: [INTERN, NEW] }",
+            [1, 2, 3, 4],
+        ),
+    ]
     recruit_count = 0
-    for page in [1, 2, 3]:
-        try:
-            nodes = _linkareer_query(recruit_filter, page, 50)
-        except Exception as e:
-            print(f"  - Linkareer 채용 수집 오류 (page={page}): {e}")
-            break
-        if not nodes:
-            break
-        for node in nodes:
-            title = (node.get("title") or "").strip()
-            org = (node.get("organizationName") or "").strip()
-            cats = " ".join(c.get("name", "") for c in (node.get("categories") or []))
-            combined = f"{title} {cats}".upper()
+    for recruit_filter, pages in recruit_queries:
+        for page in pages:
+            try:
+                nodes = _linkareer_query(recruit_filter, page, 50)
+            except Exception as e:
+                print(f"  - Linkareer 채용 수집 오류 (page={page}): {e}")
+                break
+            if not nodes:
+                break
+            for node in nodes:
+                title = (node.get("title") or "").strip()
+                org = (node.get("organizationName") or "").strip()
+                cats = " ".join(c.get("name", "") for c in (node.get("categories") or []))
+                t_upper = title.upper()
+                title_no_org_upper = title.replace(org, "").upper()
 
-            is_finance_cat = any(k in cats for k in ["자산운용", "펀드", "투자", "증권", "금융"])
-            if any(b in combined for b in LINKAREER_FINANCE_BLACKLIST):
-                continue
-            if any(b.upper() in title.upper() for b in LINKAREER_RECRUIT_BLACKLIST):
-                continue
-            if not any(k in title.upper() for k in LINKAREER_TITLE_REQUIRED):
-                continue
-            # 금융 자산운용/투자 직무는 퀀트/운용 관점에서 허용, 그 외는 기술 직무 필터 적용
-            if is_finance_cat and not any(b.upper() in combined for b in ["영업", "SALES", "회계", "세무"]):
-                pass
-            elif not is_valid_tech_job(title, f"{org} {cats}"):
-                continue
+                if has_any_kw(title_no_org_upper, LINKAREER_FINANCE_BLACKLIST):
+                    continue
+                if has_any_kw(t_upper, LINKAREER_RECRUIT_BLACKLIST):
+                    continue
+                if not has_any_kw(title_no_org_upper, LINKAREER_TITLE_REQUIRED):
+                    continue
 
-            before = len(results)
-            add_item(node, "intern", "인턴/신입")
-            recruit_count += len(results) - before
+                is_fin_markets = "FINANCIAL MARKETS" in t_upper or "S&T" in t_upper
+                is_finance_role = (
+                    is_fin_markets
+                    or any(k in cats for k in ["자산운용", "펀드", "증권/투자", "IB/M&A"])
+                    or has_any_kw(t_upper, ["PRIVATE EQUITY", "PE", "자산운용", "주식운용", "채권운용", "퀀트", "QUANT"])
+                )
+
+                # 금융 자산운용/투자/S&T 직무는 퀀트·운용 관점에서 허용(단 Financial Markets S&T 외 일반 영업은 차단)
+                if is_finance_role:
+                    fin_bl = ["회계", "세무", "디자인", "디자이너", "인사", "총무", "마케터", "사업개발", "BUSINESS DEVELOPMENT"]
+                    if not is_fin_markets:
+                        fin_bl.extend(["영업", "SALES", "마케팅"])
+                    if has_any_kw(title_no_org_upper, fin_bl):
+                        continue
+                elif not is_valid_tech_job(title, f"{org} {cats}"):
+                    continue
+
+                before = len(results)
+                add_item(node, "intern", "인턴/신입")
+                recruit_count += len(results) - before
 
     # 2) 공모전 (activityTypeID 3) + 대외활동/교육 (activityTypeID 1): 키워드 필터
     contest_count = 0
