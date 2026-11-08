@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "crawl": "python3 scripts/crawler.py",
+    "cheatsheet:md": "node scripts/build-cheatsheet-md.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
