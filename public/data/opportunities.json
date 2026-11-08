@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-08 01:46 KST",
-  "totalCount": 42,
+  "updatedAt": "2026-11-08 14:10 KST",
+  "totalCount": 43,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 8,
     "링커리어": 23,
-    "점핏(Jumpit)": 10,
+    "점핏(Jumpit)": 11,
     "위비티(Wevity)": 1
   },
   "items": [
@@ -27,27 +27,7 @@
       ],
       "location": "서울 여의도",
       "reward": "인턴십",
-      "summary": "미래에셋자산운용 채용 공고 ([미래에셋자산운용] IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용)",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42803",
-      "title": "[에프앤자산평가] 외화채권평가 인턴사원 채용(~11/08)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42803",
-      "startDate": "2026-10-22",
-      "deadline": "2026-11-08",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울 여의도",
-      "reward": "인턴십",
-      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
+      "summary": "1. 회사 미래에셋자산운용 2. Job Position IT본부 보안인프라팀 신입(정규직 전환형 인턴사원) 채용 3. 담당할 업무 - 정보보안 운영 업무 * 서버·웹·단말 취약점 점검 및 조치 요청 대응 지원 * 보안솔루션(EDR·DLP·방화벽 등) 운영 및 상시 모니터링 * 보안관제(Secudium)·위협 인텔리전스(FCTI) 이벤트 분석 보조 * 감사·규제 대응 증빙 자료 작성 지원 * ...",
       "isFeatured": true
     },
     {
@@ -417,6 +397,26 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55325059",
+      "title": "AI기반 가상머신개발AX(신입)",
+      "organization": "",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55325059",
+      "startDate": "2026-11-08",
+      "deadline": "2026-11-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "AI/인공지능",
+        "FastAPI"
+      ],
+      "location": "경기 성남시",
+      "reward": "IT 신입/인턴",
+      "summary": " | AI기반 가상머신개발AX(신입) | 기술스택: AI/인공지능, FastAPI",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-360576",
       "title": "[나이스디앤알] 웹 서비스(Back-end, Front-end) 개발 및 운영(신입/경력)",
       "organization": "나이스디앤알",
@@ -460,6 +460,26 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43015",
+      "title": "KCGI자산운용 대체투자2팀(주임(신입포함)-대리)채용 공고",
+      "organization": "케이씨지아이자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43015",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치"
+      ],
+      "location": "서울 여의도",
+      "reward": "신입/인턴 채용",
+      "summary": "케이씨지아이자산운용 채용 공고 (KCGI자산운용 대체투자2팀(주임(신입포함)-대리)채용 공고)",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43021",
       "title": "[토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력)",
       "organization": "토러스자산운용",
@@ -476,7 +496,7 @@
       ],
       "location": "서울 여의도",
       "reward": "신입/인턴 채용",
-      "summary": "토러스자산운용 채용 공고 ([토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력))",
+      "summary": "토러스자산운용은 국내외 거래소에 상장된 주식을 투자대상으로 집합투자업, 투자일임업 및 투자자문업을 영위하고 있습니다. 현재 운용자산규모 9조원대로 고객자산의 95% 이상이 개인 및 일반법인으로 구성되어 있는 국내 최고의 자산운용회사입니다. 고객 중심의 철학과 장기적인 수익 창출을 최우선 가치로 삼아 차별화된 상품과 투자 기회를 만들어가는 토러스자산운용에서, 시장과 고객을 연결하며 회사의 지속...",
       "isFeatured": true
     },
     {
@@ -487,7 +507,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
       "startDate": "2026-11-08",
-      "deadline": "2026-11-21",
+      "deadline": "2026-11-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
