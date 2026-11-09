@@ -13,9 +13,10 @@ import json
 import os
 import re
 import ssl
+import time
 import urllib.parse
 import urllib.request
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 KST = datetime.timezone(datetime.timedelta(hours=9))
 NOW = datetime.datetime.now(KST)
@@ -106,6 +107,21 @@ def fetch_text(url: str, timeout: int = 10, headers: Optional[Dict[str, str]] = 
         return e.partial.decode("utf-8", errors="ignore")
 
 
+def fetch_complete(url: str, marker: str = "</html>", tries: int = 3, timeout: int = 12) -> Tuple[str, bool]:
+    """응답이 중간에 끊겨 오는 서버(KOFIA 등) 대응: marker가 나올 때까지 재시도하고 (본문, 완결 여부) 반환"""
+    last = ""
+    for attempt in range(tries):
+        try:
+            last = fetch_text(url, timeout=timeout)
+            if marker in last:
+                return last, True
+        except Exception:
+            pass
+        if attempt < tries - 1:
+            time.sleep(0.6 * (attempt + 1))
+    return last, False
+
+
 def clean_html_text(raw_html: str) -> str:
     if not raw_html:
         return ""
@@ -133,180 +149,256 @@ def is_valid_tech_job(title: str, tags_and_cat: str = "") -> bool:
     return True
 
 
-def is_valid_kofia_posting(title: str, summary: str) -> bool:
+KOFIA_LIST_URL = "https://www.kofia.or.kr/brd/m_96/list.do"
+KOFIA_VIEW_URL = "https://www.kofia.or.kr/brd/m_96/view.do?seq={seq}"
+KOFIA_SCAN_WINDOW = 120    # 최신 글 번호부터 거꾸로 확인할 최대 개수 (하루 3~5건 기준 약 4주)
+KOFIA_MAX_AGE_DAYS = 30    # 등록일이 이보다 오래된 공고가 연속으로 나오면 스캔 종료
+
+# 제목(회사명 괄호 제외)에 있으면 제외할 무관 직무
+KOFIA_TITLE_BLACKLIST = [
+    "PB", "지점", "영업", "SALES", "연금가입자", "퇴직자", "감사", "준법감시", "컴플라이언스",
+    "법무", "변호사", "회계", "세무", "경영관리", "경영지원", "총무", "비서", "인사", "HR",
+    "홍보", "마케팅", "결제", "SETTLEMENT", "부동산", "리테일", "콜센터", "고객만족",
+    "소비자보호", "CONSUMER PROTECTION", "대체인력", "육아휴직", "운전", "[마감]", "마감]",
+]
+KOFIA_ENTRY_TITLE_KW = [
+    "인턴", "INTERN", "신입", "채용연계", "채용전환", "전환형", "공채", "RA", "주니어", "JUNIOR",
+    "졸업예정", "체험형",
+]
+KOFIA_EXP_TITLE_KW = [
+    "경력", "과장", "차장", "부장", "팀장", "본부장", "SR.", "SENIOR", "시니어", "임원", "CIO",
+]
+# 제목에 연차 표기가 없을 때 본문으로 판단 ("인턴경력" 같은 우대사항 표현은 신입 신호로 보지 않음)
+KOFIA_BODY_ENTRY_RE = re.compile(r"신입|인턴(?!\s*(?:경력|경험))|경력\s*무관|졸업\s*예정|채용\s*연계|채용\s*전환")
+KOFIA_BODY_EXP_RE = re.compile(
+    r"경력\s*\d+\s*년\s*(?:이상|↑)|\d+\s*년\s*이상\s*(?:의\s*)?(?:관련\s*)?(?:업무\s*)?경력|경력직"
+)
+KOFIA_TARGET_KW = [
+    "퀀트", "QUANT", "운용", "파생", "패시브", "ETF", "채권", "주식", "리서치", "애널리스트", "RA",
+    "리스크", "위험관리", "트레이딩", "딜링", "S&T", "FICC", "자산배분", "멀티에셋", "대체투자",
+    "PE", "IB", "투자", "평가", "상품", "데이터", "AI", "IT", "전산", "디지털", "개발", "시스템",
+    "보안", "정보보호", "알고리즘", "금융공학",
+]
+
+
+def _kofia_title_core(title: str) -> str:
+    """'[회사명] 직무 ...' 형태에서 회사명 괄호를 떼어 직무 부분만 남김 (예: '[DS투자증권]'의 '투자' 오탐 방지)"""
+    return re.sub(r"^\s*(?:\[마감\]\s*)?\[[^\]]*\]\s*", "", title).strip()
+
+
+def is_valid_kofia_posting(title: str, body: str) -> bool:
     """
-    금융투자협회(KOFIA) 공고 필터링:
-    1) 과장/차장/부장 등 순수 경력직 제외 (인턴, 신입, 채용연계형만 허용)
-    2) PB/지점영업/내부감사/경영관리/펀드회계/결제 등 무관 직무 제외
-    3) 퀀트, 운용(주식/채권/파생/ETF/패시브), 리서치, 채권평가, 리스크, IT/전산/데이터/AI 직무만 허용
+    금융투자협회(KOFIA) 회원사 공고 필터링 (제목 기준, 본문은 연차 판단에만 사용)
+    1) 영업·PB·감사·회계·인사 등 무관 직무, 대체인력, 마감 표기 제외
+    2) 제목에 인턴/신입 신호가 있으면 허용, 경력만 있으면 제외
+    3) 제목에 연차 표기가 없으면 본문에 신입 신호가 있고 경력 요건이 없으며, 직무가 운용·리서치·IT 등일 때만 허용
     """
-    t_upper = title.upper()
-    combined = f"{title} {summary}".upper()
-
-    kofia_blacklist = [
-        "PB", "지점", "자산관리영업", "연금가입자", "퇴직자", "내부감사", "준법감시",
-        "컴플라이언스", "변호사", "회계사", "세무사", "펀드회계", "경영관리", "총무",
-        "비서", "인사", "홍보", "결제 담당", "SETTLEMENT", "부동산", "대체투자본부 경력",
-        "법인영업", "리테일", "콜센터", "고객만족"
-    ]
-    if any(b in combined for b in kofia_blacklist):
+    if "[마감]" in title:
+        return False
+    core_upper = _kofia_title_core(title).upper()
+    if has_any_kw(core_upper, KOFIA_TITLE_BLACKLIST):
         return False
 
-    is_entry_or_intern = any(
-        k in combined for k in ["인턴", "INTERN", "신입", "채용연계", "채용전환", "공채"]
-    )
-    is_pure_experienced = any(
-        k in t_upper for k in ["경력직", "경력직원", "경력 채용", "경력모집", "과장", "차장", "부장", "팀장", "본부장", "SR."]
-    ) and not any(k in t_upper for k in ["인턴", "신입"])
-
-    if is_pure_experienced or not is_entry_or_intern:
+    title_entry = has_any_kw(core_upper, KOFIA_ENTRY_TITLE_KW)
+    title_exp = has_any_kw(core_upper, KOFIA_EXP_TITLE_KW)
+    if title_entry:
+        return True
+    if title_exp:
         return False
 
-    kofia_target_domains = [
-        "퀀트", "QUANT", "운용", "파생", "패시브", "ETF", "채권", "주식", "리서치",
-        "리스크", "위험관리", "트레이딩", "데이터", "AI", "IT", "전산", "디지털",
-        "개발", "시스템", "보안", "정보보호", "외화채권", "채권평가", "알고리즘", "PE"
-    ]
-    if not any(d in combined for d in kofia_target_domains):
-        return False
-
-    return True
+    body_entry = bool(KOFIA_BODY_ENTRY_RE.search(body))
+    body_exp = bool(KOFIA_BODY_EXP_RE.search(body))
+    return body_entry and not body_exp and has_any_kw(core_upper, KOFIA_TARGET_KW)
 
 
 def infer_kofia_tags(title: str, content: str) -> List[str]:
     tags: List[str] = ["금융권"]
-    combined = f"{title} {content}".upper()
+    core_upper = _kofia_title_core(title).upper()
+    body_upper = content.upper()
 
-    if "인턴" in combined or "INTERN" in combined:
+    if has_any_kw(core_upper, ["인턴", "INTERN", "체험형"]):
         tags.append("인턴")
-    if "신입" in combined or "공채" in combined or "채용연계" in combined:
+    if has_any_kw(core_upper, ["신입", "공채", "채용연계", "채용전환", "전환형"]):
         tags.append("신입")
-    if any(k in combined for k in ["퀀트", "QUANT", "파생", "패시브", "ETF", "알고리즘"]):
+    if not any(t in tags for t in ["인턴", "신입"]) and KOFIA_BODY_ENTRY_RE.search(content):
+        tags.append("신입 가능")
+    if has_any_kw(core_upper, ["퀀트", "QUANT", "파생", "패시브", "ETF", "알고리즘", "금융공학"]):
         tags.append("퀀트/파생")
-    if any(k in combined for k in ["운용", "주식", "채권", "리서치", "평가"]):
+    if has_any_kw(core_upper, ["운용", "주식", "채권", "리서치", "애널리스트", "RA", "평가", "자산배분", "멀티에셋", "PE"]):
         tags.append("운용/리서치")
-    if any(k in combined for k in ["IT", "전산", "개발", "SW", "시스템", "보안", "정보보호"]):
+    if has_any_kw(core_upper, ["IT", "전산", "개발", "SW", "시스템", "보안", "정보보호"]):
         tags.append("금융IT/보안")
-    if any(k in combined for k in ["AI", "인공지능", "데이터", "디지털"]):
+    if has_any_kw(core_upper, ["AI", "인공지능", "데이터", "디지털"]) or has_any_kw(body_upper, ["머신러닝", "데이터 분석"]):
         tags.append("AI/데이터")
 
     return tags[:5]
 
 
-def crawl_kofia() -> List[Dict[str, Any]]:
-    """금융투자협회 (https://www.kofia.or.kr/brd/m_96/list.do) 맞춤형 채용/인턴 수집"""
-    print("[1/4] 금융투자협회(KOFIA) 퀀트·운용·금융IT 신입/인턴 공고 수집 중...")
-    results: List[Dict[str, Any]] = []
-    seen_seqs = set()
+def _kofia_field(page_html: str, label: str) -> str:
+    m = re.search(rf"<th[^>]*>\s*{label}\s*</th>\s*<td[^>]*>(.*?)</td>", page_html, re.S)
+    return clean_html_text(m.group(1)) if m else ""
 
-    search_words = ["인턴", "신입", "퀀트", "파생", "운용", "IT", "전산", "데이터", "리서치", "ETF"]
-    queries = [
-        "https://www.kofia.or.kr/brd/m_96/list.do?page=1",
-        "https://www.kofia.or.kr/brd/m_96/list.do?page=2",
-    ] + [
-        f"https://www.kofia.or.kr/brd/m_96/list.do?srchTp=0&srchWord={urllib.parse.quote(w)}"
-        for w in search_words
+
+def _kofia_detail(seq: int) -> Optional[Dict[str, Any]]:
+    """상세 페이지 1건 파싱. 글이 없거나(삭제·다른 게시판) 제목을 못 읽으면 None"""
+    page_html, complete = fetch_complete(KOFIA_VIEW_URL.format(seq=seq), tries=3, timeout=10)
+    title = _kofia_field(page_html, "제목")
+    if not title:
+        return {"_missing": True, "_complete": complete} if page_html else None
+    reg = _kofia_field(page_html, "등록일")
+    period = _kofia_field(page_html, "접수기간")
+    body_match = re.search(r'<div id="write"[^>]*>(.*?)</div>', page_html, re.S)
+    body = clean_html_text(body_match.group(1)) if body_match else ""
+    return {
+        "seq": seq,
+        "title": re.sub(r"\s*new$", "", title, flags=re.I).strip(),
+        "company": _kofia_field(page_html, "회원사명"),
+        "reg_date": reg[:10] if re.match(r"^\d{4}-\d{2}-\d{2}", reg) else "",
+        "period": period,
+        "body": body,
+        "_complete": complete,
+    }
+
+
+def _kofia_seed_seq(prev_items: List[Dict[str, Any]]) -> Optional[int]:
+    """목록 페이지(일부가 잘려도 남은 부분)와 이전 수집 결과에서 가장 큰 글 번호를 찾음"""
+    seqs: List[int] = []
+    urls = [f"{KOFIA_LIST_URL}?page={p}" for p in (1, 2, 3)] + [
+        f"{KOFIA_LIST_URL}?srchTp=0&srchWord={urllib.parse.quote(w)}" for w in ["신입", "인턴", "운용"]
     ]
+    for url in urls:
+        page_html, _ = fetch_complete(url, tries=2, timeout=10)
+        seqs.extend(int(s) for s in re.findall(r"view\.do\?seq=(\d+)", page_html))
+    for item in prev_items:
+        m = re.match(r"^kofia-(\d+)$", str(item.get("id", "")))
+        if m:
+            seqs.append(int(m.group(1)))
+    return max(seqs) if seqs else None
 
-    candidate_rows = []
-    for url in queries:
+
+def crawl_kofia(prev_items: Optional[List[Dict[str, Any]]] = None) -> List[Dict[str, Any]]:
+    """
+    금융투자협회 회원사 채용안내 (https://www.kofia.or.kr/brd/m_96/list.do) 수집
+    - 목록 페이지는 특정 공고가 포함되면 서버가 HTML을 중간에 끊어 보내는 문제가 있어(목록 표가 통째로 누락),
+      최신 글 번호를 찾은 뒤 상세 페이지(view.do?seq=)를 번호 역순으로 직접 훑는다.
+    - 상세 페이지도 가끔 잘려 오므로 완결될 때까지 재시도한다.
+    - 수집이 대부분 실패하면 이전 결과 중 마감 전 공고를 유지한다.
+    """
+    print("[1/4] 금융투자협회(KOFIA) 회원사 증권·운용·금융IT 신입/인턴 공고 수집 중...")
+    prev_kofia = [i for i in (prev_items or []) if i.get("source") == "금융투자협회(KOFIA)"]
+    results: List[Dict[str, Any]] = []
+
+    seed = _kofia_seed_seq(prev_kofia)
+    if seed is None:
+        print("  - KOFIA 최신 글 번호를 찾지 못했습니다. 이전 수집 결과를 유지합니다.")
+        return _kofia_carry_over(prev_kofia)
+
+    # 시드보다 새 글이 있는지 위로 확인 (빈 번호 5개 연속이면 중단)
+    top, misses, probe = seed, 0, seed + 1
+    while misses < 5 and probe <= seed + 60:
+        d = _kofia_detail(probe)
+        if d and not d.get("_missing"):
+            top, misses = probe, 0
+        else:
+            misses += 1
+        probe += 1
+        time.sleep(0.15)
+
+    fetched = truncated = failed = 0
+    old_streak = 0
+    for seq in range(top, top - KOFIA_SCAN_WINDOW, -1):
+        d = _kofia_detail(seq)
+        time.sleep(0.15)
+        if d is None:
+            failed += 1
+            continue
+        if d.get("_missing"):
+            continue
+        fetched += 1
+        if not d["_complete"]:
+            truncated += 1
+
+        reg_date = d["reg_date"] or TODAY_STR
         try:
-            page_html = fetch_text(url, timeout=10)
-            tbody_match = re.search(r"<tbody[^>]*>(.*?)</tbody>", page_html, re.S)
-            if not tbody_match:
-                continue
-            rows = re.findall(r"<tr[^>]*>(.*?)</tr>", tbody_match.group(1), re.S)
-            for row in rows:
-                seq_match = re.search(r"view\.do\?seq=(\d+)", row)
-                if not seq_match:
-                    continue
-                seq = seq_match.group(1)
-                if seq in seen_seqs:
-                    continue
-                seen_seqs.add(seq)
+            age = (NOW.date() - datetime.date.fromisoformat(reg_date)).days
+        except ValueError:
+            age = 0
+        if age > KOFIA_MAX_AGE_DAYS:
+            old_streak += 1
+            if old_streak >= 3:
+                break
+            continue
+        old_streak = 0
 
-                tds = re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)
-                if len(tds) < 5:
-                    continue
-                company = clean_html_text(tds[1])
-                raw_title = clean_html_text(tds[2])
-                raw_title = re.sub(r"\s*new$", "", raw_title, flags=re.I).strip()
-                reg_date = clean_html_text(tds[4])
-                candidate_rows.append((seq, company, raw_title, reg_date))
-        except Exception as e:
-            print(f"  - KOFIA 목록 조회 오류 ({url}): {e}")
-
-    for seq, company, title, reg_date in candidate_rows[:40]:
-        if any(b in title.upper() for b in ["경력직", "경력직원", "PB", "지점", "내부감사", "펀드회계", "경영관리"]) and not any(
-            k in title for k in ["인턴", "신입"]
-        ):
+        title, company, body = d["title"], d["company"], d["body"]
+        if not is_valid_kofia_posting(title, body):
             continue
 
-        detail_url = f"https://www.kofia.or.kr/brd/m_96/view.do?seq={seq}"
-        start_date = reg_date if re.match(r"^\d{4}-\d{2}-\d{2}$", reg_date) else TODAY_STR
+        start_date = reg_date
         deadline: Optional[str] = None
-        is_always_open = "상시" in title or "수시" in title or "채용 시" in title or "채용시" in title
-        summary_text = f"{company} 채용 공고 ({title})"
-
-        try:
-            detail_html = fetch_text(detail_url, timeout=8)
-            period_match = re.search(r"접수기간\s*</th>\s*<td[^>]*>\s*(\d{8})\s*~\s*(\d{8})", detail_html, re.S)
-            if period_match:
-                s_raw, e_raw = period_match.group(1), period_match.group(2)
-                start_date = f"{s_raw[:4]}-{s_raw[4:6]}-{s_raw[6:8]}"
-                deadline = f"{e_raw[:4]}-{e_raw[4:6]}-{e_raw[6:8]}"
-
-            content_match = re.search(r"<td class=\"contents\"[^>]*>(.*?)</td>", detail_html, re.S)
-            if not content_match:
-                content_match = re.search(r"내용\s*</th>\s*</tr>\s*<tr>\s*<td[^>]*>(.*?)</td>", detail_html, re.S)
-            if content_match:
-                extracted = clean_html_text(content_match.group(1))
-                if len(extracted) > 15:
-                    summary_text = extracted[:220] + ("..." if len(extracted) > 220 else "")
-        except Exception:
-            pass
-
-        if not is_valid_kofia_posting(title, summary_text):
-            continue
-
-        if deadline:
+        is_always_open = any(k in f"{title} {d['period']}" for k in ["상시", "수시", "채용 시", "채용시"])
+        period_match = re.search(r"(\d{8})\s*~\s*(\d{8})", d["period"])
+        if period_match:
+            s_raw, e_raw = period_match.group(1), period_match.group(2)
+            start_date = f"{s_raw[:4]}-{s_raw[4:6]}-{s_raw[6:8]}"
+            deadline = f"{e_raw[:4]}-{e_raw[4:6]}-{e_raw[6:8]}"
             try:
-                dl_date = datetime.date.fromisoformat(deadline)
-                # 접수 기한이 오늘 이전이면 이미 마감된 공고이므로 즉시 제외
-                if dl_date < NOW.date():
+                if datetime.date.fromisoformat(deadline) < NOW.date():
                     continue
             except ValueError:
-                pass
-        else:
-            if not is_always_open:
-                try:
-                    base_d = datetime.date.fromisoformat(start_date)
-                    if (NOW.date() - base_d).days > 25:
-                        continue
-                    deadline = (base_d + datetime.timedelta(days=14)).isoformat()
-                except ValueError:
-                    is_always_open = True
+                deadline = None
+        if not deadline and not is_always_open:
+            # 접수기간이 없으면 등록일 기준 2주를 임시 마감으로 표시
+            try:
+                guess = datetime.date.fromisoformat(reg_date) + datetime.timedelta(days=14)
+                if guess < NOW.date():
+                    continue
+                deadline = guess.isoformat()
+            except ValueError:
+                is_always_open = True
 
-        tags = infer_kofia_tags(title, summary_text)
+        summary_text = body[:220] + ("..." if len(body) > 220 else "") if len(body) > 15 else f"{company} 채용 공고 ({title})"
+        tags = infer_kofia_tags(title, body)
         results.append({
-            "id": f"kofia-{seq}",
+            "id": f"kofia-{d['seq']}",
             "title": title,
             "organization": company or "금융투자협회 회원사",
             "category": "kofia",
             "source": "금융투자협회(KOFIA)",
-            "sourceUrl": detail_url,
+            "sourceUrl": KOFIA_VIEW_URL.format(seq=d["seq"]),
             "startDate": start_date,
             "deadline": deadline,
             "isAlwaysOpen": is_always_open,
             "tags": tags,
-            "location": "서울 여의도",
+            "location": "서울",
             "reward": "인턴십" if "인턴" in tags else "신입/인턴 채용",
             "summary": summary_text,
             "isFeatured": True,
         })
 
-    print(f"  -> KOFIA 맞춤형 공고 {len(results)}건 선별 완료")
+    print(
+        f"  -> 글 번호 {top}부터 상세 {fetched}건 확인 (잘린 응답 {truncated}건, 조회 실패 {failed}건) "
+        f"→ 신입/인턴 공고 {len(results)}건 선별"
+    )
+    if fetched == 0 or failed > fetched:
+        print("  - KOFIA 조회 실패가 많아 이전 수집 결과 중 마감 전 공고를 함께 유지합니다.")
+        kept_ids = {r["id"] for r in results}
+        results.extend(i for i in _kofia_carry_over(prev_kofia) if i["id"] not in kept_ids)
     return results
+
+
+def _kofia_carry_over(prev_kofia: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    kept = []
+    for item in prev_kofia:
+        dl = item.get("deadline")
+        try:
+            if dl and datetime.date.fromisoformat(dl[:10]) < NOW.date():
+                continue
+        except ValueError:
+            pass
+        if is_valid_kofia_posting(item.get("title", ""), item.get("summary", "")):
+            kept.append(item)
+    return kept
 
 
 def crawl_jumpit() -> List[Dict[str, Any]]:
@@ -482,6 +574,28 @@ LINKAREER_TITLE_REQUIRED = [
     "DATABASE", "인프라", "클라우드", "보안", "SECURITY",
 ]
 
+# 금융기관 판별(기관명 기준). 금융기관의 신입 공채·체험형 인턴은 행정직 공채 블랙리스트에서 예외로 두고 '금융권' 탭으로 분류
+FINANCE_ORG_KEYWORDS = [
+    "증권", "자산운용", "투자자문", "운용사", "은행", "카카오뱅크", "케이뱅크", "토스뱅크", "캐피탈", "금융",
+    "거래소", "예탁결제원", "신용평가", "자산평가", "채권평가", "선물", "외국환중개", "인베스트먼트",
+    "SECURITIES", "ASSET MANAGEMENT", "CAPITAL MARKETS", "INVESTMENT",
+]
+FINANCE_ROLE_BLACKLIST = [
+    "영업", "SALES", "마케터", "마케팅", "MARKETER", "고객상담", "CS", "콜센터", "인재영입", "HR", "인사",
+    "계리", "회계", "세무", "총무", "디자인", "디자이너", "사업개발", "BUSINESS DEVELOPMENT",
+]
+FINANCE_ENTRY_TITLE_KW = [
+    "공개채용", "공채", "신입", "인턴", "INTERN", "채용형", "체험형", "채용연계", "브로커", "BROKER", "DESK",
+    "애널리스트", "ANALYST",
+]
+FINANCE_NONTARGET_CATS = ["고객상담/CS", "영업", "SNS/콘텐츠마케팅", "인사/채용/노무", "마케팅", "광고"]
+FINANCE_TARGET_CATS = [
+    "시장조사/리서치", "자산운용/펀드", "증권/투자/애널리스트", "IB/M&A", "데이터분석", "AI/ML엔지니어",
+    "시스템/ERP개발", "DevOps/클라우드/보안", "리스크/컴플라이언스", "경영기획/전략",
+]
+# 행정직 공채 블랙리스트 중 금융기관 공고에는 적용하지 않을 공채 표현
+PUBLIC_RECRUIT_TERMS = ["직원 채용", "정기 채용", "정기채용", "공개채용", "신규직원", "정규직 직원", "정직원("]
+
 
 def _linkareer_query(filter_by: str, page: int, page_size: int) -> List[Dict[str, Any]]:
     query = """
@@ -536,7 +650,7 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
     results: List[Dict[str, Any]] = []
     seen_ids = set()
 
-    def add_item(node: Dict[str, Any], category: str, badge: str) -> None:
+    def add_item(node: Dict[str, Any], category: str, badge: str, lead_tag: Optional[str] = None) -> None:
         node_id = node.get("id")
         title = (node.get("title") or "").strip()
         if not node_id or not title or node_id in seen_ids:
@@ -561,6 +675,8 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
             tags.append("신입")
         if not tags:
             tags.append(badge)
+        if lead_tag:
+            tags.insert(0, lead_tag)
         for c in cats:
             if c not in tags:
                 tags.append(c)
@@ -595,6 +711,8 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
         ),
     ]
     recruit_count = 0
+    finance_count = 0
+    finance_recruit_bl = [k for k in LINKAREER_RECRUIT_BLACKLIST if k not in PUBLIC_RECRUIT_TERMS]
     for recruit_filter, pages in recruit_queries:
         for page in pages:
             try:
@@ -611,14 +729,33 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                 t_upper = title.upper()
                 title_no_org_upper = title.replace(org, "").upper()
 
+                cat_list = [c.get("name", "") for c in (node.get("categories") or []) if c.get("name") and c.get("name") != "전체"]
+                is_fin_markets = "FINANCIAL MARKETS" in t_upper or "S&T" in t_upper
+
                 if has_any_kw(title_no_org_upper, LINKAREER_FINANCE_BLACKLIST):
                     continue
+
+                # 금융기관(증권·운용·은행·거래소 등): 신입 공채·체험형 인턴까지 허용하고 무관 직무·비대상 카테고리만 제외
+                if has_any_kw(org.upper(), FINANCE_ORG_KEYWORDS):
+                    if has_any_kw(t_upper, finance_recruit_bl):
+                        continue
+                    role_bl = [k for k in FINANCE_ROLE_BLACKLIST if not (is_fin_markets and k in ("영업", "SALES"))]
+                    if has_any_kw(title_no_org_upper, role_bl):
+                        continue
+                    if any(c in FINANCE_NONTARGET_CATS for c in cat_list) and not any(c in FINANCE_TARGET_CATS for c in cat_list):
+                        continue
+                    if not (has_any_kw(title_no_org_upper, LINKAREER_TITLE_REQUIRED) or has_any_kw(title_no_org_upper, FINANCE_ENTRY_TITLE_KW)):
+                        continue
+                    before = len(results)
+                    add_item(node, "kofia", "금융권 채용", lead_tag="금융권")
+                    recruit_count += len(results) - before
+                    finance_count += len(results) - before
+                    continue
+
                 if has_any_kw(t_upper, LINKAREER_RECRUIT_BLACKLIST):
                     continue
                 if not has_any_kw(title_no_org_upper, LINKAREER_TITLE_REQUIRED):
                     continue
-
-                is_fin_markets = "FINANCIAL MARKETS" in t_upper or "S&T" in t_upper
                 is_finance_role = (
                     is_fin_markets
                     or any(k in cats for k in ["자산운용", "펀드", "증권/투자", "IB/M&A"])
@@ -636,7 +773,11 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                     continue
 
                 before = len(results)
-                add_item(node, "intern", "인턴/신입")
+                if is_finance_role:
+                    add_item(node, "kofia", "금융권 채용", lead_tag="금융권")
+                    finance_count += len(results) - before
+                else:
+                    add_item(node, "intern", "인턴/신입")
                 recruit_count += len(results) - before
 
     # 2) 공모전 (activityTypeID 3) + 대외활동/교육 (activityTypeID 1): 키워드 필터
@@ -664,7 +805,7 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
                 add_item(node, category, "해커톤/경진대회" if category == "hackathon" else badge)
                 contest_count += len(results) - before
 
-    print(f"  -> Linkareer 채용 {recruit_count}건 · 공모전/대외활동 {contest_count}건 선별 완료")
+    print(f"  -> Linkareer 채용 {recruit_count}건(금융권 {finance_count}건) · 공모전/대외활동 {contest_count}건 선별 완료")
     return results
 
 
@@ -693,7 +834,7 @@ def clean_org_for_dedup(name: str) -> str:
 
 
 def clean_title_for_dedup(title: str, org_clean: str) -> str:
-    t = title.lower()
+    t = title.lower().replace("년도", "년")
     t = re.sub(r"\[.*?\]|\(.*?\)", "", t)
     if org_clean and len(org_clean) >= 2:
         t = t.replace(org_clean, "")
@@ -745,6 +886,15 @@ def main() -> None:
 
     all_items: List[Dict[str, Any]] = []
 
+    # 이전 수집 결과: KOFIA 최신 글 번호 시드 및 조회 실패 시 마감 전 공고 유지용
+    prev_items: List[Dict[str, Any]] = []
+    if os.path.exists(output_path):
+        try:
+            with open(output_path, "r", encoding="utf-8") as f:
+                prev_items = json.load(f).get("items", []) or []
+        except Exception as e:
+            print(f"이전 opportunities.json 로드 오류: {e}")
+
     if os.path.exists(manual_path):
         try:
             with open(manual_path, "r", encoding="utf-8") as f:
@@ -755,7 +905,7 @@ def main() -> None:
         except Exception as e:
             print(f"manual.json 로드 오류: {e}")
 
-    all_items.extend(crawl_kofia())
+    all_items.extend(crawl_kofia(prev_items))
     all_items.extend(crawl_jumpit())
     all_items.extend(crawl_linkareer())
     all_items.extend(crawl_wevity())
