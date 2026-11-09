@@ -180,7 +180,7 @@ export const MyProgressView: React.FC<MyProgressViewProps> = ({
                 <option value="intern">인턴 · 신입 채용</option>
                 <option value="hackathon">해커톤 · AI 경진대회</option>
                 <option value="contest">IT · 기획 공모전</option>
-                <option value="kofia">금융투자협회 (KOFIA)</option>
+                <option value="kofia">금융권 채용</option>
                 <option value="activity">대외활동 · 부트캠프</option>
               </select>
             </div>

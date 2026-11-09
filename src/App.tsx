@@ -457,7 +457,7 @@ export function App() {
                 </span>
               </div>
               <p className="text-xs text-slate-500 hidden lg:block">
-                인턴 · 신입 채용 · 해커톤 · 공모전 · 금융투자협회(KOFIA) 알림 허브
+                인턴 · 신입 채용 · 해커톤 · 공모전 · 금융권 채용 알림 허브
               </p>
             </div>
           </div>
@@ -855,7 +855,7 @@ export function App() {
             </div>
           </button>
 
-          {/* 6. 금융투자협회(KOFIA) */}
+          {/* 6. 금융권 채용 (금융투자협회 회원사 + 링커리어 금융기관) */}
           <button
             type="button"
             onClick={() => {
@@ -877,7 +877,7 @@ export function App() {
                     : 'text-slate-500'
                 }`}
               >
-                금융권 (KOFIA)
+                금융권 채용
               </span>
               <Landmark
                 className={`w-4 h-4 ${
@@ -895,7 +895,7 @@ export function App() {
                   : 'text-slate-400'
               }`}
             >
-              증권·자산운용 채용
+              증권·자산운용·은행
             </div>
           </button>
         </section>
@@ -1372,7 +1372,7 @@ export function App() {
             <span className="font-bold text-slate-800">CareerRadar</span>
             <span>—</span>
             <span>
-              IT·SW 및 금융권(KOFIA) 인턴, 신입 채용, 해커톤, 공모전 알림 허브 (하루 3회 자동 업데이트)
+              IT·SW 및 금융권 인턴, 신입 채용, 해커톤, 공모전 알림 허브 (하루 3회 자동 업데이트)
             </span>
           </div>
           <div className="flex items-center gap-4">

@@ -125,9 +125,9 @@ export const CATEGORY_META: Record<CategoryType, CategoryMeta> = {
   },
   kofia: {
     id: 'kofia',
-    label: '금융투자협회 (KOFIA)',
-    shortLabel: '금융권(KOFIA)',
-    description: '증권·자산운용·금융권 IT/전산/인턴/신입 실시간 공고',
+    label: '금융권 채용',
+    shortLabel: '금융권',
+    description: '증권·자산운용·은행·외국환중개 등 금융권 인턴/신입 공고 (금융투자협회 회원사 채용 + 링커리어)',
     badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
     dotClass: 'bg-amber-500',
   },
