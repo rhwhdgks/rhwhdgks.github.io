@@ -1,29 +1,68 @@
 {
-  "updatedAt": "2026-11-09 01:56 KST",
-  "totalCount": 71,
+  "updatedAt": "2026-11-09 10:03 KST",
+  "totalCount": 84,
   "sourceCounts": {
-    "링커리어": 54,
-    "점핏(Jumpit)": 15,
-    "위비티(Wevity)": 1,
-    "금융투자협회(KOFIA)": 1
+    "금융투자협회(KOFIA)": 10,
+    "링커리어": 58,
+    "점핏(Jumpit)": 14,
+    "위비티(Wevity)": 2
   },
   "items": [
+    {
+      "id": "kofia-42963",
+      "title": "[포트코리아자산운용] 인턴/사원 채용 공고 (~11/9)",
+      "organization": "포트코리아자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42963",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "■ 모집부문 : 0명 ■ 모집구분 1) 인턴(3개월) 2) 사원(계약직) ※ 인턴 경력 포함 3개월 이상 경력 우대 ■ 지원자격 - 국내외 학사 학위 이상 취득자(졸업 예정자 포함) ■ 업무 - 리스크 관리 및 내부통제, 컴플라이언스 업무 - 백오피스, 경영관리 등 업무 보조 ■ 채용절차 1차 서류전형 → 2차 실무자면접 → 채용검진→ 입사 ■ 지원방법 - 제출방법 E-mail 접수 (for...",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-359696",
+      "title": "[하나저축은행] 2026 하반기 경력직원/채용형 인턴직원 모집",
+      "organization": "하나저축은행",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/359696",
+      "startDate": "2026-11-09",
+      "deadline": "2026-11-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "하나저축은행 | [하나저축은행] 2026 하반기 경력직원/채용형 인턴직원 모집",
+      "isFeatured": true
+    },
     {
       "id": "linkareer-358557",
       "title": "[나이스신용평가] 신용평가 애널리스트",
       "organization": "나이스신용평가",
-      "category": "intern",
+      "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358557",
       "startDate": "2026-11-09",
       "deadline": "2026-11-09",
       "isAlwaysOpen": false,
       "tags": [
+        "금융권",
         "신입",
         "증권/투자/애널리스트"
       ],
       "location": "국내",
-      "reward": "인턴/신입",
+      "reward": "금융권 채용",
       "summary": "나이스신용평가 | [나이스신용평가] 신용평가 애널리스트 | 직무: 증권/투자/애널리스트",
       "isFeatured": true
     },
@@ -126,41 +165,86 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-361593",
-      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361593",
+      "id": "kofia-43049",
+      "title": "[키움투자자산운용] 멀티에셋운용본부 솔루션운용팀 팀원 모집 (신입)",
+      "organization": "키움투자자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43049",
       "startDate": "2026-11-09",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
-        "인턴",
-        "자산운용/펀드"
+        "금융권",
+        "신입",
+        "운용/리서치"
       ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "1. 채용부문 ● 모집부문 : 멀티에셋운용본부 솔루션운용팀 팀원 ● 계약형태 : 계약직 ● 인원 : 팀원 1명 (주임/주임-사원급) 2. 담당업무 ● 해외 주식 펀드(자문형/재간접) 운용 및 관리 업무 ● 매크로, 주식, ETF, 해외운용사(펀드,전략) 등 리서치 업무 ● 보고서 작성, 수익자 요청 응대 등 대고객 관련 업무 3. 자격요건 및 우대사항 [자격요건] ● 4년제 대학 졸업 및 동...",
       "isFeatured": true
     },
     {
-      "id": "linkareer-361582",
-      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361582",
-      "startDate": "2026-11-09",
+      "id": "kofia-43022",
+      "title": "[웰컴자산운용] 채권운용본부 채권운용팀 신입/경력직 채용(~11/15)",
+      "organization": "웰컴자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43022",
+      "startDate": "2026-11-05",
       "deadline": "2026-11-15",
       "isAlwaysOpen": false,
       "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "웰컴금융그룹의 중추로 성장해 나갈 웰컴자산운용에서, 새로운 내일을 이끌어갈 창의적이고 도전적인 인재를 모집합니다. 1. 모집부문 * 채권운용본부 채권운용팀 팀원 (사원~대리급) 2. 담당업무 * 국내채권형/MMF/혼합형 펀드 운용 보조 * 채권 관련 리서치 보조 * 보고서 및 제안서 작성 보조 * 채권운용팀 업무 보조 3. 자격요건 * 국내외 4년제 학사 이상 교육기관 졸업자 * 투자자산운용...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-42944",
+      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42944",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
         "인턴",
+        "운용/리서치",
+        "AI/데이터",
         "증권/투자/애널리스트"
       ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-42943",
+      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42943",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치",
+        "자산운용/펀드"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 채권운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office 능통자 우대 - Visua...",
       "isFeatured": true
     },
     {
@@ -220,25 +304,44 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55330482",
-      "title": "Application성능관리솔루션개발자(신입)",
-      "organization": "브레인즈컴퍼니",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55330482",
-      "startDate": "2026-11-09",
-      "deadline": "2026-11-17",
+      "id": "kofia-42977",
+      "title": "[신영증권] 2026년도 하반기 신입사원 공개채용",
+      "organization": "신영증권",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42977",
+      "startDate": "2026-11-03",
+      "deadline": "2026-11-16",
       "isAlwaysOpen": false,
       "tags": [
-        "신입/인턴",
-        "서버/백엔드 개발자",
-        ".NET",
-        "C#",
-        "C++"
+        "금융권",
+        "신입",
+        "경영기획/전략",
+        "시장조사/리서치",
+        "시스템/ERP개발"
       ],
-      "location": "서울 성동구",
-      "reward": "IT 신입/인턴",
-      "summary": "브레인즈컴퍼니 | Application성능관리솔루션개발자(신입) | 기술스택: .NET, C#, C++, Java, JavaScript, Linux, Python, Spring, Spring Boot, TCP/IP",
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "■ 모집인원: 00명 ■ 접수기간: 2026년 11월 03일 (화) ~ 2025년 11월 16일 (월) 오전 10시까지 ■ 모집내용 -. 모집분야 : 자산관리서비스, 본사영업, IB, 운용, 리서치, IT, 본사관리 -. 근무지: 본사 및 영업점(서울, 대전, 대구, 광주) ※ 직무에 대한 상세 내용은 채용사이트 > 채용안내 > 직무소개에서 확인하실 수 있습니다. ■ 지원자격 -. 학사 이상...",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-360096",
+      "title": "[IBK기업은행] 2027년 동계 체험형 청년인턴 채용",
+      "organization": "IBK기업은행",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/360096",
+      "startDate": "2026-11-09",
+      "deadline": "2026-11-16",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "IBK기업은행 | [IBK기업은행] 2027년 동계 체험형 청년인턴 채용",
       "isFeatured": true
     },
     {
@@ -285,6 +388,65 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43002",
+      "title": "[유안타증권] 상품전략팀 신입/경력직원 채용(~11/19)",
+      "organization": "유안타증권",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43002",
+      "startDate": "2026-11-04",
+      "deadline": "2026-11-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "[유안타증권] 상품전략팀 신입/경력직원 채용(~11/19) [주요업무] · 금융상품 전략 수립 및 시장 동향 파악 · 금융상품 판매전략 수립 및 지원(On/Off 컨텐츠 기획, 제작 및 공유) · 금융상품 영업 지원(영업 역량 강화, 간담회 및 세미나 지원, 자료 작성) [지원자격] · 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) · 커뮤니케이션 능력 및 책임감 ...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43021",
+      "title": "[토러스자산운용] 국내주식 리서치팀 (스튜어드십코드/ESG 담당) 채용 (~11/20, 신입 및 경력)",
+      "organization": "토러스자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43021",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-20",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "토러스자산운용은 국내외 거래소에 상장된 주식을 투자대상으로 집합투자업, 투자일임업 및 투자자문업을 영위하고 있습니다. 현재 운용자산규모 9조원대로 고객자산의 95% 이상이 개인 및 일반법인으로 구성되어 있는 국내 최고의 자산운용회사입니다. 고객 중심의 철학과 장기적인 수익 창출을 최우선 가치로 삼아 차별화된 상품과 투자 기회를 만들어가는 토러스자산운용에서, 시장과 고객을 연결하며 회사의 지속...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43015",
+      "title": "KCGI자산운용 대체투자2팀(주임(신입포함)-대리)채용 공고",
+      "organization": "케이씨지아이자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43015",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-20",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "KCGI자산운용은 여의도(IFC)에 위치한 종합자산운용사로, 당사는 금융시장에서 대체투자운용 부문의 성장을 함께 이끌어 갈 열정있는 인재를 찾습니다. 1. 모집부문 - 대체투자2팀(주임(신입포함)-대리) / 0명 2. 업무내용 - 대체투자 딜 타당성 분석, 제안서, 재무모델 작성 등[기업금융, 부동산금융 펀드 설정 및 운용, NPL금융 등] - 대체투자 펀드 설정, 운용, 관리 업무 - 기업...",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55354317",
       "title": "콘텐츠 플랫폼 백엔드 개발(신입)",
       "organization": "드림어스컴퍼니",
@@ -310,19 +472,20 @@
       "id": "linkareer-362827",
       "title": "[아이엔지 은행/증권] Financial Markets Sales Intern - 2027 1H",
       "organization": "아이엔지 은행/증권",
-      "category": "intern",
+      "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362827",
       "startDate": "2026-11-09",
       "deadline": "2026-11-21",
       "isAlwaysOpen": false,
       "tags": [
+        "금융권",
         "인턴",
         "마케팅기획/전략",
         "시장조사/리서치"
       ],
       "location": "국내",
-      "reward": "인턴/신입",
+      "reward": "금융권 채용",
       "summary": "아이엔지 은행/증권 | [아이엔지 은행/증권] Financial Markets Sales Intern - 2027 1H | 직무: 마케팅기획/전략, 시장조사/리서치",
       "isFeatured": true
     },
@@ -577,6 +740,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112236",
+      "title": "2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회",
+      "organization": "대구광역시,대구창조경제혁신센터",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112236",
+      "startDate": "2026-11-09",
+      "deadline": "2026-12-01",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "대구광역시,대구창조경제혁신센터 주최 | 2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-361790",
       "title": "AAMDP Console Monitoring   & Security Analyst (체험형 인턴 4주)",
       "organization": "BigTeam Inc",
@@ -639,12 +822,12 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55504383",
-      "title": "전송망 관제 및 운영 신입 채용",
+      "id": "jumpit-55504419",
+      "title": "전송망 관제 및 운영 초급 채용",
       "organization": "드림디엔엠",
       "category": "intern",
       "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55504383",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55504419",
       "startDate": "2026-11-09",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
@@ -657,7 +840,7 @@
       ],
       "location": "서울 송파구",
       "reward": "IT 신입/인턴",
-      "summary": "드림디엔엠 | 전송망 관제 및 운영 신입 채용 | 기술스택: Router, Network",
+      "summary": "드림디엔엠 | 전송망 관제 및 운영 초급 채용 | 기술스택: Router, Network",
       "isFeatured": true
     },
     {
@@ -763,6 +946,46 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-353981",
+      "title": "[비지시캐피탈마켓외국환중개] 해외채권 (Int'l Bonds) Desk Assistant",
+      "organization": "비지시캐피탈마켓외국환중개",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/353981",
+      "startDate": "2026-11-09",
+      "deadline": "2026-12-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "자산운용/펀드"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "비지시캐피탈마켓외국환중개 | [비지시캐피탈마켓외국환중개] 해외채권 (Int'l Bonds) Desk Assistant | 직무: 자산운용/펀드",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-353980",
+      "title": "[비지시캐피탈마켓외국환중개] 이자율파생상품 (Interest Rate Swaps - IRS) 신입 브로커",
+      "organization": "비지시캐피탈마켓외국환중개",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/353980",
+      "startDate": "2026-11-09",
+      "deadline": "2026-12-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "자산운용/펀드"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "비지시캐피탈마켓외국환중개 | [비지시캐피탈마켓외국환중개] 이자율파생상품 (Interest Rate Swaps - IRS) 신입 브로커 | 직무: 자산운용/펀드",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-353766",
       "title": "[인턴 모집] AI 개발자를 찾습니다!",
       "organization": "(주)트레져러",
@@ -858,6 +1081,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "넛지헬스케어 | [캐시워크] 데이터엔지니어 채용전환형 인턴 | 직무: 데이터분석, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-354718",
+      "title": "[비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
+      "organization": "비지시캐피탈마켓외국환중개",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/354718",
+      "startDate": "2026-11-09",
+      "deadline": "2026-12-31",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "비지시캐피탈마켓외국환중개 | [비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
       "isFeatured": true
     },
     {
@@ -1174,6 +1416,27 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-358453",
+      "title": "[카카오뱅크] 금융거래정보제공 업무 담당자 (채용연계형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/358453",
+      "startDate": "2026-11-09",
+      "deadline": "2027-01-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "데이터분석",
+        "재무/회계/세무"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "카카오뱅크 | [카카오뱅크] 금융거래정보제공 업무 담당자 (채용연계형 인턴) | 직무: 데이터분석, 재무/회계/세무",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-360095",
       "title": "주식회사 한국기술자산 제조 AX 소프트웨어 [UX/UI/프론트엔트] 모집",
       "organization": "주식회사 한국기술자산",
@@ -1366,19 +1629,20 @@
       "id": "linkareer-362157",
       "title": "[인턴] Private Equity",
       "organization": "비에이아이오엔피",
-      "category": "intern",
+      "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362157",
       "startDate": "2026-11-09",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
+        "금융권",
         "인턴",
         "자산운용/펀드",
         "IB/M&A"
       ],
       "location": "국내",
-      "reward": "인턴/신입",
+      "reward": "금융권 채용",
       "summary": "비에이아이오엔피 | [인턴] Private Equity | 직무: 자산운용/펀드, IB/M&A",
       "isFeatured": true
     },
@@ -1403,23 +1667,24 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43031",
-      "title": "[IBK투자증권] IBKS Family Office 영업직(패밀리오피스 영업) 채용 공고 (상시)",
-      "organization": "IBK투자증권",
+      "id": "kofia-42934",
+      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
+      "organization": "알파자산운용",
       "category": "kofia",
       "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43031",
-      "startDate": "2026-11-06",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
+      "startDate": "2026-10-30",
       "deadline": "2026-11-30",
       "isAlwaysOpen": true,
       "tags": [
         "금융권",
         "인턴",
-        "금융IT/보안"
+        "신입",
+        "운용/리서치"
       ],
-      "location": "서울 여의도",
+      "location": "서울",
       "reward": "인턴십",
-      "summary": "[IBK투자증권] 경력직 채용 공고 1. 모집분야 및 주요요건 (인턴경력 제외) □ 모집직위 : 대리급 이상 □ 고용형태 : 계약직 □ 담당업무 - 초고액자산(UHNW) / 패밀리오피스고객 종합자산관리 컨설팅 - IB연계, 승계컨설팅, 글로벌상품 등 통합솔루션 설계 및 관리 - 주요고객 관계관리 및 신규 패밀리오피스 고객 개발 □ 자격요건 : 관련 경력 1년 이상 2. 채용절차 : 서류전형 ...",
+      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
