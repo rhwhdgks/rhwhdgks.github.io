@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-09 10:03 KST",
-  "totalCount": 84,
+  "updatedAt": "2026-11-09 14:22 KST",
+  "totalCount": 83,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 10,
-    "링커리어": 58,
-    "점핏(Jumpit)": 14,
-    "위비티(Wevity)": 2
+    "금융투자협회(KOFIA)": 9,
+    "링커리어": 59,
+    "위비티(Wevity)": 1,
+    "점핏(Jumpit)": 14
   },
   "items": [
     {
@@ -366,28 +366,6 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55299151",
-      "title": "백엔드 개발자 (신입)",
-      "organization": "티엔에이치",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55299151",
-      "startDate": "2026-11-09",
-      "deadline": "2026-11-18",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "서버/백엔드 개발자",
-        "Amazon EMR",
-        "Docker",
-        "Git"
-      ],
-      "location": "경기 성남시 분당구",
-      "reward": "IT 신입/인턴",
-      "summary": "티엔에이치 | 백엔드 개발자 (신입) | 기술스택: Amazon EMR, Docker, Git, JavaScript, Jira, Node.js, PostgreSQL, TypeScript, SQL",
-      "isFeatured": true
-    },
-    {
       "id": "kofia-43002",
       "title": "[유안타증권] 상품전략팀 신입/경력직원 채용(~11/19)",
       "organization": "유안타증권",
@@ -447,6 +425,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112029",
+      "title": "2026 성평등 AI 벤치마크 챌린지 참가팀 모집",
+      "organization": "성평등가족부",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
+      "startDate": "2026-11-09",
+      "deadline": "2026-11-20",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "성평등가족부 주최 | 2026 성평등 AI 벤치마크 챌린지 참가팀 모집",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55354317",
       "title": "콘텐츠 플랫폼 백엔드 개발(신입)",
       "organization": "드림어스컴퍼니",
@@ -487,26 +485,6 @@
       "location": "국내",
       "reward": "금융권 채용",
       "summary": "아이엔지 은행/증권 | [아이엔지 은행/증권] Financial Markets Sales Intern - 2027 1H | 직무: 마케팅기획/전략, 시장조사/리서치",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112029",
-      "title": "2026 성평등 AI 벤치마크 챌린지 참가팀 모집",
-      "organization": "성평등가족부",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112029",
-      "startDate": "2026-11-09",
-      "deadline": "2026-11-21",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "성평등가족부 주최 | 2026 성평등 AI 벤치마크 챌린지 참가팀 모집",
       "isFeatured": true
     },
     {
@@ -718,6 +696,27 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-362988",
+      "title": "2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회 공모전",
+      "organization": "대구광역시",
+      "category": "hackathon",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/362988",
+      "startDate": "2026-11-09",
+      "deadline": "2026-11-30",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "과학/공학",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "국내",
+      "reward": "해커톤/경진대회",
+      "summary": "대구광역시 | 2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회 공모전 | 직무: 과학/공학",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55451145",
       "title": "IT/AI부문(전문연구요원 포함)신입",
       "organization": "연합인포맥스",
@@ -737,26 +736,6 @@
       "location": "서울 종로구",
       "reward": "IT 신입/인턴",
       "summary": "연합인포맥스 | IT/AI부문(전문연구요원 포함)신입 | 기술스택: Azure DevOps, Python, AWS, GCP, AZURE",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112236",
-      "title": "2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회",
-      "organization": "대구광역시,대구창조경제혁신센터",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112236",
-      "startDate": "2026-11-09",
-      "deadline": "2026-12-01",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "대구광역시,대구창조경제혁신센터 주최 | 2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회",
       "isFeatured": true
     },
     {
@@ -884,6 +863,28 @@
       "location": "경기 구리시",
       "reward": "IT 신입/인턴",
       "summary": "써큘러랩스 | [AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당 | 기술스택: Windows, OpenCV, CUDA",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55519198",
+      "title": "AI Agent Engineer(LLM · TypeScript) [신입]",
+      "organization": "이우소프트",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55519198",
+      "startDate": "2026-11-09",
+      "deadline": "2026-12-08",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "인공지능/머신러닝",
+        "Confluence",
+        "Docker",
+        "Docker Cloud"
+      ],
+      "location": "경기 화성시",
+      "reward": "IT 신입/인턴",
+      "summary": "이우소프트 | AI Agent Engineer(LLM · TypeScript) [신입] | 기술스택: Confluence, Docker, Docker Cloud, Git, Jira, NestJS, Node.js, PostgreSQL, TypeScript, pnpm",
       "isFeatured": true
     },
     {
@@ -1664,27 +1665,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "커넥트웨이브 | [커넥트웨이브] [메이크샵] 프라이빗 클라우드 엔지니어 (신입) | 직무: 시스템/ERP개발, DevOps/클라우드/보안",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-42934",
-      "title": "[알파자산운용] PE본부 채용전환용 인턴 채용공고(~채용 시까지)",
-      "organization": "알파자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=42934",
-      "startDate": "2026-10-30",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "인턴십",
-      "summary": "1. 채용분야 부서 : PE본부 직급 : 인턴 급여 : 면접 후 결정 채용인원 : 0명 (신규 채용을 통한 인원충원) 전환조건 : 6개월 근무 후 전환 여부 결정 2. 담당업무 투자대상 기업/산업 분석, Valuation, Financial Modeling, Investment Memo 작성 등 업무 실무 펀드 설립, 투자보고서 작성 등 펀드 운영 관련 업무 기타 유관 업무 3. 지원자격 4...",
       "isFeatured": true
     }
   ]
