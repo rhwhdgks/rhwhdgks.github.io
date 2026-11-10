@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-10 10:48 KST",
-  "totalCount": 94,
+  "updatedAt": "2026-11-10 11:09 KST",
+  "totalCount": 96,
   "sourceCounts": {
     "링커리어": 60,
+    "공공기관 채용(ALIO)": 3,
     "금융투자협회(KOFIA)": 11,
-    "은행 채용사이트": 7,
-    "공공기관 채용(ALIO)": 1,
+    "금융사 채용사이트": 7,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 1
   },
@@ -28,6 +28,27 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "EY한영 | [EY한영] 감사부문 디지털 감사 & AI 리스크 분석 인턴 | 직무: 경영분석/컨설팅, 시장조사/리서치",
+      "isFeatured": true
+    },
+    {
+      "id": "alio-306440",
+      "title": "2026년 하반기 기술보증기금 체험형 청년인턴 채용공고",
+      "organization": "기술보증기금",
+      "category": "kofia",
+      "source": "공공기관 채용(ALIO)",
+      "sourceUrl": "https://job.alio.go.kr/recruitview.do?idx=306440",
+      "startDate": "2026-10-28",
+      "deadline": "2026-11-12",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "금융공기업",
+        "인턴",
+        "체험형"
+      ],
+      "location": "국내",
+      "reward": "금융공기업 채용",
+      "summary": "기술보증기금 | 2026년 하반기 기술보증기금 체험형 청년인턴 채용공고 | 인턴",
       "isFeatured": true
     },
     {
@@ -237,7 +258,7 @@
       "title": "BNK경남은행 기술신용평가 전문인력 채용",
       "organization": "경남은행",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://knbank.recruiter.co.kr/career/jobs/133544",
       "startDate": "2026-11-05",
       "deadline": "2026-11-15",
@@ -470,6 +491,26 @@
       "isFeatured": true
     },
     {
+      "id": "alio-306801",
+      "title": "예금보험공사 제28기 동계 대학생인턴 모집 안내",
+      "organization": "예금보험공사",
+      "category": "kofia",
+      "source": "공공기관 채용(ALIO)",
+      "sourceUrl": "https://job.alio.go.kr/recruitview.do?idx=306801",
+      "startDate": "2026-11-06",
+      "deadline": "2026-11-20",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "금융공기업",
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "금융공기업 채용",
+      "summary": "예금보험공사 | 예금보험공사 제28기 동계 대학생인턴 모집 안내 | 인턴",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55354317",
       "title": "콘텐츠 플랫폼 백엔드 개발(신입)",
       "organization": "드림어스컴퍼니",
@@ -558,7 +599,7 @@
       "title": "[케이뱅크] 전기통신 금융사기 운영 및 모니터링 업무 담당자",
       "organization": "케이뱅크",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/133651",
       "startDate": "2026-11-06",
       "deadline": "2026-11-22",
@@ -578,7 +619,7 @@
       "title": "[케이뱅크] 금융 후선업무 담당자",
       "organization": "케이뱅크",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/133647",
       "startDate": "2026-11-06",
       "deadline": "2026-11-22",
@@ -618,7 +659,7 @@
       "title": "[카카오뱅크] AI 운영 어시스턴트 (체험형 인턴)",
       "organization": "카카오뱅크",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=271859",
       "startDate": "2026-11-09",
       "deadline": "2026-11-23",
@@ -659,7 +700,7 @@
       "title": "[카카오뱅크] DevOps 엔지니어 (채용연계형 인턴)",
       "organization": "카카오뱅크",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=271437",
       "startDate": "2026-11-09",
       "deadline": "2026-11-25",
@@ -1860,7 +1901,7 @@
       "title": "[토스증권] 국내주식 결제 담당자 (주니어) (Securities Settlement Manager)",
       "organization": "토스증권",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://toss.im/career/job-detail?gh_jid=7787980003",
       "startDate": "2026-06-28",
       "deadline": null,
@@ -1871,7 +1912,7 @@
         "주니어"
       ],
       "location": "국내",
-      "reward": "은행 채용",
+      "reward": "증권 채용",
       "summary": "토스증권 | 국내주식 결제 담당자 (주니어) (Securities Settlement Manager) | 주니어",
       "isFeatured": true
     },
@@ -1880,7 +1921,7 @@
       "title": "[토스증권] 해외주식 결제 담당자 (주니어) (Securities Settlement Manager)",
       "organization": "토스증권",
       "category": "kofia",
-      "source": "은행 채용사이트",
+      "source": "금융사 채용사이트",
       "sourceUrl": "https://toss.im/career/job-detail?gh_jid=7723266003",
       "startDate": "2026-05-04",
       "deadline": null,
@@ -1891,7 +1932,7 @@
         "주니어"
       ],
       "location": "국내",
-      "reward": "은행 채용",
+      "reward": "증권 채용",
       "summary": "토스증권 | 해외주식 결제 담당자 (주니어) (Securities Settlement Manager) | 주니어",
       "isFeatured": true
     }
