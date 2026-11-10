@@ -284,7 +284,7 @@ def crawl_kofia(prev_items: Optional[List[Dict[str, Any]]] = None) -> List[Dict[
     - 상세 페이지도 가끔 잘려 오므로 완결될 때까지 재시도한다.
     - 수집이 대부분 실패하면 이전 결과 중 마감 전 공고를 유지한다.
     """
-    print("[1/4] 금융투자협회(KOFIA) 회원사 증권·운용·금융IT 신입/인턴 공고 수집 중...")
+    print("[1/5] 금융투자협회(KOFIA) 회원사 증권·운용·금융IT 신입/인턴 공고 수집 중...")
     prev_kofia = [i for i in (prev_items or []) if i.get("source") == "금융투자협회(KOFIA)"]
     results: List[Dict[str, Any]] = []
 
@@ -401,9 +401,262 @@ def _kofia_carry_over(prev_kofia: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return kept
 
 
+# ==============================================================================
+# 은행 채용: 채용 플랫폼(recruiter.co.kr) 사용 은행 + 공공기관 채용정보(ALIO, 국책은행) + 토스 채용(토스뱅크·토스증권)
+# ==============================================================================
+
+# recruiter.co.kr 서브도메인 → 은행명 (공고가 없으면 0건으로 지나감)
+BANK_RECRUITER_SITES = {
+    "shinhan": "신한은행",
+    "hanabank": "하나은행",
+    "wooribank": "우리은행",
+    "kbstar": "KB국민은행",
+    "nhbank": "NH농협은행",
+    "kakaobank": "카카오뱅크",
+    "kbank": "케이뱅크",
+    "busanbank": "부산은행",
+    "knbank": "경남은행",
+    "jbbank": "전북은행",
+    "jejubank": "제주은행",
+}
+RECRUITER_JOBFLEX_API = "https://api-recruiter.recruiter.co.kr/position/v1/jobflex"
+ALIO_RECRUIT_URL = "https://job.alio.go.kr/recruit.do"
+TOSS_JOBS_API = "https://api-public.toss.im/api/v3/ipd-eggnog/career/jobs"
+TOSS_FINANCE_SUBSIDIARIES = ["토스뱅크", "토스증권"]
+
+BANK_SOURCE = "은행 채용사이트"
+ALIO_SOURCE = "공공기관 채용(ALIO)"
+
+# 신입·인턴 신호 (제목 기준)
+BANK_ENTRY_TITLE_KW = [
+    "신입", "인턴", "INTERN", "체험형", "채용연계", "채용형", "신입행원", "공채", "청년", "졸업",
+    "주니어", "JUNIOR", "NEW GRAD",
+]
+# 은행 공고 중 제외할 직무 (창구·텔러·콜센터·감사·인사 등)
+BANK_ROLE_BLACKLIST = [
+    "창구", "텔러", "사무행원", "업무지원계약", "인재풀", "콜센터", "고객상담", "CS", "소비자보호", "감사",
+    "인재영입", "HR", "인사", "회계", "세무", "법무", "변호사", "기록연구", "운전", "경비", "청원", "시설",
+    "대체인력", "대체채용", "육아휴직", "사서", "간호", "보훈", "장애인", "상담",
+]
+# recruiter.co.kr 신버전 careerType → 표시용 라벨 (CAREER는 제목에 신입·인턴 표시가 있을 때만 허용)
+RECRUITER_CAREER_LABELS = {
+    "NEW": "신입",
+    "INTERNSHIP": "인턴",
+    "NEW_CAREER": "신입/경력",
+    "ANY": "경력무관",
+    "FIELD_DIFFERENCE": "분야별 상이",
+    "CAREER": "경력",
+    "NONE": "",
+}
+
+
+def _bank_role_ok(title: str) -> bool:
+    return not has_any_kw(title.upper(), BANK_ROLE_BLACKLIST)
+
+
+def _bank_item(item_id: str, title: str, bank: str, source: str, url: str, start: str,
+               deadline: Optional[str], always_open: bool, career_label: str) -> Dict[str, Any]:
+    tags = ["금융권", "은행" if any(k in bank for k in ["은행", "뱅크"]) else "증권"]
+    if career_label:
+        tags.append(career_label)
+    for kw, tag in [("인턴", "인턴"), ("체험형", "체험형"), ("채용연계", "채용연계형"), ("IT", "금융IT"), ("디지털", "디지털"),
+                    ("데이터", "AI/데이터"), ("AI", "AI/데이터"), ("투자", "투자/IB"), ("IB", "투자/IB")]:
+        if has_any_kw(title.upper(), [kw]) and tag not in tags:
+            tags.append(tag)
+    return {
+        "id": item_id,
+        "title": title if bank in title else f"[{bank}] {title}",
+        "organization": bank,
+        "category": "kofia",
+        "source": source,
+        "sourceUrl": url,
+        "startDate": start or TODAY_STR,
+        "deadline": deadline,
+        "isAlwaysOpen": always_open,
+        "tags": tags[:5],
+        "location": "국내",
+        "reward": "은행 채용",
+        "summary": f"{bank} | {title}" + (f" | {career_label}" if career_label else ""),
+        "isFeatured": True,
+    }
+
+
+def _recruiter_jobflex(sub: str, bank: str) -> Optional[List[Dict[str, Any]]]:
+    """신버전 채용 사이트 API. 해당 은행이 신버전을 쓰지 않으면 None"""
+    body = json.dumps({"pageableRq": {"page": 1, "size": 100}, "filter": {}}).encode("utf-8")
+    req = urllib.request.Request(
+        RECRUITER_JOBFLEX_API,
+        data=body,
+        headers={"Content-Type": "application/json", "User-Agent": USER_AGENT, "prefix": f"{sub}.recruiter.co.kr"},
+    )
+    try:
+        with urllib.request.urlopen(req, context=SSL_CTX, timeout=15) as resp:
+            payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    except Exception:
+        return None
+    if "list" not in payload:
+        return None
+
+    items = []
+    for pos in payload.get("list") or []:
+        title = (pos.get("title") or "").strip()
+        sn = pos.get("positionSn")
+        if not title or not sn or pos.get("submissionStatus") == "POST_SUBMISSION":
+            continue
+        end = (pos.get("endDateTime") or "")[:10]
+        if end:
+            try:
+                if datetime.date.fromisoformat(end) < NOW.date():
+                    continue
+            except ValueError:
+                end = ""
+        career = pos.get("careerType") or "NONE"
+        title_entry = has_any_kw(title.upper(), BANK_ENTRY_TITLE_KW)
+        if career == "CAREER" and not title_entry:
+            continue
+        if career == "NONE" and not title_entry:
+            continue
+        if not _bank_role_ok(title):
+            continue
+        items.append(_bank_item(
+            f"recruiter-{sub}-{sn}", title, bank, BANK_SOURCE,
+            f"https://{sub}.recruiter.co.kr/career/jobs/{sn}",
+            (pos.get("startDateTime") or "")[:10], end or None, not end,
+            RECRUITER_CAREER_LABELS.get(career, ""),
+        ))
+    return items
+
+
+def _recruiter_appsite(sub: str, bank: str) -> List[Dict[str, Any]]:
+    """구버전 채용 사이트 API (신입/경력 구분이 없어 제목의 신입·인턴 신호로만 판단)"""
+    req = urllib.request.Request(
+        f"https://{sub}.recruiter.co.kr/app/jobnotice/list.json",
+        data=b"pageSize=100&currentPage=1&jobnoticeStateCode=10",
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "X-Requested-With": "XMLHttpRequest",
+            "User-Agent": USER_AGENT,
+        },
+    )
+    with urllib.request.urlopen(req, context=SSL_CTX, timeout=15) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+
+    items = []
+    for notice in payload.get("list") or []:
+        title = (notice.get("jobnoticeName") or "").strip()
+        sn = notice.get("jobnoticeSn")
+        if not title or not sn or notice.get("receiptState") not in ("접수중", "접수예정"):
+            continue
+        if not has_any_kw(title.upper(), BANK_ENTRY_TITLE_KW) or not _bank_role_ok(title):
+            continue
+
+        def ms_to_date(v: Any) -> str:
+            try:
+                return datetime.datetime.fromtimestamp(int(v["time"]) / 1000.0, tz=KST).strftime("%Y-%m-%d")
+            except Exception:
+                return ""
+
+        end = ms_to_date(notice.get("applyEndDate"))
+        always = notice.get("recruitTypeCode") == "PERMANENT" or not end
+        items.append(_bank_item(
+            f"recruiter-{sub}-{sn}", title, bank, BANK_SOURCE,
+            f"https://{sub}.recruiter.co.kr/app/jobnotice/view?systemKindCode={notice.get('systemKindCode') or 'MRS2'}&jobnoticeSn={sn}",
+            ms_to_date(notice.get("applyStartDate")), None if always else end, always, "",
+        ))
+    return items
+
+
+def _alio_banks() -> List[Dict[str, Any]]:
+    """공공기관 채용정보(ALIO)에서 진행 중인 은행 공고 (IBK기업은행·KDB산업은행·한국수출입은행 등)"""
+    params = urllib.parse.urlencode({"ing": 2, "pageSet": 50, "search_type": "title", "keyword": "은행"})
+    page_html = fetch_text(f"{ALIO_RECRUIT_URL}?{params}", timeout=20)
+    org_alias = {"중소기업은행": "IBK기업은행"}
+    items = []
+    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", page_html, re.S):
+        m = re.search(r"recruitview\.do\?idx=(\d+)", row)
+        if not m:
+            continue
+        raw_tds = re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)
+        title_idx = next((k for k, td in enumerate(raw_tds) if "recruitview.do" in td), None)
+        tds = [clean_html_text(td) for td in raw_tds]
+        if title_idx is None or len(tds) < title_idx + 7:
+            continue
+        # 제목 칸 기준: [제목, 기관, 근무지, 고용형태, 등록일, 마감(예: 26.11.23 D-12), 상태]
+        title, org, _loc, emp_type, reg, close, status = tds[title_idx:title_idx + 7]
+        if "은행" not in org or "마감" in status:
+            continue
+        if not (has_any_kw(f"{title} {emp_type}".upper(), BANK_ENTRY_TITLE_KW)) or not _bank_role_ok(title):
+            continue
+        bank = org_alias.get(org, org)
+        dm = re.search(r"(\d{2})\.(\d{2})\.(\d{2})", close)
+        deadline = f"20{dm.group(1)}-{dm.group(2)}-{dm.group(3)}" if dm else None
+        rm = re.search(r"(\d{4})\.(\d{2})\.(\d{2})", reg)
+        start = f"{rm.group(1)}-{rm.group(2)}-{rm.group(3)}" if rm else TODAY_STR
+        career_label = "인턴" if "인턴" in emp_type else ("신입" if "신입" in title else "")
+        items.append(_bank_item(
+            f"alio-{m.group(1)}", title, bank, ALIO_SOURCE,
+            f"https://job.alio.go.kr/recruitview.do?idx={m.group(1)}",
+            start, deadline, deadline is None, career_label,
+        ))
+    return items
+
+
+def _toss_finance() -> List[Dict[str, Any]]:
+    """토스 통합 채용에서 토스뱅크·토스증권 신입·인턴 공고 (경력 공고는 제외)"""
+    payload = json.loads(fetch_text(TOSS_JOBS_API, timeout=20))
+    sub_key = "포지션의 소속 자회사를 선택해 주세요."
+    items = []
+    for job in payload.get("success") or []:
+        meta = {m.get("name"): m.get("value") for m in job.get("metadata") or []}
+        company = str(meta.get(sub_key) or "")
+        if company not in TOSS_FINANCE_SUBSIDIARIES:
+            continue
+        title = (job.get("title") or "").strip()
+        emp = str(meta.get("Employment_Type") or "")
+        if not has_any_kw(f"{title} {emp}".upper(), BANK_ENTRY_TITLE_KW) or not _bank_role_ok(title):
+            continue
+        deadline = (job.get("application_deadline") or "")[:10] or None
+        items.append(_bank_item(
+            f"toss-{job.get('id')}", title, company, BANK_SOURCE, job.get("absolute_url") or "https://toss.im/career",
+            (job.get("first_published") or "")[:10], deadline, deadline is None,
+            "인턴" if "인턴" in emp else ("주니어" if has_any_kw(title.upper(), ["주니어", "JUNIOR"]) else ""),
+        ))
+    return items
+
+
+def crawl_banks() -> List[Dict[str, Any]]:
+    print("[2/5] 은행 채용사이트(시중·인터넷·지방은행)·ALIO(국책은행)·토스 신입/인턴 공고 수집 중...")
+    results: List[Dict[str, Any]] = []
+    per_bank: Dict[str, int] = {}
+
+    for sub, bank in BANK_RECRUITER_SITES.items():
+        try:
+            items = _recruiter_jobflex(sub, bank)
+            if items is None:
+                items = _recruiter_appsite(sub, bank)
+        except Exception as e:
+            print(f"  - {bank} 채용사이트 조회 오류: {e}")
+            continue
+        results.extend(items)
+        per_bank[bank] = len(items)
+        time.sleep(0.2)
+
+    for label, fn in [("ALIO 국책은행", _alio_banks), ("토스뱅크·토스증권", _toss_finance)]:
+        try:
+            items = fn()
+            results.extend(items)
+            per_bank[label] = len(items)
+        except Exception as e:
+            print(f"  - {label} 조회 오류: {e}")
+
+    found = ", ".join(f"{k} {v}" for k, v in per_bank.items() if v)
+    print(f"  -> 은행 신입/인턴 공고 {len(results)}건 선별 완료" + (f" ({found})" if found else ""))
+    return results
+
+
 def crawl_jumpit() -> List[Dict[str, Any]]:
     """점핏 (Jumpit) 백엔드·AI·데이터·금융IT 신입/인턴 포지션만 엄선 수집"""
-    print("[2/4] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
+    print("[3/5] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     try:
         for page in [1, 2, 3, 4]:
@@ -469,7 +722,7 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
 
 def crawl_wevity() -> List[Dict[str, Any]]:
     """위비티 (Wevity) 실제 AI · 데이터 분석 · SW 개발 해커톤/경진대회만 선별 수집"""
-    print("[4/4] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
+    print("[5/5] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ix = set()
 
@@ -646,7 +899,7 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
     - 채용: (1) 인턴 전체 최신순 스캔(카테고리 오분류 알짜 공고 포착) + (2) IT/개발·금융 인턴/신입 스캔
     - 공모전/대외활동: 최신 공고 다수 조회 → AI/데이터/금융/해커톤 키워드 필터
     """
-    print("[3/4] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
+    print("[4/5] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ids = set()
 
@@ -849,6 +1102,8 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
     """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합"""
     source_priority = {
         "금융투자협회(KOFIA)": 4,
+        "은행 채용사이트": 4,
+        "공공기관 채용(ALIO)": 4,
         "점핏(Jumpit)": 3,
         "원티드": 3,
         "프로그래머스": 3,
@@ -901,11 +1156,12 @@ def main() -> None:
                 manual_items = json.load(f)
                 if isinstance(manual_items, list):
                     all_items.extend(manual_items)
-                    print(f"[0/4] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
+                    print(f"[0/5] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
         except Exception as e:
             print(f"manual.json 로드 오류: {e}")
 
     all_items.extend(crawl_kofia(prev_items))
+    all_items.extend(crawl_banks())
     all_items.extend(crawl_jumpit())
     all_items.extend(crawl_linkareer())
     all_items.extend(crawl_wevity())
