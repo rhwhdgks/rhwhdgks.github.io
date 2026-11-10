@@ -402,10 +402,11 @@ def _kofia_carry_over(prev_kofia: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 # ==============================================================================
-# 은행 채용: 채용 플랫폼(recruiter.co.kr) 사용 은행 + 공공기관 채용정보(ALIO, 국책은행) + 토스 채용(토스뱅크·토스증권)
+# 금융사 채용: 채용 플랫폼(recruiter.co.kr) 사용 은행·증권사 + 공공기관 채용정보(ALIO, 국책은행·금융공기업)
+#              + 토스 채용(토스뱅크·토스증권)
 # ==============================================================================
 
-# recruiter.co.kr 서브도메인 → 은행명 (공고가 없으면 0건으로 지나감)
+# recruiter.co.kr 서브도메인 → 회사명 (회사명을 확인한 계정만 등록. 공고가 없으면 0건으로 지나감)
 BANK_RECRUITER_SITES = {
     "shinhan": "신한은행",
     "hanabank": "하나은행",
@@ -418,13 +419,28 @@ BANK_RECRUITER_SITES = {
     "knbank": "경남은행",
     "jbbank": "전북은행",
     "jejubank": "제주은행",
+    # 증권사
+    "nhqv": "NH투자증권",
+    "kbsec": "KB증권",
+    "miraeasset": "미래에셋",
+    "daishin": "대신증권",
+    "hmsec": "현대차증권",
+    "iprovest": "교보증권",
+    "ls-sec": "LS증권",
+    "sks": "SK증권",
 }
+# ALIO 검색어: 국책은행은 '은행'으로, 금융공기업은 기관명으로 검색
+ALIO_FINANCE_KEYWORDS = [
+    "은행", "예금보험공사", "기술보증기금", "신용보증기금", "예탁결제원", "자산관리공사", "주택금융공사",
+    "한국투자공사", "서민금융진흥원", "증권금융", "한국거래소", "코스콤",
+]
+ALIO_FINANCE_ORGS = [k for k in ALIO_FINANCE_KEYWORDS if k != "은행"]
 RECRUITER_JOBFLEX_API = "https://api-recruiter.recruiter.co.kr/position/v1/jobflex"
 ALIO_RECRUIT_URL = "https://job.alio.go.kr/recruit.do"
 TOSS_JOBS_API = "https://api-public.toss.im/api/v3/ipd-eggnog/career/jobs"
 TOSS_FINANCE_SUBSIDIARIES = ["토스뱅크", "토스증권"]
 
-BANK_SOURCE = "은행 채용사이트"
+BANK_SOURCE = "금융사 채용사이트"
 ALIO_SOURCE = "공공기관 채용(ALIO)"
 
 # 신입·인턴 신호 (제목 기준)
@@ -450,13 +466,26 @@ RECRUITER_CAREER_LABELS = {
 }
 
 
+# 제목에 경력직만 명시된 공고 (사이트의 신입/경력 값이 잘못 입력된 경우 대비)
+BANK_EXP_ONLY_TITLE_KW = ["경력직", "경력 채용", "경력채용", "경력사원", "전문경력"]
+
+
 def _bank_role_ok(title: str) -> bool:
-    return not has_any_kw(title.upper(), BANK_ROLE_BLACKLIST)
+    t_upper = title.upper()
+    if has_any_kw(t_upper, BANK_EXP_ONLY_TITLE_KW) and not has_any_kw(t_upper, ["신입", "인턴", "INTERN"]):
+        return False
+    return not has_any_kw(t_upper, BANK_ROLE_BLACKLIST)
 
 
 def _bank_item(item_id: str, title: str, bank: str, source: str, url: str, start: str,
                deadline: Optional[str], always_open: bool, career_label: str) -> Dict[str, Any]:
-    tags = ["금융권", "은행" if any(k in bank for k in ["은행", "뱅크"]) else "증권"]
+    if any(k in bank for k in ["은행", "뱅크"]):
+        org_tag = "은행"
+    elif source == ALIO_SOURCE:
+        org_tag = "금융공기업"
+    else:
+        org_tag = "증권"
+    tags = ["금융권", org_tag]
     if career_label:
         tags.append(career_label)
     for kw, tag in [("인턴", "인턴"), ("체험형", "체험형"), ("채용연계", "채용연계형"), ("IT", "금융IT"), ("디지털", "디지털"),
@@ -475,7 +504,7 @@ def _bank_item(item_id: str, title: str, bank: str, source: str, url: str, start
         "isAlwaysOpen": always_open,
         "tags": tags[:5],
         "location": "국내",
-        "reward": "은행 채용",
+        "reward": f"{org_tag} 채용",
         "summary": f"{bank} | {title}" + (f" | {career_label}" if career_label else ""),
         "isFeatured": True,
     }
@@ -566,16 +595,24 @@ def _recruiter_appsite(sub: str, bank: str) -> List[Dict[str, Any]]:
     return items
 
 
-def _alio_banks() -> List[Dict[str, Any]]:
-    """공공기관 채용정보(ALIO)에서 진행 중인 은행 공고 (IBK기업은행·KDB산업은행·한국수출입은행 등)"""
-    params = urllib.parse.urlencode({"ing": 2, "pageSet": 50, "search_type": "title", "keyword": "은행"})
-    page_html = fetch_text(f"{ALIO_RECRUIT_URL}?{params}", timeout=20)
+def _alio_finance() -> List[Dict[str, Any]]:
+    """공공기관 채용정보(ALIO)에서 진행 중인 국책은행(IBK기업·KDB산업·한국수출입은행 등)·금융공기업 신입/인턴 공고"""
     org_alias = {"중소기업은행": "IBK기업은행"}
-    items = []
-    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", page_html, re.S):
+    rows: List[str] = []
+    for keyword in ALIO_FINANCE_KEYWORDS:
+        params = urllib.parse.urlencode({"ing": 2, "pageSet": 50, "keyword": keyword})
+        try:
+            rows.extend(re.findall(r"<tr[^>]*>(.*?)</tr>", fetch_text(f"{ALIO_RECRUIT_URL}?{params}", timeout=20), re.S))
+        except Exception as e:
+            print(f"  - ALIO 검색 오류 ({keyword}): {e}")
+        time.sleep(0.2)
+    items: List[Dict[str, Any]] = []
+    seen_idx = set()
+    for row in rows:
         m = re.search(r"recruitview\.do\?idx=(\d+)", row)
-        if not m:
+        if not m or m.group(1) in seen_idx:
             continue
+        seen_idx.add(m.group(1))
         raw_tds = re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)
         title_idx = next((k for k, td in enumerate(raw_tds) if "recruitview.do" in td), None)
         tds = [clean_html_text(td) for td in raw_tds]
@@ -583,7 +620,7 @@ def _alio_banks() -> List[Dict[str, Any]]:
             continue
         # 제목 칸 기준: [제목, 기관, 근무지, 고용형태, 등록일, 마감(예: 26.11.23 D-12), 상태]
         title, org, _loc, emp_type, reg, close, status = tds[title_idx:title_idx + 7]
-        if "은행" not in org or "마감" in status:
+        if not ("은행" in org or any(k in org for k in ALIO_FINANCE_ORGS)) or "마감" in status:
             continue
         if not (has_any_kw(f"{title} {emp_type}".upper(), BANK_ENTRY_TITLE_KW)) or not _bank_role_ok(title):
             continue
@@ -625,7 +662,7 @@ def _toss_finance() -> List[Dict[str, Any]]:
 
 
 def crawl_banks() -> List[Dict[str, Any]]:
-    print("[2/5] 은행 채용사이트(시중·인터넷·지방은행)·ALIO(국책은행)·토스 신입/인턴 공고 수집 중...")
+    print("[2/5] 은행·증권사 채용사이트, ALIO(국책은행·금융공기업), 토스 신입/인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     per_bank: Dict[str, int] = {}
 
@@ -641,7 +678,7 @@ def crawl_banks() -> List[Dict[str, Any]]:
         per_bank[bank] = len(items)
         time.sleep(0.2)
 
-    for label, fn in [("ALIO 국책은행", _alio_banks), ("토스뱅크·토스증권", _toss_finance)]:
+    for label, fn in [("ALIO", _alio_finance), ("토스뱅크·토스증권", _toss_finance)]:
         try:
             items = fn()
             results.extend(items)
@@ -650,7 +687,7 @@ def crawl_banks() -> List[Dict[str, Any]]:
             print(f"  - {label} 조회 오류: {e}")
 
     found = ", ".join(f"{k} {v}" for k, v in per_bank.items() if v)
-    print(f"  -> 은행 신입/인턴 공고 {len(results)}건 선별 완료" + (f" ({found})" if found else ""))
+    print(f"  -> 은행·증권·금융공기업 신입/인턴 공고 {len(results)}건 선별 완료" + (f" ({found})" if found else ""))
     return results
 
 
@@ -1102,7 +1139,7 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
     """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합"""
     source_priority = {
         "금융투자협회(KOFIA)": 4,
-        "은행 채용사이트": 4,
+        "금융사 채용사이트": 4,
         "공공기관 채용(ALIO)": 4,
         "점핏(Jumpit)": 3,
         "원티드": 3,

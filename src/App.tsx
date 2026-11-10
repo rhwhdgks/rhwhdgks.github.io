@@ -44,6 +44,7 @@ import { OpportunityModal } from './components/OpportunityModal';
 import { MyProgressView } from './components/MyProgressView';
 import { DismissedModal } from './components/DismissedModal';
 import { ResumeCheatsheetView } from './components/ResumeCheatsheetView';
+import { FINANCE_GROUPS, FinanceGroup, matchesFinanceGroup } from './utils/financeGroup';
 
 const BOOKMARK_STORAGE_KEY = 'career_radar_bookmarks_v1';
 const PROGRESS_STORAGE_KEY = 'career_radar_progress_v1';
@@ -74,6 +75,7 @@ export function App() {
   // 필터 및 뷰 상태
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
   const [selectedSource, setSelectedSource] = useState<string>('all');
+  const [financeGroup, setFinanceGroup] = useState<FinanceGroup>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<SortOption>('fit-desc');
   const [viewMode, setViewMode] = useState<ViewMode>('list');
@@ -355,6 +357,9 @@ export function App() {
       if (selectedSource !== 'all' && item.source !== selectedSource) {
         return false;
       }
+      if (selectedCategory === 'kofia' && !matchesFinanceGroup(item, financeGroup)) {
+        return false;
+      }
       if (q) {
         const hay = [
           item.title,
@@ -423,12 +428,22 @@ export function App() {
     bookmarkedIds,
     selectedCategory,
     selectedSource,
+    financeGroup,
     sortBy,
   ]);
+
+  // 금융권 탭 세부 필터별 개수
+  const financeGroupCounts = useMemo(() => {
+    const finance = visibleAllItems.filter((it) => it.category === 'kofia');
+    return Object.fromEntries(
+      FINANCE_GROUPS.map((g) => [g.id, finance.filter((it) => matchesFinanceGroup(it, g.id)).length])
+    ) as Record<FinanceGroup, number>;
+  }, [visibleAllItems]);
 
   const resetFilters = () => {
     setSelectedCategory('all');
     setSelectedSource('all');
+    setFinanceGroup('all');
     setSearchQuery('');
     setOnlyUrgent(false);
     setOnlyBookmarked(false);
@@ -948,6 +963,38 @@ export function App() {
                 })}
               </div>
 
+              {/* 금융권 탭 세부 필터 */}
+              {selectedCategory === 'kofia' && (
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 -mt-1">
+                  <span className="shrink-0 text-xs font-semibold text-amber-800">세부</span>
+                  {FINANCE_GROUPS.map((g) => {
+                    const isSelected = financeGroup === g.id;
+                    return (
+                      <button
+                        key={g.id}
+                        type="button"
+                        title={g.hint}
+                        onClick={() => setFinanceGroup(g.id)}
+                        className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
+                          isSelected
+                            ? 'bg-amber-500 text-white border-amber-500'
+                            : 'bg-amber-50/60 text-amber-900 border-amber-200 hover:bg-amber-100'
+                        }`}
+                      >
+                        <span>{g.label}</span>
+                        <span
+                          className={`px-1.5 py-0.5 rounded-md text-[11px] ${
+                            isSelected ? 'bg-amber-600 text-amber-50' : 'bg-white text-amber-800'
+                          }`}
+                        >
+                          {financeGroupCounts[g.id] || 0}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
               {/* 검색창 + 출처 필터 + 정렬 옵션 */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
                 {/* 키워드 검색 입력 */}
@@ -1060,6 +1107,7 @@ export function App() {
                 </span>
                 {(selectedCategory !== 'all' ||
                   selectedSource !== 'all' ||
+                  financeGroup !== 'all' ||
                   searchQuery ||
                   onlyUrgent ||
                   onlyBookmarked) && (
