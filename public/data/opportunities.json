@@ -1,9 +1,11 @@
 {
-  "updatedAt": "2026-11-10 06:21 KST",
-  "totalCount": 87,
+  "updatedAt": "2026-11-10 10:48 KST",
+  "totalCount": 94,
   "sourceCounts": {
-    "링커리어": 63,
-    "금융투자협회(KOFIA)": 9,
+    "링커리어": 60,
+    "금융투자협회(KOFIA)": 11,
+    "은행 채용사이트": 7,
+    "공공기관 채용(ALIO)": 1,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 1
   },
@@ -127,6 +129,49 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43076",
+      "title": "[카디안자산운용] 주식운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43076",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치",
+        "AI/데이터",
+        "증권/투자/애널리스트"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 주식운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office(Excel, PowerPo...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43075",
+      "title": "[카디안자산운용] 채권운용본부 인턴 채용 (2027년 상반기)",
+      "organization": "카디안자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43075",
+      "startDate": "2026-11-02",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치",
+        "자산운용/펀드"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "카디안자산운용(舊 이스트스프링자산운용코리아)은 국내 시장에 대한 깊은 이해와 글로벌 관점을 지닌 종합 자산운용사로 새로운 여정을 시작하였습니다. 새롭게 출발한 카디안자산운용에서 함께 일할 인턴을 모집합니다. 1. 채용 부문 - 채권운용본부 인턴 2. 지원 자격 - 대학교 재학생 - 펀드 비즈니스에 대한 기본적인 이해 보유자 - 영어 능통자 우대 - MS Office 능통자 우대 - Visua...",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43069",
       "title": "[한국자산평가][대체평가1,2사업본부] 경력 및 신입(인턴) 채용 공고",
       "organization": "한국자산평가",
@@ -188,6 +233,26 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-knbank-133544",
+      "title": "BNK경남은행 기술신용평가 전문인력 채용",
+      "organization": "경남은행",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://knbank.recruiter.co.kr/career/jobs/133544",
+      "startDate": "2026-11-05",
+      "deadline": "2026-11-15",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "경남은행 | BNK경남은행 기술신용평가 전문인력 채용 | 신입",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-363145",
       "title": "[EY한영] 감사부문 Data Analytics – IT Specialist 동계인턴",
       "organization": "EY한영",
@@ -204,46 +269,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "EY한영 | [EY한영] 감사부문 Data Analytics – IT Specialist 동계인턴 | 직무: 데이터분석",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-361593",
-      "title": "[카디안자산운용] 채권운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361593",
-      "startDate": "2026-11-10",
-      "deadline": "2026-11-15",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "자산운용/펀드"
-      ],
-      "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "카디안자산운용 | [카디안자산운용] 채권운용본부 인턴 (2027년 상반기) | 직무: 자산운용/펀드",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-361582",
-      "title": "[카디안자산운용] 주식운용본부 인턴 (2027년 상반기)",
-      "organization": "카디안자산운용",
-      "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361582",
-      "startDate": "2026-11-10",
-      "deadline": "2026-11-15",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "증권/투자/애널리스트"
-      ],
-      "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "카디안자산운용 | [카디안자산운용] 주식운용본부 인턴 (2027년 상반기) | 직무: 증권/투자/애널리스트",
       "isFeatured": true
     },
     {
@@ -325,22 +350,24 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-360096",
-      "title": "[IBK기업은행] 2027년 동계 체험형 청년인턴 채용",
+      "id": "alio-306355",
+      "title": "2027년 동계 IBK기업은행 체험형 청년인턴 채용공고",
       "organization": "IBK기업은행",
       "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/360096",
-      "startDate": "2026-11-10",
+      "source": "공공기관 채용(ALIO)",
+      "sourceUrl": "https://job.alio.go.kr/recruitview.do?idx=306355",
+      "startDate": "2026-10-27",
       "deadline": "2026-11-16",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
-        "인턴"
+        "은행",
+        "인턴",
+        "체험형"
       ],
       "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "IBK기업은행 | [IBK기업은행] 2027년 동계 체험형 청년인턴 채용",
+      "reward": "은행 채용",
+      "summary": "IBK기업은행 | 2027년 동계 IBK기업은행 체험형 청년인턴 채용공고 | 인턴",
       "isFeatured": true
     },
     {
@@ -362,6 +389,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "나이스디앤알 | [나이스디앤알] 웹 서비스(Back-end, Front-end) 개발 및 운영(신입/경력) | 직무: 프론트엔드개발, 백엔드/서버개발, 시스템/ERP개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-363202",
+      "title": "[SNOW] AI 콘텐츠 프로모션 기획/운영 체험형 인턴",
+      "organization": "SNOW",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/363202",
+      "startDate": "2026-11-10",
+      "deadline": "2026-11-18",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "서비스기획/운영"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "SNOW | [SNOW] AI 콘텐츠 프로모션 기획/운영 체험형 인턴 | 직무: 서비스기획/운영",
       "isFeatured": true
     },
     {
@@ -504,7 +550,47 @@
       ],
       "location": "서울",
       "reward": "인턴십",
-      "summary": "┃DS투자증권 리서치센터 투자전략팀 미국주식/투자전력/ETF RA(인턴사원) 채용┃ 1. 채용부문 - 리서치센터 투자전략팀 미국주식/투자전력/ETF RA 인턴사원 0명 2. 담당업무 - 미국 주요기업 실적 자료조사, 데이터 정리?분석 - 선임 애널리스트 조사분석자료 작성, 세미나, 행사 등의 업무 지원 - 투자전략팀 리퀘스트 처리 3. 지원요건 - 국내/해외 4년제 대학교 이상 졸업자 또는 ...",
+      "summary": "┃DS투자증권 리서치센터 투자전략팀 미국주식/투자전력/ETF RA(인턴사원) 채용┃ 1. 채용부문 - 리서치센터 투자전략팀 미국주식/투자전력/ETF RA 인턴사원 0명 2. 담당업무 - 미국 주요기업 실적 자료조사, 데이터 정리분석 - 선임 애널리스트 조사분석자료 작성, 세미나, 행사 등의 업무 지원 - 투자전략팀 리퀘스트 처리 3. 지원요건 - 국내/해외 4년제 대학교 이상 졸업자 또는 졸...",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kbank-133651",
+      "title": "[케이뱅크] 전기통신 금융사기 운영 및 모니터링 업무 담당자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/133651",
+      "startDate": "2026-11-06",
+      "deadline": "2026-11-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | 전기통신 금융사기 운영 및 모니터링 업무 담당자 | 신입/경력",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kbank-133647",
+      "title": "[케이뱅크] 금융 후선업무 담당자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/133647",
+      "startDate": "2026-11-06",
+      "deadline": "2026-11-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | 금융 후선업무 담당자 | 신입/경력",
       "isFeatured": true
     },
     {
@@ -528,6 +614,28 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-kakaobank-271859",
+      "title": "[카카오뱅크] AI 운영 어시스턴트 (체험형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=271859",
+      "startDate": "2026-11-09",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "체험형",
+        "AI/데이터"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | AI 운영 어시스턴트 (체험형 인턴)",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-362416",
       "title": "[11/11 서류 접수] 2026 AI 인턴십 (게임개발/기획 통합 직무, 채용전환형)",
       "organization": "넷마블네오",
@@ -547,23 +655,25 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-363127",
+      "id": "recruiter-kakaobank-271437",
       "title": "[카카오뱅크] DevOps 엔지니어 (채용연계형 인턴)",
       "organization": "카카오뱅크",
       "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363127",
-      "startDate": "2026-11-10",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=271437",
+      "startDate": "2026-11-09",
       "deadline": "2026-11-25",
       "isAlwaysOpen": false,
       "tags": [
         "금융권",
+        "은행",
         "인턴",
+        "채용연계형",
         "DevOps/클라우드/보안"
       ],
       "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "카카오뱅크 | [카카오뱅크] DevOps 엔지니어 (채용연계형 인턴) | 직무: DevOps/클라우드/보안",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | DevOps 엔지니어 (채용연계형 인턴)",
       "isFeatured": true
     },
     {
@@ -1743,6 +1853,46 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "커넥트웨이브 | [커넥트웨이브] [메이크샵] 프라이빗 클라우드 엔지니어 (신입) | 직무: 시스템/ERP개발, DevOps/클라우드/보안",
+      "isFeatured": true
+    },
+    {
+      "id": "toss-7787980003",
+      "title": "[토스증권] 국내주식 결제 담당자 (주니어) (Securities Settlement Manager)",
+      "organization": "토스증권",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://toss.im/career/job-detail?gh_jid=7787980003",
+      "startDate": "2026-06-28",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "증권",
+        "주니어"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "토스증권 | 국내주식 결제 담당자 (주니어) (Securities Settlement Manager) | 주니어",
+      "isFeatured": true
+    },
+    {
+      "id": "toss-7723266003",
+      "title": "[토스증권] 해외주식 결제 담당자 (주니어) (Securities Settlement Manager)",
+      "organization": "토스증권",
+      "category": "kofia",
+      "source": "은행 채용사이트",
+      "sourceUrl": "https://toss.im/career/job-detail?gh_jid=7723266003",
+      "startDate": "2026-05-04",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "증권",
+        "주니어"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "토스증권 | 해외주식 결제 담당자 (주니어) (Securities Settlement Manager) | 주니어",
       "isFeatured": true
     }
   ]
