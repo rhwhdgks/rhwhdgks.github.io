@@ -34,6 +34,9 @@ jobs:
           python-version: "3.12"
 
       - name: Run Opportunity Crawler
+        env:
+          # 사람인 Open API 키 (없으면 사람인 수집만 건너뜀)
+          SARAMIN_ACCESS_KEY: ${{ secrets.SARAMIN_ACCESS_KEY }}
         run: python3 scripts/crawler.py
 
       - name: Commit updated opportunities.json (if changed)

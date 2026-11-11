@@ -720,12 +720,8 @@ def crawl_banks() -> List[Dict[str, Any]]:
 
 
 # ==============================================================================
-# 원티드(Wanted): 개발 직군 중 신입·인턴·주니어 공고 (사이트 내부 API, 공식 공개 API 아님)
+# 개발 직무 공통 헬퍼 (토스·사람인 수집에서 사용)
 # ==============================================================================
-WANTED_JOBS_API = "https://www.wanted.co.kr/api/v4/jobs"
-WANTED_DEV_TAG_ID = 518          # 개발 직군
-WANTED_MAX_JUNIOR_YEARS = 2      # 제목에 신입 표기가 없으면 경력 상한이 이 값 이하인 공고만
-WANTED_MAX_FINANCE_YEARS = 6     # 퀀트·트레이딩 직무는 드물고 핵심 목표라 신입 가능(하한 0년)이면 상한 6년까지 허용
 # 개발 직무 판정: 기존 IT 필수 키워드 + 일반 개발 직무명
 DEV_TITLE_KW = JOB_REQUIRED_KEYWORDS + [
     "개발자", "개발", "엔지니어", "ENGINEER", "DEVELOPER", "플랫폼", "PLATFORM", "인프라", "INFRA", "DEVOPS",
@@ -773,64 +769,6 @@ def _dev_item(item_id: str, title: str, company: str, source: str, url: str, dea
         "summary": f"{company} | {title}" + (f" | {entry_label}" if entry_label else ""),
         "isFeatured": True,
     }
-
-
-def crawl_wanted() -> List[Dict[str, Any]]:
-    print("[4/6] 원티드(Wanted) 개발 직군 신입·인턴·주니어 공고 수집 중...")
-    results: List[Dict[str, Any]] = []
-    scanned = 0
-    for offset in range(0, 1000, 100):
-        url = (
-            f"{WANTED_JOBS_API}?country=kr&tag_type_ids={WANTED_DEV_TAG_ID}&job_sort=job.latest_order"
-            f"&locations=all&years=0&limit=100&offset={offset}"
-        )
-        try:
-            payload = json.loads(fetch_text(url, timeout=20, headers={"Accept": "application/json"}))
-        except Exception as e:
-            print(f"  - Wanted 조회 오류 (offset={offset}): {e}")
-            break
-        jobs = payload.get("data") or []
-        scanned += len(jobs)
-        for job in jobs:
-            title = (job.get("position") or "").strip()
-            job_id = job.get("id")
-            company = ((job.get("company") or {}).get("name") or "").strip()
-            if not title or not job_id or job.get("status") not in (None, "active"):
-                continue
-            annual_to = job.get("annual_to")
-            title_entry = has_entry_signal(title)
-            max_years = (
-                WANTED_MAX_FINANCE_YEARS if has_any_kw(title.upper(), FINANCE_TECH_TITLE_KW) else WANTED_MAX_JUNIOR_YEARS
-            )
-            if not title_entry and not (isinstance(annual_to, int) and annual_to <= max_years):
-                continue
-            if not is_valid_dev_title(title):
-                continue
-            if re.search(r"인턴|\bINTERN", title, re.I):
-                label = "인턴"
-            elif re.search(r"주니어|JUNIOR", title, re.I):
-                label = "주니어"
-            else:
-                label = "신입"
-            career = f"경력 0~{annual_to}년" if isinstance(annual_to, int) and annual_to < 100 else ""
-            due = (job.get("due_time") or "")[:10] or None
-            if due:
-                try:
-                    if datetime.date.fromisoformat(due) < NOW.date():
-                        continue
-                except ValueError:
-                    due = None
-            addr = job.get("address") or {}
-            location = " ".join(x for x in [addr.get("location"), addr.get("district")] if x)
-            results.append(_dev_item(
-                f"wanted-{job_id}", title, company or "원티드 등록 기업", "원티드",
-                f"https://www.wanted.co.kr/wd/{job_id}", due, label, location, [career],
-            ))
-        if not (payload.get("links") or {}).get("next"):
-            break
-        time.sleep(0.3)
-    print(f"  -> 원티드 신입 가능 개발 공고 {scanned}건 중 {len(results)}건 선별 완료")
-    return results
 
 
 def crawl_jumpit() -> List[Dict[str, Any]]:
@@ -1241,6 +1179,147 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
     return results
 
 
+# ==============================================================================
+# 사람인(Saramin) 공식 Open API: IT개발·데이터 / 금융·보험 직무의 신입·인턴 공고
+# - access-key가 필요 (https://oapi.saramin.co.kr 에서 무료 발급) → 환경변수 SARAMIN_ACCESS_KEY
+# - 하루 공고 호출 최대 500건, 재판매·유료화 금지. 하루 3회 실행 기준으로 회당 150건 이내만 요청
+# ==============================================================================
+SARAMIN_API = "https://oapi.saramin.co.kr/job-search"
+SARAMIN_QUERIES = [  # (상위직무 코드, 직무명, 요청 건수)
+    ("2", "IT개발·데이터", 100),
+    ("17", "금융·보험", 50),
+]
+SARAMIN_FINANCE_TITLE_KW = [
+    "운용", "리서치", "애널리스트", "ANALYST", "퀀트", "QUANT", "트레이딩", "TRADING", "딜링", "리스크", "RISK",
+    "IB", "투자", "증권", "자산", "펀드", "파생", "채권", "외환", "데이터", "DATA", "IT", "디지털", "금융공학",
+    "신용평가",
+]
+SARAMIN_FINANCE_BLACKLIST = FINANCE_ROLE_BLACKLIST + [
+    "설계사", "FC", "대출", "상담", "TM", "추심", "보험", "GA", "텔러", "창구", "콜센터", "사무보조", "경리",
+]
+
+
+def _saramin_text(value: Any) -> str:
+    return html.unescape(str(value or "")).replace("&gt;", ">").strip()
+
+
+def _saramin_ts_to_date(value: Any) -> Optional[str]:
+    try:
+        return datetime.datetime.fromtimestamp(int(value), tz=KST).strftime("%Y-%m-%d")
+    except (TypeError, ValueError, OSError):
+        return None
+
+
+def _saramin_request(key: str, job_mid_cd: str, count: int, with_exp: bool) -> Dict[str, Any]:
+    params = {"access-key": key, "job_mid_cd": job_mid_cd, "count": count, "sort": "pd", "fields": "posting-date,expiration-date"}
+    if with_exp:
+        params["exp_cd"] = 1  # 신입 (미지원이면 아래에서 경력 조건 없이 재요청하고 응답의 경력 정보로 거름)
+    raw = fetch_text(f"{SARAMIN_API}?{urllib.parse.urlencode(params)}", timeout=20, headers={"Accept": "application/json"})
+    return json.loads(raw)
+
+
+def _saramin_is_entry(job: Dict[str, Any], title: str) -> Tuple[bool, str]:
+    exp = (job.get("position") or {}).get("experience-level") or {}
+    exp_name = _saramin_text(exp.get("name"))
+    try:
+        exp_min = int(exp.get("min")) if exp.get("min") not in (None, "") else None
+        exp_max = int(exp.get("max")) if exp.get("max") not in (None, "") else None
+    except (TypeError, ValueError):
+        exp_min = exp_max = None
+    job_type = _saramin_text(((job.get("position") or {}).get("job-type") or {}).get("name"))
+    if "인턴" in job_type or re.search(r"인턴|\bINTERN", title, re.I):
+        return True, "인턴"
+    if "신입" in exp_name or has_entry_signal(title):
+        return True, "신입"
+    if "무관" in exp_name:
+        return True, "경력무관"
+    if exp_min == 0 and exp_max is not None and exp_max <= 2:
+        return True, "신입"
+    return False, ""
+
+
+def crawl_saramin() -> List[Dict[str, Any]]:
+    print("[4/6] 사람인(Saramin) Open API IT·금융 신입/인턴 공고 수집 중...")
+    key = os.environ.get("SARAMIN_ACCESS_KEY", "").strip()
+    if not key:
+        print("  - SARAMIN_ACCESS_KEY가 없어 건너뜁니다 (oapi.saramin.co.kr에서 발급 후 GitHub Actions secret으로 등록)")
+        # 키 등록 전에 이 실행 환경에서 API 서버에 접속되는지만 확인 (키 없는 요청 1회, 호출 한도와 무관)
+        try:
+            req = urllib.request.Request(f"{SARAMIN_API}?count=1", headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, context=SSL_CTX, timeout=10) as resp:
+                print(f"  - 사람인 API 서버 접속 확인: HTTP {resp.status}")
+        except urllib.error.HTTPError as e:
+            print(f"  - 사람인 API 서버 접속 확인: HTTP {e.code}")
+        except Exception as e:
+            print(f"  - 사람인 API 서버 접속 실패: {type(e).__name__}")
+        return []
+
+    results: List[Dict[str, Any]] = []
+    for job_mid_cd, mid_name, count in SARAMIN_QUERIES:
+        payload: Dict[str, Any] = {}
+        for with_exp in (True, False):
+            try:
+                payload = _saramin_request(key, job_mid_cd, count, with_exp)
+            except Exception as e:
+                # 키가 URL에 들어가므로 예외 메시지 전체를 출력하지 않음
+                print(f"  - 사람인 {mid_name} 조회 오류: {type(e).__name__}")
+                payload = {}
+                break
+            if "jobs" in payload:
+                break
+            print(f"  - 사람인 {mid_name} 응답 오류 code={payload.get('code')} {payload.get('message', '')}".rstrip())
+            if str(payload.get("code")) in ("1", "2", "4"):  # 키 누락·잘못된 키·호출 한도 초과는 재시도해도 같음
+                break
+
+        jobs = ((payload.get("jobs") or {}).get("job")) or []
+        picked = 0
+        for job in jobs:
+            if str(job.get("active", "1")) != "1":
+                continue
+            position = job.get("position") or {}
+            title = _saramin_text(position.get("title"))
+            company = _saramin_text(((job.get("company") or {}).get("detail") or {}).get("name"))
+            job_id = job.get("id")
+            if not title or not job_id:
+                continue
+            is_entry, label = _saramin_is_entry(job, title)
+            if not is_entry:
+                continue
+
+            close_name = _saramin_text((job.get("close-type") or {}).get("name"))
+            deadline = None if any(k in close_name for k in ["상시", "수시", "채용시"]) else _saramin_ts_to_date(job.get("expiration-timestamp"))
+            if deadline and deadline < TODAY_STR:
+                continue
+            url = job.get("url") or f"https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx={job_id}"
+            location = _saramin_text((position.get("location") or {}).get("name")).split(",")[0]
+            item_id = f"saramin-{job_id}"
+            t_upper = title.upper()
+
+            if job_mid_cd == "17":
+                if has_any_kw(t_upper, SARAMIN_FINANCE_BLACKLIST):
+                    continue
+                if not (has_any_kw(t_upper, SARAMIN_FINANCE_TITLE_KW) or has_any_kw(company.upper(), FINANCE_ORG_KEYWORDS)):
+                    continue
+                if any(k in company for k in ["은행", "뱅크"]):
+                    org_tag = "은행"
+                elif has_any_kw(company.upper(), ["증권", "자산운용", "투자", "운용", "선물", "SECURITIES"]):
+                    org_tag = "증권"
+                else:
+                    org_tag = "금융"
+                item = _bank_item(item_id, title, company or "사람인 등록 기업", "사람인", url, TODAY_STR,
+                                  deadline, deadline is None, label, org_tag=org_tag)
+                item["location"] = location or "국내"
+            else:
+                if not is_valid_dev_title(title):
+                    continue
+                item = _dev_item(item_id, title, company or "사람인 등록 기업", "사람인", url, deadline, label, location)
+            results.append(item)
+            picked += 1
+        print(f"  -> 사람인 {mid_name} {len(jobs)}건 중 {picked}건 선별")
+        time.sleep(0.3)
+    return results
+
+
 ENG_KOR_MAP = {
     "nice": "나이스",
     "nexon": "넥슨",
@@ -1288,6 +1367,7 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
         "토스 채용": 3,
         "프로그래머스": 3,
         "링커리어": 2,
+        "사람인": 2,
         "위비티(Wevity)": 1,
     }
     p_score = source_priority.get(primary.get("source", ""), 0)
@@ -1343,7 +1423,7 @@ def main() -> None:
     all_items.extend(crawl_kofia(prev_items))
     all_items.extend(crawl_banks())
     all_items.extend(crawl_jumpit())
-    all_items.extend(crawl_wanted())
+    all_items.extend(crawl_saramin())
     all_items.extend(crawl_linkareer())
     all_items.extend(crawl_wevity())
 
