@@ -5,7 +5,7 @@ export type FinanceGroup = 'all' | 'securities' | 'bank' | 'public' | 'it';
 
 export const FINANCE_GROUPS: { id: FinanceGroup; label: string; hint: string }[] = [
   { id: 'all', label: '전체', hint: '금융권 공고 전체' },
-  { id: 'securities', label: '증권·운용', hint: '증권사·자산운용·선물·평가사·중개사' },
+  { id: 'securities', label: '증권·운용·핀테크', hint: '증권사·자산운용·선물·평가사·중개사·핀테크(토스 등)' },
   { id: 'bank', label: '은행', hint: '시중·인터넷·지방·국책은행' },
   { id: 'public', label: '금융공기업', hint: '예금보험공사·기술보증기금 등 공공기관' },
   { id: 'it', label: '금융IT·데이터', hint: 'IT·개발·보안·AI/데이터 직무 (기관 무관)' },
@@ -25,7 +25,7 @@ const IT_TAGS = [
 const IT_TITLE_RE =
   /(\b(IT|AI|DATA|ENGINEER|ENGINEERING|DEVELOPER|DEVOPS)\b|개발|엔지니어|데이터|인공지능|보안|시스템|클라우드|전산)/i;
 
-/** 기관 유형: 금융공기업 → 은행 → 그 외(증권·운용·투자·중개) 순으로 판정 */
+/** 기관 유형: 금융공기업 → 은행 → 그 외(증권·운용·투자·중개·핀테크) 순으로 판정 */
 export function financeOrgGroup(item: OpportunityItem): Exclude<FinanceGroup, 'all' | 'it'> {
   const tags = item.tags || [];
   if (tags.includes('금융공기업')) return 'public';
