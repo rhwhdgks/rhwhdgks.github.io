@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14 03:27 KST",
+  "updatedAt": "2026-11-14 14:35 KST",
   "totalCount": 117,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 18,
@@ -1273,7 +1273,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-14",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
