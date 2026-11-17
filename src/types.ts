@@ -103,7 +103,7 @@ export const CATEGORY_META: Record<CategoryType, CategoryMeta> = {
     id: 'intern',
     label: '인턴 · 신입 채용',
     shortLabel: '인턴/채용',
-    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고',
+    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고 (네이버·카카오·라인·당근·쿠팡 자체 채용사이트 포함)',
     badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
     dotClass: 'bg-blue-600',
   },
@@ -154,6 +154,18 @@ export const QUICK_PORTALS: QuickPortal[] = [
     category: '금융권(KOFIA)',
     url: 'https://www.kofia.or.kr/brd/m_96/list.do',
     color: 'hover:border-amber-400 hover:bg-amber-50/60 text-amber-900',
+  },
+  {
+    name: '네이버 채용',
+    category: '대기업 IT',
+    url: 'https://recruit.navercorp.com/rcrt/list.do',
+    color: 'hover:border-green-400 hover:bg-green-50/60 text-green-900',
+  },
+  {
+    name: '카카오 채용',
+    category: '대기업 IT',
+    url: 'https://careers.kakao.com/jobs',
+    color: 'hover:border-yellow-400 hover:bg-yellow-50/60 text-yellow-900',
   },
   {
     name: '점핏 (Jumpit)',

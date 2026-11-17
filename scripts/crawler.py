@@ -284,7 +284,7 @@ def crawl_kofia(prev_items: Optional[List[Dict[str, Any]]] = None) -> List[Dict[
     - 상세 페이지도 가끔 잘려 오므로 완결될 때까지 재시도한다.
     - 수집이 대부분 실패하면 이전 결과 중 마감 전 공고를 유지한다.
     """
-    print("[1/6] 금융투자협회(KOFIA) 회원사 증권·운용·금융IT 신입/인턴 공고 수집 중...")
+    print("[1/7] 금융투자협회(KOFIA) 회원사 증권·운용·금융IT 신입/인턴 공고 수집 중...")
     prev_kofia = [i for i in (prev_items or []) if i.get("source") == "금융투자협회(KOFIA)"]
     results: List[Dict[str, Any]] = []
 
@@ -690,7 +690,7 @@ def _toss_jobs() -> List[Dict[str, Any]]:
 
 
 def crawl_banks() -> List[Dict[str, Any]]:
-    print("[2/6] 은행·증권사 채용사이트, ALIO(국책은행·금융공기업), 토스 신입/인턴 공고 수집 중...")
+    print("[2/7] 은행·증권사 채용사이트, ALIO(국책은행·금융공기업), 토스 신입/인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     per_bank: Dict[str, int] = {}
 
@@ -771,9 +771,185 @@ def _dev_item(item_id: str, title: str, company: str, source: str, url: str, dea
     }
 
 
+# ==============================================================================
+# 대기업 IT 자체 채용사이트: 네이버·카카오(공동체)·라인·당근·쿠팡
+# - 각 채용 페이지가 쓰는 공개 목록 데이터만 읽음 (robots.txt 제한 없음 확인, 막히면 건너뜀)
+# - 당근·쿠팡은 Greenhouse 공식 공개 채용 API 사용
+# - 배민(우아한형제들)은 robots.txt가 목록 API(/w1/)를 금지해 제외
+# ==============================================================================
+BIGTECH_SOURCE = "기업 채용사이트"
+NAVER_JOB_LIST_API = "https://recruit.navercorp.com/rcrt/loadJobList.do"
+KAKAO_JOB_LIST_API = "https://careers.kakao.com/public/api/job-list"
+KAKAO_PARTS = ["TECHNOLOGY", "BUSINESS_SERVICES"]
+LINE_JOBS_DATA = "https://careers.linecorp.com/page-data/ko/jobs/page-data.json"
+GREENHOUSE_BOARDS = {"daangn": "당근", "coupang": "쿠팡"}
+KOREA_LOCATION_RE = re.compile(r"korea|seoul|서울|한국|판교|pangyo|bundang|분당|gwacheon|과천|성남", re.I)
+
+
+# 대기업 공고 중 지원 방향(퀀트·금융IT·데이터·AI)과 거리가 먼 직무
+BIGTECH_ROLE_BLACKLIST = [
+    "마케", "MARKETING", "MARKETER", "DESIGN", "디자인", "디자이너", "제작", "콘텐츠", "CONTENT", "MECHANICAL",
+    "기구", "HARDWARE", "하드웨어", "영상", "통번역", "TRANSLATOR", "INTERPRETER",
+]
+
+
+def _kr_location(raw: str) -> str:
+    low = raw.lower()
+    names = [ko for en, ko in [("seoul", "서울"), ("bundang", "분당"), ("pangyo", "판교"), ("gwacheon", "과천")] if en in low]
+    return "·".join(names) or raw
+
+
+def _bigtech_ok(title: str, intern: bool) -> bool:
+    """인턴은 직무 무관(디자인·마케팅 등 제외), 그 외는 개발·데이터 직무만 (영업·상담·인사 등 제외)"""
+    if not _bank_role_ok(title) or has_any_kw(title.upper(), BIGTECH_ROLE_BLACKLIST):
+        return False
+    return intern or is_valid_dev_title(title)
+
+
+def _naver_jobs() -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    for first in range(0, 400, 10):
+        params = urllib.parse.urlencode({
+            "annoId": "", "sw": "", "subJobCdArr": "", "sysCompanyCdArr": "", "empTypeCdArr": "",
+            "entTypeCdArr": "", "workAreaCdArr": "", "firstIndex": first,
+        })
+        payload = json.loads(fetch_text(f"{NAVER_JOB_LIST_API}?{params}", timeout=15, headers={"Accept": "application/json"}))
+        rows = payload.get("list") or []
+        if not rows:
+            break
+        for row in rows:
+            title = html.unescape(str(row.get("annoSubject") or "")).strip()
+            anno_id = row.get("annoId")
+            end = str(row.get("endYmd") or "")
+            deadline = f"{end[:4]}-{end[4:6]}-{end[6:8]}" if re.match(r"^\d{8}$", end) else None
+            if not title or not anno_id or (deadline and deadline < TODAY_STR):
+                continue
+            ent, emp = str(row.get("entTypeCdNm") or ""), str(row.get("empTypeCdNm") or "")
+            intern = "인턴" in emp or "인턴" in title or bool(re.search(r"\bINTERN", title, re.I))
+            if not (intern or ent in ("신입", "무관") or has_entry_signal(title)):
+                continue
+            if "계약" in emp and not (intern or "전환" in title):
+                continue
+            if not _bigtech_ok(title, intern):
+                continue
+            company = str(row.get("sysCompanyCdNm") or "NAVER")
+            label = "인턴" if intern else ("신입" if ent == "신입" else "경력무관")
+            items.append(_dev_item(
+                f"naver-{anno_id}", title, company, BIGTECH_SOURCE,
+                f"https://recruit.navercorp.com/rcrt/view.do?annoId={anno_id}", deadline, label, "성남·서울",
+                ["대기업"] + (["전환형"] if "전환" in title else []),
+            ))
+        time.sleep(0.2)
+    return items
+
+
+def _kakao_jobs() -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    seen = set()
+    for part in KAKAO_PARTS:
+        for page in range(1, 11):
+            params = urllib.parse.urlencode({"part": part, "company": "ALL", "page": page})
+            payload = json.loads(fetch_text(f"{KAKAO_JOB_LIST_API}?{params}", timeout=15, headers={"Accept": "application/json"}))
+            rows = payload.get("jobList") or []
+            for row in rows:
+                real_id = row.get("realId")
+                title = html.unescape(str(row.get("jobOfferTitle") or "")).strip()
+                if not real_id or not title or real_id in seen or row.get("closeFlag") or row.get("privateFlag"):
+                    continue
+                seen.add(real_id)
+                emp = str(row.get("employeeTypeName") or "")
+                intern = "인턴" in emp or "인턴" in title or bool(re.search(r"\bINTERN", title, re.I))
+                open_recruit = bool(row.get("openRecruiting"))
+                if not (intern or open_recruit or has_entry_signal(title)):
+                    continue
+                if not (open_recruit or _bigtech_ok(title, intern)):
+                    continue
+                deadline = (str(row.get("endDate") or "")[:10]) or None
+                if deadline and deadline < TODAY_STR:
+                    continue
+                label = "인턴" if intern else ("공채" if open_recruit else "신입")
+                items.append(_dev_item(
+                    f"kakao-{real_id}", title, str(row.get("companyName") or "카카오"), BIGTECH_SOURCE,
+                    f"https://careers.kakao.com/jobs/{real_id}", deadline, label,
+                    str(row.get("locationName") or "판교"), ["대기업"],
+                ))
+            if page >= int(payload.get("totalPage") or 1):
+                break
+            time.sleep(0.2)
+    return items
+
+
+def _line_jobs() -> List[Dict[str, Any]]:
+    payload = json.loads(fetch_text(LINE_JOBS_DATA, timeout=20, headers={"Accept": "application/json"}))
+    items: List[Dict[str, Any]] = []
+    edges = (((payload.get("result") or {}).get("data") or {}).get("allStrapiJobs") or {}).get("edges") or []
+    for edge in edges:
+        job = edge.get("node") or {}
+        title = str(job.get("title") or "").strip()
+        cities = " ".join(c.get("name", "") for c in job.get("cities") or [])
+        types = " ".join(t.get("name", "") for t in job.get("employment_type") or [])
+        if not title or not job.get("is_public", True) or not KOREA_LOCATION_RE.search(cities):
+            continue
+        intern = "Intern" in types or "인턴" in title
+        if not (intern or "Entry" in types or has_entry_signal(title)):
+            continue
+        if not _bigtech_ok(title, intern):
+            continue
+        end = str(job.get("end_date") or "")[:10]
+        deadline = None if job.get("until_filled") or not end else end
+        if deadline and deadline < TODAY_STR:
+            continue
+        companies = ", ".join(c.get("name", "") for c in job.get("companies") or []) or "LINE"
+        items.append(_dev_item(
+            f"line-{job.get('strapiId')}", title, companies, BIGTECH_SOURCE,
+            f"https://careers.linecorp.com/ko/jobs/{job.get('strapiId')}", deadline,
+            "인턴" if intern else "신입", _kr_location(cities), ["대기업"],
+        ))
+    return items
+
+
+def _greenhouse_jobs(board: str, company: str) -> List[Dict[str, Any]]:
+    payload = json.loads(fetch_text(f"https://boards-api.greenhouse.io/v1/boards/{board}/jobs", timeout=25))
+    items: List[Dict[str, Any]] = []
+    for job in payload.get("jobs") or []:
+        title = str(job.get("title") or "").strip()
+        location = str((job.get("location") or {}).get("name") or "")
+        if not title or not KOREA_LOCATION_RE.search(location) or not has_entry_signal(title):
+            continue
+        intern = bool(re.search(r"인턴|\bINTERN", title, re.I))
+        if not _bigtech_ok(title, False):  # 공개 API 공고는 직무 범위가 넓어 인턴도 개발·데이터 직무만
+            continue
+        label = "인턴" if intern else ("주니어" if re.search(r"주니어|JUNIOR", title, re.I) else "신입")
+        items.append(_dev_item(
+            f"gh-{board}-{job.get('id')}", title, company, BIGTECH_SOURCE,
+            job.get("absolute_url") or f"https://boards.greenhouse.io/{board}", None, label, _kr_location(location),
+            ["대기업"],
+        ))
+    return items
+
+
+def crawl_bigtech() -> List[Dict[str, Any]]:
+    print("[3/7] 대기업 IT 채용사이트(네이버·카카오·라인·당근·쿠팡) 신입·인턴 공고 수집 중...")
+    results: List[Dict[str, Any]] = []
+    counts: Dict[str, int] = {}
+    sources = [("네이버", _naver_jobs), ("카카오", _kakao_jobs), ("라인", _line_jobs)] + [
+        (name, (lambda b=board, n=name: _greenhouse_jobs(b, n))) for board, name in GREENHOUSE_BOARDS.items()
+    ]
+    for name, fn in sources:
+        try:
+            items = fn()
+        except Exception as e:
+            print(f"  - {name} 채용사이트 조회 오류: {e}")
+            continue
+        results.extend(items)
+        counts[name] = len(items)
+    print("  -> 대기업 채용사이트 신입·인턴 공고 " + f"{len(results)}건 선별 완료 (" + ", ".join(f"{k} {v}" for k, v in counts.items()) + ")")
+    return results
+
+
 def crawl_jumpit() -> List[Dict[str, Any]]:
     """점핏 (Jumpit) 백엔드·AI·데이터·금융IT 신입/인턴 포지션만 엄선 수집"""
-    print("[3/6] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
+    print("[4/7] 점핏(Jumpit) AI·데이터·백엔드 신입/인턴 채용 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     try:
         for page in [1, 2, 3, 4]:
@@ -839,7 +1015,7 @@ def crawl_jumpit() -> List[Dict[str, Any]]:
 
 def crawl_wevity() -> List[Dict[str, Any]]:
     """위비티 (Wevity) 실제 AI · 데이터 분석 · SW 개발 해커톤/경진대회만 선별 수집"""
-    print("[6/6] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
+    print("[7/7] 위비티(Wevity) AI·데이터·SW 개발 해커톤/공모전 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ix = set()
 
@@ -1016,7 +1192,7 @@ def crawl_linkareer() -> List[Dict[str, Any]]:
     - 채용: (1) 인턴 전체 최신순 스캔(카테고리 오분류 알짜 공고 포착) + (2) IT/개발·금융 인턴/신입 스캔
     - 공모전/대외활동: 최신 공고 다수 조회 → AI/데이터/금융/해커톤 키워드 필터
     """
-    print("[5/6] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
+    print("[6/7] 링커리어(Linkareer) 인턴·신입·공모전·대외활동 수집 중...")
     results: List[Dict[str, Any]] = []
     seen_ids = set()
 
@@ -1239,7 +1415,7 @@ def _saramin_is_entry(job: Dict[str, Any], title: str) -> Tuple[bool, str]:
 
 
 def crawl_saramin() -> List[Dict[str, Any]]:
-    print("[4/6] 사람인(Saramin) Open API IT·금융 신입/인턴 공고 수집 중...")
+    print("[5/7] 사람인(Saramin) Open API IT·금융 신입/인턴 공고 수집 중...")
     key = os.environ.get("SARAMIN_ACCESS_KEY", "").strip()
     if not key:
         print("  - SARAMIN_ACCESS_KEY가 없어 건너뜁니다 (oapi.saramin.co.kr에서 발급 후 GitHub Actions secret으로 등록)")
@@ -1356,6 +1532,10 @@ def clean_title_for_dedup(title: str, org_clean: str) -> str:
     return t.strip()
 
 
+def _same_source_title(title: str) -> str:
+    return re.sub(r"\s+", "", re.sub(r"^\s*\[[^\]]*\]", "", title)).lower()
+
+
 def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) -> Dict[str, Any]:
     """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합"""
     source_priority = {
@@ -1365,6 +1545,7 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
         "점핏(Jumpit)": 3,
         "원티드": 3,
         "토스 채용": 3,
+        "기업 채용사이트": 4,
         "프로그래머스": 3,
         "링커리어": 2,
         "사람인": 2,
@@ -1416,12 +1597,13 @@ def main() -> None:
                 manual_items = json.load(f)
                 if isinstance(manual_items, list):
                     all_items.extend(manual_items)
-                    print(f"[0/6] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
+                    print(f"[0/7] 맞춤형 핵심 공고(manual.json) {len(manual_items)}건 로드 완료")
         except Exception as e:
             print(f"manual.json 로드 오류: {e}")
 
     all_items.extend(crawl_kofia(prev_items))
     all_items.extend(crawl_banks())
+    all_items.extend(crawl_bigtech())
     all_items.extend(crawl_jumpit())
     all_items.extend(crawl_saramin())
     all_items.extend(crawl_linkareer())
@@ -1460,6 +1642,10 @@ def main() -> None:
             if j in seen_indices:
                 continue
             item_b = valid_items[j]
+            # 같은 출처 안에서는 앞쪽 [회사명]을 뺀 제목이 같을 때만 중복 (괄호 속 트랙·직무만 다른 별개 공고 보호)
+            if item_a.get("source") == item_b.get("source") and \
+                    _same_source_title(item_a.get("title", "")) != _same_source_title(item_b.get("title", "")):
+                continue
             org_b = clean_org_for_dedup(item_b.get("organization", ""))
             title_b = clean_title_for_dedup(item_b.get("title", ""), org_b)
 
