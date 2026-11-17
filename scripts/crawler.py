@@ -942,6 +942,7 @@ NETMARBLE_LIST_API = "https://career.netmarble.com/api/v1/apply/announces"
 GROUP_EXCLUDE_KW = [
     "외국인", "석박사", "석·박사", "박사", "인재등록", "인재 등록", "DB 등록", "POOL", "인재풀", "장애인", "보훈",
     "생산직", "생산기술직", "기능직", "택배", "서비스엔지니어", "서비스 엔지니어", "현장", "HVAC", "설비", "시공", "에어컨",
+    "기간제", "생산전문", "조종사",
 ]
 # 직무 필드(사업부·직무명)로 개발·데이터 판정 (제목에 직무가 없는 공채형 공고용)
 FIELD_DEV_KW = JOB_REQUIRED_KEYWORDS + ["개발", "IT", "DX", "AX", "프로그래밍", "PROGRAMMING", "SOFTWARE"]
@@ -1127,13 +1128,89 @@ def _netmarble_jobs() -> List[Dict[str, Any]]:
     return items
 
 
+# recruiter.co.kr 신버전을 쓰는 그룹 계열사 (서브도메인 → 기본 회사명). 제목 앞 [회사명]이 있으면 그 이름 사용
+RECRUITER_GROUP_SITES = {
+    "hd": "HD현대", "gsretail": "GS리테일", "gsenc": "GS건설", "lselectric": "LS ELECTRIC", "lsmtron": "LS엠트론",
+    "lsat": "LS오토모티브", "lsitc": "LS ITC", "koreanair": "대한항공", "shinsegaeinc": "신세계인터내셔날",
+}
+RECRUITER_GROUP_CAREER = {
+    "NEW": "신입", "INTERNSHIP": "인턴", "NEW_CAREER": "신입/경력", "ANY": "경력무관", "CAREER": "경력",
+}
+DOOSAN_LIST_URL = "https://career.doosan.com/dsp/sa/RecList.jsp"
+
+
+def _recruiter_group_jobs(sub: str, default_company: str) -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    page, total_pages = 1, 1
+    while page <= min(total_pages, 10):
+        body = json.dumps({"pageableRq": {"page": page, "size": 100}, "filter": {}}).encode("utf-8")
+        req = urllib.request.Request(RECRUITER_JOBFLEX_API, data=body, headers={
+            "Content-Type": "application/json", "User-Agent": USER_AGENT, "prefix": f"{sub}.recruiter.co.kr",
+        })
+        with urllib.request.urlopen(req, context=SSL_CTX, timeout=20) as resp:
+            payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+        total_pages = int((payload.get("pagination") or {}).get("totalPages") or 1)
+        for pos in payload.get("list") or []:
+            if pos.get("submissionStatus") == "POST_SUBMISSION":
+                continue
+            title = str(pos.get("title") or "")
+            classification = str(pos.get("classificationCode") or "")
+            if re.search(r"기간제|생산|계약", classification):
+                continue
+            m = re.match(r"^\s*\[([^\]]+)\]", title)
+            item = _group_item(
+                f"recruiter-{sub}-{pos.get('positionSn')}", title, m.group(1).strip() if m else default_company,
+                f"https://{sub}.recruiter.co.kr/career/jobs/{pos.get('positionSn')}",
+                _group_deadline(str(pos.get("endDateTime") or "")),
+                RECRUITER_GROUP_CAREER.get(str(pos.get("careerType") or ""), "") + f" {classification}",
+                [t.get("tagName", "") for t in pos.get("tagList") or []],
+            )
+            if item:
+                items.append(item)
+        page += 1
+        time.sleep(0.2)
+    return items
+
+
+def _recruiter_groups() -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    for sub, company in RECRUITER_GROUP_SITES.items():
+        try:
+            items.extend(_recruiter_group_jobs(sub, company))
+        except Exception as e:
+            print(f"  - {company}(recruiter.co.kr) 조회 오류: {e}")
+    return items
+
+
+def _doosan_jobs() -> List[Dict[str, Any]]:
+    """두산 채용공고 목록은 서버 렌더링 HTML. 상세는 폼 전송 방식이라 링크는 목록 페이지로 연결"""
+    page = fetch_text(DOOSAN_LIST_URL, timeout=20)
+    career_names = {"C_REC_TYPE_01": "신입", "C_REC_TYPE_02": "경력", "C_REC_TYPE_05": "계약직"}  # 01=신입/인턴십 (인턴은 제목으로 판정)
+    items: List[Dict[str, Any]] = []
+    seen = set()
+    pattern = (r"<a[^>]*goDetail\('(\d+)',\s*'[^']*',\s*'([^']*)',\s*'[^']*'\)[^>]*class=\"list-tit\">"
+               r".*?class=\"company\">(.*?)<span.*?<strong>(.*?)</strong>.*?(\d{4}-\d{2}-\d{2})\s*~\s*(\d{4}-\d{2}-\d{2})?")
+    for rec_id, rec_type, company, title, _start, end in re.findall(pattern, page, re.S):
+        if rec_id in seen:
+            continue
+        seen.add(rec_id)
+        item = _group_item(
+            f"doosan-{rec_id}", clean_html_text(title), clean_html_text(company), DOOSAN_LIST_URL,
+            end or None, career_names.get(rec_type, ""), [],
+        )
+        if item:
+            items.append(item)
+    return items
+
+
 def crawl_bigtech() -> List[Dict[str, Any]]:
-    print("[3/7] 대기업 채용사이트(네이버·카카오·라인·당근·쿠팡·삼성·LG·KT·CJ·넷마블) 신입·인턴 공고 수집 중...")
+    print("[3/7] 대기업 채용사이트(네이버·카카오·라인·당근·쿠팡·삼성·LG·KT·CJ·넷마블·HD현대·GS·LS·대한항공·신세계·두산) 신입·인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     counts: Dict[str, int] = {}
     sources = [("네이버", _naver_jobs), ("카카오", _kakao_jobs), ("라인", _line_jobs)] + [
         (name, (lambda b=board, n=name: _greenhouse_jobs(b, n))) for board, name in GREENHOUSE_BOARDS.items()
-    ] + [("삼성", _samsung_jobs), ("LG", _lg_jobs), ("KT", _kt_jobs), ("CJ", _cj_jobs), ("넷마블", _netmarble_jobs)]
+    ] + [("삼성", _samsung_jobs), ("LG", _lg_jobs), ("KT", _kt_jobs), ("CJ", _cj_jobs), ("넷마블", _netmarble_jobs),
+         ("HD현대·GS·LS·대한항공·신세계", _recruiter_groups), ("두산", _doosan_jobs)]
     for name, fn in sources:
         try:
             items = fn()
