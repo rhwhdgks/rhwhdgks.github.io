@@ -928,13 +928,212 @@ def _greenhouse_jobs(board: str, company: str) -> List[Dict[str, Any]]:
     return items
 
 
+# ------------------------------------------------------------------------------
+# 그룹사 통합 채용사이트: 삼성·LG·KT·CJ·넷마블 (각 채용 페이지가 쓰는 공개 목록 데이터)
+# - SK(세션 필요), 현대차(NetFunnel 대기열), 한화(대기열), 롯데(봇 차단), 넥슨·NC·크래프톤(403)은 제외
+# ------------------------------------------------------------------------------
+SAMSUNG_LIST_URL = "https://www.samsungcareers.com/hr/list.data"
+LG_LIST_API = "https://api.careers.lg.com/rmk/job/retrieveJobNoticesList"
+KT_LIST_API = "https://recruit.kt.com/api/recruit"
+CJ_LIST_URL = "https://recruit.cj.net/recruit/ko/recruit/recruit/searchNewGonggoList.fo"
+NETMARBLE_LIST_API = "https://career.netmarble.com/api/v1/apply/announces"
+
+# 신입·인턴이라도 지원 대상이 아니거나 실제 공고가 아닌 것
+GROUP_EXCLUDE_KW = [
+    "외국인", "석박사", "석·박사", "박사", "인재등록", "인재 등록", "DB 등록", "POOL", "인재풀", "장애인", "보훈",
+    "생산직", "생산기술직", "기능직", "택배", "서비스엔지니어", "서비스 엔지니어", "현장", "HVAC", "설비", "시공", "에어컨",
+]
+# 직무 필드(사업부·직무명)로 개발·데이터 판정 (제목에 직무가 없는 공채형 공고용)
+FIELD_DEV_KW = JOB_REQUIRED_KEYWORDS + ["개발", "IT", "DX", "AX", "프로그래밍", "PROGRAMMING", "SOFTWARE"]
+FIN_AFFILIATE_RE = re.compile(r"증권|자산운용|생명|화재|카드|캐피탈|은행|투자|보험|금융")
+IT_AFFILIATE_RE = re.compile(r"SDS|CNS|올리브네트웍스|kt ds|kt cloud|AI연구원|오토에버", re.I)
+
+
+def _field_is_dev(field: str) -> bool:
+    f_upper = field.upper()
+    return has_any_kw(f_upper, FIELD_DEV_KW) and not has_any_kw(f_upper, DEV_TITLE_BLACKLIST)
+
+
+def _group_deadline(raw: str) -> Optional[str]:
+    """'2026.11.24', '2026-11-24 23:59:59' 등 → ISO 날짜. 2999년 같은 상시 표시는 None"""
+    m = re.search(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", raw or "")
+    if not m:
+        return None
+    y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    if y > NOW.year + 1:
+        return None
+    return f"{y:04d}-{mo:02d}-{d:02d}"
+
+
+def _group_item(item_id: str, title: str, company: str, url: str, deadline: Optional[str], career: str,
+                fields: List[str], location: str = "") -> Optional[Dict[str, Any]]:
+    """그룹사 공고 공통 판정: 신입·인턴 + (개발·데이터 직무 또는 금융 계열사 또는 IT 계열사 공채)"""
+    title = re.sub(r"\s+", " ", html.unescape(title or "")).strip()
+    if not title or (deadline and deadline < TODAY_STR):
+        return None
+    core = re.sub(r"^\s*\[[^\]]*\]\s*", "", title)  # 앞쪽 [회사명]은 직무 판정에서 제외 ('kt cs'의 CS 등)
+    t_upper = core.upper()
+    intern = "인턴" in career or "인턴" in title or bool(re.search(r"\bINTERN", title, re.I))
+    if not (intern or any(k in career for k in ["신입", "무관", "공통"]) or has_entry_signal(title)):
+        return None
+    if has_any_kw(t_upper, GROUP_EXCLUDE_KW) or ("계약" in core + career and "전환" not in title and not intern):
+        return None
+    if not _bank_role_ok(core) or has_any_kw(t_upper, BIGTECH_ROLE_BLACKLIST):
+        return None
+    if intern:
+        label = "인턴"
+    elif "신입" in career and "경력" not in career:
+        label = "신입"
+    elif "신입" in career:
+        label = "신입/경력"
+    else:
+        label = "신입" if has_entry_signal(title) else "경력무관"
+    if FIN_AFFILIATE_RE.search(company):
+        org_tag = "증권" if re.search(r"증권|자산운용|투자", company) else "카드·보험"
+        return _bank_item(item_id, title, company, BIGTECH_SOURCE, url, TODAY_STR, deadline, deadline is None,
+                          label, org_tag=org_tag)
+    core_dev = re.sub(r"연구개발|R&D", "", core, flags=re.I)  # 제조·화학 R&D는 개발 직무로 보지 않음
+    dev = is_valid_dev_title(core_dev) or _field_is_dev(core_dev) or (
+        any(_field_is_dev(f) for f in fields if f) and not has_any_kw(t_upper, DEV_TITLE_BLACKLIST + ["PM"])
+    )
+    if not (dev or (IT_AFFILIATE_RE.search(company) and has_entry_signal(title))):
+        return None
+    return _dev_item(item_id, title, company, BIGTECH_SOURCE, url, deadline, label, location or "국내", ["대기업"])
+
+
+def _samsung_jobs() -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    page, max_page = 1, 1
+    while page <= min(max_page, 10):
+        body = urllib.parse.urlencode({
+            "currentPageNo": page, "intNo": 0, "strVal": "", "strTxt": "", "strKey": "", "strCompany": "",
+            "strType": "", "strOrderBy": "", "strEntity": "",
+        }).encode()
+        req = urllib.request.Request(SAMSUNG_LIST_URL, data=body, method="POST", headers={
+            "User-Agent": USER_AGENT, "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+        })
+        with urllib.request.urlopen(req, context=SSL_CTX, timeout=20) as resp:
+            fragment = resp.read().decode("utf-8", errors="ignore")
+        m = re.search(r'class="divCnt"[^>]*data-max="(\d+)"', fragment)
+        max_page = int(m.group(1)) if m else 1
+        for block in re.findall(r"<li[^>]*>(.*?)</li>", fragment, re.S):
+            def grab(pattern: str) -> str:
+                found = re.search(pattern, block, re.S)
+                return clean_html_text(found.group(1)) if found else ""
+            no = grab(r'class="btnShare"\s+data-value="([\d,]+)"').replace(",", "")
+            if not no:
+                continue
+            period = grab(r'class="period">(.*?)</span>')
+            fields = [clean_html_text(f) for f in re.findall(r'class="flag grey">(.*?)</span>', block, re.S)]
+            item = _group_item(
+                f"samsung-{no}", grab(r'class="title">(.*?)</h3>'), grab(r'class="company">(.*?)</p>'),
+                f"https://www.samsungcareers.com/hr/?no={no}", _group_deadline(period.split("~")[-1]),
+                grab(r'class="info">\s*<span>(.*?)</span>'), fields,
+            )
+            if item:
+                items.append(item)
+        page += 1
+        time.sleep(0.2)
+    return items
+
+
+def _lg_jobs() -> List[Dict[str, Any]]:
+    body = json.dumps({
+        "lnbSearch": "", "hashTagText": "", "recDate": "CREATION_DATE", "order": "DESC",
+        "careerList": [], "companyCodeList": [], "desireLocList": [], "jobGroupList": [],
+    }).encode()
+    req = urllib.request.Request(LG_LIST_API, data=body, method="POST", headers={
+        "User-Agent": USER_AGENT, "Content-Type": "application/json", "Accept": "application/json",
+    })
+    with urllib.request.urlopen(req, context=SSL_CTX, timeout=20) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    items: List[Dict[str, Any]] = []
+    for row in ((payload.get("data") or {}).get("jobNoticeList") or []):
+        if row.get("noticeStatus") not in (None, "POSTING"):
+            continue
+        group = str(row.get("jobGroupName") or "")
+        item = _group_item(
+            f"lg-{row.get('jobNoticeId')}", str(row.get("jobNoticeName") or ""), str(row.get("companyName") or "LG"),
+            f"https://careers.lg.com/apply/detail?id={row.get('jobNoticeId')}",
+            _group_deadline(str(row.get("recEndDateTime") or "")), str(row.get("careerTypeName") or ""),
+            [group] if "IT" in group else [],  # '연구/개발'은 화학·배터리 R&D까지 포함해 IT서비스만 직무 근거로 사용
+            str(row.get("workLocationName") or ""),
+        )
+        if item:
+            items.append(item)
+    return items
+
+
+def _kt_jobs() -> List[Dict[str, Any]]:
+    params = urllib.parse.urlencode({"currentPage": 1, "pageSize": 100, "isInProgress": "true", "isContainsContents": "false"})
+    payload = json.loads(fetch_text(f"{KT_LIST_API}?{params}", timeout=20, headers={"Accept": "application/json"}))
+    items: List[Dict[str, Any]] = []
+    for row in payload.get("data") or []:
+        title = str(row.get("recruitNoticeName") or "")
+        m = re.match(r"^\s*\[([^\]]+)\]", title)
+        company = m.group(1).strip() if m else "KT"
+        item = _group_item(
+            f"kt-{row.get('recruitNoticeSn')}", title, company, str(row.get("recruitNoticeUrl") or "https://recruit.kt.com/careers"),
+            _group_deadline(str(row.get("receiveEndDatetime") or "")), str(row.get("recruitClassName") or ""),
+            [str(s.get("recruitSectorName") or "") for s in row.get("recruitSectorList") or []],
+        )
+        if item:
+            items.append(item)
+    return items
+
+
+def _cj_jobs() -> List[Dict[str, Any]]:
+    body = urllib.parse.urlencode({
+        "pageVal": 1, "pageIndex": 300, "orderDesc": 1, "sch_title": "", "arrGubun": "", "arrRecBu": "",
+        "arrRecJob": "", "arrRecArea": "", "schArea": "N",
+    }).encode()
+    req = urllib.request.Request(CJ_LIST_URL, data=body, method="POST", headers={
+        "User-Agent": USER_AGENT, "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    })
+    with urllib.request.urlopen(req, context=SSL_CTX, timeout=20) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    career_names = {"A": "신입", "B": "경력", "C": "인턴", "E": "신입/경력"}
+    items: List[Dict[str, Any]] = []
+    for row in payload.get("ds_newRecruitList") or []:
+        if row.get("zz_close_yn") == "Y":
+            continue
+        num = row.get("zz_jo_num")
+        page = "detail.fo?zz_jo_num=" if row.get("zz_mthr_yn") == "Y" else "bestDetail.fo?direct=N&zz_jo_num="
+        deadline = None if row.get("zz_till_hire") == "Y" else _group_deadline(str(row.get("zz_end_dt_str") or ""))
+        item = _group_item(
+            f"cj-{num}", str(row.get("zz_title") or ""), str(row.get("compnm") or "CJ"),
+            f"https://recruit.cj.net/recruit/ko/recruit/recruit/{page}{num}", deadline,
+            career_names.get(str(row.get("zz_target_1") or ""), ""), [str(row.get("job_cd_nm") or "")],
+            str(row.get("location_cd_nm") or ""),
+        )
+        if item:
+            items.append(item)
+    return items
+
+
+def _netmarble_jobs() -> List[Dict[str, Any]]:
+    payload = json.loads(fetch_text(f"{NETMARBLE_LIST_API}?page=1&size=1000", timeout=20, headers={"Accept": "application/json"}))
+    items: List[Dict[str, Any]] = []
+    for row in payload.get("content") or []:
+        career = f"{row.get('reqTypeNm') or ''} {row.get('entTypeNm') or ''}"
+        item = _group_item(
+            f"netmarble-{row.get('carAnnoId')}", str(row.get("annoSubject") or ""), str(row.get("companyNm") or "넷마블"),
+            f"https://career.netmarble.com/announce/view?anno_id={row.get('carAnnoId')}",
+            _group_deadline(str(row.get("endDate") or "")), career,
+            [f"{row.get('carJobGroupNm') or ''} {row.get('carWorkGroupNm') or ''}"], "구로",
+        )
+        if item:
+            items.append(item)
+    return items
+
+
 def crawl_bigtech() -> List[Dict[str, Any]]:
-    print("[3/7] 대기업 IT 채용사이트(네이버·카카오·라인·당근·쿠팡) 신입·인턴 공고 수집 중...")
+    print("[3/7] 대기업 채용사이트(네이버·카카오·라인·당근·쿠팡·삼성·LG·KT·CJ·넷마블) 신입·인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     counts: Dict[str, int] = {}
     sources = [("네이버", _naver_jobs), ("카카오", _kakao_jobs), ("라인", _line_jobs)] + [
         (name, (lambda b=board, n=name: _greenhouse_jobs(b, n))) for board, name in GREENHOUSE_BOARDS.items()
-    ]
+    ] + [("삼성", _samsung_jobs), ("LG", _lg_jobs), ("KT", _kt_jobs), ("CJ", _cj_jobs), ("넷마블", _netmarble_jobs)]
     for name, fn in sources:
         try:
             items = fn()

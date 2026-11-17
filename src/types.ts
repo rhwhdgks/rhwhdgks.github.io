@@ -103,7 +103,7 @@ export const CATEGORY_META: Record<CategoryType, CategoryMeta> = {
     id: 'intern',
     label: '인턴 · 신입 채용',
     shortLabel: '인턴/채용',
-    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고 (네이버·카카오·라인·당근·쿠팡 자체 채용사이트 포함)',
+    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고 (네이버·카카오·라인·당근·쿠팡·삼성·LG·KT·CJ·넷마블 자체 채용사이트 포함)',
     badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
     dotClass: 'bg-blue-600',
   },
