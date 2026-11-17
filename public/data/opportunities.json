@@ -1,16 +1,37 @@
 {
-  "updatedAt": "2026-11-17 16:09 KST",
-  "totalCount": 122,
+  "updatedAt": "2026-11-17 18:55 KST",
+  "totalCount": 135,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 15,
-    "링커리어": 78,
+    "금융투자협회(KOFIA)": 17,
+    "링커리어": 77,
     "금융사 채용사이트": 11,
     "공공기관 채용(ALIO)": 1,
-    "점핏(Jumpit)": 14,
+    "기업 채용사이트": 11,
+    "점핏(Jumpit)": 15,
     "위비티(Wevity)": 1,
     "토스 채용": 2
   },
   "items": [
+    {
+      "id": "kofia-43127",
+      "title": "[한국투자증권] 리서치본부 인턴 모집(해외 대체투자 RA)",
+      "organization": "한국투자증권",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43127",
+      "startDate": "2026-11-12",
+      "deadline": "2026-11-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "안녕하세요. 한국투자증권 리서치본부에서 인턴을 모집합니다. 1. 모집인원(역할): 1명 (해외 대체투자 RA) 2. 근무시간: 주 5일, 오전8시~오후5시 (점심시간 1시간 제외) 3. 근무기간: 2개월 4. 근무처: 한국투자증권 본사, 리서치본부 5. 지원요건 - 해외 기업·인프라 등 대체투자 시장과 금융시장에 관심이 있는 자 - 거시경제와 금융시장에 대한 기본적인 이해를 바탕으로 시장 변...",
+      "isFeatured": true
+    },
     {
       "id": "kofia-43106",
       "title": "[이지스자산운용] 증권부문 헤지펀드운용1파트 매니저 모집",
@@ -109,25 +130,6 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | 대출비교서비스 운영 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-365120",
-      "title": "[Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간",
-      "organization": "SVC Seoul 글로벌팀",
-      "category": "activity",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/365120",
-      "startDate": "2026-11-17",
-      "deadline": "2026-11-19",
-      "isAlwaysOpen": false,
-      "tags": [
-        "대외활동/교육",
-        "강연"
-      ],
-      "location": "국내",
-      "reward": "대외활동/교육",
-      "summary": "SVC Seoul 글로벌팀 | [Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간 | 직무: 강연",
       "isFeatured": true
     },
     {
@@ -477,6 +479,63 @@
       "isFeatured": true
     },
     {
+      "id": "naver-30005629",
+      "title": "[NAVER] 2027 NAVER 동계 인턴십 : Business 트랙",
+      "organization": "NAVER",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005629",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER | [NAVER] 2027 NAVER 동계 인턴십 : Business 트랙 | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005630",
+      "title": "[NAVER] 2027 NAVER 동계 인턴십 : Product 트랙",
+      "organization": "NAVER",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005630",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER | [NAVER] 2027 NAVER 동계 인턴십 : Product 트랙 | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005631",
+      "title": "[NAVER] 2027 NAVER 동계 인턴십 : Corporate 트랙",
+      "organization": "NAVER",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005631",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER | [NAVER] 2027 NAVER 동계 인턴십 : Corporate 트랙 | 인턴",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-364171",
       "title": "[우리금융캐피탈] 2027년 정규직 신입사원 채용",
       "organization": "우리금융캐피탈",
@@ -493,6 +552,25 @@
       "location": "국내",
       "reward": "금융권 채용",
       "summary": "우리금융캐피탈 | [우리금융캐피탈] 2027년 정규직 신입사원 채용",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365182",
+      "title": "[경북대학교 사회과학대학] AI 기반 지역사회 문제 해결 연구 프로젝트",
+      "organization": "경북대학교 사회과학대학",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365182",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "경북대학교 사회과학대학 | [경북대학교 사회과학대학] AI 기반 지역사회 문제 해결 연구 프로젝트 | 직무: 기타",
       "isFeatured": true
     },
     {
@@ -569,8 +647,7 @@
       "tags": [
         "금융권",
         "신입 가능",
-        "운용/리서치",
-        "인턴"
+        "운용/리서치"
       ],
       "location": "서울",
       "reward": "신입/인턴 채용",
@@ -657,6 +734,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "네이버클라우드 주식회사 | [NAVER Cloud] 글로벌 신사업 개발 (체험형 인턴)",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365120",
+      "title": "[Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간",
+      "organization": "SVC Seoul 글로벌팀",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365120",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-26",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "강연"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "SVC Seoul 글로벌팀 | [Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간 | 직무: 강연",
       "isFeatured": true
     },
     {
@@ -1040,6 +1136,28 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55504383",
+      "title": "전송망 관제 및 운영 신입 채용",
+      "organization": "드림디엔엠",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55504383",
+      "startDate": "2026-11-17",
+      "deadline": "2026-12-05",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "정보보안 담당자",
+        "devops/시스템 엔지니어",
+        "Router",
+        "Network"
+      ],
+      "location": "서울 송파구",
+      "reward": "IT 신입/인턴",
+      "summary": "드림디엔엠 | 전송망 관제 및 운영 신입 채용 | 기술스택: Router, Network",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55496355",
       "title": "웹 풀스택 개발자 (주언어: .NET) 신입",
       "organization": "스포츠투아이",
@@ -1080,6 +1198,26 @@
       "location": "경기 구리시",
       "reward": "IT 신입/인턴",
       "summary": "써큘러랩스 | [AI Vision Engineer] YOLO 기반 다회용기 인식·계수·검수 시스템 개발 담당 | 기술스택: Windows, OpenCV, CUDA",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005648",
+      "title": "[2027 상반기 채용연계형 인턴십] 네이버웹툰 백엔드 서버 개발 (Backend Software Development)",
+      "organization": "NAVER WEBTOON",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005648",
+      "startDate": "2026-11-17",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER WEBTOON | [2027 상반기 채용연계형 인턴십] 네이버웹툰 백엔드 서버 개발 (Backend Software Development) | 인턴",
       "isFeatured": true
     },
     {
@@ -1291,45 +1429,6 @@
       "location": "대전 유성구",
       "reward": "IT 신입/인턴",
       "summary": "소바젠 | Bioinformatics 연구원 [신입] | 기술스택: Linux, Python, R Language, R, DeepLearning",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-352314",
-      "title": "[메가스터디교육 자회사] 마이스 백엔드 개발자 채용",
-      "organization": "주식회사 마이스",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/352314",
-      "startDate": "2026-11-17",
-      "deadline": "2026-12-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "백엔드/서버개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "주식회사 마이스 | [메가스터디교육 자회사] 마이스 백엔드 개발자 채용 | 직무: 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-352229",
-      "title": "[뱅크샐러드] [채용연계형 인턴십] AI Native Operation Manager",
-      "organization": "뱅크샐러드",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/352229",
-      "startDate": "2026-11-17",
-      "deadline": "2026-12-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "시스템/ERP개발",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "뱅크샐러드 | [뱅크샐러드] [채용연계형 인턴십] AI Native Operation Manager | 직무: 시스템/ERP개발, AI/ML엔지니어",
       "isFeatured": true
     },
     {
@@ -1550,23 +1649,25 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-354844",
-      "title": "[카카오] LLM Research Engineer (Pre-training) (신입/경력)",
+      "id": "kakao-P-14558",
+      "title": "LLM Research Engineer (Post-training) (신입/경력)",
       "organization": "카카오",
       "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/354844",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
       "startDate": "2026-11-17",
       "deadline": "2027-01-04",
       "isAlwaysOpen": false,
       "tags": [
         "신입",
+        "AI/데이터",
+        "대기업",
         "데이터분석",
         "AI/ML엔지니어"
       ],
-      "location": "국내",
+      "location": "판교",
       "reward": "인턴/신입",
-      "summary": "카카오 | [카카오] LLM Research Engineer (Pre-training) (신입/경력) | 직무: 데이터분석, AI/ML엔지니어",
+      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {
@@ -1708,6 +1809,26 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-365130",
+      "title": "2027 제 2회 Superb AI X BDAI Vision AI 해커톤",
+      "organization": "비디에이아이(BDAI)",
+      "category": "hackathon",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365130",
+      "startDate": "2026-11-17",
+      "deadline": "2027-01-10",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "과학/공학",
+        "학술"
+      ],
+      "location": "국내",
+      "reward": "해커톤/경진대회",
+      "summary": "비디에이아이(BDAI) | 2027 제 2회 Superb AI X BDAI Vision AI 해커톤 | 직무: 과학/공학, 학술",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-356413",
       "title": "[Solution] AI Software Engineer Intern (전환형)",
       "organization": "주식회사 노타",
@@ -1840,6 +1961,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "LG경영개발원 | [LG경영개발원] AI Engineer Internship - Agentic AI (Backend) | 직무: 백엔드/서버개발, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005632",
+      "title": "NAVER Global Internship, Summer 2027",
+      "organization": "NAVER",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005632",
+      "startDate": "2026-11-17",
+      "deadline": "2027-01-18",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER | NAVER Global Internship, Summer 2027 | 인턴",
       "isFeatured": true
     },
     {
@@ -2343,6 +2483,26 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43116",
+      "title": "[상상인증권] 리서치센터 인턴 수시 채용 (11/11~11/25)",
+      "organization": "상상인증권",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43116",
+      "startDate": "2026-11-11",
+      "deadline": "2026-11-25",
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 애널리스트 업무 보조 - 리서치센터 공통 업무 - 대내외 행사 및 미팅 지원 - 기타 업무 ■ 우대사항 - 증권 및 자산운용사 리서치센터 경력 보유자 - 금융투자분석사 등 금융관련 ...",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43112",
       "title": "[신한은행] 2026년 신한은행 정보보호 수시채용",
       "organization": "신한은행",
@@ -2440,6 +2600,104 @@
       "location": "국내",
       "reward": "핀테크 채용",
       "summary": "토스 | Treasury Manager(Junior) | 주니어",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14581",
+      "title": "생성형 모델 Research Engineer (Post-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14581",
+      "startDate": "2026-11-17",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | 생성형 모델 Research Engineer (Post-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14559",
+      "title": "LLM Research Engineer (Pre-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14559",
+      "startDate": "2026-11-17",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | LLM Research Engineer (Pre-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "gh-daangn-7980543003",
+      "title": "Software Engineer, Android (인턴)",
+      "organization": "당근",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://about.daangn.com?gh_jid=7980543003",
+      "startDate": "2026-11-17",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "서울",
+      "reward": "인턴/신입",
+      "summary": "당근 | Software Engineer, Android (인턴) | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "gh-daangn-8206277003",
+      "title": "Software Engineer, Backend(인턴) - 숏폼",
+      "organization": "당근",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://about.daangn.com?gh_jid=8206277003",
+      "startDate": "2026-11-17",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "인턴",
+        "백엔드",
+        "대기업"
+      ],
+      "location": "서울",
+      "reward": "인턴/신입",
+      "summary": "당근 | Software Engineer, Backend(인턴) - 숏폼 | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "gh-coupang-8332845",
+      "title": "[쿠팡] 이츠 카탈로그 데이터 분석 및 운영개선 담당자 (SQL/자동화) - 주니어",
+      "organization": "쿠팡",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://www.coupang.jobs/en/jobs/?gh_jid=8332845",
+      "startDate": "2026-11-17",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "주니어",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "서울",
+      "reward": "인턴/신입",
+      "summary": "쿠팡 | [쿠팡] 이츠 카탈로그 데이터 분석 및 운영개선 담당자 (SQL/자동화) - 주니어 | 주니어",
       "isFeatured": true
     }
   ]
