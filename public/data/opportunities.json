@@ -1,36 +1,16 @@
 {
-  "updatedAt": "2026-11-17 05:50 KST",
-  "totalCount": 118,
+  "updatedAt": "2026-11-17 16:09 KST",
+  "totalCount": 122,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 15,
-    "링커리어": 75,
-    "금융사 채용사이트": 10,
+    "링커리어": 78,
+    "금융사 채용사이트": 11,
     "공공기관 채용(ALIO)": 1,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 1,
     "토스 채용": 2
   },
   "items": [
-    {
-      "id": "kofia-43127",
-      "title": "[한국투자증권] 리서치본부 인턴 모집(해외 대체투자 RA)",
-      "organization": "한국투자증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43127",
-      "startDate": "2026-11-12",
-      "deadline": "2026-11-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "인턴십",
-      "summary": "안녕하세요. 한국투자증권 리서치본부에서 인턴을 모집합니다. 1. 모집인원(역할): 1명 (해외 대체투자 RA) 2. 근무시간: 주 5일, 오전8시~오후5시 (점심시간 1시간 제외) 3. 근무기간: 2개월 4. 근무처: 한국투자증권 본사, 리서치본부 5. 지원요건 - 해외 기업·인프라 등 대체투자 시장과 금융시장에 관심이 있는 자 - 거시경제와 금융시장에 대한 기본적인 이해를 바탕으로 시장 변...",
-      "isFeatured": true
-    },
     {
       "id": "kofia-43106",
       "title": "[이지스자산운용] 증권부문 헤지펀드운용1파트 매니저 모집",
@@ -129,6 +109,25 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | 대출비교서비스 운영 어시스턴트 (체험형 인턴)",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365120",
+      "title": "[Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간",
+      "organization": "SVC Seoul 글로벌팀",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365120",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "강연"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "SVC Seoul 글로벌팀 | [Venture Park] Beyond AI, 기술이 현실을 바꾸는 순간 | 직무: 강연",
       "isFeatured": true
     },
     {
@@ -435,6 +434,27 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43180",
+      "title": "[한국투자증권] 리서치본부 인턴 모집 (자산배분/ETF RA)",
+      "organization": "한국투자증권",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43180",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "퀀트/파생",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "안녕하세요. 한국투자증권 리서치본부에서 인턴을 모집합니다. 1. 모집인원(역할): 1명 (자산배분/ETF RA) 2. 근무시간: 주 5일, 오전8시~오후5시 (점심시간 1시간 제외) 3. 근무기간: 2개월 4. 근무처: 한국투자증권 본사 리서치본부 5. 지원조건 및 우대사항 - 거시 경제에 대한 기초지식 보유 및 통계/상경계열 전공 우대 - 통계 패키지(R, 파이썬) 사용 가능한 인력 우대 ...",
+      "isFeatured": true
+    },
+    {
       "id": "recruiter-kakaobank-271859",
       "title": "[카카오뱅크] AI 운영 어시스턴트 (체험형 인턴)",
       "organization": "카카오뱅크",
@@ -602,6 +622,26 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-knbank-134697",
+      "title": "BNK경남은행 자금부 계약직 채용",
+      "organization": "경남은행",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://knbank.recruiter.co.kr/career/jobs/134697",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "경남은행 | BNK경남은행 자금부 계약직 채용 | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-364555",
       "title": "[NAVER Cloud] 글로벌 신사업 개발 (체험형 인턴)",
       "organization": "네이버클라우드 주식회사",
@@ -661,28 +701,6 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55425606",
-      "title": "웹 개발자 채용[신입]",
-      "organization": "건강누리",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55425606",
-      "startDate": "2026-11-17",
-      "deadline": "2026-11-27",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "서버/백엔드 개발자",
-        "프론트엔드 개발자",
-        "HTML5",
-        "JavaScript"
-      ],
-      "location": "서울 영등포구",
-      "reward": "IT 신입/인턴",
-      "summary": "건강누리 | 웹 개발자 채용[신입] | 기술스택: HTML5, JavaScript, Uniform CSS",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-364399",
       "title": "[보스반도체] '26년 하반기 보스반도체 신입 엔지니어 채용 (HW·SW·AI)",
       "organization": "보스반도체",
@@ -700,6 +718,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "보스반도체 | [보스반도체] '26년 하반기 보스반도체 신입 엔지니어 채용 (HW·SW·AI) | 직무: AI/ML엔지니어, 전기/전자/반도체",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-364965",
+      "title": "[마감임박]   AI 기반 디지털 헬스케어 서비스기획 PM 과정 교육생 모집",
+      "organization": "주식회사 하이테커",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/364965",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "대외활동/교육",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "주식회사 하이테커 | [마감임박]   AI 기반 디지털 헬스케어 서비스기획 PM 과정 교육생 모집 | 직무: 기타",
       "isFeatured": true
     },
     {
@@ -921,6 +958,25 @@
       "location": "경기 안양시 동안구",
       "reward": "IT 신입/인턴",
       "summary": "포스로직 | 이미지 프로세싱 알고리즘 개발 신입 | 기술스택: C, C++, DeepLearning, MachineLearning, AI/인공지능, CUDA",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365132",
+      "title": "[삼일회계법인] AX Node Backend Engineer (AI-Native Application & Platform) 채용",
+      "organization": "삼일회계법인",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365132",
+      "startDate": "2026-11-17",
+      "deadline": "2026-12-04",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "백엔드/서버개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "삼일회계법인 | [삼일회계법인] AX Node Backend Engineer (AI-Native Application & Platform) 채용 | 직무: 백엔드/서버개발",
       "isFeatured": true
     },
     {
@@ -1216,6 +1272,28 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55596561",
+      "title": "Bioinformatics 연구원 [신입]",
+      "organization": "소바젠",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55596561",
+      "startDate": "2026-11-17",
+      "deadline": "2026-12-16",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "빅데이터 엔지니어",
+        "Linux",
+        "Python",
+        "R Language"
+      ],
+      "location": "대전 유성구",
+      "reward": "IT 신입/인턴",
+      "summary": "소바젠 | Bioinformatics 연구원 [신입] | 기술스택: Linux, Python, R Language, R, DeepLearning",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-352314",
       "title": "[메가스터디교육 자회사] 마이스 백엔드 개발자 채용",
       "organization": "주식회사 마이스",
@@ -1262,7 +1340,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-17",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
