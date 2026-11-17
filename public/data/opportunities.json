@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17 19:11 KST",
+  "updatedAt": "2026-11-17 19:33 KST",
   "totalCount": 138,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 17,
@@ -676,28 +676,6 @@
       "isFeatured": true
     },
     {
-      "id": "recruiter-kakaobank-272246",
-      "title": "[카카오뱅크] AI 서비스 기획 어시스턴트 (체험형 인턴)",
-      "organization": "카카오뱅크",
-      "category": "kofia",
-      "source": "금융사 채용사이트",
-      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=272246",
-      "startDate": "2026-11-12",
-      "deadline": "2026-11-25",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "은행",
-        "인턴",
-        "체험형",
-        "AI/데이터"
-      ],
-      "location": "국내",
-      "reward": "은행 채용",
-      "summary": "카카오뱅크 | AI 서비스 기획 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
-    },
-    {
       "id": "recruiter-kakaobank-271437",
       "title": "[카카오뱅크] DevOps 엔지니어 (채용연계형 인턴)",
       "organization": "카카오뱅크",
@@ -717,6 +695,28 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | DevOps 엔지니어 (채용연계형 인턴)",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kakaobank-272246",
+      "title": "[카카오뱅크] AI 서비스 기획 어시스턴트 (체험형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=272246",
+      "startDate": "2026-11-12",
+      "deadline": "2026-11-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "체험형",
+        "AI/데이터"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | AI 서비스 기획 어시스턴트 (체험형 인턴)",
       "isFeatured": true
     },
     {
@@ -1626,7 +1626,7 @@
       ],
       "location": "서울",
       "reward": "인턴십",
-      "summary": "레드포인트파트너스는 한국투자공사(KIC)에서 약 2조원 규모의 아시아 주식 포트폴리오를 운용한 리드 PM이 2023년 설립한 서울 기반 부티크 운용사입니다. 한국·일본·중국·홍콩·대만을 하나의 투자 유니버스로 보고, 국가를 넘나들며 산업과 밸류체인 단위로 기업을 분석합니다. 아래와 같이 리서치 인프라를 함께 만들어 갈 인턴을 찾습니다. 담당업무 - 담당 기업의 사업 구조, 경쟁 구도, 실적 ...",
+      "summary": "레드포인트파트너스 채용 공고 ([레드포인트파트너스] AI-Native Equity Research Intern(PM 직속))",
       "isFeatured": true
     },
     {
@@ -2559,7 +2559,7 @@
       ],
       "location": "서울",
       "reward": "인턴십",
-      "summary": "상상인증권 채용 공고 ([상상인증권] 리서치센터 인턴 수시 채용 (11/11~11/25))",
+      "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 애널리스트 업무 보조 - 리서치센터 공통 업무 - 대내외 행사 및 미팅 지원 - 기타 업무 ■ 우대사항 - 증권 및 자산운용사 리서치센터 경력 보유자 - 금융투자분석사 등 금융관련 ...",
       "isFeatured": true
     },
     {
