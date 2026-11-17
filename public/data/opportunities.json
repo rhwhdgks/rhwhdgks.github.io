@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-17 18:55 KST",
-  "totalCount": 135,
+  "updatedAt": "2026-11-17 19:11 KST",
+  "totalCount": 138,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 17,
-    "링커리어": 77,
+    "기업 채용사이트": 15,
+    "링커리어": 76,
     "금융사 채용사이트": 11,
     "공공기관 채용(ALIO)": 1,
-    "기업 채용사이트": 11,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 1,
     "토스 채용": 2
@@ -50,6 +50,25 @@
       "location": "서울",
       "reward": "신입/인턴 채용",
       "summary": "IGIS자산운용 증권부문 헤지펀드운용1파트와 함께할 매니저 모집에 많은 관심과 지원 바랍니다. 1. 모집부문 - 증권부문 헤지펀드운용1파트 Manager ○명 2. 담당업무 : 글로벌·국내 주식형 펀드 운용 업무 3. 지원자격 및 우대사항 : - 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) - 글로벌/국내 주식, 산업 트렌드 등 투자에 대한 높은 관심 및 이해 -...",
+      "isFeatured": true
+    },
+    {
+      "id": "kt-269754",
+      "title": "[kt cs] 2026년 대졸 신입사원 채용",
+      "organization": "kt cs",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kt.recruiter.co.kr/career/jobs/131741",
+      "startDate": "2026-11-17",
+      "deadline": "2026-11-17",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "대기업"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "kt cs | [kt cs] 2026년 대졸 신입사원 채용 | 신입",
       "isFeatured": true
     },
     {
@@ -596,22 +615,24 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-362416",
-      "title": "넷마블네오 2026 AI 인턴십 (게임개발/기획 통합 직무, 채용전환형)",
+      "id": "netmarble-1899",
+      "title": "★ 2026 넷마블네오 AI 인턴십 채용 (11/24 마감)",
       "organization": "넷마블네오",
       "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/362416",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://career.netmarble.com/announce/view?anno_id=1899",
       "startDate": "2026-11-17",
       "deadline": "2026-11-24",
       "isAlwaysOpen": false,
       "tags": [
         "인턴",
+        "AI/데이터",
+        "대기업",
         "게임개발/기획"
       ],
-      "location": "국내",
+      "location": "구로",
       "reward": "인턴/신입",
-      "summary": "넷마블네오 | 넷마블네오 2026 AI 인턴십 (게임개발/기획 통합 직무, 채용전환형) | 직무: 게임개발/기획",
+      "summary": "넷마블네오 | ★ 2026 넷마블네오 AI 인턴십 채용 (11/24 마감) | 인턴",
       "isFeatured": true
     },
     {
@@ -1218,6 +1239,25 @@
       "location": "성남·서울",
       "reward": "인턴/신입",
       "summary": "NAVER WEBTOON | [2027 상반기 채용연계형 인턴십] 네이버웹툰 백엔드 서버 개발 (Backend Software Development) | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "kt-272419",
+      "title": "[kt service남부] '26년 11월 신입/경력사원 채용_IT분야",
+      "organization": "kt service남부",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kt.recruiter.co.kr/career/jobs/134448",
+      "startDate": "2026-11-17",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/경력",
+        "대기업"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "kt service남부 | [kt service남부] '26년 11월 신입/경력사원 채용_IT분야 | 신입/경력",
       "isFeatured": true
     },
     {
@@ -2483,6 +2523,26 @@
       "isFeatured": true
     },
     {
+      "id": "lg-1002176",
+      "title": "[CDO] AI/빅데이터 분야 상시 모집",
+      "organization": "LG에너지솔루션",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.lg.com/apply/detail?id=1002176",
+      "startDate": "2026-11-17",
+      "deadline": "2027-03-31",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/경력",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "서울특별시",
+      "reward": "인턴/신입",
+      "summary": "LG에너지솔루션 | [CDO] AI/빅데이터 분야 상시 모집 | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43116",
       "title": "[상상인증권] 리서치센터 인턴 수시 채용 (11/11~11/25)",
       "organization": "상상인증권",
@@ -2499,7 +2559,7 @@
       ],
       "location": "서울",
       "reward": "인턴십",
-      "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 애널리스트 업무 보조 - 리서치센터 공통 업무 - 대내외 행사 및 미팅 지원 - 기타 업무 ■ 우대사항 - 증권 및 자산운용사 리서치센터 경력 보유자 - 금융투자분석사 등 금융관련 ...",
+      "summary": "상상인증권 채용 공고 ([상상인증권] 리서치센터 인턴 수시 채용 (11/11~11/25))",
       "isFeatured": true
     },
     {
