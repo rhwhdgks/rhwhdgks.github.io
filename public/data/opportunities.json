@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-18 04:40 KST",
-  "totalCount": 134,
+  "updatedAt": "2026-11-18 12:26 KST",
+  "totalCount": 141,
   "sourceCounts": {
-    "링커리어": 76,
-    "금융사 채용사이트": 11,
-    "금융투자협회(KOFIA)": 14,
+    "링커리어": 74,
+    "금융사 채용사이트": 12,
+    "금융투자협회(KOFIA)": 13,
     "공공기관 채용(ALIO)": 1,
-    "기업 채용사이트": 14,
+    "기업 채용사이트": 23,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 1,
     "토스 채용": 2
@@ -212,27 +212,6 @@
       "location": "서울",
       "reward": "신입/인턴 채용",
       "summary": "미래 성장의 꿈을 담는 액티브 펀드의 명가, 에셋플러스자산운용입니다. 에셋플러스자산운용과 함께 혁신적인 미래 금융을 선도해 나아갈 \"끼\" 있는 진짜 인재를 찾습니다. 학력·전공·연령은 중요하지 않습니다. 우리는 스펙보다 \"끼\"(잠재력과 역량), 타이틀보다 능력, 과거보다 미래, 주어진 사실보다 새로운 관점과 해석을 중시합니다. 열정과 성실함을 바탕으로 고객과 함께 성장하는 여정에 동행할 여러...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43068",
-      "title": "[DS투자증권] 리서치센터 투자전략팀 미국주식/투자전략/ETF RA(인턴사원) 채용(~11/22)",
-      "organization": "DS투자증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43068",
-      "startDate": "2026-11-09",
-      "deadline": "2026-11-22",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "퀀트/파생",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "인턴십",
-      "summary": "┃DS투자증권 리서치센터 투자전략팀 미국주식/투자전략/ETF RA(인턴사원) 채용┃ 1. 채용부문 - 리서치센터 투자전략팀 미국주식/투자전략/ETF RA 인턴사원 0명 2. 담당업무 - 미국 주요기업 실적 자료조사, 데이터 정리분석 - 선임 애널리스트 조사분석자료 작성, 세미나, 행사 등의 업무 지원 - 투자전략팀 리퀘스트 처리 3. 지원요건 - 국내/해외 4년제 대학교 이상 졸업자 또는 졸...",
       "isFeatured": true
     },
     {
@@ -721,6 +700,67 @@
       "isFeatured": true
     },
     {
+      "id": "gh-daangn-8206277003",
+      "title": "Software Engineer, Backend(인턴) - 숏폼",
+      "organization": "당근",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://about.daangn.com?gh_jid=8206277003",
+      "startDate": "2026-11-18",
+      "deadline": "2026-11-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드",
+        "대기업",
+        "백엔드/서버개발"
+      ],
+      "location": "서울",
+      "reward": "인턴/신입",
+      "summary": "당근 | Software Engineer, Backend(인턴) - 숏폼 | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-ligdna-117192",
+      "title": "LIG D&A SW(AI/사이버보안) 상시채용",
+      "organization": "LIG D&A",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://ligdna.recruiter.co.kr/career/jobs/117192",
+      "startDate": "2026-11-18",
+      "deadline": "2026-11-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/경력",
+        "AI/데이터",
+        "보안",
+        "대기업"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "LIG D&A | LIG D&A SW(AI/사이버보안) 상시채용 | 신입/경력",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-ahnlab-131873",
+      "title": "2026 신입/경력 공개채용 (연구소)",
+      "organization": "안랩",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://ahnlab.recruiter.co.kr/career/jobs/131873",
+      "startDate": "2026-11-18",
+      "deadline": "2026-11-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/경력",
+        "대기업"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "안랩 | 2026 신입/경력 공개채용 (연구소) | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-364399",
       "title": "[보스반도체] '26년 하반기 보스반도체 신입 엔지니어 채용 (HW·SW·AI)",
       "organization": "보스반도체",
@@ -819,6 +859,27 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-celltrion-134581",
+      "title": "AX/신약/임상 데이터 관리/정보보안 수시채용",
+      "organization": "셀트리온",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://celltrion.recruiter.co.kr/career/jobs/134581",
+      "startDate": "2026-11-18",
+      "deadline": "2026-11-30",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/경력",
+        "AI/데이터",
+        "보안",
+        "대기업"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "셀트리온 | AX/신약/임상 데이터 관리/정보보안 수시채용 | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-364407",
       "title": "[트루엔] IoT 서버 개발(신입/경력)",
       "organization": "트루엔",
@@ -894,6 +955,27 @@
       "location": "국내",
       "reward": "해커톤/경진대회",
       "summary": "대구광역시 | 2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회 공모전 | 직무: 과학/공학",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kakaobank-272465",
+      "title": "[카카오뱅크] 금융업무 기획 및 운영 담당자 (채용연계형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=272465",
+      "startDate": "2026-11-18",
+      "deadline": "2026-12-01",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "채용연계형"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | 금융업무 기획 및 운영 담당자 (채용연계형 인턴)",
       "isFeatured": true
     },
     {
@@ -1375,45 +1457,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-352314",
-      "title": "[메가스터디교육 자회사] 마이스 백엔드 개발자 채용",
-      "organization": "주식회사 마이스",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/352314",
-      "startDate": "2026-11-18",
-      "deadline": "2026-12-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "백엔드/서버개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "주식회사 마이스 | [메가스터디교육 자회사] 마이스 백엔드 개발자 채용 | 직무: 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-352229",
-      "title": "[뱅크샐러드] [채용연계형 인턴십] AI Native Operation Manager",
-      "organization": "뱅크샐러드",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/352229",
-      "startDate": "2026-11-18",
-      "deadline": "2026-12-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "시스템/ERP개발",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "뱅크샐러드 | [뱅크샐러드] [채용연계형 인턴십] AI Native Operation Manager | 직무: 시스템/ERP개발, AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
       "id": "wevity-112285",
       "title": "세종사이버대학교 전국민 AI 공모전 (AI 불씨)",
       "organization": "세종사이버대학교",
@@ -1421,7 +1464,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-18",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1568,7 +1611,7 @@
       ],
       "location": "서울",
       "reward": "인턴십",
-      "summary": "레드포인트파트너스는 한국투자공사(KIC)에서 약 2조원 규모의 아시아 주식 포트폴리오를 운용한 리드 PM이 2023년 설립한 서울 기반 부티크 운용사입니다. 한국·일본·중국·홍콩·대만을 하나의 투자 유니버스로 보고, 국가를 넘나들며 산업과 밸류체인 단위로 기업을 분석합니다. 아래와 같이 리서치 인프라를 함께 만들어 갈 인턴을 찾습니다. 담당업무 - 담당 기업의 사업 구조, 경쟁 구도, 실적 ...",
+      "summary": "레드포인트파트너스 채용 공고 ([레드포인트파트너스] AI-Native Equity Research Intern(PM 직속))",
       "isFeatured": true
     },
     {
@@ -2643,26 +2686,6 @@
       "isFeatured": true
     },
     {
-      "id": "gh-daangn-8206277003",
-      "title": "Software Engineer, Backend(인턴) - 숏폼",
-      "organization": "당근",
-      "category": "intern",
-      "source": "기업 채용사이트",
-      "sourceUrl": "https://about.daangn.com?gh_jid=8206277003",
-      "startDate": "2026-11-18",
-      "deadline": null,
-      "isAlwaysOpen": true,
-      "tags": [
-        "인턴",
-        "백엔드",
-        "대기업"
-      ],
-      "location": "서울",
-      "reward": "인턴/신입",
-      "summary": "당근 | Software Engineer, Backend(인턴) - 숏폼 | 인턴",
-      "isFeatured": true
-    },
-    {
       "id": "gh-coupang-8332845",
       "title": "[쿠팡] 이츠 카탈로그 데이터 분석 및 운영개선 담당자 (SQL/자동화) - 주니어",
       "organization": "쿠팡",
@@ -2680,6 +2703,126 @@
       "location": "서울",
       "reward": "인턴/신입",
       "summary": "쿠팡 | [쿠팡] 이츠 카탈로그 데이터 분석 및 운영개선 담당자 (SQL/자동화) - 주니어 | 주니어",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-kakaopay-235177",
+      "title": "서버 개발자 - 데이터 플랫폼",
+      "organization": "카카오페이",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kakaopay.career.greetinghr.com/ko/o/235177",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "백엔드",
+        "인프라/플랫폼",
+        "대기업"
+      ],
+      "location": "카카오페이",
+      "reward": "인턴/신입",
+      "summary": "카카오페이 | 서버 개발자 - 데이터 플랫폼 | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-kakaopay-214480",
+      "title": "데이터 엔지니어 - 데이터 플랫폼",
+      "organization": "카카오페이",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kakaopay.career.greetinghr.com/ko/o/214480",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "인프라/플랫폼",
+        "대기업"
+      ],
+      "location": "카카오페이",
+      "reward": "인턴/신입",
+      "summary": "카카오페이 | 데이터 엔지니어 - 데이터 플랫폼 | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-kakaomobility-236791",
+      "title": "백엔드 개발자(공간정보 시스템 개발)",
+      "organization": "카카오모빌리티",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kakaomobility.career.greetinghr.com/ko/o/236791",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "경력무관",
+        "백엔드",
+        "대기업"
+      ],
+      "location": "카카오모빌리티",
+      "reward": "인턴/신입",
+      "summary": "카카오모빌리티 | 백엔드 개발자(공간정보 시스템 개발) | 경력무관",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-kurly-216526",
+      "title": "커머스 주니어 프론트엔드 개발자",
+      "organization": "컬리",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kurly.career.greetinghr.com/ko/o/216526",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "대기업"
+      ],
+      "location": "역삼",
+      "reward": "인턴/신입",
+      "summary": "컬리 | 커머스 주니어 프론트엔드 개발자 | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-kurly-215234",
+      "title": "풀필먼트 주니어 프론트엔드 개발자",
+      "organization": "컬리",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://kurly.career.greetinghr.com/ko/o/215234",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "대기업"
+      ],
+      "location": "역삼",
+      "reward": "인턴/신입",
+      "summary": "컬리 | 풀필먼트 주니어 프론트엔드 개발자 | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "greeting-hybe-226791",
+      "title": "[HYBE] IT시스템 기획/운영 및 PM",
+      "organization": "하이브",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://hybe.career.greetinghr.com/ko/o/226791",
+      "startDate": "2026-11-18",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "경력무관",
+        "대기업"
+      ],
+      "location": "용산",
+      "reward": "인턴/신입",
+      "summary": "하이브 | [HYBE] IT시스템 기획/운영 및 PM | 경력무관",
       "isFeatured": true
     }
   ]
