@@ -103,7 +103,7 @@ export const CATEGORY_META: Record<CategoryType, CategoryMeta> = {
     id: 'intern',
     label: '인턴 · 신입 채용',
     shortLabel: '인턴/채용',
-    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고 (네이버·카카오·삼성·LG·KT·CJ·HD현대·GS·LS·두산 등 자체 채용사이트 포함)',
+    description: 'IT·SW 개발자 인턴십 및 신입 채용 공고 (네이버·카카오·삼성·LG·KT·CJ·HD현대·GS·LS·LX·두산·현대모비스·현대오토에버 등 자체 채용사이트 포함)',
     badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
     dotClass: 'bg-blue-600',
   },
@@ -166,6 +166,12 @@ export const QUICK_PORTALS: QuickPortal[] = [
     category: '대기업 IT',
     url: 'https://careers.kakao.com/jobs',
     color: 'hover:border-yellow-400 hover:bg-yellow-50/60 text-yellow-900',
+  },
+  {
+    name: '자소설닷컴 채용달력',
+    category: '대기업 공채',
+    url: 'https://jasoseol.com/recruit',
+    color: 'hover:border-cyan-400 hover:bg-cyan-50/60 text-cyan-900',
   },
   {
     name: '점핏 (Jumpit)',

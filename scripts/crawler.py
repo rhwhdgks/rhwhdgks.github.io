@@ -789,7 +789,7 @@ KOREA_LOCATION_RE = re.compile(r"korea|seoul|서울|한국|판교|pangyo|bundang
 # 대기업 공고 중 지원 방향(퀀트·금융IT·데이터·AI)과 거리가 먼 직무
 BIGTECH_ROLE_BLACKLIST = [
     "마케", "MARKETING", "MARKETER", "DESIGN", "디자인", "디자이너", "제작", "콘텐츠", "CONTENT", "MECHANICAL",
-    "기구", "HARDWARE", "하드웨어", "영상", "통번역", "TRANSLATOR", "INTERPRETER",
+    "기구", "HARDWARE", "하드웨어", "영상", "통번역", "TRANSLATOR", "INTERPRETER", "STAFF", "스태프",
 ]
 
 
@@ -940,13 +940,13 @@ NETMARBLE_LIST_API = "https://career.netmarble.com/api/v1/apply/announces"
 
 # 신입·인턴이라도 지원 대상이 아니거나 실제 공고가 아닌 것
 GROUP_EXCLUDE_KW = [
-    "외국인", "석박사", "석·박사", "박사", "인재등록", "인재 등록", "DB 등록", "POOL", "인재풀", "장애인", "보훈",
-    "생산직", "생산기술직", "기능직", "택배", "서비스엔지니어", "서비스 엔지니어", "현장", "HVAC", "설비", "시공", "에어컨",
+    "외국인", "석박사", "석·박사", "박사", "인재등록", "인재 등록", "DB 등록", "인재DB", "인재 DB", "POOL", "인재풀", "장애인", "보훈",
+    "생산직", "생산기술직", "기능직", "택배", "장학생", "서비스엔지니어", "서비스 엔지니어", "현장", "HVAC", "설비", "시공", "에어컨",
     "기간제", "생산전문", "조종사",
 ]
 # 직무 필드(사업부·직무명)로 개발·데이터 판정 (제목에 직무가 없는 공채형 공고용)
 FIELD_DEV_KW = JOB_REQUIRED_KEYWORDS + ["개발", "IT", "DX", "AX", "프로그래밍", "PROGRAMMING", "SOFTWARE"]
-FIN_AFFILIATE_RE = re.compile(r"증권|자산운용|생명|화재|카드|캐피탈|은행|투자|보험|금융")
+FIN_AFFILIATE_RE = re.compile(r"증권|자산운용|생명|화재|해상|카드|캐피탈|은행|투자|보험|금융")
 IT_AFFILIATE_RE = re.compile(r"SDS|CNS|올리브네트웍스|kt ds|kt cloud|AI연구원|오토에버", re.I)
 
 
@@ -970,6 +970,7 @@ def _group_item(item_id: str, title: str, company: str, url: str, deadline: Opti
                 fields: List[str], location: str = "") -> Optional[Dict[str, Any]]:
     """그룹사 공고 공통 판정: 신입·인턴 + (개발·데이터 직무 또는 금융 계열사 또는 IT 계열사 공채)"""
     title = re.sub(r"\s+", " ", html.unescape(title or "")).strip()
+    company = re.sub(r"\(주\)|㈜|주식회사", "", company or "").strip()
     if not title or (deadline and deadline < TODAY_STR):
         return None
     core = re.sub(r"^\s*\[[^\]]*\]\s*", "", title)  # 앞쪽 [회사명]은 직무 판정에서 제외 ('kt cs'의 CS 등)
@@ -1132,9 +1133,18 @@ def _netmarble_jobs() -> List[Dict[str, Any]]:
 RECRUITER_GROUP_SITES = {
     "hd": "HD현대", "gsretail": "GS리테일", "gsenc": "GS건설", "lselectric": "LS ELECTRIC", "lsmtron": "LS엠트론",
     "lsat": "LS오토모티브", "lsitc": "LS ITC", "koreanair": "대한항공", "shinsegaeinc": "신세계인터내셔날",
+    "lx": "LX", "dlenc": "DL이앤씨", "s-oil": "S-OIL", "hankooktire": "한국타이어", "glovis": "현대글로비스",
+    "ktng": "KT&G", "taekwang": "태광", "seah": "세아", "e1": "E1", "kumhotire": "금호타이어", "nexentire": "넥센타이어",
+    "jejuair": "제주항공", "koreaaero": "KAI", "ligdna": "LIG D&A", "ahnlab": "안랩", "celltrion": "셀트리온",
+    "yuhan": "유한양행", "hanmi": "한미약품", "ckd": "종근당", "daewoong": "대웅", "orion": "오리온", "bgf": "BGF",
+    "maeil": "매일유업", "fnf": "F&F", "webzen": "웹젠", "com2us": "컴투스",
+    "hi": "현대해상", "kbinsure": "KB손해보험",
 }
+# recruiter.co.kr 구버전(app/jobnotice) 사이트를 쓰는 그룹 계열사
+RECRUITER_GROUP_APPSITES = {"hyosung": "효성", "nexen": "넥센", "gspower": "GS파워", "kmtc": "고려해운"}
 RECRUITER_GROUP_CAREER = {
     "NEW": "신입", "INTERNSHIP": "인턴", "NEW_CAREER": "신입/경력", "ANY": "경력무관", "CAREER": "경력",
+    "FIELD_DIFFERENCE": "신입/경력",  # 분야별 상이 (신입 분야가 섞인 수시·상시 채용)
 }
 DOOSAN_LIST_URL = "https://career.doosan.com/dsp/sa/RecList.jsp"
 
@@ -1172,13 +1182,51 @@ def _recruiter_group_jobs(sub: str, default_company: str) -> List[Dict[str, Any]
     return items
 
 
+def _recruiter_group_appsite_jobs(sub: str, default_company: str) -> List[Dict[str, Any]]:
+    """구버전 목록 API (최신순이라 첫 페이지에 접수중 공고가 모두 들어옴)"""
+    req = urllib.request.Request(
+        f"https://{sub}.recruiter.co.kr/app/jobnotice/list.json",
+        data=b"pageSize=100&currentPage=1&jobnoticeStateCode=10",
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "X-Requested-With": "XMLHttpRequest", "User-Agent": USER_AGENT,
+        },
+    )
+    with urllib.request.urlopen(req, context=SSL_CTX, timeout=20) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    items: List[Dict[str, Any]] = []
+    for notice in payload.get("list") or []:
+        sn = notice.get("jobnoticeSn")
+        if not sn or notice.get("receiptState") not in ("접수중", "접수예정"):
+            continue
+        title = str(notice.get("jobnoticeName") or "")
+        m = re.match(r"^\s*\[([^\]]+)\]", title)
+        deadline = None
+        try:
+            deadline = datetime.datetime.fromtimestamp(int(notice["applyEndDate"]["time"]) / 1000.0, tz=KST).strftime("%Y-%m-%d")
+        except Exception:
+            pass
+        item = _group_item(
+            f"recruiter-{sub}-{sn}", title, m.group(1).strip() if m else default_company,
+            f"https://{sub}.recruiter.co.kr/app/jobnotice/view?systemKindCode={notice.get('systemKindCode') or 'MRS2'}&jobnoticeSn={sn}",
+            deadline, str(notice.get("recruitClassName") or ""), [],
+        )
+        if item:
+            items.append(item)
+    return items
+
+
 def _recruiter_groups() -> List[Dict[str, Any]]:
     items: List[Dict[str, Any]] = []
-    for sub, company in RECRUITER_GROUP_SITES.items():
+    sites = [(sub, company, _recruiter_group_jobs) for sub, company in RECRUITER_GROUP_SITES.items()] + [
+        (sub, company, _recruiter_group_appsite_jobs) for sub, company in RECRUITER_GROUP_APPSITES.items()
+    ]
+    for sub, company, fn in sites:
         try:
-            items.extend(_recruiter_group_jobs(sub, company))
+            items.extend(fn(sub, company))
         except Exception as e:
             print(f"  - {company}(recruiter.co.kr) 조회 오류: {e}")
+        time.sleep(0.2)
     return items
 
 
@@ -1203,14 +1251,125 @@ def _doosan_jobs() -> List[Dict[str, Any]]:
     return items
 
 
+# 현대모비스 채용사이트: 공고 목록 조각(HTML)을 반환하는 공개 목록 요청 (endYn=N: 진행 중 공고만)
+MOBIS_LIST_URL = "https://careers.mobis.com/job/jobList"
+
+
+def _mobis_jobs() -> List[Dict[str, Any]]:
+    params = urllib.parse.urlencode({
+        "search": "", "business": "", "division": "", "area": "", "duty": "", "duty2": "",
+        "endYn": "N", "orderGb": "", "relative": "", "searchTitle": "",
+    })
+    page = fetch_text(f"{MOBIS_LIST_URL}?{params}", timeout=20)
+    grouped: Dict[str, Dict[str, Any]] = {}  # 같은 공고(통합 공고명)의 직무별 항목은 한 건으로 묶음
+    counts: Dict[str, int] = {}
+    for seq, cls, block in re.findall(r'<a href="/jobs-view\?seq=(\d+)" class="job-item([^"]*)">(.*?)</a>', page, re.S):
+        if "end" in cls.split():
+            continue
+        def grab(pattern: str) -> str:
+            found = re.search(pattern, block, re.S)
+            return clean_html_text(found.group(1)) if found else ""
+        integrated, position = grab(r'class="integrated">(.*?)</p>'), grab(r'class="tit">(.*?)</p>')
+        title = f"{integrated} - {position}" if integrated and position and position not in integrated else (integrated or position)
+        info = re.search(r'class="info-wrap02">(.*?)</div>', block, re.S)
+        fields = [clean_html_text(f) for f in re.findall(r"<p>(.*?)</p>", info.group(1), re.S)] if info else []
+        # 직무 분류(사업부 / 직군 / 세부직무 / 근무지)가 정돈돼 있어 'SW/로직'·'IT/데이터사이언스' 직군만 개발 직무로 봄
+        if not ({"SW/로직", "IT/데이터사이언스"} & set(fields)) or any(f.startswith(("QA", "PM")) for f in fields):
+            continue
+        dates = re.findall(r"\d{4}-\d{2}-\d{2}", grab(r'class="date">(.*?)</p>'))
+        item = _group_item(
+            f"mobis-{seq}", title, "현대모비스", f"https://careers.mobis.com/jobs-view?seq={seq}",
+            dates[-1] if len(dates) > 1 else None, grab(r'class="career">(.*?)</p>'), fields,
+            fields[-1] if fields else "",
+        )
+        if item:
+            key = integrated or item["id"]
+            counts[key] = counts.get(key, 0) + 1
+            grouped.setdefault(key, item)
+    for key, item in grouped.items():
+        if counts[key] > 1:
+            item["title"] = f"{item['title']} 외 {counts[key] - 1}개 직무"
+    return list(grouped.values())
+
+
+# 그리팅(greetinghr) 채용 페이지: 페이지에 함께 내려오는 공개 공고 목록(Next.js 데이터) 사용.
+# robots.txt가 일반 수집을 허용(search=yes)하고, 공고 상세(/ko/o/{id})로 링크
+GREETING_SITES = {
+    "career.hyundai-autoever.com": "현대오토에버",
+    "kakaopay.career.greetinghr.com": "카카오페이",
+    "kakaomobility.career.greetinghr.com": "카카오모빌리티",
+    "11st.career.greetinghr.com": "11번가",
+    "ssg.career.greetinghr.com": "SSG.COM",
+    "musinsa.career.greetinghr.com": "무신사",
+    "kurly.career.greetinghr.com": "컬리",
+    "yanolja.career.greetinghr.com": "야놀자",
+    "gccompany.career.greetinghr.com": "여기어때",
+    "hybe.career.greetinghr.com": "하이브",
+    "hancom.career.greetinghr.com": "한글과컴퓨터",
+}
+GREETING_CAREER = {"NEW_COMER": "신입", "NOT_MATTER": "무관", "EXPERIENCED": "경력"}
+
+
+def _greeting_jobs(host: str, company: str) -> List[Dict[str, Any]]:
+    page = fetch_text(f"https://{host}/", timeout=25)
+    m = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', page, re.S)
+    if not m:
+        return []
+    queries = ((((json.loads(m.group(1)).get("props") or {}).get("pageProps") or {}).get("dehydratedState") or {})
+               .get("queries") or [])
+    openings = next((q.get("state", {}).get("data") for q in queries if q.get("queryKey") == ["openings"]), None) or []
+    items: List[Dict[str, Any]] = []
+    for op in openings:
+        if not op.get("deploy", True) or not op.get("openingId"):
+            continue
+        positions = (op.get("openingJobPosition") or {}).get("openingJobPositions") or []
+        careers = {GREETING_CAREER.get(str((p.get("jobPositionCareer") or {}).get("careerType"))) for p in positions} - {None}
+        emps = {str((p.get("jobPositionEmployment") or {}).get("employmentType")) for p in positions} - {"None"}
+        career = " ".join(sorted(careers)) + (" 인턴" if "INTERN_WORKER" in emps else "")
+        if emps and emps <= {"CONTRACT_WORKER"}:
+            career += " 계약"
+        fields = [str((op.get("workspaceDivision") or {}).get("division") or "")]
+        for p in positions:
+            for key, name in (("workspaceField", "field"), ("workspaceOccupation", "occupation"), ("workspaceJob", "job")):
+                fields.append(str((p.get(key) or {}).get(name) or ""))
+        deadline = None
+        due = str(op.get("dueDate") or "")
+        if due:
+            try:
+                deadline = (datetime.datetime.strptime(due[:19], "%Y-%m-%dT%H:%M:%S")
+                            .replace(tzinfo=datetime.timezone.utc).astimezone(KST).strftime("%Y-%m-%d"))
+            except ValueError:
+                pass
+        place = next((str((p.get("workspacePlace") or {}).get("location") or "") for p in positions if p.get("workspacePlace")), "")
+        item = _group_item(
+            f"greeting-{host.split('.')[0]}-{op['openingId']}", str(op.get("title") or ""), company,
+            f"https://{host}/ko/o/{op['openingId']}", deadline, career, fields, place,
+        )
+        if item:
+            items.append(item)
+    return items
+
+
+def _greeting_all() -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    for host, company in GREETING_SITES.items():
+        try:
+            items.extend(_greeting_jobs(host, company))
+        except Exception as e:
+            print(f"  - {company}(그리팅) 조회 오류: {e}")
+        time.sleep(0.3)
+    return items
+
+
 def crawl_bigtech() -> List[Dict[str, Any]]:
-    print("[3/7] 대기업 채용사이트(네이버·카카오·라인·당근·쿠팡·삼성·LG·KT·CJ·넷마블·HD현대·GS·LS·대한항공·신세계·두산) 신입·인턴 공고 수집 중...")
+    print("[3/7] 대기업·그룹사 자체 채용사이트(네이버·카카오·삼성·LG·KT·CJ·HD현대·GS·LS·LX·두산·현대모비스 등) 신입·인턴 공고 수집 중...")
     results: List[Dict[str, Any]] = []
     counts: Dict[str, int] = {}
     sources = [("네이버", _naver_jobs), ("카카오", _kakao_jobs), ("라인", _line_jobs)] + [
         (name, (lambda b=board, n=name: _greenhouse_jobs(b, n))) for board, name in GREENHOUSE_BOARDS.items()
     ] + [("삼성", _samsung_jobs), ("LG", _lg_jobs), ("KT", _kt_jobs), ("CJ", _cj_jobs), ("넷마블", _netmarble_jobs),
-         ("HD현대·GS·LS·대한항공·신세계", _recruiter_groups), ("두산", _doosan_jobs)]
+         ("recruiter.co.kr 그룹사", _recruiter_groups), ("두산", _doosan_jobs), ("현대모비스", _mobis_jobs),
+         ("그리팅(현대오토에버·카카오페이 등)", _greeting_all)]
     for name, fn in sources:
         try:
             items = fn()
