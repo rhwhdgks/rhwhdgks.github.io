@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19 11:13 KST",
+  "updatedAt": "2026-11-19 15:35 KST",
   "totalCount": 149,
   "sourceCounts": {
     "금융사 채용사이트": 12,
@@ -130,27 +130,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "데이원컴퍼니 | [패스트캠퍼스] AI Native Business Developer 채용 — 전환형 인턴십 | 직무: 경영기획/전략",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-362827",
-      "title": "[아이엔지 은행/증권] Financial Markets Sales Intern - 2027 1H",
-      "organization": "아이엔지 은행/증권",
-      "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/362827",
-      "startDate": "2026-11-19",
-      "deadline": "2026-11-21",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "인턴",
-        "마케팅기획/전략",
-        "시장조사/리서치"
-      ],
-      "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "아이엔지 은행/증권 | [아이엔지 은행/증권] Financial Markets Sales Intern - 2027 1H | 직무: 마케팅기획/전략, 시장조사/리서치",
       "isFeatured": true
     },
     {
@@ -1633,6 +1612,25 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-365707",
+      "title": "[월드 AI 사운드 마스터즈 협회] 제1회 제주어 AI 음악 경진대회",
+      "organization": "월드 AI 사운드 마스터즈 협회",
+      "category": "hackathon",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365707",
+      "startDate": "2026-11-19",
+      "deadline": "2026-12-20",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "기타"
+      ],
+      "location": "국내",
+      "reward": "해커톤/경진대회",
+      "summary": "월드 AI 사운드 마스터즈 협회 | [월드 AI 사운드 마스터즈 협회] 제1회 제주어 AI 음악 경진대회 | 직무: 기타",
+      "isFeatured": true
+    },
+    {
       "id": "wevity-112285",
       "title": "세종사이버대학교 전국민 AI 공모전 (AI 불씨)",
       "organization": "세종사이버대학교",
@@ -1640,7 +1638,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-19",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
