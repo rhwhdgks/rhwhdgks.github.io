@@ -221,7 +221,7 @@ export const ResumeCheatsheetView: React.FC = () => {
               모아 볼 수 있습니다. 상세 보기는 [계기] ➔ [요약] ➔ [위험상황 및 해결한 방법] ➔ [한계] 4단계입니다.
             </p>
             <p className="mt-2 text-[11px] text-slate-400">
-              최종 정리 {CHEATSHEET_UPDATED_AT} · 근거: 각 저장소 README·문서와 Codex 작업 대화 기록
+              최종 정리 {CHEATSHEET_UPDATED_AT} · 근거: 각 저장소 README·문서와 작업 기록
             </p>
           </div>
 

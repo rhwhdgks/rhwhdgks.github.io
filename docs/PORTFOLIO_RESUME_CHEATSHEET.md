@@ -2,7 +2,7 @@
 > **소속:** 고려대학교 컴퓨터공학 전공 / 퀀트 학회 **Find-A**  
 > **핵심 스택:** Python, SQL, pandas, NumPy, PyTorch, FastAPI, MariaDB, Linux, TypeScript  
 > **포맷:** [계기] ➔ [요약] ➔ [위험상황 및 해결한 방법(원인 → 해결 → 결과)] ➔ [한계]  
-> **최종 정리:** 2026-11-11 · 근거: 각 GitHub 저장소 README·문서와 Codex 작업 대화 기록  
+> **최종 정리:** 2026-11-11 · 근거: 각 GitHub 저장소 README·문서와 작업 기록  
 > 이 문서는 `src/data/resumeProjects.ts`에서 `npm run cheatsheet:md`로 생성합니다. 내용을 고칠 때는 데이터 파일을 수정하세요.
 
 ## 목차
