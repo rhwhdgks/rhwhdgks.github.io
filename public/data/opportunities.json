@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-20 04:24 KST",
-  "totalCount": 146,
+  "updatedAt": "2026-11-20 15:23 KST",
+  "totalCount": 149,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 13,
+    "금융투자협회(KOFIA)": 14,
     "공공기관 채용(ALIO)": 1,
     "링커리어": 76,
-    "금융사 채용사이트": 11,
-    "기업 채용사이트": 26,
+    "금융사 채용사이트": 13,
+    "기업 채용사이트": 27,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 2,
-    "토스 채용": 2
+    "토스 채용": 1
   },
   "items": [
     {
@@ -676,6 +676,27 @@
       "isFeatured": true
     },
     {
+      "id": "gh-daangn-8204751003",
+      "title": "Software Engineer, Backend (인턴) - 서비스 운영 (운영개발)",
+      "organization": "당근",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://about.daangn.com?gh_jid=8204751003",
+      "startDate": "2026-11-20",
+      "deadline": "2026-11-29",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드",
+        "대기업",
+        "백엔드/서버개발"
+      ],
+      "location": "서울",
+      "reward": "인턴/신입",
+      "summary": "당근 | Software Engineer, Backend (인턴) - 서비스 운영 (운영개발) | 인턴",
+      "isFeatured": true
+    },
+    {
       "id": "gh-daangn-8206277003",
       "title": "Software Engineer, Backend(인턴) - 숏폼",
       "organization": "당근",
@@ -835,26 +856,6 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43097",
-      "title": "[비욘드자산운용] 투자운용본부 신입직원(운용역) 채용공고(~11/30)",
-      "organization": "비욘드자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43097",
-      "startDate": "2026-11-11",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "비욘드자산운용에서 고객과 함께 성장하며 도전할 인재를 모집합니다. 비욘드자산운용은 2009년 4월 설립된 자산운용사로, 자본금 74억원 규모의 재무 기반을 갖추고 있습니다. 서울시 강남구 역삼동 강남센타빌딩 14층에 본사를 두고 있으며 전문적인 자산운용 서비스를 제공하고 있습니다. ■ 모집분야 및 자격요건 1) 모집분야 : 펀드 운용역(신입) 2) 모집인원 : 1명 3) 지원자격 : - 정규...",
-      "isFeatured": true
-    },
-    {
       "id": "recruiter-ahnlab-134679",
       "title": "[인턴] 2027년 안랩 상반기 체험형 인턴 모집",
       "organization": "인턴",
@@ -987,7 +988,7 @@
         "은행",
         "인턴",
         "채용연계형",
-        "데이터분석"
+        "사업기획/신규사업"
       ],
       "location": "국내",
       "reward": "은행 채용",
@@ -1077,6 +1078,25 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43232",
+      "title": "[이지스자산운용] 리얼에셋부문 투자3그룹 단기계약직 모집",
+      "organization": "이지스자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43232",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-03",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입 가능"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "IGIS자산운용 리얼에셋부문 투자3그룹 단기계약직 모집에 많은 관심과 지원 바랍니다 . 1. 모집부문 : - 리얼에셋부문 투자3그룹 - 단기계약직 O명 2. 담당업무 : - 국내 부동산 개발사업 및 투자검토 관련 리서치 지원 - 부동산 시장자료 및 투자 관련 데이터 취합·가공·분석 - 사업성 검토 및 투자 관련 보고서 작성 지원 - 기타 부동산 투자·개발 관련 업무 보조 3. 지원자격 및 우...",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43204",
       "title": "[서울외국환중개]성과전문직원(신입 계약직) 채용",
       "organization": "서울외국환중개",
@@ -1111,6 +1131,28 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "BigTeam Inc | AAMDP Console Monitoring   & Security Analyst (체험형 인턴 4주)",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kakaobank-273021",
+      "title": "[카카오뱅크] AI 프로덕트 디자이너 (채용연계형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=273021",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-04",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "채용연계형",
+        "AI/데이터"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | AI 프로덕트 디자이너 (채용연계형 인턴)",
       "isFeatured": true
     },
     {
@@ -1302,6 +1344,27 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43227",
+      "title": "[에프앤자산평가] 주식파생실, 금리파생실 정규직원 채용(~12/06)",
+      "organization": "에프앤자산평가",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43227",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입 가능",
+        "퀀트/파생",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
+      "isFeatured": true
+    },
+    {
       "id": "naver-30005648",
       "title": "[2027 상반기 채용연계형 인턴십] 네이버웹툰 백엔드 서버 개발 (Backend Software Development)",
       "organization": "NAVER WEBTOON",
@@ -1417,6 +1480,28 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-kakaobank-273031",
+      "title": "[카카오뱅크] AI Native 인증 서비스 기획자 (채용연계형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=273031",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-07",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "채용연계형",
+        "AI/데이터"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | AI Native 인증 서비스 기획자 (채용연계형 인턴)",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55519198",
       "title": "AI Agent Engineer(LLM · TypeScript) [신입]",
       "organization": "이우소프트",
@@ -1503,6 +1588,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-11",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -1546,26 +1651,6 @@
       "isFeatured": true
     },
     {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
-      "isFeatured": true
-    },
-    {
       "id": "jumpit-55566568",
       "title": "프라이빗 클라우드(HCI) 가상화 전문연구요원",
       "organization": "파이오링크",
@@ -1604,6 +1689,25 @@
       "location": "국내",
       "reward": "해커톤/경진대회",
       "summary": "주식회사 프롬프트뱅크 | 2026년 제3회 AMT AI 작곡대회 – KILLING DANCE 챌린지 | 직무: 예체능/패션",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365945",
+      "title": "[Kearney Korea] RA(인턴) 모집 공고 (백엔드 개발 및 데이터베이스 관리)",
+      "organization": "에이티커니코리아",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365945",
+      "startDate": "2026-11-20",
+      "deadline": "2026-12-14",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드/서버개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "에이티커니코리아 | [Kearney Korea] RA(인턴) 모집 공고 (백엔드 개발 및 데이터베이스 관리) | 직무: 백엔드/서버개발",
       "isFeatured": true
     },
     {
@@ -1655,7 +1759,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-20",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1725,47 +1829,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "넛지헬스케어 | [캐시워크] 데이터엔지니어 채용전환형 인턴 | 직무: 데이터분석, AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-354718",
-      "title": "[비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
-      "organization": "비지시캐피탈마켓외국환중개",
-      "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/354718",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-31",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입"
-      ],
-      "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "비지시캐피탈마켓외국환중개 | [비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
-      "isFeatured": true
-    },
-    {
-      "id": "kakao-P-14558",
-      "title": "LLM Research Engineer (Post-training) (신입/경력)",
-      "organization": "카카오",
-      "category": "intern",
-      "source": "기업 채용사이트",
-      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
-      "startDate": "2026-11-20",
-      "deadline": "2027-01-04",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "AI/데이터",
-        "대기업",
-        "데이터분석",
-        "AI/ML엔지니어"
-      ],
-      "location": "판교",
-      "reward": "인턴/신입",
-      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {
@@ -2122,25 +2185,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-363593",
-      "title": "[DUBU] AI 대화형 콘텐츠 기획 인턴 모집",
-      "organization": "주식회사 두부",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363593",
-      "startDate": "2026-11-20",
-      "deadline": "2027-01-21",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "서비스기획/운영"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "주식회사 두부 | [DUBU] AI 대화형 콘텐츠 기획 인턴 모집 | 직무: 서비스기획/운영",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-360095",
       "title": "주식회사 한국기술자산 제조 AX 소프트웨어 [UX/UI/프론트엔트] 모집",
       "organization": "주식회사 한국기술자산",
@@ -2371,24 +2415,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-363739",
-      "title": "[Security] Information Security Intern (정보 보안 인턴)",
-      "organization": "주식회사 위대한상상",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363739",
-      "startDate": "2026-11-20",
-      "deadline": "2027-02-09",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "주식회사 위대한상상 | [Security] Information Security Intern (정보 보안 인턴)",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-363731",
       "title": "[Solution] AI Engineer Intern (체험형)",
       "organization": "주식회사 노타",
@@ -2601,6 +2627,44 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-365888",
+      "title": "[병원 운영 솔루션] 백엔드 개발자 인턴 (체험형)",
+      "organization": "(주)힐링페이퍼",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365888",
+      "startDate": "2026-11-20",
+      "deadline": "2027-02-18",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "백엔드/서버개발"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "(주)힐링페이퍼 | [병원 운영 솔루션] 백엔드 개발자 인턴 (체험형) | 직무: 백엔드/서버개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-365911",
+      "title": "[기어세컨드] 데이터 엔지니어",
+      "organization": "기어세컨드",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/365911",
+      "startDate": "2026-11-20",
+      "deadline": "2027-02-18",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "데이터분석"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "기어세컨드 | [기어세컨드] 데이터 엔지니어 | 직무: 데이터분석",
+      "isFeatured": true
+    },
+    {
       "id": "lg-1002176",
       "title": "[CDO] AI/빅데이터 분야 상시 모집",
       "organization": "LG에너지솔루션",
@@ -2638,26 +2702,6 @@
       "location": "서울",
       "reward": "인턴십",
       "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 애널리스트 업무 보조 - 리서치센터 공통 업무 - 대내외 행사 및 미팅 지원 - 기타 업무 ■ 우대사항 - 증권 및 자산운용사 리서치센터 경력 보유자 - 금융투자분석사 등 금융관련 ...",
-      "isFeatured": true
-    },
-    {
-      "id": "toss-4922690003",
-      "title": "[토스페이먼츠] 리스크팀 어시스턴트 (인턴십) (Risk Team Assistant)",
-      "organization": "토스페이먼츠",
-      "category": "kofia",
-      "source": "토스 채용",
-      "sourceUrl": "https://toss.im/career/job-detail?gh_jid=4922690003",
-      "startDate": "2022-01-20",
-      "deadline": null,
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "핀테크",
-        "인턴"
-      ],
-      "location": "국내",
-      "reward": "핀테크 채용",
-      "summary": "토스페이먼츠 | 리스크팀 어시스턴트 (인턴십) (Risk Team Assistant) | 인턴",
       "isFeatured": true
     },
     {
@@ -2737,6 +2781,26 @@
       "location": "판교",
       "reward": "인턴/신입",
       "summary": "카카오 | 생성형 모델 Research Engineer (Post-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14558",
+      "title": "LLM Research Engineer (Post-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
+      "startDate": "2026-11-20",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {
