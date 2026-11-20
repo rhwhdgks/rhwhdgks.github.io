@@ -1,96 +1,16 @@
 {
-  "updatedAt": "2026-11-20 15:23 KST",
-  "totalCount": 149,
+  "updatedAt": "2026-11-21 03:59 KST",
+  "totalCount": 145,
   "sourceCounts": {
-    "금융투자협회(KOFIA)": 14,
-    "공공기관 채용(ALIO)": 1,
-    "링커리어": 76,
+    "금융투자협회(KOFIA)": 11,
     "금융사 채용사이트": 13,
-    "기업 채용사이트": 27,
+    "링커리어": 75,
+    "기업 채용사이트": 28,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 2,
     "토스 채용": 1
   },
   "items": [
-    {
-      "id": "kofia-43131",
-      "title": "[KIS자산평가] 대체평가본부 수익증권 신입/경력 채용 공고",
-      "organization": "KIS자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43131",
-      "startDate": "2026-11-13",
-      "deadline": "2026-11-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "KIS자산평가는 세계적인 신용평가사인 Moody's 계열의 채권평가 전문업체로, 진취적이고 역량있는 직원을 아래와 같이 모집합니다. ■ 모집부문: 대체평가본부 수익증권 (신입/경력) ■ 주요업무 - 펀드 및 대출채권 공정가치평가 (국내 및 해외 인프라자산/부동산 자산 관련지분증권 및 대출채권) - 투자구조 파악 및 평가방법론 정립 ■ 자격요건 - 학사 학위 이상 소지자 ■ 우대사항 - 재무 ...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43115",
-      "title": "씨엘자산운용 운용지원 신입/경력직 채용",
-      "organization": "씨엘자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43115",
-      "startDate": "2026-11-12",
-      "deadline": "2026-11-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "당사는 2020년에 설립되어 헤지펀드를 운용하고 있으며, 투자일임과 투자자문업도 함께 영위하고 있는 사모전문자산운용사입니다. 1. 채용분야 - 운용지원 신입/경력직 0명 2. 담당업무 - 펀드 설정/해지, 운용지시 및 트레이딩 - 일임 관련 업무 - 각종 대외보고 및 기타 오퍼레이션 업무 3. 지원 자격 및 우대 사항 - 고등학교 졸업 이상 - 관련 법규상 채용 결격사유가 없는 자 - 회계 ...",
-      "isFeatured": true
-    },
-    {
-      "id": "alio-306801",
-      "title": "예금보험공사 제28기 동계 대학생인턴 모집 안내",
-      "organization": "예금보험공사",
-      "category": "kofia",
-      "source": "공공기관 채용(ALIO)",
-      "sourceUrl": "https://job.alio.go.kr/recruitview.do?idx=306801",
-      "startDate": "2026-11-06",
-      "deadline": "2026-11-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "금융공기업",
-        "인턴"
-      ],
-      "location": "국내",
-      "reward": "금융공기업 채용",
-      "summary": "예금보험공사 | 예금보험공사 제28기 동계 대학생인턴 모집 안내 | 인턴",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-363425",
-      "title": "[패스트캠퍼스] AI Native Business Developer 채용 — 전환형 인턴십",
-      "organization": "데이원컴퍼니",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363425",
-      "startDate": "2026-11-20",
-      "deadline": "2026-11-20",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "경영기획/전략"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "데이원컴퍼니 | [패스트캠퍼스] AI Native Business Developer 채용 — 전환형 인턴십 | 직무: 경영기획/전략",
-      "isFeatured": true
-    },
     {
       "id": "kofia-43167",
       "title": "[한국자산평가][대체2] 신입(인턴)직원 채용 공고",
@@ -200,7 +120,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364609",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-22",
       "isAlwaysOpen": false,
       "tags": [
@@ -221,7 +141,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363429",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-22",
       "isAlwaysOpen": false,
       "tags": [
@@ -242,7 +162,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362801",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-22",
       "isAlwaysOpen": false,
       "tags": [
@@ -305,7 +225,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005629",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-23",
       "isAlwaysOpen": false,
       "tags": [
@@ -324,7 +244,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005630",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-23",
       "isAlwaysOpen": false,
       "tags": [
@@ -343,7 +263,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005631",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-23",
       "isAlwaysOpen": false,
       "tags": [
@@ -362,7 +282,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364171",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-23",
       "isAlwaysOpen": false,
       "tags": [
@@ -381,7 +301,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365182",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-23",
       "isAlwaysOpen": false,
       "tags": [
@@ -422,7 +342,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://career.netmarble.com/announce/view?anno_id=1899",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-24",
       "isAlwaysOpen": false,
       "tags": [
@@ -454,26 +374,6 @@
       "location": "서울",
       "reward": "신입/인턴 채용",
       "summary": "트러스톤자산운용(주) 채용공고 ■ 모집 내용: 첨부파일 참조 ■ 채용 절차: 1차 서류전형 → 2차 실무진 면접 → 3차 임원 면접 → 최종합격 ■ 접 수 1. 접수기간: 2026년 11월 12일부터 2026년 11월 25일까지 2. 접 수 처: 당사 홈페이지 온라인 접수 3. 제출 서류 - 공고문에 첨부된 “261029_보도자료_퇴직연금 기능강화 방안 발표(관계부처 합동).pdf” 자료를 ...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43117",
-      "title": "[상상인증권] 리서치센터 투자전략팀 애널리스트 채용 (11/11~11/25)",
-      "organization": "상상인증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43117",
-      "startDate": "2026-11-11",
-      "deadline": "2026-11-25",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입 가능",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 국내외 매크로 및 자산시장 분석 - 기관투자자 대상 투자전략 세미나 ■ 우대사항 - 증권사 리서치센터 애널리스트/RA 경력자 - 금융투자분석사 등 금융관련 자격증 소지자 - 경영·경...",
       "isFeatured": true
     },
     {
@@ -547,7 +447,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005729",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -566,7 +466,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005717",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -585,7 +485,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364555",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -603,7 +503,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365535",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -622,7 +522,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365120",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-26",
       "isAlwaysOpen": false,
       "tags": [
@@ -654,35 +554,13 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55425538",
-      "title": "S/W 개발자 채용[신입]",
-      "organization": "건강누리",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55425538",
-      "startDate": "2026-11-20",
-      "deadline": "2026-11-27",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "SW/솔루션",
-        "C",
-        "C++",
-        "Qt"
-      ],
-      "location": "서울 영등포구",
-      "reward": "IT 신입/인턴",
-      "summary": "건강누리 | S/W 개발자 채용[신입] | 기술스택: C, C++, Qt, SW, Mfc",
-      "isFeatured": true
-    },
-    {
       "id": "gh-daangn-8204751003",
       "title": "Software Engineer, Backend (인턴) - 서비스 운영 (운영개발)",
       "organization": "당근",
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://about.daangn.com?gh_jid=8204751003",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -703,7 +581,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://about.daangn.com?gh_jid=8206277003",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -724,7 +602,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://ligdna.recruiter.co.kr/career/jobs/117192",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -745,7 +623,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://ahnlab.recruiter.co.kr/career/jobs/131873",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -764,7 +642,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365555",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -784,7 +662,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364399",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -804,7 +682,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364965",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -823,7 +701,7 @@
       "category": "activity",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364607",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-29",
       "isAlwaysOpen": false,
       "tags": [
@@ -834,6 +712,26 @@
       "location": "국내",
       "reward": "대외활동/교육",
       "summary": "주식회사 하이테커 | [마감임박] 실제 기업 프로젝트 기반 AI활용 프로덕트 마케터 과정 교육생 모집 | 직무: 강연, 마케터",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43234",
+      "title": "[비욘드자산운용] 투자운용본부 신입직원(운용역) 채용공고(~11/30)",
+      "organization": "비욘드자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43234",
+      "startDate": "2026-11-20",
+      "deadline": "2026-11-30",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "비욘드자산운용에서 고객과 함께 성장하며 도전할 인재를 모집합니다. 비욘드자산운용은 2009년 4월 설립된 자산운용사로, 자본금 74억원 규모의 재무 기반을 갖추고 있습니다. 서울시 강남구 역삼동 강남센타빌딩 14층에 본사를 두고 있으며 전문적인 자산운용 서비스를 제공하고 있습니다. ■ 모집분야 및 자격요건 1) 모집분야 : 펀드 운용역(신입) 2) 모집인원 : 1명 3) 지원자격 : - 정규...",
       "isFeatured": true
     },
     {
@@ -862,7 +760,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://ahnlab.recruiter.co.kr/career/jobs/134679",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -881,7 +779,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://celltrion.recruiter.co.kr/career/jobs/134581",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -902,7 +800,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365352",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -921,7 +819,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364407",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -941,7 +839,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363940",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -959,7 +857,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362988",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
@@ -1002,7 +900,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55451145",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-01",
       "isAlwaysOpen": false,
       "tags": [
@@ -1024,7 +922,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365369",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-01",
       "isAlwaysOpen": false,
       "tags": [
@@ -1043,7 +941,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365446",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -1065,7 +963,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365438",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -1122,7 +1020,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361790",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-03",
       "isAlwaysOpen": false,
       "tags": [
@@ -1162,7 +1060,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55496522",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -1184,7 +1082,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55485091",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -1206,7 +1104,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365132",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -1225,7 +1123,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364802",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -1244,7 +1142,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364594",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
@@ -1263,7 +1161,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55504419",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1285,7 +1183,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55504383",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1307,7 +1205,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55496355",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1329,7 +1227,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55490249",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1371,7 +1269,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005648",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1391,7 +1289,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kt.recruiter.co.kr/career/jobs/134448",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1410,7 +1308,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365384",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1429,7 +1327,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365378",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1448,7 +1346,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365376",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1467,7 +1365,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364883",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1508,7 +1406,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55519198",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-08",
       "isAlwaysOpen": false,
       "tags": [
@@ -1530,7 +1428,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363703",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -1550,7 +1448,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55558812",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -1572,7 +1470,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55558168",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -1588,33 +1486,13 @@
       "isFeatured": true
     },
     {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-11",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
-      "isFeatured": true
-    },
-    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55570183",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -1636,7 +1514,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55569265",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -1651,13 +1529,53 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-21",
+      "deadline": "2026-12-12",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005739",
+      "title": "[네이버웹툰] AI Engineer (체험형 인턴)",
+      "organization": "NAVER WEBTOON",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005739",
+      "startDate": "2026-11-21",
+      "deadline": "2026-12-13",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER WEBTOON | [네이버웹툰] AI Engineer (체험형 인턴) | 인턴",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55566568",
       "title": "프라이빗 클라우드(HCI) 가상화 전문연구요원",
       "organization": "파이오링크",
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55566568",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-13",
       "isAlwaysOpen": false,
       "tags": [
@@ -1679,7 +1597,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363775",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-13",
       "isAlwaysOpen": false,
       "tags": [
@@ -1698,7 +1616,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365945",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-14",
       "isAlwaysOpen": false,
       "tags": [
@@ -1717,7 +1635,7 @@
       "category": "intern",
       "source": "점핏(Jumpit)",
       "sourceUrl": "https://jumpit.saramin.co.kr/position/55596561",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-16",
       "isAlwaysOpen": false,
       "tags": [
@@ -1733,13 +1651,35 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55633324",
+      "title": "Robot System Engineer (신입)",
+      "organization": "플라잎",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55633324",
+      "startDate": "2026-11-21",
+      "deadline": "2026-12-19",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "SW/솔루션",
+        "C++",
+        "Linux",
+        "Python"
+      ],
+      "location": "경기 성남시 분당구",
+      "reward": "IT 신입/인턴",
+      "summary": "플라잎 | Robot System Engineer (신입) | 기술스택: C++, Linux, Python, ROS",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-365707",
       "title": "[월드 AI 사운드 마스터즈 협회] 제1회 제주어 AI 음악 경진대회",
       "organization": "월드 AI 사운드 마스터즈 협회",
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365707",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
@@ -1758,8 +1698,8 @@
       "category": "hackathon",
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-20",
+      "startDate": "2026-11-21",
+      "deadline": "2026-12-21",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1798,7 +1738,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360208",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -1818,7 +1758,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360204",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2026-12-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -1838,7 +1778,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355188",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1857,7 +1797,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355186",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1876,7 +1816,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355182",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1896,7 +1836,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355180",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-05",
       "isAlwaysOpen": false,
       "tags": [
@@ -1916,7 +1856,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355769",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-06",
       "isAlwaysOpen": false,
       "tags": [
@@ -1938,7 +1878,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/356083",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -1957,7 +1897,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/355954",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -1976,7 +1916,7 @@
       "category": "hackathon",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365130",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -1996,7 +1936,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/356413",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -2016,7 +1956,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/356803",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -2035,7 +1975,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/356750",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-12",
       "isAlwaysOpen": false,
       "tags": [
@@ -2054,7 +1994,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358038",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -2073,7 +2013,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358036",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -2092,7 +2032,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/357837",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -2111,7 +2051,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/357809",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -2131,7 +2071,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005632",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-18",
       "isAlwaysOpen": false,
       "tags": [
@@ -2150,7 +2090,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358498",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-19",
       "isAlwaysOpen": false,
       "tags": [
@@ -2170,7 +2110,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/358453",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-19",
       "isAlwaysOpen": false,
       "tags": [
@@ -2191,7 +2131,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360095",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -2210,7 +2150,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/359944",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -2228,7 +2168,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/359878",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-25",
       "isAlwaysOpen": false,
       "tags": [
@@ -2247,7 +2187,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/360652",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-27",
       "isAlwaysOpen": false,
       "tags": [
@@ -2267,7 +2207,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361519",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -2287,7 +2227,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361518",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -2306,7 +2246,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361425",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -2324,7 +2264,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/361409",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-01-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -2343,7 +2283,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362172",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -2363,7 +2303,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362167",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -2382,7 +2322,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362159",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -2400,7 +2340,7 @@
       "category": "kofia",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/362157",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-02",
       "isAlwaysOpen": false,
       "tags": [
@@ -2421,7 +2361,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363731",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-09",
       "isAlwaysOpen": false,
       "tags": [
@@ -2440,7 +2380,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363687",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-09",
       "isAlwaysOpen": false,
       "tags": [
@@ -2459,7 +2399,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363578",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-09",
       "isAlwaysOpen": false,
       "tags": [
@@ -2478,7 +2418,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363702",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-09",
       "isAlwaysOpen": false,
       "tags": [
@@ -2498,7 +2438,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363925",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -2517,7 +2457,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363827",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -2537,7 +2477,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363825",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -2556,7 +2496,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/363817",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-10",
       "isAlwaysOpen": false,
       "tags": [
@@ -2575,7 +2515,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364422",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -2594,7 +2534,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/364178",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-11",
       "isAlwaysOpen": false,
       "tags": [
@@ -2613,7 +2553,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365572",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-17",
       "isAlwaysOpen": false,
       "tags": [
@@ -2633,7 +2573,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365888",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-18",
       "isAlwaysOpen": false,
       "tags": [
@@ -2652,7 +2592,7 @@
       "category": "intern",
       "source": "링커리어",
       "sourceUrl": "https://linkareer.com/activity/365911",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-02-18",
       "isAlwaysOpen": false,
       "tags": [
@@ -2671,7 +2611,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://careers.lg.com/apply/detail?id=1002176",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": "2027-03-31",
       "isAlwaysOpen": false,
       "tags": [
@@ -2682,26 +2622,6 @@
       "location": "서울특별시",
       "reward": "인턴/신입",
       "summary": "LG에너지솔루션 | [CDO] AI/빅데이터 분야 상시 모집 | 신입/경력",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43116",
-      "title": "[상상인증권] 리서치센터 인턴 수시 채용 (11/11~11/25)",
-      "organization": "상상인증권",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43116",
-      "startDate": "2026-11-11",
-      "deadline": "2026-11-25",
-      "isAlwaysOpen": true,
-      "tags": [
-        "금융권",
-        "인턴",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "인턴십",
-      "summary": "1. 지원자격(공통) - 당사 내규상 채용에 결격 사유가 없는 자 - 남성의 경우 병역필 또는 면제 - 해외여행 및 금융거래에 결격 사유가 없는 자 2. 담당업무, 우대사항 및 채용구분 등 ■ 담당 분야 업무 - 애널리스트 업무 보조 - 리서치센터 공통 업무 - 대내외 행사 및 미팅 지원 - 기타 업무 ■ 우대사항 - 증권 및 자산운용사 리서치센터 경력 보유자 - 금융투자분석사 등 금융관련 ...",
       "isFeatured": true
     },
     {
@@ -2771,7 +2691,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://careers.kakao.com/jobs/P-14581",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2790,7 +2710,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2810,7 +2730,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://careers.kakao.com/jobs/P-14559",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2830,7 +2750,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://about.daangn.com?gh_jid=7980543003",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2849,7 +2769,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://www.coupang.jobs/en/jobs/?gh_jid=8332845",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2869,7 +2789,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kakaopay.career.greetinghr.com/ko/o/235177",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2891,7 +2811,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kakaopay.career.greetinghr.com/ko/o/214480",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2912,7 +2832,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kakaomobility.career.greetinghr.com/ko/o/236791",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2932,7 +2852,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kurly.career.greetinghr.com/ko/o/216526",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2951,7 +2871,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://kurly.career.greetinghr.com/ko/o/215234",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
@@ -2970,7 +2890,7 @@
       "category": "intern",
       "source": "기업 채용사이트",
       "sourceUrl": "https://hybe.career.greetinghr.com/ko/o/226791",
-      "startDate": "2026-11-20",
+      "startDate": "2026-11-21",
       "deadline": null,
       "isAlwaysOpen": true,
       "tags": [
