@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21 03:59 KST",
+  "updatedAt": "2026-11-21 15:13 KST",
   "totalCount": 145,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 11,
@@ -50,7 +50,7 @@
       ],
       "location": "서울",
       "reward": "신입/인턴 채용",
-      "summary": "미래 성장의 꿈을 담는 액티브 펀드의 명가, 에셋플러스자산운용입니다. 에셋플러스자산운용과 함께 혁신적인 미래 금융을 선도해 나아갈 \"끼\" 있는 진짜 인재를 찾습니다. 학력·전공·연령은 중요하지 않습니다. 우리는 스펙보다 \"끼\"(잠재력과 역량), 타이틀보다 능력, 과거보다 미래, 주어진 사실보다 새로운 관점과 해석을 중시합니다. 열정과 성실함을 바탕으로 고객과 함께 성장하는 여정에 동행할 여러...",
+      "summary": "에셋플러스자산운용 채용 공고 ([에셋플러스자산운용] 2026년도 하반기 리서치 직무 신입사원 공개 채용)",
       "isFeatured": true
     },
     {
@@ -1486,6 +1486,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-21",
+      "deadline": "2026-12-11",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -1526,26 +1546,6 @@
       "location": "경기 용인시",
       "reward": "IT 신입/인턴",
       "summary": "인텍에프에이 | 제품설계 신입사원 채용 | 기술스택: ERP, Autocad",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-21",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
       "isFeatured": true
     },
     {
@@ -1699,7 +1699,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-21",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
