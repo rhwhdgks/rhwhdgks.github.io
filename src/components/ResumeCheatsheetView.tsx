@@ -22,6 +22,7 @@ import {
   Mic,
   Target,
   X,
+  ClipboardList,
 } from 'lucide-react';
 import {
   PROJECTS_STRUCTURED,
@@ -37,14 +38,17 @@ import {
   projectCompetencies,
 } from '../data/resumeProjects';
 
-type SectionKey = 'pitch30' | 'pitch2min' | 'motivation' | 'summary' | 'risks' | 'limitations';
-type ViewLevel = 'pitch30' | 'pitch2min' | 'detail';
+type SectionKey = 'pitch30' | 'pitch2min' | 'motivation' | 'summary' | 'risks' | 'limitations' | 'activity';
+type ViewLevel = 'pitch30' | 'pitch2min' | 'detail' | 'activity';
 
 const VIEW_LEVELS: { id: ViewLevel; label: string; hint: string }[] = [
   { id: 'pitch30', label: '30초 요약', hint: '면접 첫 프로젝트 소개용' },
   { id: 'pitch2min', label: '2분 설명', hint: '상황 → 구현 → 어려움 → 결과' },
   { id: 'detail', label: '상세 4단계', hint: '자소서·꼬리질문 대비용' },
+  { id: 'activity', label: '지원서 경험란', hint: '학내외활동 양식: 활동구분 · 기관 및 조직명 · 활동기간 · 상세 내용' },
 ];
+
+const charCount = (text: string) => ({ withSpace: text.length, noSpace: text.replace(/\s/g, '').length });
 
 /** 발화 시간 추정: 한글 음절 + 영문·숫자(2자당 1음절)를 면접에서 차분히 말하는 속도(초당 약 5음절)로 계산 */
 const estimateSeconds = (text: string): number => {
@@ -77,6 +81,13 @@ const formatSectionText = (p: ProjectStructure, section: SectionKey): string => 
         .join('\n\n');
     case 'limitations':
       return p.limitations.map((l) => `- ${l}`).join('\n');
+    case 'activity':
+      return [
+        `활동구분: ${p.activity.type}${p.activity.typeAlt ? ` (목록에 없으면 ${p.activity.typeAlt})` : ''}`,
+        `기관 및 조직명: ${p.activity.organization}`,
+        `활동기간: ${p.activity.start} - ${p.activity.end}`,
+        `상세 내용: ${p.activity.detail}`,
+      ].join('\n');
   }
 };
 
@@ -214,7 +225,7 @@ export const ResumeCheatsheetView: React.FC = () => {
               <span>포트폴리오 자소서·면접 정리 (총 {PROJECTS_STRUCTURED.length}개 프로젝트)</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-              지원 직무를 고르고, 30초 · 2분 · 상세 중 필요한 길이로 꺼내 쓰기
+              지원 직무를 고르고, 30초 · 2분 · 상세 · 지원서 경험란 중 필요한 형태로 꺼내 쓰기
             </h1>
             <p className="mt-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
               직무를 고르면 프로젝트 순서와 "이 직무에서 강조할 점"이 바뀌고, 역량 칩을 누르면 그 역량을 보여 주는 사례만
@@ -473,7 +484,7 @@ export const ResumeCheatsheetView: React.FC = () => {
               )}
 
               {/* 30초 / 2분 */}
-              {viewLevel !== 'detail' && (
+              {(viewLevel === 'pitch30' || viewLevel === 'pitch2min') && (
                 <div className="p-5 sm:p-6 border-t border-slate-100 bg-white text-sm">
                   <div className="p-4 rounded-xl bg-indigo-50/40 border border-indigo-100 space-y-2">
                     <div className="flex items-center gap-1.5 font-bold text-indigo-950 text-xs sm:text-sm">
@@ -499,6 +510,65 @@ export const ResumeCheatsheetView: React.FC = () => {
                         ))}
                       </div>
                     )}
+                  </div>
+                </div>
+              )}
+
+              {/* 지원서 경험란 (학내외활동 양식) */}
+              {viewLevel === 'activity' && (
+                <div className="p-5 sm:p-6 border-t border-slate-100 bg-white text-sm space-y-4">
+                  <div className="flex items-center gap-1.5 font-bold text-slate-900 text-xs sm:text-sm">
+                    <ClipboardList className="w-4 h-4 text-indigo-600 shrink-0" />
+                    <span>학내외활동</span>
+                    <span className="text-[11px] font-medium text-slate-400">항목별로 복사해 지원서 칸에 붙여 넣기</span>
+                    {renderCopy(formatSectionText(p, 'activity'), `copy-${p.id}-activity`, '네 항목 한꺼번에 복사')}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                    <div className="grid grid-cols-[88px_1fr] items-center gap-3">
+                      <span className="text-xs font-semibold text-slate-600">활동구분</span>
+                      <div className="flex items-center gap-2 min-w-0 rounded-lg bg-slate-100 px-3 py-2">
+                        <span className="text-slate-900 font-medium truncate">{p.activity.type}</span>
+                        {p.activity.typeAlt && (
+                          <span className="text-[11px] text-slate-500 shrink-0">없으면 {p.activity.typeAlt}</span>
+                        )}
+                        {renderCopy(p.activity.type, `copy-${p.id}-act-type`)}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-[88px_1fr] items-center gap-3">
+                      <span className="text-xs font-semibold text-slate-600">기관 및 조직명</span>
+                      <div className="flex items-center gap-2 min-w-0 rounded-lg bg-slate-100 px-3 py-2">
+                        <span className="text-slate-900 font-medium break-keep">{p.activity.organization}</span>
+                        {renderCopy(p.activity.organization, `copy-${p.id}-act-org`)}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-[88px_1fr] items-center gap-3">
+                      <span className="text-xs font-semibold text-slate-600">활동기간</span>
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-slate-900 font-medium">
+                          <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
+                          {p.activity.start}
+                        </span>
+                        <span className="text-slate-400">-</span>
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-slate-900 font-medium">
+                          <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
+                          {p.activity.end}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-slate-600">상세 내용</span>
+                      <span className="text-[11px] text-slate-400">
+                        공백 포함 {charCount(p.activity.detail).withSpace}자 · 제외 {charCount(p.activity.detail).noSpace}자
+                      </span>
+                      {renderCopy(p.activity.detail, `copy-${p.id}-act-detail`)}
+                    </div>
+                    <p className="rounded-xl bg-slate-100 px-4 py-3 text-slate-800 leading-relaxed whitespace-pre-wrap">
+                      {p.activity.detail}
+                    </p>
                   </div>
                 </div>
               )}

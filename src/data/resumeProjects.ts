@@ -36,6 +36,21 @@ export interface Highlight {
   value: string;
 }
 
+/** 지원서 '경험 > 학내외활동' 양식 (활동구분 · 기관 및 조직명 · 활동기간 · 상세 내용) */
+export interface ActivityForm {
+  /** 활동구분 드롭다운에서 고를 항목 */
+  type: string;
+  /** 회사마다 드롭다운 목록이 달라 위 항목이 없을 때 고를 대체 항목 */
+  typeAlt?: string;
+  /** 기관 및 조직명 */
+  organization: string;
+  /** 활동기간 시작·종료 (YYYY.MM) */
+  start: string;
+  end: string;
+  /** 상세 내용 (공백 포함 500자 안팎) */
+  detail: string;
+}
+
 export interface ProjectStructure {
   id: string;
   title: string;
@@ -48,6 +63,8 @@ export interface ProjectStructure {
   category: string;
   period: string;
   role: string;
+  /** 지원서 경험란(학내외활동) 양식 */
+  activity: ActivityForm;
   stack: string[];
   highlights: Highlight[];
   motivation: string;
@@ -65,7 +82,7 @@ export interface ProjectStructure {
   extraCompetencies?: CompetencyId[];
 }
 
-export const CHEATSHEET_UPDATED_AT = '2026-11-11';
+export const CHEATSHEET_UPDATED_AT = '2026-11-22';
 
 export const COMPETENCIES: Record<CompetencyId, { label: string; desc: string }> = {
   concurrency: { label: '동시성', desc: '비동기·병렬 요청, 중복 실행·재시도 처리' },
@@ -131,6 +148,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '거래 시스템 백엔드 · 주문 실행·헤지·복구',
     period: '2026.04 ~ 2026.08',
     role: 'Find-A 차익거래 프로젝트 · 전략 설계(진입·청산 조건, 펀딩비·스프레드 기대 순이익 계산)부터 주문 실행·헤지·복구, 운영 콘솔·DB·최종 보고서, 페어별 수익성 분석까지 전담',
+    activity: {
+      type: "학회 · 동아리",
+      typeAlt: "동아리",
+      organization: "퀀트 학회 Find-A",
+      start: "2026.04",
+      end: "2026.08",
+      detail: "퀀트 학회 Find-A의 거래소 간 차익거래 프로젝트에서 바이낸스·OKX 선물 포지션을 한 쌍으로 관리하는 Python 비동기 주문 실행 엔진을 만들었습니다. 두 거래소의 스프레드·펀딩비에서 수수료를 뺀 기대 순이익이 기준을 넘을 때만 진입하고, 한쪽이 체결되면 반대 거래소에 즉시 헤지하며, 실패하거나 중단되면 남은 포지션을 찾아 중립으로 되돌리는 복구 경로와 운영 콘솔, 종료 점검 보고서를 구현했습니다. 테스트넷 6시간 테스트에서 체결 감지부터 헤지 완료까지 평균 68ms(최대 125ms), 위험 이벤트 0건을 확인했고, 거래소당 200 USDT 실계좌로 6~24시간 연속 실행을 반복하며 IP 차단(HTTP 418), 청산 후 포지션 상태 불일치 같은 문제를 고쳤습니다. 단위·회귀 테스트 41개는 GitHub Actions로 관리했습니다.",
+    },
     stack: ['Python asyncio', 'Binance·OKX REST/WebSocket', 'MariaDB', 'JSONL 이벤트 로그', 'Bash·systemd', 'unittest·GitHub Actions'],
     highlights: [
       { label: '체결→헤지 평균 (테스트넷)', value: '68ms' },
@@ -216,6 +241,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '금융 AI · LLM Agent · 공시 데이터 전처리',
     period: '2026.07 ~ 2026.09 (대회) · 2026.10 개인 저장소 보완',
     role: 'Team dis-001 · 공시 원문 전처리·정본 설계, 질문 구조화(HCX-007)·되묻기, 근거 조회·Decimal 계산·답변 생성(HCX-005), FastAPI 평가 서버, 엣지 케이스 검증·답변 품질 개선, 기술제안서까지 전 단계 전담',
+    activity: {
+      type: "공모전",
+      typeAlt: "대외활동",
+      organization: "미래에셋증권 (2026 AI Festival, Team dis-001)",
+      start: "2026.07",
+      end: "2026.09",
+      detail: "미래에셋증권 AI Festival 공시 Agent 과제에 Team dis-001로 참가해 DART 공시 질의응답 API를 개발했습니다. 70개사 공시 4,204건을 원본을 바꾸지 않고 조회용 정본으로 재구성해 모든 값에 원문 위치를 연결했습니다. HyperCLOVA X로 질문을 구조화한 뒤 회사·기간·문서는 코드가 확정하고, 금액은 Decimal로 계산해 인용 직전에 근거를 다시 검증하도록 설계했습니다. 단위와 정정 시점이 섞여 숫자가 틀어지는 문제, 특정 질문에서 메모리가 약 9GB까지 오르던 문제(806MB로 감소)를 고쳤습니다. 최종 535문항을 실제 API로 호출해 전 문항이 45초 안에 응답(평균 7.97초)했고, 160문항 수치·근거 대조에서 불일치 0건을 확인했습니다.",
+    },
     stack: ['Python', 'HyperCLOVA X (HCX-007·HCX-005)', 'Pydantic', 'FastAPI', 'Parquet', 'SQLite FTS5·Kiwi BM25', 'Decimal'],
     highlights: [
       { label: '정본 범위', value: '70개사 · 공시 4,204건' },
@@ -303,6 +336,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '제조 AI · 불량 예측·검사 우선순위 정책',
     period: '2026.09 ~ 2026.10',
     role: '데이터 구조 복원·전처리, 원자료 연결·검증 설계, 공정 개념 모델·로지스틱 등 모델링과 제품별 선정, 검사 정책, PR 통합·CI, 제출 패키지와 결과보고서까지 전담',
+    activity: {
+      type: "공모전",
+      typeAlt: "대외활동",
+      organization: "KAMP (제6회 K-인공지능 제조데이터 분석 경진대회)",
+      start: "2026.09",
+      end: "2026.10",
+      detail: "자동차 부품 2종(CN7·RG3)의 사출 공정 센서 데이터로 부품별 불량 확률을 예측하고, 정해진 검사량 안에서 먼저 검사할 부품을 정하는 파이프라인을 만들었습니다. 대회 파일에 없던 샷·세션 경계와 좌우(LH/RH) 정보를 KAMP 공개 원자료와 대조해 복원했고, 같은 샷의 두 부품이 학습·검증에 나뉘는 누수를 막도록 샷 단위로 분할했습니다. 로지스틱·CatBoost·TabPFN·GAM 등을 같은 분할·같은 검사량 기준으로 비교해 제품별 모델을 골랐고, CN7은 AP 0.146→0.354, 같은 검사량에서 불량 포착 11/13→13/13으로 개선됐습니다. 무라벨 71,180행 중 원자료와 연결된 29,229행에 검사 우선순위를 제공하고, run_all.py 한 번으로 재현되는 제출 패키지와 결과보고서를 작성했습니다.",
+    },
     stack: ['Python', 'pandas', 'scikit-learn', 'CatBoost', 'TabPFN v2', 'GAM·RBF-SVM', 'GitHub Actions'],
     highlights: [
       { label: '대회 데이터', value: '라벨 2,393 · 무라벨 71,180행' },
@@ -382,6 +423,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '컴퓨터 비전 · 공간 데이터 분석 · 배치 최적화',
     period: '2025.05 ~ 2025.08',
     role: '팀 「나시고렝」 · CCTV 무단투기 감지 서버(YOLOv8·RTSP)와 SMS 알림, 공간정보 ETL·통합 DB, 무단투기 발생량 예측, 쓰레기통 배치 최적화, Flask 지도 시뮬레이터까지 전담',
+    activity: {
+      type: "공모전",
+      typeAlt: "대외활동",
+      organization: "공군 (제7회 창의·혁신 아이디어 공모 해커톤, 팀 나시고렝)",
+      start: "2025.05",
+      end: "2025.08",
+      detail: "지정과제 '깨끗한 거리 조성을 위한 쓰레기 무단투기 감소 대책'에 맞춰 무단투기 감지부터 쓰레기통 배치까지 잇는 플랫폼을 제안하고 구현했습니다. YOLOv8로 CCTV 영상에서 무단투기를 감지해 담당자에게 SMS를 보내는 서버와, 유동인구·POI·도로·단속 이력을 50m 격자 12,721개로 통합한 공간 DB를 만들었습니다. Multi-Scale Regression으로 변수별 영향 반경을 찾고 Random Forest로 격자별 발생량을 예측했으며, K-Means·Greedy·1·2-swap 탐색으로 설치 반경과 지점당 설치 수 제약을 지키는 배치안을 계산해 지도에 보여주는 Flask 시뮬레이터를 만들었습니다. 강남구 분석에서 기존 쓰레기통 974개를 재배치하면 단속 건수가 45.4% 줄어드는 것으로 추정했습니다.",
+    },
     stack: ['Python', 'YOLOv8·PyTorch', 'RTSP', 'PostgreSQL/PostGIS', 'Airflow', 'pandas·GeoJSON', 'K-Means·Random Forest', 'Multi-Scale Regression', 'Flask·SSE', 'Kakao Maps'],
     highlights: [
       { label: '분석 격자', value: '50m 격자 12,721개' },
@@ -449,6 +498,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '퀀트 리서치 · 이미지 딥러닝 · 포트폴리오 입력 설계',
     period: '2026.04 ~ 2026.07',
     role: 'Find-A Delta 팀 · 데이터 분석, CNN·LSTM·결합 모델과 이미지 팩터·ablation, μ·Σ·R 입력 설계, ODE 포트폴리오 최적화·백테스트까지 전담',
+    activity: {
+      type: "학회 · 동아리",
+      typeAlt: "동아리",
+      organization: "퀀트 학회 Find-A (Delta 팀)",
+      start: "2026.04",
+      end: "2026.07",
+      detail: "7개 ETF의 직전 60거래일 가격·거래량을 차트 이미지로 그려 CNN으로 20거래일 뒤 수익률 순위를 예측하고, 그 결과를 포트폴리오 최적화(ODE) 입력으로 만들었습니다. 48개 walk-forward 구간으로 시간 순서를 지켜 검증했고, CNN 특징을 이미지 팩터로 뽑아 시점별 PCA로 공통 움직임을 통제한 뒤 추가 설명력을 검정했습니다(t=7.23). 순위 상관은 이미지를 쓰지 않은 모델 -0.007에서 이미지 팩터를 추가하면 0.080으로 올랐고, 더 엄격한 재학습에서 수치가 낮아진 점까지 함께 보고했습니다. 불안정한 60일 공분산은 Ledoit-Wolf로 보정해 조건수 중앙값을 2,409에서 64로 낮췄습니다.",
+    },
     stack: ['Python', 'PyTorch (2D CNN)', 'pandas·NumPy', 'PCA·OLS', 'Ledoit-Wolf'],
     highlights: [
       { label: '예측 설정', value: '60일 차트 → 20일 뒤 순위' },
@@ -521,6 +578,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '시장 미시구조 · 체결·호가 데이터 연구',
     period: '2026.07',
     role: '개인 연구 · herding 지표 검증의 후속 연구',
+    activity: {
+      type: "개인 프로젝트",
+      typeAlt: "기타",
+      organization: "개인 연구 (GitHub 공개)",
+      start: "2026.07",
+      end: "2026.07",
+      detail: "바이낸스·OKX의 7개 코인 체결자료(2년, 15분 단위)로 매수·매도 주문흐름이 시장 전체에서 함께 움직이는지 검증한 연구입니다. 가격·거래량·시간대 영향을 걷어낸 잔차를 만들고, 첫 1년으로 모델을 정한 뒤 다음 1년에서만 판정했으며, 기간·자산·판정 기준은 결과를 보기 전에 연구계획서로 고정했습니다. 날짜를 499회 순환 이동한 우연 기준과 비교해 바이낸스 상관 0.143(우연 0.001), OKX 0.119로 동조화를 다른 거래소에서도 확인했습니다. 호가창 상태가 이를 설명하거나 예측한다는 가설은 OKX L2 원자료 1,260개 파일을 복원해 검정했지만 기준에 미달했고, 별도로 시험한 따라잡기 전략은 평균 순수익률 -0.105%로 수익성이 없다고 보고했습니다.",
+    },
     stack: ['Python', 'pandas·NumPy', 'HAC 회귀·BH-FDR', 'OKX L2 아카이브', 'systemd'],
     highlights: [
       { label: '바이낸스 주문흐름 상관', value: '0.143 (null 0.001)' },
@@ -592,6 +657,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '계량 금융 리서치 · 논문 재현·반증 실험',
     period: '2026.04 ~ 2026.07',
     role: '개인 연구',
+    activity: {
+      type: "개인 프로젝트",
+      typeAlt: "기타",
+      organization: "개인 연구 (GitHub 공개)",
+      start: "2026.04",
+      end: "2026.07",
+      detail: "여러 코인이 함께 움직이는 현상을 투자자의 집단추종으로 볼 수 있는지 검증한 연구입니다. Binance 14종목 2년 1분봉(105만 관측)으로 CSAD 검정을 구현하고, 선행논문의 CoinMarketCap 62종목 결과를 재현했습니다(논문 -2.924, 재현 -2.902). 이어 논문 이후 기간, OKX, 시점별 Top-50 구성으로 외부 검증하고, 집단추종이 전혀 없는 가상시장을 Monte Carlo로 만들어 같은 회귀식이 97~100% 빈도로 집단추종 신호를 만든다는 것을 확인했습니다. 절편을 없앤 회귀 구조가 음의 계수를 유도한다는 원인을 폐형식으로 보였고, 유망해 보였던 단기 신호가 변수 정의 오류였음을 찾아 폐기했습니다.",
+    },
     stack: ['Python', 'pandas·NumPy', 'statsmodels', 'Monte Carlo 시뮬레이션', 'MariaDB', 'pytest'],
     highlights: [
       { label: '기초 표본', value: '14종목 · 1분봉 105만 관측' },
@@ -663,52 +736,63 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     isPrivate: true,
     demoUrl: 'https://aips.kr',
     category: '실시간 웹 서비스 · LLM 판정 · 서버리스 백엔드',
-    period: '2026.08 ~ 2026.10',
+    period: '2026.08 ~ 2026.11',
     role: '개인 프로젝트 · 기획·백엔드·웹 클라이언트·배포 전담',
-    stack: ['TypeScript', 'Cloudflare Workers', 'Durable Objects', 'R2', 'WebSocket', 'Gemini Flash-Lite', 'SwiftUI (iOS 준비)'],
+    activity: {
+      type: "개인 프로젝트",
+      typeAlt: "기타",
+      organization: "개인 프로젝트 (aips.kr)",
+      start: "2026.08",
+      end: "2026.11",
+      detail: "LLM이 심판을 보는 실시간 멀티플레이 파티게임 'AI피셜'을 기획부터 배포까지 혼자 만들었습니다. 최대 8명이 각자 휴대폰으로 답변·사진을 내면 서버가 마감과 점수를 확정하고 Gemini가 판정하는 6가지 게임을 Cloudflare Workers·Durable Objects·R2로 구현해 aips.kr에 배포했습니다. 3개월간 플레이테스트 408판의 지표를 기록해 개선에 썼습니다. 사진 판정은 응답 없는 요청을 오래 기다리는 구조가 원인이어서, 사진을 한 요청으로 묶고 느린 요청에 병렬 요청(헤지)과 재시도를 넣어 판정 실패를 18%에서 0%(0/49)로, 상위 10% 판정 시간을 35초에서 9.4초로 줄였습니다. 또 WebSocket 연결의 41%가 재연결인 점을 반영해 설치 ID 기준 재입장과 멱등 입장 처리로 중복 참가자 문제를 해결했습니다.",
+    },
+    stack: ['TypeScript', 'Cloudflare Workers', 'Durable Objects', 'R2', 'WebSocket', 'Analytics Engine', 'Gemini Flash-Lite', 'SwiftUI (iOS 준비)'],
     highlights: [
-      { label: '게임', value: '6종' },
-      { label: '방 인원', value: '최대 8명' },
-      { label: '사진 판정 계측', value: '194라운드' },
-      { label: '배포', value: 'aips.kr' },
+      { label: '플레이테스트', value: '408판 · 51개 방' },
+      { label: '사진 판정 실패', value: '18% → 0% (0/49)' },
+      { label: '판정 시간 상위 10%', value: '35초 → 9.4초' },
+      { label: '게임 · 배포', value: '6종 · aips.kr' },
     ],
     pitch30:
-      "LLM이 심판을 보는 실시간 멀티플레이 파티게임을 기획부터 배포까지 혼자 만들었습니다. Cloudflare Workers와 Durable Objects로 방 상태를 관리하고 Gemini로 답변과 사진을 판정하며, 재접속 시 참가자가 중복되는 문제와 사진 판정 지연을 실측 데이터로 원인을 찾아 해결했습니다.",
+      "LLM이 심판을 보는 실시간 멀티플레이 파티게임을 기획부터 배포까지 혼자 만들었습니다. Cloudflare Workers와 Durable Objects로 방 상태를 관리하고 Gemini로 답변과 사진을 판정하며, 3개월간 플레이테스트 408판의 지표를 근거로 사진 판정 실패를 18%에서 0%로, 느린 판정 시간을 35초에서 9.4초로 줄였습니다.",
     pitch2min: [
       "\"LLM에게 평가를 맡기면 게임에 예측할 수 없는 재미가 생기지 않을까\"라는 생각에서 시작했습니다. 정답 없는 놀이에 AI를 심판으로 세우면 매번 다른 판정과 한 줄 평이 재미가 된다고 보고, 앱스토어 출시를 목표로 6가지 게임을 만들었습니다.",
-      "같은 방의 최대 8명이 각자 휴대폰으로 답변과 사진을 내면, 서버가 제출 마감과 점수 합산을 확정하고 Gemini가 판정합니다. 백엔드는 Cloudflare Worker에 방 상태를 Durable Object로 두는 구조로 만들고, 사진은 R2에 잠시 두었다가 판정 뒤 지웠습니다.",
-      "플레이테스트에서 두 문제가 나왔습니다. 네트워크가 끊겼다 들어오면 같은 사람이 6명씩 생겼는데, 입장할 때마다 새 ID를 주던 구조를 설치 ID 기준 복구로 바꿔 해결했습니다. 사진 판정이 오래 걸린다는 피드백은 194라운드를 계측해 보니 응답 없는 AI 요청을 40초까지 기다리는 게 원인이어서, 헤지 요청과 타임아웃을 조정했습니다.",
-      "현재는 지인 대상 웹 플레이테스트 단계이고 앱스토어 출시는 남아 있습니다. 감으로 고치기보다 먼저 측정하고, 비용과 실패 상황을 처음부터 설계에 넣어야 한다는 걸 배웠습니다.",
+      "같은 방의 최대 8명이 각자 휴대폰으로 답변과 사진을 내면, 서버가 제출 마감과 점수 합산을 확정하고 Gemini가 판정합니다. 백엔드는 Cloudflare Worker에 방 상태를 Durable Object로 두는 구조로 만들고, 사진은 R2에 잠시 두었다가 판정 뒤 지웠습니다. 판정 구간별 시간과 연결 상태는 식별자 없이 Analytics Engine에 기록했습니다.",
+      "플레이테스트에서 두 문제가 나왔습니다. 사진 판정이 오래 걸리고 가끔 실패했는데, 기록을 보니 응답 없는 AI 요청을 40초까지 기다리는 구조가 원인이었습니다. 사진을 한 요청으로 묶고 느린 요청에는 두 번째 요청을 병렬로 띄우는 헤지와 재시도를 넣어, 판정 실패 18%가 0/49로, 상위 10% 판정 시간이 35초에서 9.4초로 줄었습니다. 또 재접속하면 같은 사람이 여러 명 생겼는데, 연결의 41%가 재연결이라는 기록을 근거로 설치 ID 기준 복구와 멱등 입장 처리를 넣었습니다.",
+      "지금은 지인 대상 웹 플레이테스트 단계이고, 11월에 모바일·PC 화면을 새로 설계했습니다. 앱스토어 출시는 남아 있습니다. 감으로 고치기보다 먼저 측정하고, 같은 지표로 고친 전후를 비교해야 한다는 걸 배웠습니다.",
     ],
     trackFocus: {
-      "quant": "194라운드 계측으로 지연 꼬리의 원인을 찾아 타임아웃·헤지 요청을 조정한, 측정 기반 지연 관리 경험을 강조",
+      "quant": "판정 시간 분포를 계측해 느린 꼬리의 원인을 찾고 헤지 요청으로 상위 10% 지연을 35초→9.4초로 줄인, 측정 기반 지연 관리 경험을 강조",
       "fin-it": "WebSocket 실시간 동기화, Durable Object 상태 관리, 재접속 멱등 처리 등 실시간 서비스 백엔드 경험을 강조",
-      "data-ai": "LLM 판정을 스키마 검증·호출 상한·프롬프트 버전 고정으로 관리한 LLM 제품화 경험을 강조",
+      "data-ai": "LLM 판정을 스키마 검증·호출 상한·헤지·백업 판정으로 관리하고, 플레이테스트 지표로 전후를 비교한 LLM 제품화 경험을 강조",
     },
     motivation:
       '"LLM에게 평가를 맡기면 게임에 예측할 수 없는 재미가 생기지 않을까"라는 생각에서 시작했습니다. 정답이 없는 놀이(누가 더 웃긴 답을 했는지, 누가 더 그럴듯하게 연기했는지)에 AI를 심판으로 세우면 매번 달라지는 판정과 한 줄 평이 재미 요소가 된다고 보고, 기획 회의를 거쳐 술자리 파티게임 컨셉으로 정했습니다. 앱스토어 출시를 목표로, 같은 방에 모인 사람들이 각자 휴대폰으로 답변·사진·투표를 내면 서버가 규칙을 집행하고 AI가 순위를 매기는 게임을 기획부터 배포까지 혼자 만들었습니다.',
     summary:
-      '브라우저에서 방을 만들고 친구들이 방 코드로 들어와, 방장이 고른 게임을 라운드로 진행하면 Gemini Flash-Lite가 답변·사진을 판정하고 서버가 누적·최종 순위를 확정합니다. 백엔드는 Cloudflare Worker 하나에 방 상태를 Durable Object로 두는 모듈형 모놀리스로 만들었고, 사진은 R2에 잠시 보관했다가 판정 뒤 지웁니다. 지인 플레이테스트용으로 aips.kr에 배포해 피드백을 받으며 고쳤습니다.',
+      '브라우저에서 방을 만들고 친구들이 방 코드나 초대 링크로 들어와, 방장이 고른 게임(AI 연기대결·밸런스게임·요리사·이름 짓기·그림 제목·그거 찍어와)을 라운드로 진행하면 Gemini Flash-Lite가 답변·사진을 판정하고 서버가 누적·최종 순위를 확정합니다. 백엔드는 Cloudflare Worker 하나에 방 상태를 Durable Object로 두는 모듈형 모놀리스로 만들었고, 사진은 R2에 잠시 보관했다가 판정 뒤 지웁니다. aips.kr에 배포해 2026년 8월부터 11월까지 플레이테스트 408판(2인 이상 184판, 51개 방)을 진행하며 지표를 보고 고쳤습니다.',
     summaryPoints: [
       'WebSocket 로비·상태 동기화, 나가기·방장 자동 이전·재입장, 방장 종료 후 고정되는 공동 최종 순위',
-      '서버 권위 규칙: 제출 마감·판정·점수 합산은 서버가 확정하고, AI 응답은 스키마로 검증',
-      '공유 암호·성인 확인·무료 Gemini 데이터 사용 고지를 넣은 플레이테스트 배포, iOS(SwiftUI) 출시용 아이콘·개인정보 매니페스트·클라우드 빌드 준비',
-      '구현 단계마다 외부 독립 검수 보고서를 받아 지적 사항을 닫는 방식으로 명세(v0.11)를 동결',
+      '서버 권위 규칙: 제출 마감·판정·점수 합산은 서버가 확정하고, AI 응답은 스키마로 검증. AI 장애 시 결정론 백업 판정',
+      '플레이테스트 지표: 판정 구간별 시간, Gemini 시도 결과, WebSocket 연결 상태를 식별자 없이 Analytics Engine에 기록하고 고친 시점 전후로 비교',
+      '2026-11 모바일·PC 화면 재설계(PC 방 패널, 초대 링크 입장, 키보드 위 입력창), 성인 확인·무료 Gemini 데이터 사용 고지, iOS(SwiftUI) 출시 준비',
     ],
     risksAndSolutions: [
       {
-        risk: '네트워크가 끊겼다 다시 들어오면 같은 사람이 방에 6명씩 생기는 문제',
-        competencies: ["state", "concurrency"],
-        cause: '입장할 때마다 새 참가자 ID를 발급했고, 세션이 탭 단위 sessionStorage에 있어 복구가 어려웠으며, 닉네임 검증이 실패해도 참가자가 먼저 화면에 노출돼 "유령 참가자"가 남았습니다.',
-        solution:
-          '같은 방+같은 설치 ID면 기존 참가자로 복구하고, 네트워크 재시도는 같은 입장 요청으로 처리(멱등)하며, 검증을 통과한 뒤에만 참가자를 노출하도록 바꿨습니다. 나간 참가자는 로비에서 숨기고, 방장에게 "깨끗한 새 방 만들기" 버튼을 항상 제공했습니다.',
-      },
-      {
-        risk: '사진 게임에서 "판정이 안 끝나고 오래 기다린다"는 플레이테스트 피드백',
+        risk: '사진 게임에서 "판정이 안 끝나고 오래 기다린다", 가끔 판정이 실패해 판이 무효가 됨',
         competencies: ["realtime", "performance"],
         cause:
-          '처음에는 계측 저장이 꺼져 있어 원인을 알 수 없었습니다. Analytics Engine을 연결해 구간별 시간을 기록해 보니(194라운드), 사진 용량이나 R2 읽기(평균 0.7초)가 아니라 응답 헤더조차 오지 않는 AI 요청을 40초 예산까지 기다리는 구조가 느린 꼬리를 만들고 있었습니다. 성공한 시도의 76%는 5초 안에 응답했습니다.',
-        solution: '두 번째 요청을 띄우는 헤지 지연을 5초→4초, 시도 타임아웃을 40초→22초, 전체 판정 타임아웃을 55초→40초로 조정하고, 다음 플레이테스트에서 같은 지표로 재측정하도록 기준을 남겼습니다.',
+          '판정 구간별 시간을 기록해 보니 사진 용량이나 R2 읽기(평균 0.7초)가 아니라, 응답 헤더조차 오지 않는 AI 요청을 40초 예산까지 기다리는 시도가 느린 꼬리와 실패를 만들고 있었습니다. 성공한 시도의 76%는 5초 안에 응답했습니다.',
+        solution:
+          '사진 전체를 Gemini 요청 하나로 묶고, 느린 요청에는 두 번째 요청을 병렬로 띄우는 헤지와 빨리 실패한 요청의 재시도를 넣었습니다. 이후 시도 타임아웃 40초→22초, 헤지 지연 5초→4초, 전체 판정 타임아웃 55초→40초로 조정했습니다. 글 게임에도 같은 헤지를 적용했습니다.',
+        result:
+          '고친 시점 전후 플레이테스트 기준 사진 판정 실패 27/148(18%) → 0/49, AI 실패로 무효가 된 판 9.6% → 0/52, 판정 시간 상위 10% 35초 → 9.4초(중앙값은 2.4초 → 2.7초로 비슷). 글 게임은 백업 판정 12.5% → 3.6%, 상위 10% 10.2초 → 5.0초.',
+      },
+      {
+        risk: '네트워크가 끊겼다 다시 들어오면 같은 사람이 방에 6명씩 생기는 문제',
+        competencies: ["state", "concurrency"],
+        cause: '입장할 때마다 새 참가자 ID를 발급했고, 세션이 탭 단위 sessionStorage에 있어 복구가 어려웠으며, 닉네임 검증이 실패해도 참가자가 먼저 화면에 노출돼 "유령 참가자"가 남았습니다. 기록상 WebSocket 연결 391번 중 41%가 재연결, 종료 376번 중 87%가 정상 종료 신호 없는 끊김(폰 잠금·앱 전환)이었습니다.',
+        solution:
+          '같은 방+같은 설치 ID면 기존 참가자로 복구하고, 네트워크 재시도는 같은 입장 요청으로 처리(멱등)하며, 검증을 통과한 뒤에만 참가자를 노출하도록 바꿨습니다. 나간 참가자는 로비에서 숨기고, 방장에게 "깨끗한 새 방 만들기" 버튼을 항상 제공했습니다.',
       },
       {
         risk: '무료 등급 API로 운영해 호출량·비용이 통제되지 않으면 서비스가 멈출 위험',
@@ -722,9 +806,9 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
       },
     ],
     limitations: [
-      '현재는 지인 대상 웹 플레이테스트 단계이며, iOS 앱스토어 출시와 Production용 Gemini 호출·사진 업로드·App Attest 연결은 남아 있습니다.',
-      '판정 품질(재미·공정성)은 플레이테스트 피드백과 합성 비교로만 확인했고, 정량적인 사용자 지표는 아직 없습니다.',
-      '무료 Gemini 등급은 호출 제한(429)과 응답 지연 편차가 있어, 유료 전환과 비용 구조를 함께 설계해야 합니다.',
+      '지표는 진행자가 모은 플레이테스트와 개발 테스트에서 나온 것이라 실사용 지표(재방문, 스스로 찾아온 방)는 아직 없고, 같은 기간에 판정 방식·프롬프트·화면이 계속 바뀌어 전체 합계는 현재 버전의 성능이 아닙니다.',
+      '고친 뒤 표본이 사진 판정 49건 수준으로 작고, 2026-11 화면 재설계 이후의 2인 이상 플레이는 아직 없습니다.',
+      'iOS 앱스토어 출시와 Production용 Gemini 호출·사진 업로드·App Attest 연결은 남아 있으며, 무료 Gemini 등급의 호출 제한(429)과 지연 편차 때문에 유료 전환과 비용 구조를 함께 설계해야 합니다.',
     ],
   },
   {
@@ -737,6 +821,14 @@ export const PROJECTS_STRUCTURED: ProjectStructure[] = [
     category: '온체인 데이터 엔지니어링 · 시장 괴리 연구',
     period: '2026.07',
     role: '개인 연구',
+    activity: {
+      type: "개인 프로젝트",
+      typeAlt: "기타",
+      organization: "개인 연구",
+      start: "2026.07",
+      end: "2026.07",
+      detail: "업비트·빗썸 핫월렛으로 들어오는 온체인 전송(이더리움·XRP·트론)을 입금 유입 지표로 수집하고, 10초 단위 김치프리미엄과 함께 이벤트 스터디를 하는 연구용 데이터 파이프라인을 만들었습니다. 출발지를 해외 거래소로 확정하려면 2-hop 자금 경로와 독립적인 주소 라벨이 모두 있어야 하도록 기준을 세웠습니다. API 페이지를 끝까지 받지 못했는데 커서가 넘어가 데이터가 조용히 빠지던 문제는 페이지 완주가 확인돼야 커서를 전진시키도록 고쳤고, 체인 재구성에 대비해 확정된 사건만 신호 계산에 사용했습니다. 현재 기준 주소 라벨이 과거 시점에 섞이는 미래 정보 문제를 막고, 사전등록한 전향 섀도우 검증으로 결과를 판단하도록 설계했습니다.",
+    },
     stack: ['Python', 'SQLite(WAL)·MariaDB', 'Etherscan·XRPL·Tron', 'Upbit·Bithumb·Binance 시세', 'GitHub Actions'],
     highlights: [
       { label: '프리미엄 스냅샷', value: '10초 단위' },
