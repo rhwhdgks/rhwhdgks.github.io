@@ -36,7 +36,11 @@ const lines = [
     `### ${t.label} — ${t.desc}`,
     '',
     `- 핵심 역량: ${compLabels(t.competencies)}`,
-    ...t.order.map((id, i) => `${i + 1}. ${byId[id].shortTitle} — ${byId[id].trackFocus[t.id]}`),
+    `- 포트폴리오 스토리라인: ${t.storyline}`,
+    ...t.order.map((id, i) => {
+      const tier = i < t.mainCount ? '주력' : '보조';
+      return `${i + 1}. **[${tier}]** ${byId[id].shortTitle} — ${byId[id].trackFocus[t.id]}`;
+    }),
     '',
   ]),
   '## 역량별 사례 찾기',
@@ -68,6 +72,10 @@ PROJECTS_STRUCTURED.forEach((p, i) => {
   );
   if (p.demoUrl) lines.push(`| 서비스 | [${p.demoUrl.replace(/^https?:\/\//, '')}](${p.demoUrl}) |`);
   lines.push(
+    '',
+    `**포트폴리오 1줄 요약:** ${p.portfolio.headline}`,
+    '',
+    `**추천 시각자료:** ${p.portfolio.visuals.join(' / ')}`,
     '',
     `**핵심 수치:** ${p.highlights.map((h) => `${h.label} **${h.value}**`).join(' · ')}`,
     '',
@@ -115,6 +123,11 @@ PROJECTS_STRUCTURED.forEach((p, i) => {
     lines.push('');
   });
   lines.push('### 4. 한계 (Limitations)', '', ...p.limitations.map((l) => `- ${l}`), '');
+  const qaKindLabel = { tradeoff: '설계 선택', defense: '한계 방어', deepdive: '심화 질의' };
+  lines.push('### 5. 예상 꼬리질문 & 방어 답변 (Q&A)', '');
+  p.interviewQA.forEach((qa, qi) => {
+    lines.push(`**Q${qi + 1} [${qaKindLabel[qa.kind]}]: ${qa.q}**`, '', `- ➔ A: ${qa.a}`, '');
+  });
 });
 
 const out = join(root, 'docs/PORTFOLIO_RESUME_CHEATSHEET.md');

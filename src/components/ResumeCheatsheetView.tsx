@@ -23,6 +23,11 @@ import {
   Target,
   X,
   ClipboardList,
+  MessageSquareMore,
+  Eye,
+  EyeOff,
+  Sparkles,
+  Image as ImageIcon,
 } from 'lucide-react';
 import {
   PROJECTS_STRUCTURED,
@@ -30,6 +35,7 @@ import {
   COMPETENCIES,
   JOB_TRACKS,
   CompetencyId,
+  InterviewQA,
   ProjectStructure,
   TrackId,
   formatProjectText,
@@ -38,23 +44,30 @@ import {
   projectCompetencies,
 } from '../data/resumeProjects';
 
-type SectionKey = 'pitch30' | 'pitch2min' | 'motivation' | 'summary' | 'risks' | 'limitations' | 'activity';
-type ViewLevel = 'pitch30' | 'pitch2min' | 'detail' | 'activity';
+type SectionKey = 'pitch30' | 'pitch2min' | 'motivation' | 'summary' | 'risks' | 'limitations' | 'qa' | 'activity';
+type ViewLevel = 'pitch30' | 'pitch2min' | 'detail' | 'qa' | 'activity';
 
 const VIEW_LEVELS: { id: ViewLevel; label: string; hint: string }[] = [
-  { id: 'pitch30', label: '30초 요약', hint: '면접 첫 프로젝트 소개용' },
+  { id: 'pitch30', label: '30초 요약', hint: '면접 첫 프로젝트 소개용 (125~155자)' },
   { id: 'pitch2min', label: '2분 설명', hint: '상황 → 구현 → 어려움 → 결과' },
-  { id: 'detail', label: '상세 4단계', hint: '자소서·꼬리질문 대비용' },
+  { id: 'detail', label: '상세 4단계', hint: '포트폴리오·자소서·꼬리질문 전체' },
+  { id: 'qa', label: '꼬리질문 Q&A', hint: '설계 선택·한계 방어·심화 질의 연습' },
   { id: 'activity', label: '지원서 경험란', hint: '학내외활동 양식: 활동구분 · 기관 및 조직명 · 활동기간 · 상세 내용' },
 ];
 
+const QA_KIND_META: Record<InterviewQA['kind'], { label: string; badgeClass: string }> = {
+  tradeoff: { label: '설계 선택', badgeClass: 'bg-indigo-100 text-indigo-800 border-indigo-200' },
+  defense: { label: '한계 방어', badgeClass: 'bg-rose-100 text-rose-800 border-rose-200' },
+  deepdive: { label: '심화 질의', badgeClass: 'bg-amber-100 text-amber-800 border-amber-200' },
+};
+
 const charCount = (text: string) => ({ withSpace: text.length, noSpace: text.replace(/\s/g, '').length });
 
-/** 발화 시간 추정: 한글 음절 + 영문·숫자(2자당 1음절)를 면접에서 차분히 말하는 속도(초당 약 5음절)로 계산 */
+/** 발화 시간 추정: 호흡·휴지를 포함해 면접에서 차분히 말하는 속도(초당 약 4.2음절)로 계산 */
 const estimateSeconds = (text: string): number => {
   const hangul = (text.match(/[가-힣]/g) || []).length;
   const latin = (text.match(/[A-Za-z0-9]+/g) || []).reduce((n, w) => n + Math.ceil(w.length / 2), 0);
-  return Math.max(5, Math.round((hangul + latin) / 5 / 5) * 5);
+  return Math.max(5, Math.round((hangul + latin) / 4.2 / 5) * 5);
 };
 
 const formatDuration = (sec: number) => (sec >= 60 ? `약 ${Math.floor(sec / 60)}분 ${sec % 60 ? `${sec % 60}초` : ''}`.trim() : `약 ${sec}초`);
@@ -81,6 +94,10 @@ const formatSectionText = (p: ProjectStructure, section: SectionKey): string => 
         .join('\n\n');
     case 'limitations':
       return p.limitations.map((l) => `- ${l}`).join('\n');
+    case 'qa':
+      return p.interviewQA
+        .map((qa, i) => `[Q${i + 1} · ${QA_KIND_META[qa.kind].label}] ${qa.q}\n➔ A: ${qa.a}`)
+        .join('\n\n');
     case 'activity':
       return [
         `활동구분: ${p.activity.type}${p.activity.typeAlt ? ` (목록에 없으면 ${p.activity.typeAlt})` : ''}`,
@@ -113,6 +130,8 @@ export const ResumeCheatsheetView: React.FC = () => {
   const [trackId, setTrackId] = useState<TrackId | null>(null);
   const [competency, setCompetency] = useState<CompetencyId | null>(null);
   const [viewLevel, setViewLevel] = useState<ViewLevel>('detail');
+  const [hideAnswers, setHideAnswers] = useState(false);
+  const [revealedQa, setRevealedQa] = useState<Record<string, boolean>>({});
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
     [PROJECTS_STRUCTURED[0].id]: true,
   });
@@ -151,6 +170,13 @@ export const ResumeCheatsheetView: React.FC = () => {
   const toggleAll = () => {
     const next = !allExpanded;
     setExpandedIds(Object.fromEntries(projects.map((p) => [p.id, next])));
+  };
+
+  const toggleQaReveal = (key: string) => setRevealedQa((prev) => ({ ...prev, [key]: !prev[key] }));
+
+  const toggleHideAnswers = () => {
+    setHideAnswers((prev) => !prev);
+    setRevealedQa({});
   };
 
   const selectTrack = (id: TrackId | null) => {
@@ -192,6 +218,50 @@ export const ResumeCheatsheetView: React.FC = () => {
   const renderSectionCopy = (p: ProjectStructure, section: SectionKey) =>
     renderCopy(formatSectionText(p, section), `copy-${p.id}-${section}`);
 
+  const renderQaList = (p: ProjectStructure, interactiveHide: boolean) => (
+    <div className="space-y-2.5 pl-0 sm:pl-5">
+      {p.interviewQA.map((qa, qIdx) => {
+        const qaKey = `${p.id}-qa-${qIdx}`;
+        const meta = QA_KIND_META[qa.kind];
+        const isVisible = !interactiveHide || !hideAnswers || Boolean(revealedQa[qaKey]);
+        return (
+          <div key={qaKey} className="p-3.5 rounded-lg bg-white border border-slate-200 space-y-2 shadow-sm">
+            <div className="flex items-start gap-2">
+              <span
+                className={`px-1.5 py-0.5 rounded-md border text-[10px] font-bold shrink-0 mt-0.5 ${meta.badgeClass}`}
+              >
+                {meta.label}
+              </span>
+              <p className="font-bold text-slate-900 text-xs sm:text-[13px] leading-relaxed">
+                Q{qIdx + 1}. {qa.q}
+              </p>
+              {interactiveHide && hideAnswers && (
+                <button
+                  type="button"
+                  onClick={() => toggleQaReveal(qaKey)}
+                  className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-slate-200 text-[11px] font-semibold text-slate-600 hover:text-indigo-700 hover:border-indigo-300 shrink-0 transition"
+                >
+                  {isVisible ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                  <span>{isVisible ? '숨기기' : '답변 보기'}</span>
+                </button>
+              )}
+            </div>
+            {isVisible ? (
+              <p className="text-slate-700 text-xs leading-relaxed pl-0 sm:pl-1">
+                <span className="font-semibold text-indigo-700 mr-1">➔ 답변 포인트:</span>
+                {qa.a}
+              </p>
+            ) : (
+              <p className="text-slate-400 text-xs italic pl-0 sm:pl-1">
+                소리 내어 답변해 본 뒤 우측 [답변 보기]를 눌러 핵심 논리와 수치를 확인하세요.
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+
   const competencyBadge = (c: CompetencyId, size: 'sm' | 'xs' = 'xs') => {
     const selected = competency === c;
     const inTrack = track?.competencies.includes(c);
@@ -225,11 +295,11 @@ export const ResumeCheatsheetView: React.FC = () => {
               <span>포트폴리오 자소서·면접 정리 (총 {PROJECTS_STRUCTURED.length}개 프로젝트)</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-              지원 직무를 고르고, 30초 · 2분 · 상세 · 지원서 경험란 중 필요한 형태로 꺼내 쓰기
+              지원 직무를 고르고, 30초 · 2분 · 상세 · 꼬리질문 · 지원서 경험란 중 필요한 형태로 꺼내 쓰기
             </h1>
             <p className="mt-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              직무를 고르면 프로젝트 순서와 "이 직무에서 강조할 점"이 바뀌고, 역량 칩을 누르면 그 역량을 보여 주는 사례만
-              모아 볼 수 있습니다. 상세 보기는 [계기] ➔ [요약] ➔ [위험상황 및 해결한 방법] ➔ [한계] 4단계입니다.
+              직무를 고르면 프로젝트 주력/보조 구분과 스토리라인이 표시되고, 역량 칩으로 해당 사례만 모아 볼 수 있습니다.
+              상세 보기는 [포트폴리오 가이드] + [계기] ➔ [요약] ➔ [위험상황·해결] ➔ [한계] ➔ [꼬리질문 Q&A] 구성입니다.
             </p>
             <p className="mt-2 text-[11px] text-slate-400">
               최종 정리 {CHEATSHEET_UPDATED_AT} · 근거: 각 저장소 README·문서와 작업 기록
@@ -255,6 +325,20 @@ export const ResumeCheatsheetView: React.FC = () => {
               >
                 {allExpanded ? <ChevronsDownUp className="w-4 h-4" /> : <ChevronsUpDown className="w-4 h-4" />}
                 <span>{allExpanded ? '모두 접기' : '모두 펼치기'}</span>
+              </button>
+            )}
+            {viewLevel === 'qa' && (
+              <button
+                type="button"
+                onClick={toggleHideAnswers}
+                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
+                  hideAnswers
+                    ? 'bg-amber-400 text-amber-950 hover:bg-amber-300'
+                    : 'bg-indigo-500/90 hover:bg-indigo-500 text-white'
+                }`}
+              >
+                {hideAnswers ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                <span>{hideAnswers ? '모든 답변 보이기' : '답변 가리고 연습'}</span>
               </button>
             )}
           </div>
@@ -348,11 +432,25 @@ export const ResumeCheatsheetView: React.FC = () => {
               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-[11px] sm:text-xs text-slate-200 transition"
             >
               <span className="font-bold text-indigo-300">#{idx + 1}</span>
+              {track && track.order.indexOf(p.id) < track.mainCount && (
+                <span className="px-1 py-0.2 rounded bg-emerald-400/20 text-emerald-300 text-[10px] font-bold">주력</span>
+              )}
               <span>{p.shortTitle}</span>
             </button>
           ))}
         </div>
       </div>
+
+      {/* 직무별 포트폴리오 스토리라인 안내 */}
+      {track && (
+        <div className="flex items-start gap-2.5 px-4 py-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-950">
+          <Sparkles className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+          <p className="leading-relaxed">
+            <strong className="mr-1.5">{track.label} 포트폴리오 구성 가이드:</strong>
+            {track.storyline}
+          </p>
+        </div>
+      )}
 
       {competency && (
         <div className="flex flex-wrap items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-50 border border-indigo-100 text-xs sm:text-sm text-indigo-900">
@@ -377,6 +475,8 @@ export const ResumeCheatsheetView: React.FC = () => {
           const isExp = !isDetail || Boolean(expandedIds[p.id]);
           const fullKey = `copy-${p.id}`;
           const comps = projectCompetencies(p);
+          const trackOrderIdx = track ? track.order.indexOf(p.id) : -1;
+          const isMainForTrack = track ? trackOrderIdx >= 0 && trackOrderIdx < track.mainCount : false;
           const risks = competency
             ? [...p.risksAndSolutions].sort(
                 (a, b) => Number(b.competencies.includes(competency)) - Number(a.competencies.includes(competency))
@@ -399,6 +499,17 @@ export const ResumeCheatsheetView: React.FC = () => {
                 <div className="space-y-1.5 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="px-2 py-0.5 rounded-md bg-indigo-600 text-white text-xs font-bold">#{idx + 1}</span>
+                    {track && (
+                      <span
+                        className={`px-2 py-0.5 rounded-md text-[11px] font-bold border ${
+                          isMainForTrack
+                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                            : 'bg-slate-100 text-slate-600 border-slate-200'
+                        }`}
+                      >
+                        {isMainForTrack ? '포트폴리오 주력' : '보조 · 추가질의'}
+                      </span>
+                    )}
                     <h3 className="text-base sm:text-lg font-bold text-slate-900">{p.title}</h3>
                     <span className="text-xs px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 font-semibold border border-indigo-100">
                       {p.category}
@@ -495,7 +606,7 @@ export const ResumeCheatsheetView: React.FC = () => {
                         {formatDuration(
                           estimateSeconds(viewLevel === 'pitch30' ? p.pitch30 : p.pitch2min.join(' '))
                         )}
-                        )
+                        {viewLevel === 'pitch30' ? ` · ${charCount(p.pitch30).withSpace}자` : ''})
                       </span>
                       {renderSectionCopy(p, viewLevel)}
                     </div>
@@ -510,6 +621,20 @@ export const ResumeCheatsheetView: React.FC = () => {
                         ))}
                       </div>
                     )}
+                  </div>
+                </div>
+              )}
+
+              {/* 꼬리질문 Q&A 연습 모드 */}
+              {viewLevel === 'qa' && (
+                <div className="p-5 sm:p-6 border-t border-slate-100 bg-white text-sm">
+                  <div className="p-4 rounded-xl bg-indigo-50/30 border border-indigo-100 space-y-3">
+                    <div className="flex items-center gap-1.5 font-bold text-indigo-950 text-xs sm:text-sm">
+                      <MessageSquareMore className="w-4 h-4 text-indigo-600 shrink-0" />
+                      <span>예상 꼬리질문 & 방어 답변 ({p.interviewQA.length}문항)</span>
+                      {renderSectionCopy(p, 'qa')}
+                    </div>
+                    {renderQaList(p, true)}
                   </div>
                 </div>
               )}
@@ -604,6 +729,27 @@ export const ResumeCheatsheetView: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* 포트폴리오 작성 가이드: 1줄 요약 + 추천 시각자료 */}
+                  <div className="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200/80 space-y-2">
+                    <div className="flex items-center gap-1.5 font-bold text-emerald-950 text-xs sm:text-sm">
+                      <Sparkles className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>포트폴리오 작성 가이드</span>
+                      {renderCopy(p.portfolio.headline, `copy-${p.id}-headline`, '1줄 요약만 복사')}
+                    </div>
+                    <p className="text-slate-900 font-semibold leading-relaxed pl-5">{p.portfolio.headline}</p>
+                    <div className="pl-5 space-y-1">
+                      <div className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800">
+                        <ImageIcon className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>첨부 추천 시각자료 · 증빙</span>
+                      </div>
+                      <ul className="pl-4 list-disc space-y-0.5 text-slate-700 text-xs leading-relaxed marker:text-emerald-500">
+                        {p.portfolio.visuals.map((v) => (
+                          <li key={v}>{v}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
                   {/* 1. 계기 */}
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
                     <div className="flex items-center gap-1.5 font-bold text-slate-900 text-xs sm:text-sm">
@@ -691,6 +837,16 @@ export const ResumeCheatsheetView: React.FC = () => {
                         <li key={l}>{l}</li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* 5. 예상 꼬리질문 & 방어 답변 */}
+                  <div className="p-4 rounded-xl bg-indigo-50/30 border border-indigo-200/80 space-y-3">
+                    <div className="flex items-center gap-1.5 font-bold text-indigo-950 text-xs sm:text-sm">
+                      <MessageSquareMore className="w-4 h-4 text-indigo-600 shrink-0" />
+                      <span>5. 예상 꼬리질문 & 방어 답변 (Q&A)</span>
+                      {renderSectionCopy(p, 'qa')}
+                    </div>
+                    {renderQaList(p, false)}
                   </div>
                 </div>
               )}
