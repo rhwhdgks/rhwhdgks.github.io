@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-22 02:54 KST",
-  "totalCount": 142,
+  "updatedAt": "2026-11-22 12:35 KST",
+  "totalCount": 145,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 11,
     "금융사 채용사이트": 13,
     "링커리어": 75,
-    "기업 채용사이트": 25,
+    "기업 채용사이트": 28,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 2,
     "토스 채용": 1
@@ -1486,6 +1486,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-22",
+      "deadline": "2026-12-11",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -1526,26 +1546,6 @@
       "location": "경기 용인시",
       "reward": "IT 신입/인턴",
       "summary": "인텍에프에이 | 제품설계 신입사원 채용 | 기술스택: ERP, Autocad",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-22",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
       "isFeatured": true
     },
     {
@@ -1699,7 +1699,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-22",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -2682,6 +2682,65 @@
       "location": "국내",
       "reward": "핀테크 채용",
       "summary": "토스 | Treasury Manager(Junior) | 주니어",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14581",
+      "title": "생성형 모델 Research Engineer (Post-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14581",
+      "startDate": "2026-11-22",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | 생성형 모델 Research Engineer (Post-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14558",
+      "title": "LLM Research Engineer (Post-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
+      "startDate": "2026-11-22",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14559",
+      "title": "LLM Research Engineer (Pre-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14559",
+      "startDate": "2026-11-22",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | LLM Research Engineer (Pre-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {
