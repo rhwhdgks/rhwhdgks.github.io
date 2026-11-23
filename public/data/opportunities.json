@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-23 17:25 KST",
-  "totalCount": 138,
+  "updatedAt": "2026-11-23 17:28 KST",
+  "totalCount": 139,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 10,
     "금융사 채용사이트": 11,
-    "링커리어": 75,
+    "링커리어": 76,
     "기업 채용사이트": 25,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 2,
@@ -52,10 +52,7 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | AI 운영 어시스턴트 (체험형 인턴)",
-      "isFeatured": true,
-      "aliases": [
-        "linkareer-363521"
-      ]
+      "isFeatured": true
     },
     {
       "id": "linkareer-364171",
@@ -1168,6 +1165,26 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "주식회사 당근마켓 | [주식회사 당근마켓] Software Engineer, Backend (채용전환형) - 피드 인프라 | 직무: 백엔드/서버개발",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366343",
+      "title": "(주)텐세그리티자산운용 투자운용본부 신입사원 채용공고",
+      "organization": "텐세그리티자산운용",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366343",
+      "startDate": "2026-11-23",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "신입",
+        "자산운용/펀드"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "텐세그리티자산운용 | (주)텐세그리티자산운용 투자운용본부 신입사원 채용공고 | 직무: 자산운용/펀드",
       "isFeatured": true
     },
     {
