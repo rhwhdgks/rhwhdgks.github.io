@@ -2057,11 +2057,16 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
     base = dict(primary if p_score >= s_score else secondary)
     other = secondary if p_score >= s_score else primary
 
-    # 태그 병합
+    # 태그 병합 (흡수된 공고의 전환/채용연계 성격도 잃지 않도록 보존)
     merged_tags = list(base.get("tags", []))
     for tag in other.get("tags", []):
         if tag not in merged_tags:
             merged_tags.append(tag)
+    other_text = f"{other.get('title', '')} {other.get('summary', '')} {' '.join(other.get('tags', []))}"
+    if any(k in other_text for k in ("채용연계", "채용전환", "전환형", "채용형 인턴", "정규직 전환")) and not any(
+        "전환" in t or "연계" in t for t in merged_tags
+    ):
+        merged_tags.insert(min(1, len(merged_tags)), "채용전환형")
     base["tags"] = merged_tags[:5]
 
     # 더 정확하거나 구체적인 마감일 유지

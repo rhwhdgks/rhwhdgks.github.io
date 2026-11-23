@@ -23,6 +23,7 @@ import {
   EyeOff,
   RotateCcw,
   FileText,
+  GraduationCap,
 } from 'lucide-react';
 import {
   CATEGORY_META,
@@ -46,10 +47,12 @@ import { DismissedModal } from './components/DismissedModal';
 import { ResumeCheatsheetView } from './components/ResumeCheatsheetView';
 import { FINANCE_GROUPS, FinanceGroup, matchesFinanceGroup } from './utils/financeGroup';
 import { createDismissMatcher, makeDismissKey } from './utils/dismissMatch';
+import { isStudentEligible } from './utils/studentFilter';
 
 const BOOKMARK_STORAGE_KEY = 'career_radar_bookmarks_v1';
 const PROGRESS_STORAGE_KEY = 'career_radar_progress_v1';
 const DISMISSED_STORAGE_KEY = 'career_radar_dismissed_v1';
+const STUDENT_ONLY_STORAGE_KEY = 'career_radar_student_only_v1';
 
 const POPULAR_KEYWORDS = [
   '인턴',
@@ -79,6 +82,13 @@ export function App() {
   const [hideClosed, setHideClosed] = useState<boolean>(true);
   const [onlyUrgent, setOnlyUrgent] = useState<boolean>(false);
   const [onlyBookmarked, setOnlyBookmarked] = useState<boolean>(false);
+  const [studentOnly, setStudentOnly] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(STUDENT_ONLY_STORAGE_KEY) !== 'false';
+    } catch {
+      return true;
+    }
+  });
 
   // 1) 내가 진행 중인 공고/활동 목록 (localStorage)
   const [progressEntries, setProgressEntries] = useState<UserProgressEntry[]>(() => {
@@ -140,6 +150,14 @@ export function App() {
   }, [bookmarkedIds]);
 
   useEffect(() => {
+    try {
+      localStorage.setItem(STUDENT_ONLY_STORAGE_KEY, String(studentOnly));
+    } catch {
+      // ignore
+    }
+  }, [studentOnly]);
+
+  useEffect(() => {
     const loadOpportunities = async () => {
       setLoading(true);
       try {
@@ -177,6 +195,14 @@ export function App() {
     const raw = data?.items || [];
     return raw.filter((item) => !isDismissed(item));
   }, [data, isDismissed]);
+
+  // 재학 중 지원 가능한 비연계 인턴 · 해커톤/공모전만 보기 필터
+  const scopedAllItems = useMemo(
+    () => (studentOnly ? visibleAllItems.filter(isStudentEligible) : visibleAllItems),
+    [visibleAllItems, studentOnly]
+  );
+
+  const hiddenByStudentFilterCount = visibleAllItems.length - scopedAllItems.length;
 
   // 공고 지우기 (영구 숨김) 핸들러
   const handleDismissItem = (item: OpportunityItem) => {
@@ -265,7 +291,7 @@ export function App() {
     );
   };
 
-  // 통계 계산 (숨긴 공고 제외 기준)
+  // 통계 계산 (숨긴 공고 및 재학 중 필터 반영)
   const stats = useMemo(() => {
     let activeCount = 0;
     let urgentCount = 0;
@@ -273,7 +299,7 @@ export function App() {
     let hackathonContestCount = 0;
     let kofiaCount = 0;
 
-    for (const item of visibleAllItems) {
+    for (const item of scopedAllItems) {
       const dday = getDdayInfo(item.deadline, item.isAlwaysOpen);
       const isClosed = dday.status === 'closed';
       if (!isClosed) {
@@ -294,40 +320,40 @@ export function App() {
       hackathonContestCount,
       kofiaCount,
     };
-  }, [visibleAllItems]);
+  }, [scopedAllItems]);
 
   // 카테고리별 개수
   const categoryCounts = useMemo(() => {
     const counts: Record<CategoryType, number> = {
-      all: visibleAllItems.length,
+      all: scopedAllItems.length,
       intern: 0,
       hackathon: 0,
       contest: 0,
       kofia: 0,
       activity: 0,
     };
-    for (const it of visibleAllItems) {
+    for (const it of scopedAllItems) {
       if (counts[it.category] !== undefined) {
         counts[it.category]++;
       }
     }
     return counts;
-  }, [visibleAllItems]);
+  }, [scopedAllItems]);
 
   // 출처 목록
   const availableSources = useMemo(() => {
     const map: Record<string, number> = {};
-    for (const it of visibleAllItems) {
+    for (const it of scopedAllItems) {
       map[it.source] = (map[it.source] || 0) + 1;
     }
     return Object.entries(map).sort((a, b) => b[1] - a[1]);
-  }, [visibleAllItems]);
+  }, [scopedAllItems]);
 
   // 필터링 및 정렬된 아이템
   const filteredItems = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
 
-    const filtered = visibleAllItems.filter((item) => {
+    const filtered = scopedAllItems.filter((item) => {
       const dday = getDdayInfo(item.deadline, item.isAlwaysOpen);
 
       if (hideClosed && dday.status === 'closed') {
@@ -410,7 +436,7 @@ export function App() {
       return startB.localeCompare(startA);
     });
   }, [
-    visibleAllItems,
+    scopedAllItems,
     searchQuery,
     hideClosed,
     onlyUrgent,
@@ -424,11 +450,11 @@ export function App() {
 
   // 금융권 탭 세부 필터별 개수
   const financeGroupCounts = useMemo(() => {
-    const finance = visibleAllItems.filter((it) => it.category === 'kofia');
+    const finance = scopedAllItems.filter((it) => it.category === 'kofia');
     return Object.fromEntries(
       FINANCE_GROUPS.map((g) => [g.id, finance.filter((it) => matchesFinanceGroup(it, g.id)).length])
     ) as Record<FinanceGroup, number>;
-  }, [visibleAllItems]);
+  }, [scopedAllItems]);
 
   const resetFilters = () => {
     setSelectedCategory('all');
@@ -727,7 +753,7 @@ export function App() {
                   : 'text-slate-400'
               }`}
             >
-              안 볼 공고 제외 전체
+              {studentOnly ? '비연계 인턴 · 대회만' : '안 볼 공고 제외 전체'}
             </div>
           </button>
 
@@ -1016,7 +1042,7 @@ export function App() {
                     onChange={(e) => setSelectedSource(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
-                    <option value="all">전체 수집 출처 ({visibleAllItems.length})</option>
+                    <option value="all">전체 수집 출처 ({scopedAllItems.length})</option>
                     {availableSources.map(([src, cnt]) => (
                       <option key={src} value={src}>
                         {src} ({cnt})
@@ -1063,7 +1089,22 @@ export function App() {
                   })}
                 </div>
 
-                <div className="flex items-center gap-4 text-xs font-medium text-slate-600">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-slate-600">
+                  <button
+                    type="button"
+                    onClick={() => setStudentOnly((prev) => !prev)}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-bold transition ${
+                      studentOnly
+                        ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-xs'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                    }`}
+                    title="신입 정규직·채용연계/전환형 인턴·대외활동 제외 (체험형/비연계 인턴 + 해커톤/공모전만 보기)"
+                  >
+                    <GraduationCap
+                      className={`w-3.5 h-3.5 ${studentOnly ? 'text-emerald-600' : 'text-slate-400'}`}
+                    />
+                    <span>재학 중 가능만 (비연계 인턴·대회)</span>
+                  </button>
                   <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
                     <input
                       type="checkbox"
@@ -1087,14 +1128,25 @@ export function App() {
             </section>
 
             {/* 결과 헤더 */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h2 className="text-base sm:text-lg font-bold text-slate-900">
                   {CATEGORY_META[selectedCategory].label}
                 </h2>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
                   {filteredItems.length}건
                 </span>
+                {studentOnly && hiddenByStudentFilterCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setStudentOnly(false)}
+                    className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition"
+                    title="클릭하면 신입·채용연계형·대외활동까지 모두 표시합니다"
+                  >
+                    <span>신입·채용연계·대외활동 {hiddenByStudentFilterCount}건 제외됨</span>
+                    <span className="underline font-bold">전체 보기</span>
+                  </button>
+                )}
                 {(selectedCategory !== 'all' ||
                   selectedSource !== 'all' ||
                   financeGroup !== 'all' ||
@@ -1153,15 +1205,28 @@ export function App() {
                   조건에 맞는 공고가 없습니다
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 mb-4">
-                  검색어나 카테고리 필터를 변경해 보세요.
+                  {studentOnly
+                    ? '재학 중 가능(비연계 인턴·해커톤/공모전) 필터가 켜져 있거나 검색 조건에 맞는 공고가 없습니다.'
+                    : '검색어나 카테고리 필터를 변경해 보세요.'}
                 </p>
-                <button
-                  type="button"
-                  onClick={resetFilters}
-                  className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition"
-                >
-                  전체 공고 보기
-                </button>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {studentOnly && (
+                    <button
+                      type="button"
+                      onClick={() => setStudentOnly(false)}
+                      className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition"
+                    >
+                      신입·전환형·대외활동 포함 전체 보기
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition"
+                  >
+                    전체 공고 보기
+                  </button>
+                </div>
               </div>
             ) : (
               /* 카드 그리드 (리스트 뷰) */
