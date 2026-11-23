@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-23 17:28 KST",
-  "totalCount": 139,
+  "updatedAt": "2026-11-23 19:14 KST",
+  "totalCount": 141,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 10,
-    "금융사 채용사이트": 11,
-    "링커리어": 76,
+    "금융사 채용사이트": 12,
+    "링커리어": 77,
     "기업 채용사이트": 25,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 2,
@@ -129,6 +129,7 @@
       "isAlwaysOpen": false,
       "tags": [
         "인턴",
+        "채용전환형",
         "AI/데이터",
         "대기업",
         "게임개발/기획"
@@ -270,6 +271,26 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "네이버클라우드 주식회사 | [NAVER Cloud] 글로벌 신사업 개발 (체험형 인턴)",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-busanbank-134545",
+      "title": "(접수기간 연장)부산은행 신용협동조합 및 노동조합 사무직원 채용 공고",
+      "organization": "부산은행",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://busanbank.recruiter.co.kr/career/jobs/134545",
+      "startDate": "2026-11-16",
+      "deadline": "2026-11-26",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "경력무관"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "부산은행 | (접수기간 연장)부산은행 신용협동조합 및 노동조합 사무직원 채용 공고 | 경력무관",
       "isFeatured": true
     },
     {
@@ -644,7 +665,8 @@
       "deadline": "2026-11-30",
       "isAlwaysOpen": false,
       "tags": [
-        "인턴"
+        "인턴",
+        "채용전환형"
       ],
       "location": "국내",
       "reward": "인턴/신입",
@@ -1060,6 +1082,7 @@
       "isAlwaysOpen": false,
       "tags": [
         "인턴",
+        "채용전환형",
         "백엔드",
         "대기업",
         "백엔드/서버개발"
@@ -2227,25 +2250,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-363578",
-      "title": "[도루코] (상시) AI 개발 및 PoC 엔지니어 인턴사원(6개월) 상시채용",
-      "organization": "도루코",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363578",
-      "startDate": "2026-11-23",
-      "deadline": "2027-02-09",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "도루코 | [도루코] (상시) AI 개발 및 PoC 엔지니어 인턴사원(6개월) 상시채용 | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-363702",
       "title": "[슈퍼캣] [도깨비의세계] 서버 프로그래머 모집 (신입/경력)",
       "organization": "슈퍼캣",
@@ -2263,6 +2267,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "슈퍼캣 | [슈퍼캣] [도깨비의세계] 서버 프로그래머 모집 (신입/경력) | 직무: 백엔드/서버개발, 게임개발/기획",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-363578",
+      "title": "[도루코] (상시) AI 개발 및 PoC 엔지니어 인턴사원(6개월) 상시채용",
+      "organization": "도루코",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/363578",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "도루코 | [도루코] (상시) AI 개발 및 PoC 엔지니어 인턴사원(6개월) 상시채용 | 직무: AI/ML엔지니어",
       "isFeatured": true
     },
     {
@@ -2436,6 +2459,25 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "기어세컨드 | [기어세컨드] 데이터 엔지니어 | 직무: 데이터분석",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366404",
+      "title": "[채널톡] Security Engineer Intern",
+      "organization": "채널코퍼레이션",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366404",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-21",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "DevOps/클라우드/보안"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "채널코퍼레이션 | [채널톡] Security Engineer Intern | 직무: DevOps/클라우드/보안",
       "isFeatured": true
     },
     {
