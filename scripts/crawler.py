@@ -1936,12 +1936,45 @@ ENG_KOR_MAP = {
     "nexon": "넥슨",
     "kakao": "카카오",
     "naver": "네이버",
+    "labs": "랩스",
+    "webtoon": "웹툰",
+    "cloud": "클라우드",
+    "financial": "파이낸셜",
+    "pay": "페이",
+    "bank": "뱅크",
     "line": "라인",
     "toss": "토스",
+    "daangn": "당근",
+    "mobis": "모비스",
+    "netmarble": "넷마블",
+    "krafton": "크래프톤",
+    "hyundai": "현대",
+    "samsung": "삼성",
+    "hanwha": "한화",
+    "shinhan": "신한",
+    "woori": "우리",
+    "hana": "하나",
     "sk": "에스케이",
     "kt": "케이티",
     "lg": "엘지",
 }
+
+ORG_ALIASES = {
+    "당근마켓": "당근",
+}
+
+DEDUP_STOPWORDS = {
+    "채용", "모집", "공고", "인턴", "인턴십", "신입", "초급", "사원", "정규직",
+    "전환형", "채용연계형", "채용전환형", "체험형", "부문", "분야", "상시", "수시",
+    "영입", "참가자", "지원자", "안내", "공모", "모집안내",
+}
+
+_BRACKET_BOILERPLATE = (
+    "마감", "접수", "서류", "신입", "경력", "초급", "인턴", "채용", "모집",
+    "전환", "체험", "상시", "수시", "상반기", "하반기", "정규직", "계약직",
+    "병특", "전문연구", "서울", "판교", "강남", "분당", "수원", "청주",
+    "대전", "부산", "제주", "미국", "개월", "무관",
+)
 
 
 def clean_org_for_dedup(name: str) -> str:
@@ -1951,20 +1984,52 @@ def clean_org_for_dedup(name: str) -> str:
     t = re.sub(r"\[.*?\]|\(.*?\)", "", t)
     t = re.sub(r"\(주\)|주식회사|\(유\)|유한회사|주\)", "", t)
     t = re.sub(r"코리아|한국|그룹", "", t)
-    t = re.sub(r"[^a-zA-Z0-9가-힣]", "", t)
-    return t.strip()
+    t = re.sub(r"[^a-zA-Z0-9가-힣]", "", t).strip()
+    return ORG_ALIASES.get(t, t)
+
+
+def _is_boilerplate_bracket(inner: str, org_clean: str) -> bool:
+    low = inner.lower().strip()
+    if not low:
+        return True
+    if re.match(r"^\s*(주|유)\s*$", low):
+        return True
+    if org_clean and len(org_clean) >= 2 and org_clean in clean_org_for_dedup(low):
+        return True
+    if "~" in low or re.search(r"\d{1,2}\s*/\s*\d{1,2}|\d{1,2}월|\d{4}[.\-/]\d{1,2}", low):
+        return True
+    return any(bw in low for bw in _BRACKET_BOILERPLATE)
+
+
+def _strip_boilerplate_brackets(title: str, org_clean: str) -> str:
+    def _repl(m: re.Match) -> str:
+        inner = m.group(0)[1:-1]
+        return " " if _is_boilerplate_bracket(inner, org_clean) else f" {inner} "
+
+    return re.sub(r"\[[^\]]*\]|\([^)]*\)", _repl, title)
 
 
 def clean_title_for_dedup(title: str, org_clean: str) -> str:
-    t = title.lower().replace("년도", "년")
-    t = re.sub(r"\[.*?\]|\(.*?\)", "", t)
+    t = _strip_boilerplate_brackets(title.lower().replace("년도", "년"), org_clean)
     if org_clean and len(org_clean) >= 2:
-        t = t.replace(org_clean, "")
-    stopwords = ["채용", "모집", "공고", "인턴", "신입", "사원", "정규직", "전환형", "채용연계형", "체험형", "부문", "분야", "상시", "수시", "영입"]
-    for sw in stopwords:
-        t = t.replace(sw, "")
+        t = t.replace(org_clean, " ")
+    for sw in sorted(DEDUP_STOPWORDS, key=len, reverse=True):
+        t = t.replace(sw, " ")
     t = re.sub(r"[^a-zA-Z0-9가-힣]", "", t)
     return t.strip()
+
+
+def _title_core_tokens(title: str, org_clean: str) -> set:
+    t = _strip_boilerplate_brackets(title.lower().replace("년도", "년"), org_clean)
+    tokens = set(re.findall(r"[a-z0-9가-힣]{2,}", t))
+    out = set()
+    for tok in tokens:
+        if tok in DEDUP_STOPWORDS:
+            continue
+        if org_clean and len(org_clean) >= 2 and tok == org_clean:
+            continue
+        out.add(tok)
+    return out
 
 
 def _same_source_title(title: str) -> str:
@@ -1972,7 +2037,7 @@ def _same_source_title(title: str) -> str:
 
 
 def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) -> Dict[str, Any]:
-    """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합"""
+    """플랫폼 간 중복 공고 발생 시 더 공신력 있거나 상세한 정보로 병합 (흡수된 ID를 aliases로 보존)"""
     source_priority = {
         "금융투자협회(KOFIA)": 4,
         "금융사 채용사이트": 4,
@@ -1989,7 +2054,7 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
     p_score = source_priority.get(primary.get("source", ""), 0)
     s_score = source_priority.get(secondary.get("source", ""), 0)
 
-    base = primary if p_score >= s_score else secondary
+    base = dict(primary if p_score >= s_score else secondary)
     other = secondary if p_score >= s_score else primary
 
     # 태그 병합
@@ -2003,6 +2068,14 @@ def merge_duplicate_items(primary: Dict[str, Any], secondary: Dict[str, Any]) ->
     if not base.get("deadline") and other.get("deadline"):
         base["deadline"] = other["deadline"]
         base["isAlwaysOpen"] = False
+
+    # 흡수된 보조 ID 보존 (프론트엔드 숨김 상태 유지용)
+    aliases: List[str] = []
+    for cand in list(base.get("aliases") or []) + [other.get("id")] + list(other.get("aliases") or []):
+        if cand and cand != base.get("id") and cand not in aliases:
+            aliases.append(cand)
+    if aliases:
+        base["aliases"] = aliases
 
     return base
 
@@ -2071,18 +2144,18 @@ def main() -> None:
         item_a = valid_items[i]
         org_a = clean_org_for_dedup(item_a.get("organization", ""))
         title_a = clean_title_for_dedup(item_a.get("title", ""), org_a)
+        tok_a = _title_core_tokens(item_a.get("title", ""), org_a)
+        dl_a = item_a.get("deadline")
 
         merged_item = item_a
         for j in range(i + 1, len(valid_items)):
             if j in seen_indices:
                 continue
             item_b = valid_items[j]
-            # 같은 출처 안에서는 앞쪽 [회사명]을 뺀 제목이 같을 때만 중복 (괄호 속 트랙·직무만 다른 별개 공고 보호)
-            if item_a.get("source") == item_b.get("source") and \
-                    _same_source_title(item_a.get("title", "")) != _same_source_title(item_b.get("title", "")):
-                continue
             org_b = clean_org_for_dedup(item_b.get("organization", ""))
             title_b = clean_title_for_dedup(item_b.get("title", ""), org_b)
+            tok_b = _title_core_tokens(item_b.get("title", ""), org_b)
+            dl_b = item_b.get("deadline")
 
             org_match = False
             if org_a == org_b:
@@ -2090,14 +2163,28 @@ def main() -> None:
             elif org_a and org_b and (org_a in org_b or org_b in org_a):
                 org_match = True
 
-            title_match = False
-            if title_a == title_b and len(title_a) >= 2:
-                title_match = True
-            elif title_a and title_b and len(title_a) >= 4 and len(title_b) >= 4:
-                if title_a in title_b or title_b in title_a:
-                    title_match = True
+            if not org_match:
+                continue
 
-            if org_match and title_match:
+            is_dup = False
+            if item_a.get("source") == item_b.get("source"):
+                # 같은 기관·같은 출처에서는 앞쪽 [회사명]을 뺀 제목이 같거나, 마감일이 같고 핵심 토큰이 100% 일치할 때만 병합
+                if _same_source_title(item_a.get("title", "")) == _same_source_title(item_b.get("title", "")):
+                    is_dup = True
+                elif dl_a and dl_a == dl_b and len(tok_a) >= 3 and tok_a == tok_b:
+                    is_dup = True
+            else:
+                if title_a == title_b and len(title_a) >= 2:
+                    is_dup = True
+                elif title_a and title_b and len(title_a) >= 4 and len(title_b) >= 4:
+                    if title_a in title_b or title_b in title_a:
+                        is_dup = True
+                if not is_dup and tok_a and tok_b:
+                    inter = tok_a & tok_b
+                    if len(inter) >= 3 and (len(inter) / len(tok_a | tok_b)) >= 0.75:
+                        is_dup = True
+
+            if is_dup:
                 seen_indices.add(j)
                 merged_item = merge_duplicate_items(merged_item, item_b)
 

@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-23 15:33 KST",
-  "totalCount": 139,
+  "updatedAt": "2026-11-23 17:25 KST",
+  "totalCount": 138,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 10,
     "금융사 채용사이트": 11,
     "링커리어": 75,
     "기업 채용사이트": 25,
-    "점핏(Jumpit)": 15,
+    "점핏(Jumpit)": 14,
     "위비티(Wevity)": 2,
     "토스 채용": 1
   },
@@ -52,7 +52,10 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | AI 운영 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-363521"
+      ]
     },
     {
       "id": "linkareer-364171",
@@ -112,7 +115,10 @@
       "location": "국내",
       "reward": "증권 채용",
       "summary": "SK증권 | [SK증권] 체험형 Internship 시행",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-364878"
+      ]
     },
     {
       "id": "netmarble-1899",
@@ -133,7 +139,10 @@
       "location": "구로",
       "reward": "인턴/신입",
       "summary": "넷마블네오 | ★ 2026 넷마블네오 AI 인턴십 채용 (11/24 마감) | 인턴",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-362416"
+      ]
     },
     {
       "id": "recruiter-kakaobank-271437",
@@ -155,7 +164,10 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | DevOps 엔지니어 (채용연계형 인턴)",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-363127"
+      ]
     },
     {
       "id": "recruiter-kakaobank-272246",
@@ -177,7 +189,10 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | AI 서비스 기획 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-363960"
+      ]
     },
     {
       "id": "recruiter-knbank-134697",
@@ -230,12 +245,17 @@
       "isAlwaysOpen": false,
       "tags": [
         "경력무관",
-        "대기업"
+        "대기업",
+        "신입",
+        "시스템/ERP개발"
       ],
       "location": "성남·서울",
       "reward": "인턴/신입",
       "summary": "NAVER LABS | [네이버랩스] Indoor Robot Software Engineer | 경력무관",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-365535"
+      ]
     },
     {
       "id": "linkareer-364555",
@@ -253,25 +273,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "네이버클라우드 주식회사 | [NAVER Cloud] 글로벌 신사업 개발 (체험형 인턴)",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-365535",
-      "title": "[네이버랩스] Indoor Robot Software Engineer",
-      "organization": "네이버랩스",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/365535",
-      "startDate": "2026-11-23",
-      "deadline": "2026-11-25",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "시스템/ERP개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "네이버랩스 | [네이버랩스] Indoor Robot Software Engineer | 직무: 시스템/ERP개발",
       "isFeatured": true
     },
     {
@@ -351,7 +352,10 @@
       "location": "서울",
       "reward": "인턴/신입",
       "summary": "당근 | Software Engineer, Backend (인턴) - 서비스 운영 (운영개발) | 인턴",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-365947"
+      ]
     },
     {
       "id": "gh-daangn-8206277003",
@@ -372,7 +376,10 @@
       "location": "서울",
       "reward": "인턴/신입",
       "summary": "당근 | Software Engineer, Backend(인턴) - 숏폼 | 인턴",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-365314"
+      ]
     },
     {
       "id": "recruiter-ligdna-117192",
@@ -645,7 +652,10 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "모두닥 주식회사 | [채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-361674"
+      ]
     },
     {
       "id": "linkareer-362988",
@@ -686,29 +696,10 @@
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | 금융업무 기획 및 운영 담당자 (채용연계형 인턴)",
-      "isFeatured": true
-    },
-    {
-      "id": "jumpit-55451145",
-      "title": "IT/AI부문(전문연구요원 포함)신입",
-      "organization": "연합인포맥스",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55451145",
-      "startDate": "2026-11-23",
-      "deadline": "2026-12-01",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "인공지능/머신러닝",
-        "Azure DevOps",
-        "Python",
-        "AWS"
-      ],
-      "location": "서울 종로구",
-      "reward": "IT 신입/인턴",
-      "summary": "연합인포맥스 | IT/AI부문(전문연구요원 포함)신입 | 기술스택: Azure DevOps, Python, AWS, GCP, AZURE",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-365399"
+      ]
     },
     {
       "id": "linkareer-365369",
@@ -749,6 +740,24 @@
       "location": "국내",
       "reward": "금융권 채용",
       "summary": "은행권청년창업재단 디캠프 | [은행권청년창업재단] 2027년 상반기 디캠프 인턴 채용 | 직무: 프론트엔드개발, 백엔드/서버개발, iOS/Android앱개발, 시스템/ERP개발, DevOps/클라우드/보안, 데이터분석, IT기획/PM/PO, QA/기술지원, UI/UX디자인, 해외영업, 영상촬영/편집, 광고제작/카피라이터, 무역영업/해외영업",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366277",
+      "title": "[연합인포맥스] IT·AI 개발 부문 신입/경력 사원 채용",
+      "organization": "연합인포맥스",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366277",
+      "startDate": "2026-11-23",
+      "deadline": "2026-12-02",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "연합인포맥스 | [연합인포맥스] IT·AI 개발 부문 신입/경력 사원 채용",
       "isFeatured": true
     },
     {
@@ -948,26 +957,10 @@
       "location": "국내",
       "reward": "해커톤/경진대회",
       "summary": "현대모비스 | 현대모비스 로보틱스 경진대회 참가자 모집(2027 MOBIS Robotics Challenge) | 직무: 과학/공학",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-364594",
-      "title": "2027 MOBIS Robotics Challenge 현대모비스 로보틱스 경진대회",
-      "organization": "현대모비스",
-      "category": "hackathon",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/364594",
-      "startDate": "2026-11-23",
-      "deadline": "2026-12-04",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "과학/공학"
-      ],
-      "location": "국내",
-      "reward": "해커톤/경진대회",
-      "summary": "현대모비스 | 2027 MOBIS Robotics Challenge 현대모비스 로보틱스 경진대회 | 직무: 과학/공학",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-364594"
+      ]
     },
     {
       "id": "jumpit-55504419",
@@ -989,29 +982,10 @@
       "location": "서울 송파구",
       "reward": "IT 신입/인턴",
       "summary": "드림디엔엠 | 전송망 관제 및 운영 초급 채용 | 기술스택: Router, Network",
-      "isFeatured": true
-    },
-    {
-      "id": "jumpit-55504383",
-      "title": "전송망 관제 및 운영 신입 채용",
-      "organization": "드림디엔엠",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55504383",
-      "startDate": "2026-11-23",
-      "deadline": "2026-12-05",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "정보보안 담당자",
-        "devops/시스템 엔지니어",
-        "Router",
-        "Network"
-      ],
-      "location": "서울 송파구",
-      "reward": "IT 신입/인턴",
-      "summary": "드림디엔엠 | 전송망 관제 및 운영 신입 채용 | 기술스택: Router, Network",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "jumpit-55504383"
+      ]
     },
     {
       "id": "jumpit-55496355",
@@ -1090,12 +1064,16 @@
       "tags": [
         "인턴",
         "백엔드",
-        "대기업"
+        "대기업",
+        "백엔드/서버개발"
       ],
       "location": "성남·서울",
       "reward": "인턴/신입",
       "summary": "NAVER WEBTOON | [2027 상반기 채용연계형 인턴십] 네이버웹툰 백엔드 서버 개발 (Backend Software Development) | 인턴",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-364883"
+      ]
     },
     {
       "id": "kt-272419",
@@ -1190,25 +1168,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "주식회사 당근마켓 | [주식회사 당근마켓] Software Engineer, Backend (채용전환형) - 피드 인프라 | 직무: 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-364883",
-      "title": "[네이버웹툰] [2027 상반기 채용연계형 인턴십] 백엔드 서버 개발 (Backend Software Development)",
-      "organization": "네이버웹툰",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/364883",
-      "startDate": "2026-11-23",
-      "deadline": "2026-12-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "백엔드/서버개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "네이버웹툰 | [네이버웹툰] [2027 상반기 채용연계형 인턴십] 백엔드 서버 개발 (Backend Software Development) | 직무: 백엔드/서버개발",
       "isFeatured": true
     },
     {
@@ -1566,6 +1525,28 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55648516",
+      "title": "콘텐츠 플랫폼 백엔드 개발(신입)",
+      "organization": "드림어스컴퍼니",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55648516",
+      "startDate": "2026-11-23",
+      "deadline": "2026-12-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "DBA",
+        "devops/시스템 엔지니어",
+        "Elasticsearch",
+        "Java"
+      ],
+      "location": "서울 강남구",
+      "reward": "IT 신입/인턴",
+      "summary": "드림어스컴퍼니 | 콘텐츠 플랫폼 백엔드 개발(신입) | 기술스택: Elasticsearch, Java, Kafka, Kotlin, MongoDB, MySQL, RabbitMQ, Golang, FFMPEG",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43155",
       "title": "[레드포인트파트너스] AI-Native Equity Research Intern(PM 직속)",
       "organization": "레드포인트파트너스",
@@ -1623,47 +1604,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "넛지헬스케어 | [캐시워크] 데이터엔지니어 채용전환형 인턴 | 직무: 데이터분석, AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-354718",
-      "title": "[비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
-      "organization": "비지시캐피탈마켓외국환중개",
-      "category": "kofia",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/354718",
-      "startDate": "2026-11-23",
-      "deadline": "2026-12-31",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입"
-      ],
-      "location": "국내",
-      "reward": "금융권 채용",
-      "summary": "비지시캐피탈마켓외국환중개 | [비지시캐피탈마켓외국환중개] 레포 (Repos) 신입 브로커",
-      "isFeatured": true
-    },
-    {
-      "id": "kakao-P-14558",
-      "title": "LLM Research Engineer (Post-training) (신입/경력)",
-      "organization": "카카오",
-      "category": "intern",
-      "source": "기업 채용사이트",
-      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
-      "startDate": "2026-11-23",
-      "deadline": "2027-01-04",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "AI/데이터",
-        "대기업",
-        "데이터분석",
-        "AI/ML엔지니어"
-      ],
-      "location": "판교",
-      "reward": "인턴/신입",
-      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {
@@ -1996,7 +1936,10 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "넥슨코리아 | [넥슨코리아] [AI본부] 웹 프론트엔드 엔지니어 (인턴) | 직무: 프론트엔드개발",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-358421"
+      ]
     },
     {
       "id": "linkareer-358453",
@@ -2479,6 +2422,69 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-366397",
+      "title": "[LG경영개발원] Research Scientist - Industrial Optimization",
+      "organization": "LG경영개발원",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366397",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-21",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "경영기획/전략",
+        "시장조사/리서치",
+        "데이터분석"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "LG경영개발원 | [LG경영개발원] Research Scientist - Industrial Optimization | 직무: 경영기획/전략, 시장조사/리서치, 데이터분석",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366395",
+      "title": "[LG경영개발원] Research Scientist - Vision Inspection",
+      "organization": "LG경영개발원",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366395",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-21",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "시스템/ERP개발",
+        "데이터분석",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "LG경영개발원 | [LG경영개발원] Research Scientist - Vision Inspection | 직무: 시스템/ERP개발, 데이터분석, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366390",
+      "title": "[LG경영개발원] Research Scientist - Ontology & Knowledge Graph",
+      "organization": "LG경영개발원",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366390",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-21",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "시장조사/리서치",
+        "데이터분석",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "LG경영개발원 | [LG경영개발원] Research Scientist - Ontology & Knowledge Graph | 직무: 시장조사/리서치, 데이터분석, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-366302",
       "title": "[애슬러]  AI Native Engineer",
       "organization": "바인드",
@@ -2593,6 +2599,26 @@
       "location": "판교",
       "reward": "인턴/신입",
       "summary": "카카오 | 생성형 모델 Research Engineer (Post-training) (신입/경력) | 신입",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14558",
+      "title": "LLM Research Engineer (Post-training) (신입/경력)",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14558",
+      "startDate": "2026-11-23",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "신입",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | LLM Research Engineer (Post-training) (신입/경력) | 신입",
       "isFeatured": true
     },
     {

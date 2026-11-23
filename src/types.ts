@@ -8,6 +8,7 @@ export type CategoryType =
 
 export interface OpportunityItem {
   id: string;
+  aliases?: string[];
   title: string;
   organization: string;
   category: Exclude<CategoryType, 'all'>;

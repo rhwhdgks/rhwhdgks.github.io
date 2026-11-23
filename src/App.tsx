@@ -45,6 +45,7 @@ import { MyProgressView } from './components/MyProgressView';
 import { DismissedModal } from './components/DismissedModal';
 import { ResumeCheatsheetView } from './components/ResumeCheatsheetView';
 import { FINANCE_GROUPS, FinanceGroup, matchesFinanceGroup } from './utils/financeGroup';
+import { createDismissMatcher, makeDismissKey } from './utils/dismissMatch';
 
 const BOOKMARK_STORAGE_KEY = 'career_radar_bookmarks_v1';
 const PROGRESS_STORAGE_KEY = 'career_radar_progress_v1';
@@ -62,10 +63,6 @@ const POPULAR_KEYWORDS = [
   'Python',
   '해커톤',
 ];
-
-function makeDismissKey(item: { title: string; organization: string }): string {
-  return `${item.organization.trim().toLowerCase()}::${item.title.trim().toLowerCase()}`;
-}
 
 export function App() {
   const [data, setData] = useState<OpportunitiesPayload | null>(null);
@@ -162,13 +159,9 @@ export function App() {
     loadOpportunities();
   }, []);
 
-  // 빠른 조회용 Set/Map
-  const dismissedIdSet = useMemo(
-    () => new Set(dismissedEntries.map((d) => d.id)),
-    [dismissedEntries]
-  );
-  const dismissedKeySet = useMemo(
-    () => new Set(dismissedEntries.map((d) => d.key)),
+  // 빠른 조회용 Set/Map & 숨김 매처 (id · aliases · 정확한 key · 정규화된 기관/제목 매칭)
+  const isDismissed = useMemo(
+    () => createDismissMatcher(dismissedEntries),
     [dismissedEntries]
   );
   const progressMap = useMemo(() => {
@@ -182,11 +175,8 @@ export function App() {
   // 지운 공고를 제외한 전체 활성 목록
   const visibleAllItems = useMemo(() => {
     const raw = data?.items || [];
-    return raw.filter(
-      (item) =>
-        !dismissedIdSet.has(item.id) && !dismissedKeySet.has(makeDismissKey(item))
-    );
-  }, [data, dismissedIdSet, dismissedKeySet]);
+    return raw.filter((item) => !isDismissed(item));
+  }, [data, isDismissed]);
 
   // 공고 지우기 (영구 숨김) 핸들러
   const handleDismissItem = (item: OpportunityItem) => {
