@@ -20,7 +20,7 @@ const byId = Object.fromEntries(PROJECTS_STRUCTURED.map((p) => [p.id, p]));
 
 const lines = [
   '# 🎯 자소서·면접 프로젝트별 핵심 정리 (고종한 / rhwhdgks)',
-  '> **소속:** 고려대학교 컴퓨터학과 / 퀀트 학회 **Find-A**  ',
+  '> **소속:** 고려대학교 컴퓨터학과 / 금융 연합 학회 **Find-A**  ',
   '> **핵심 스택:** Python, SQL, pandas, NumPy, PyTorch, FastAPI, MariaDB, Linux, TypeScript  ',
   '> **포맷:** [계기] ➔ [요약] ➔ [위험상황 및 해결한 방법(원인 → 해결 → 결과)] ➔ [한계]  ',
   `> **최종 정리:** ${CHEATSHEET_UPDATED_AT} · 근거: 각 GitHub 저장소 README·문서와 작업 기록  `,
