@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-23 14:04 KST",
-  "totalCount": 138,
+  "updatedAt": "2026-11-23 15:33 KST",
+  "totalCount": 139,
   "sourceCounts": {
     "금융투자협회(KOFIA)": 10,
     "금융사 채용사이트": 11,
-    "링커리어": 74,
+    "링커리어": 75,
     "기업 채용사이트": 25,
     "점핏(Jumpit)": 15,
     "위비티(Wevity)": 2,
@@ -133,26 +133,6 @@
       "location": "구로",
       "reward": "인턴/신입",
       "summary": "넷마블네오 | ★ 2026 넷마블네오 AI 인턴십 채용 (11/24 마감) | 인턴",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43123",
-      "title": "트러스톤자산운용(주) 경영기획 신입 채용공고",
-      "organization": "트러스톤자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43123",
-      "startDate": "2026-11-12",
-      "deadline": "2026-11-25",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "트러스톤자산운용(주) 채용공고 ■ 모집 내용: 첨부파일 참조 ■ 채용 절차: 1차 서류전형 → 2차 실무진 면접 → 3차 임원 면접 → 최종합격 ■ 접 수 1. 접수기간: 2026년 11월 12일부터 2026년 11월 25일까지 2. 접 수 처: 당사 홈페이지 온라인 접수 3. 제출 서류 - 공고문에 첨부된 “261029_보도자료_퇴직연금 기능강화 방안 발표(관계부처 합동).pdf” 자료를 ...",
       "isFeatured": true
     },
     {
@@ -1273,6 +1253,26 @@
       "location": "경기 화성시",
       "reward": "IT 신입/인턴",
       "summary": "이우소프트 | AI Agent Engineer(LLM · TypeScript) [신입] | 기술스택: Confluence, Docker, Docker Cloud, Git, Jira, NestJS, Node.js, PostgreSQL, TypeScript, pnpm",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43249",
+      "title": "[로버스트자산운용] 글로벌매크로운용팀 인턴 채용(~12/09까지)",
+      "organization": "로버스트자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43249",
+      "startDate": "2026-11-23",
+      "deadline": "2026-12-09",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "1. 모집부문 : 3개월 이상 근무 가능한 인턴 O명 2. 지원자격 : 해당 전공 분야를 충실히 공부한 자 3. 모집부서 : 중국시장팀 4. 업무내용 : 중화권지역 경제, 산업, 기업, 상품에 대한 다양한 조사분석 / 중, 한 번역 / 투자에 관련된 리서치 제반업무 지원 5. 우대사항 : *중국어 능력 필수* / 2026년 12월 14일(월)부터 정식 출근이 가능한 자 6. 지원기간 : 20...",
       "isFeatured": true
     },
     {
@@ -2476,6 +2476,24 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "기어세컨드 | [기어세컨드] 데이터 엔지니어 | 직무: 데이터분석",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366302",
+      "title": "[애슬러]  AI Native Engineer",
+      "organization": "바인드",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366302",
+      "startDate": "2026-11-23",
+      "deadline": "2027-02-21",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "바인드 | [애슬러]  AI Native Engineer",
       "isFeatured": true
     },
     {
