@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-25 06:01 KST",
-  "totalCount": 134,
+  "updatedAt": "2026-11-25 16:39 KST",
+  "totalCount": 142,
   "sourceCounts": {
     "금융사 채용사이트": 10,
-    "기업 채용사이트": 28,
-    "링커리어": 70,
-    "금융투자협회(KOFIA)": 8,
+    "기업 채용사이트": 30,
+    "링커리어": 71,
+    "금융투자협회(KOFIA)": 12,
     "점핏(Jumpit)": 15,
-    "위비티(Wevity)": 2,
+    "위비티(Wevity)": 3,
     "토스 채용": 1
   },
   "items": [
@@ -523,28 +523,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-363940",
-      "title": "[채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
-      "organization": "모두닥 주식회사",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/363940",
-      "startDate": "2026-11-25",
-      "deadline": "2026-11-30",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "채용전환형"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "모두닥 주식회사 | [채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
-      "isFeatured": true,
-      "aliases": [
-        "linkareer-361674"
-      ]
-    },
-    {
       "id": "linkareer-362988",
       "title": "2026 대구 로컬AI그라운드 - 지역문제 해결형 AI활용 경진대회 공모전",
       "organization": "대구광역시",
@@ -601,12 +579,17 @@
       "tags": [
         "경력무관",
         "인프라/플랫폼",
-        "대기업"
+        "대기업",
+        "신입",
+        "시스템/ERP개발"
       ],
       "location": "성남·서울",
       "reward": "인턴/신입",
       "summary": "NAVER LABS | [네이버랩스] Robot Software Engineer (Platform & Operations) | 경력무관",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-366826"
+      ]
     },
     {
       "id": "jumpit-55451145",
@@ -650,6 +633,25 @@
       "location": "국내",
       "reward": "금융권 채용",
       "summary": "카카오뱅크 | [카카오뱅크] 고객서비스실 정규직 전환형 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-367004",
+      "title": "[NH아문디자산운용] 주식운용부문 주식리서치본부 인턴사원 채용공고",
+      "organization": "NH아문디자산운용",
+      "category": "kofia",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367004",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-02",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "금융권 채용",
+      "summary": "NH아문디자산운용 | [NH아문디자산운용] 주식운용부문 주식리서치본부 인턴사원 채용공고",
       "isFeatured": true
     },
     {
@@ -747,6 +749,46 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "BigTeam Inc | AAMDP Console Monitoring   & Security Analyst (체험형 인턴 4주)",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43284",
+      "title": "[케이와이프라이빗에쿼티] 운용팀 체험형 인턴 채용",
+      "organization": "브레인자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43284",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-04",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "케이와이프라이빗에퀴티는 브레인자산운용의 자회사로 약 1.1조원 규모의 PEF를 운용하고 있습니다. PEF 관리 및 운용 업무를 수행할 체험형 인턴을 아래와 같이 모집하오니 많은 관심 부탁드립니다. 1. 채용부문 및 담당업무 - 운용팀 인턴 O 명 - 투자대상기업 분석, 산업리서치 및 가치평가업무 등 펀드 운용업무 2. 자격요건 및 우대사항 - 4년제 재학생 또는 졸업자 - 금융 분야 자격증 ...",
+      "isFeatured": true
+    },
+    {
+      "id": "kofia-43283",
+      "title": "[브레인자산운용] 운용부문 체험형 인턴 채용",
+      "organization": "브레인자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43283",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-04",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "1. 채용부문 - 주식운용 및 리서치 직원 O명 2. 주요업무 - 투자전략, 기업분석 및 산업분석 등 주식운용 및 리서치 업무 - 성과 분석 자료 작성, raw data 관리 - 기관마케팅 등 협력사와 소통 및 협업 3. 자격요건 및 우대사항 - 거시 경제에 대한 기초지식 보유 및 통계/상경계열 전공 우대 - 투자분석사, CFA, FRM, CPA, 투자자산운용사 등 자격 보유자 우대 - 국내...",
       "isFeatured": true
     },
     {
@@ -959,6 +1001,26 @@
       "isFeatured": true
     },
     {
+      "id": "kofia-43289",
+      "title": "트러스톤자산운용(주) 동계 체험형 인턴 채용공고",
+      "organization": "트러스톤자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43289",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "인턴",
+        "운용/리서치"
+      ],
+      "location": "서울",
+      "reward": "인턴십",
+      "summary": "트러스톤자산운용(주) 동계 체험형 인턴 채용공고 ■ 모집 내용: 첨부파일 참조 ■ 채용 절차: 1차 서류전형 - 2차 면접 - 최종합격 ■ 접 수 1. 접수기간: 2026년 11월 25일부터 2026년 12월 6일까지 2. 접 수 처: 당사 홈페이지 온라인 접수 3. 문 의: 이메일 문의요망(hr@trustonasset.com) 4. 기타사항 - 장애인 및 취업지원대상자는 관련 법률에 의거하...",
+      "isFeatured": true
+    },
+    {
       "id": "kofia-43227",
       "title": "[에프앤자산평가] 주식파생실, 금리파생실 정규직원 채용(~12/06)",
       "organization": "에프앤자산평가",
@@ -977,6 +1039,45 @@
       "location": "서울",
       "reward": "신입/인턴 채용",
       "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005757",
+      "title": "[2027 상반기 채용연계형 인턴십] 네이버웹툰 AI Researcher",
+      "organization": "NAVER WEBTOON",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005757",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER WEBTOON | [2027 상반기 채용연계형 인턴십] 네이버웹툰 AI Researcher | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "naver-30005756",
+      "title": "[2027 상반기 채용연계형 인턴십] 네이버웹툰 Search Intelligence Engineer",
+      "organization": "NAVER WEBTOON",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005756",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "성남·서울",
+      "reward": "인턴/신입",
+      "summary": "NAVER WEBTOON | [2027 상반기 채용연계형 인턴십] 네이버웹툰 Search Intelligence Engineer | 인턴",
       "isFeatured": true
     },
     {
@@ -1138,6 +1239,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112565",
+      "title": "2026 제5회 대국민 K-water AI 경진대회",
+      "organization": "한국수자원공사",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112565",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-06",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "한국수자원공사 주최 | 2026 제5회 대국민 K-water AI 경진대회",
+      "isFeatured": true
+    },
+    {
       "id": "recruiter-kakaobank-273031",
       "title": "[카카오뱅크] AI Native 인증 서비스 기획자 (채용연계형 인턴)",
       "organization": "카카오뱅크",
@@ -1286,6 +1407,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-11",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -1326,26 +1467,6 @@
       "location": "경기 용인시",
       "reward": "IT 신입/인턴",
       "summary": "인텍에프에이 | 제품설계 신입사원 채용 | 기술스택: ERP, Autocad",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-25",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
       "isFeatured": true
     },
     {
@@ -1519,7 +1640,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-25",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1576,6 +1697,24 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-361674",
+      "title": "[채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
+      "organization": "모두닥 주식회사",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/361674",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-31",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "모두닥 주식회사 | [채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-360208",
       "title": "[캐시워크] 데이터분석 담당 채용전환형 인턴",
       "organization": "넛지헬스케어",
@@ -1616,25 +1755,6 @@
       "isFeatured": true
     },
     {
-      "id": "linkareer-356083",
-      "title": "[포스타입] [신입/경력] 백엔드 엔지니어",
-      "organization": "포스타입",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/356083",
-      "startDate": "2026-11-25",
-      "deadline": "2027-01-10",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "백엔드/서버개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "포스타입 | [포스타입] [신입/경력] 백엔드 엔지니어 | 직무: 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
       "id": "linkareer-365130",
       "title": "2027 제 2회 Superb AI X BDAI Vision AI 해커톤",
       "organization": "비디에이아이(BDAI)",
@@ -1652,64 +1772,6 @@
       "location": "국내",
       "reward": "해커톤/경진대회",
       "summary": "비디에이아이(BDAI) | 2027 제 2회 Superb AI X BDAI Vision AI 해커톤 | 직무: 과학/공학, 학술",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-356413",
-      "title": "[Solution] AI Software Engineer Intern (전환형)",
-      "organization": "주식회사 노타",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/356413",
-      "startDate": "2026-11-25",
-      "deadline": "2027-01-11",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "프론트엔드개발",
-        "백엔드/서버개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "주식회사 노타 | [Solution] AI Software Engineer Intern (전환형) | 직무: 프론트엔드개발, 백엔드/서버개발",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-356803",
-      "title": "[정규직]빅데이터 AI 플랫폼 개발",
-      "organization": "휴라",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/356803",
-      "startDate": "2026-11-25",
-      "deadline": "2027-01-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "시스템/ERP개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "휴라 | [정규직]빅데이터 AI 플랫폼 개발 | 직무: 시스템/ERP개발",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-356750",
-      "title": "[정규직]전파 신호 분석 알고리즘 및 SW개발",
-      "organization": "휴라",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/356750",
-      "startDate": "2026-11-25",
-      "deadline": "2027-01-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "시스템/ERP개발"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "휴라 | [정규직]전파 신호 분석 알고리즘 및 SW개발 | 직무: 시스템/ERP개발",
       "isFeatured": true
     },
     {
@@ -2431,6 +2493,83 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-366829",
+      "title": "[삼양라운드스퀘어] Popow - AI Agent Builder",
+      "organization": "삼양라운드스퀘어",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366829",
+      "startDate": "2026-11-25",
+      "deadline": "2027-02-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "삼양라운드스퀘어 | [삼양라운드스퀘어] Popow - AI Agent Builder | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366825",
+      "title": "[삼양라운드스퀘어] Popow - AI Analytics Builder",
+      "organization": "삼양라운드스퀘어",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366825",
+      "startDate": "2026-11-25",
+      "deadline": "2027-02-22",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "삼양라운드스퀘어 | [삼양라운드스퀘어] Popow - AI Analytics Builder | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366922",
+      "title": "앱·AI 음성(TTS) 프로젝트 코디네이션 인턴 (영어 업무 / 3개월 파트타임 / 하이브리드)",
+      "organization": "주식회사 투식스미디어",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366922",
+      "startDate": "2026-11-25",
+      "deadline": "2027-02-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "서비스기획/운영"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "주식회사 투식스미디어 | 앱·AI 음성(TTS) 프로젝트 코디네이션 인턴 (영어 업무 / 3개월 파트타임 / 하이브리드) | 직무: 서비스기획/운영",
+      "isFeatured": true
+    },
+    {
+      "id": "linkareer-366961",
+      "title": "[아정네트웍스] AI Engineer (Data Science) (서울)",
+      "organization": "아정네트웍스",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/366961",
+      "startDate": "2026-11-25",
+      "deadline": "2027-02-23",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "데이터분석",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "아정네트웍스 | [아정네트웍스] AI Engineer (Data Science) (서울) | 직무: 데이터분석, AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
       "id": "lg-1002176",
       "title": "[CDO] AI/빅데이터 분야 상시 모집",
       "organization": "LG에너지솔루션",
@@ -2449,6 +2588,30 @@
       "reward": "인턴/신입",
       "summary": "LG에너지솔루션 | [CDO] AI/빅데이터 분야 상시 모집 | 신입/경력",
       "isFeatured": true
+    },
+    {
+      "id": "kofia-43288",
+      "title": "[에셋플러스자산운용] 2026년도 하반기 운용지원 직무 직원 수시채용 (경력 우대 / 신입 가능)",
+      "organization": "에셋플러스자산운용",
+      "category": "kofia",
+      "source": "금융투자협회(KOFIA)",
+      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43288",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-07",
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "신입",
+        "운용/리서치",
+        "증권/투자/애널리스트"
+      ],
+      "location": "서울",
+      "reward": "신입/인턴 채용",
+      "summary": "미래 성장의 꿈을 담는 액티브 펀드의 명가, 에셋플러스자산운용입니다. 에셋플러스자산운용과 함께 혁신적인 미래 금융을 선도해 나아갈 \"끼\" 있는 진짜 인재를 찾습니다. 학력·전공·연령은 중요하지 않습니다. 우리는 스펙보다 \"끼\"(잠재력과 역량), 타이틀보다 능력, 과거보다 미래, 주어진 사실보다 새로운 관점과 해석을 중시합니다. 열정과 성실함을 바탕으로 고객과 함께 성장하는 여정에 동행할 여러...",
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-367023"
+      ]
     },
     {
       "id": "toss-7787980003",
