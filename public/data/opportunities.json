@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-11-26 05:24 KST",
-  "totalCount": 141,
+  "updatedAt": "2026-11-26 14:26 KST",
+  "totalCount": 144,
   "sourceCounts": {
-    "금융사 채용사이트": 7,
-    "링커리어": 75,
+    "금융사 채용사이트": 9,
+    "링커리어": 76,
     "기업 채용사이트": 28,
     "금융투자협회(KOFIA)": 14,
     "점핏(Jumpit)": 14,
@@ -739,25 +739,25 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55496522",
-      "title": "소프트웨어 개발 신입 채용",
-      "organization": "엠투아이코퍼레이션",
+      "id": "linkareer-367142",
+      "title": "[한국수자원공사] 2026년 하반기 AI 체험형 인턴 채용",
+      "organization": "한국수자원공사",
       "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55496522",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367142",
       "startDate": "2026-11-26",
       "deadline": "2026-12-04",
       "isAlwaysOpen": false,
       "tags": [
-        "신입/인턴",
-        "SW/솔루션",
-        "C++",
-        "CLion",
-        "Git"
+        "인턴",
+        "AI/ML엔지니어",
+        "환경/안전관리",
+        "건축/인테리어설계",
+        "토목/조경"
       ],
-      "location": "경기 안양시",
-      "reward": "IT 신입/인턴",
-      "summary": "엠투아이코퍼레이션 | 소프트웨어 개발 신입 채용 | 기술스택: C++, CLion, Git, Linux, Qt, Visual Studio, Windows, C++ Builder",
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "한국수자원공사 | [한국수자원공사] 2026년 하반기 AI 체험형 인턴 채용 | 직무: AI/ML엔지니어, 환경/안전관리, 건축/인테리어설계, 토목/조경, 전기/소방/설비",
       "isFeatured": true
     },
     {
@@ -819,28 +819,6 @@
       "aliases": [
         "linkareer-364594"
       ]
-    },
-    {
-      "id": "jumpit-55496355",
-      "title": "웹 풀스택 개발자 (주언어: .NET) 신입",
-      "organization": "스포츠투아이",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55496355",
-      "startDate": "2026-11-26",
-      "deadline": "2026-12-05",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "웹 풀스택 개발자",
-        "DBA",
-        ".NET",
-        "C#"
-      ],
-      "location": "경기 성남시 분당구",
-      "reward": "IT 신입/인턴",
-      "summary": "스포츠투아이 | 웹 풀스택 개발자 (주언어: .NET) 신입 | 기술스택: .NET, C#, Java, JavaScript, jQuery, MSSQL, React, Windows",
-      "isFeatured": true
     },
     {
       "id": "kofia-43289",
@@ -1183,29 +1161,7 @@
       ],
       "location": "서울",
       "reward": "신입/인턴 채용",
-      "summary": "[유안타증권] Multi Asset운용팀 신입/경력직원 채용(~12/8) [주요업무] · 자체 OS 개발 및 유지보수 · 시장조성 관련 개발 유지보수 [지원자격 및 우대사항] · 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) · Visual Studio 2022 사용 가능자 · 정보처리기사 자격증 보유자 우대 · 금융 관련 자격증 보유자 우대 [근무형태] · 신입:...",
-      "isFeatured": true
-    },
-    {
-      "id": "jumpit-55519198",
-      "title": "AI Agent Engineer(LLM · TypeScript) [신입]",
-      "organization": "이우소프트",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55519198",
-      "startDate": "2026-11-26",
-      "deadline": "2026-12-08",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "인공지능/머신러닝",
-        "Confluence",
-        "Docker",
-        "Docker Cloud"
-      ],
-      "location": "경기 화성시",
-      "reward": "IT 신입/인턴",
-      "summary": "이우소프트 | AI Agent Engineer(LLM · TypeScript) [신입] | 기술스택: Confluence, Docker, Docker Cloud, Git, Jira, NestJS, Node.js, PostgreSQL, TypeScript, pnpm",
+      "summary": "[유안타증권] Multi Asset운용팀 신입/경력직원 채용(~12/8) [주요업무] · 자체 OMS 개발 및 유지보수 · 시장조성 관련 개발 유지보수 [지원자격 및 우대사항] · 국내외 4년제 대학교 이상 학위 취득자(2027년 2월 졸업예정자 가능) · Visual Studio 2022 사용 가능자 · 정보처리기사 자격증 보유자 우대 · 금융 관련 자격증 보유자 우대 [근무형태] · 신입...",
       "isFeatured": true
     },
     {
@@ -1333,6 +1289,26 @@
       "isFeatured": true
     },
     {
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-11",
+      "isAlwaysOpen": false,
+      "tags": [
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
+      ],
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
+      "isFeatured": true
+    },
+    {
       "id": "jumpit-55570183",
       "title": "AI Builder(AI 빌더) [신입]",
       "organization": "톤28",
@@ -1373,26 +1349,6 @@
       "location": "경기 용인시",
       "reward": "IT 신입/인턴",
       "summary": "인텍에프에이 | 제품설계 신입사원 채용 | 기술스택: ERP, Autocad",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-26",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
       "isFeatured": true
     },
     {
@@ -1474,6 +1430,48 @@
       "location": "국내",
       "reward": "해커톤/경진대회",
       "summary": "주식회사 프롬프트뱅크 | 2026년 제3회 AMT AI 작곡대회 – KILLING DANCE 챌린지 | 직무: 예체능/패션",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kakaobank-273583",
+      "title": "[카카오뱅크] 교육/문화 어시스턴트 (체험형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=273583",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-14",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "체험형"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | 교육/문화 어시스턴트 (체험형 인턴)",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kakaobank-273585",
+      "title": "[카카오뱅크] 문화 콘텐츠 어시스턴트 (체험형 인턴)",
+      "organization": "카카오뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kakaobank.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=273585",
+      "startDate": "2026-11-25",
+      "deadline": "2026-12-14",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "인턴",
+        "체험형"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "카카오뱅크 | 문화 콘텐츠 어시스턴트 (체험형 인턴)",
       "isFeatured": true
     },
     {
@@ -1566,7 +1564,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-26",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1668,6 +1666,69 @@
       "aliases": [
         "jumpit-55671154"
       ]
+    },
+    {
+      "id": "jumpit-55679696",
+      "title": "시스템 백엔드 개발자(주니어)",
+      "organization": "블랭크앤오토",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55679696",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "서버/백엔드 개발자",
+        "Kotlin",
+        "MySQL",
+        "Node.js"
+      ],
+      "location": "경기 용인시 기흥구",
+      "reward": "IT 신입/인턴",
+      "summary": "블랭크앤오토 | 시스템 백엔드 개발자(주니어) | 기술스택: Kotlin, MySQL, Node.js, TypeScript",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55679678",
+      "title": "플랫폼 운영 및 개발 경력(주니어)",
+      "organization": "블랭크앤오토",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55679678",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "정보보안 담당자",
+        "Splunk"
+      ],
+      "location": "경기 용인시 기흥구",
+      "reward": "IT 신입/인턴",
+      "summary": "블랭크앤오토 | 플랫폼 운영 및 개발 경력(주니어) | 기술스택: Splunk",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55678113",
+      "title": "SW팀 소프트웨어 개발 보조 채용",
+      "organization": "제이브이엠",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55678113",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "SW/솔루션",
+        "DeepLearning",
+        "SW"
+      ],
+      "location": "대구",
+      "reward": "IT 신입/인턴",
+      "summary": "제이브이엠 | SW팀 소프트웨어 개발 보조 채용 | 기술스택: DeepLearning, SW",
+      "isFeatured": true
     },
     {
       "id": "linkareer-361674",
