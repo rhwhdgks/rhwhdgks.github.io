@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-26 14:26 KST",
-  "totalCount": 144,
+  "updatedAt": "2026-11-26 16:30 KST",
+  "totalCount": 149,
   "sourceCounts": {
-    "금융사 채용사이트": 9,
-    "링커리어": 76,
-    "기업 채용사이트": 28,
+    "금융사 채용사이트": 13,
+    "링커리어": 75,
+    "기업 채용사이트": 30,
     "금융투자협회(KOFIA)": 14,
     "점핏(Jumpit)": 14,
     "위비티(Wevity)": 2,
@@ -1372,6 +1372,66 @@
       "isFeatured": true
     },
     {
+      "id": "recruiter-kbank-135650",
+      "title": "[케이뱅크] 마케팅 배너 기획 및 CRM 운영자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/135650",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-13",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | 마케팅 배너 기획 및 CRM 운영자 | 신입/경력",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kbank-135492",
+      "title": "[케이뱅크] STR 모니터링 담당자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/135492",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-13",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | STR 모니터링 담당자 | 신입/경력",
+      "isFeatured": true
+    },
+    {
+      "id": "recruiter-kbank-135642",
+      "title": "[케이뱅크] 여신사기 조사 담당자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/135642",
+      "startDate": "2026-11-26",
+      "deadline": "2026-12-13",
+      "isAlwaysOpen": false,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | 여신사기 조사 담당자 | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "naver-30005739",
       "title": "[네이버웹툰] AI Engineer (체험형 인턴)",
       "organization": "NAVER WEBTOON",
@@ -1728,24 +1788,6 @@
       "location": "대구",
       "reward": "IT 신입/인턴",
       "summary": "제이브이엠 | SW팀 소프트웨어 개발 보조 채용 | 기술스택: DeepLearning, SW",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-361674",
-      "title": "[채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
-      "organization": "모두닥 주식회사",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/361674",
-      "startDate": "2026-11-26",
-      "deadline": "2026-12-31",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "모두닥 주식회사 | [채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
       "isFeatured": true
     },
     {
@@ -2648,6 +2690,26 @@
       ]
     },
     {
+      "id": "recruiter-kbank-134839",
+      "title": "[케이뱅크] 금융 후선업무 담당자",
+      "organization": "케이뱅크",
+      "category": "kofia",
+      "source": "금융사 채용사이트",
+      "sourceUrl": "https://kbank.recruiter.co.kr/career/jobs/134839",
+      "startDate": "2026-11-26",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "금융권",
+        "은행",
+        "신입/경력"
+      ],
+      "location": "국내",
+      "reward": "은행 채용",
+      "summary": "케이뱅크 | 금융 후선업무 담당자 | 신입/경력",
+      "isFeatured": true
+    },
+    {
       "id": "toss-7787980003",
       "title": "[토스증권] 국내주식 결제 담당자 (주니어) (Securities Settlement Manager)",
       "organization": "토스증권",
@@ -2705,6 +2767,45 @@
       "location": "국내",
       "reward": "핀테크 채용",
       "summary": "토스 | Treasury Manager(Junior) | 주니어",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14593",
+      "title": "Foundation Model Research Engineer_인턴",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14593",
+      "startDate": "2026-11-26",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "인턴",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | Foundation Model Research Engineer_인턴 | 인턴",
+      "isFeatured": true
+    },
+    {
+      "id": "kakao-P-14595",
+      "title": "Multimodal LLM Application Research Engineer_인턴",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14595",
+      "startDate": "2026-11-26",
+      "deadline": null,
+      "isAlwaysOpen": true,
+      "tags": [
+        "인턴",
+        "AI/데이터",
+        "대기업"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | Multimodal LLM Application Research Engineer_인턴 | 인턴",
       "isFeatured": true
     },
     {
