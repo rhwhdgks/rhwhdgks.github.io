@@ -1,28 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Radar,
   Search,
-  Calendar as CalendarIcon,
-  LayoutGrid,
   Bookmark,
-  Flame,
-  Briefcase,
-  Trophy,
-  Landmark,
-  Sparkles,
   ExternalLink,
-  Building2,
-  MapPin,
-  Clock,
-  RefreshCw,
-  Filter,
   X,
   CheckCircle2,
-  FolderKanban,
   Plus,
   EyeOff,
   RotateCcw,
-  FileText,
   GraduationCap,
 } from 'lucide-react';
 import {
@@ -291,37 +276,6 @@ export function App() {
     );
   };
 
-  // 통계 계산 (숨긴 공고 및 재학 중 필터 반영)
-  const stats = useMemo(() => {
-    let activeCount = 0;
-    let urgentCount = 0;
-    let internCount = 0;
-    let hackathonContestCount = 0;
-    let kofiaCount = 0;
-
-    for (const item of scopedAllItems) {
-      const dday = getDdayInfo(item.deadline, item.isAlwaysOpen);
-      const isClosed = dday.status === 'closed';
-      if (!isClosed) {
-        activeCount++;
-        if (dday.daysLeft !== null && dday.daysLeft >= 0 && dday.daysLeft <= 7) {
-          urgentCount++;
-        }
-      }
-      if (item.category === 'intern') internCount++;
-      if (item.category === 'hackathon' || item.category === 'contest') hackathonContestCount++;
-      if (item.category === 'kofia') kofiaCount++;
-    }
-
-    return {
-      activeCount,
-      urgentCount,
-      internCount,
-      hackathonContestCount,
-      kofiaCount,
-    };
-  }, [scopedAllItems]);
-
   // 카테고리별 개수
   const categoryCounts = useMemo(() => {
     const counts: Record<CategoryType, number> = {
@@ -467,155 +421,34 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      {/* 상단 고정 네비게이션 바 */}
-      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-          <div
-            onClick={resetFilters}
-            className="flex items-center gap-3 cursor-pointer group shrink-0"
-          >
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-sm group-hover:bg-indigo-700 transition">
-              <Radar className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-extrabold tracking-tight text-slate-900">
-                  CareerRadar
-                </span>
-                <span className="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
-                  일 3회 자동 수집
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 hidden lg:block">
-                인턴 · 신입 채용 · 해커톤 · 공모전 · 금융권 채용 알림 허브
-              </p>
-            </div>
-          </div>
-
-          {/* 우측 컨트롤: 업데이트 시각, 메인 뷰 탭(공고목록 / 내 진행현황 / 캘린더), 숨김관리 */}
-          <div className="flex items-center gap-2">
-            {data?.updatedAt && (
-              <div
-                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-medium text-slate-600"
-                title="매일 09:00, 14:00, 20:00 (하루 3번) 자동 업데이트됩니다"
-              >
-                <RefreshCw className="w-3.5 h-3.5 text-emerald-600" />
-                <span>최근 수집: {data.updatedAt}</span>
-              </div>
-            )}
-
-            {/* 메인 뷰 전환 (전체 공고 / 내 진행 현황 / 캘린더 / 자소서 치트시트) */}
-            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 overflow-x-auto shrink-0 max-w-[calc(100vw-3rem)]">
-              <button
-                type="button"
-                onClick={() => setViewMode('list')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
-                  viewMode === 'list'
-                    ? 'bg-white text-indigo-600 shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>공고 탐색</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setViewMode('my-progress')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
-                  viewMode === 'my-progress'
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : 'text-slate-700 hover:text-emerald-700'
-                }`}
-              >
-                <FolderKanban className="w-3.5 h-3.5" />
-                <span>진행 현황</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded-full text-[11px] ${
-                    viewMode === 'my-progress'
-                      ? 'bg-emerald-700 text-white'
-                      : 'bg-emerald-100 text-emerald-800'
-                  }`}
-                >
-                  {progressEntries.length}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setViewMode('calendar')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
-                  viewMode === 'calendar'
-                    ? 'bg-white text-indigo-600 shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <CalendarIcon className="w-3.5 h-3.5" />
-                <span>캘린더</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setViewMode('cheatsheet')}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap shrink-0 ${
-                  viewMode === 'cheatsheet'
-                    ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'text-indigo-700 hover:bg-indigo-50/60'
-                }`}
-                title="내 깃허브 프로젝트 & 학회 연구 자소서 치트시트"
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>자소서 치트시트</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded-full text-[10px] font-black ${
-                    viewMode === 'cheatsheet'
-                      ? 'bg-amber-400 text-amber-950'
-                      : 'bg-indigo-100 text-indigo-800'
-                  }`}
-                >
-                  MY
-                </span>
-              </button>
-            </div>
-
-            {/* 북마크(찜) 필터 버튼 */}
-            <button
-              type="button"
+    <div className="min-h-screen flex flex-col">
+      <header className="site-header">
+        <div className="site-shell header-inner">
+          <button type="button" className="wordmark" onClick={resetFilters}>CareerRadar</button>
+          <nav aria-label="주 메뉴" className="site-nav">
+            {([
+              ['list', '공고'],
+              ['calendar', '캘린더'],
+              ['my-progress', '내 지원'],
+              ['cheatsheet', '자소서 치트시트'],
+            ] as const).map(([mode, label]) => (
+              <button key={mode} type="button" aria-current={viewMode === mode ? 'page' : undefined}
+                onClick={() => setViewMode(mode)}>{label}</button>
+            ))}
+          </nav>
+          <div className="header-tools">
+            <button type="button" title="저장한 공고" aria-label="저장한 공고" aria-pressed={onlyBookmarked && viewMode === 'list'}
               onClick={() => {
+                setOnlyBookmarked(viewMode !== 'list' || !onlyBookmarked);
                 setViewMode('list');
-                setOnlyBookmarked((prev) => !prev);
-              }}
-              className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl text-xs font-semibold border transition ${
-                onlyBookmarked
-                  ? 'bg-amber-50 border-amber-300 text-amber-800 shadow-xs'
-                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
-              }`}
-              title="관심 찜한 공고 모아보기"
-            >
-              <Bookmark
-                className={`w-3.5 h-3.5 ${
-                  onlyBookmarked ? 'fill-amber-500 text-amber-500' : 'text-slate-400'
-                }`}
-              />
-              <span className="hidden md:inline">찜</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[11px] bg-slate-100 text-slate-700">
-                {bookmarkedIds.length}
-              </span>
+              }}>
+              <Bookmark className="w-4 h-4" />
+              <span>{bookmarkedIds.length}</span>
             </button>
-
-            {/* 숨긴 공고 관리 버튼 */}
-            <button
-              type="button"
-              onClick={() => setIsDismissedModalOpen(true)}
-              className="inline-flex items-center gap-1 px-2.5 py-2 rounded-xl text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition"
-              title="지운(숨긴) 공고 목록 확인 및 복구"
-            >
-              <EyeOff className="w-3.5 h-3.5 text-slate-400" />
-              <span className="hidden md:inline">숨김</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[11px] bg-slate-100 text-slate-600">
-                {dismissedEntries.length}
-              </span>
+            <button type="button" title="숨긴 공고 관리" aria-label="숨긴 공고 관리"
+              onClick={() => setIsDismissedModalOpen(true)}>
+              <EyeOff className="w-4 h-4" />
+              <span>{dismissedEntries.length}</span>
             </button>
           </div>
         </div>
@@ -623,7 +456,7 @@ export function App() {
 
       {/* 방금 지운 공고 실행 취소 알림 바 */}
       {lastDismissed && (
-        <div className="bg-slate-900 text-white px-4 py-2.5 text-xs flex items-center justify-center gap-3 shadow-md">
+        <div role="status" className="bg-slate-900 text-white px-4 py-2.5 text-xs flex flex-wrap items-center justify-center gap-3">
           <span>
             <strong>[{lastDismissed.organization}] {lastDismissed.title}</strong> 공고를 숨겼습니다. (다음 크롤링 때도 다시 뜨지 않습니다)
           </span>
@@ -645,292 +478,7 @@ export function App() {
         </div>
       )}
 
-      {/* 메인 컨테이너 */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* 주요 취업/공모전 사이트 원클릭 바로가기 바 */}
-        <section className="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs">
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-              <Sparkles className="w-4 h-4 text-indigo-600" />
-              <span>연동 플랫폼 & 주요 취업 사이트 바로가기</span>
-            </div>
-            <span className="text-[11px] text-slate-400 hidden sm:inline">
-              하루 3번(09:00 · 14:00 · 20:00 KST) 최신 공고를 자동 크롤링합니다
-            </span>
-          </div>
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-            {QUICK_PORTALS.map((portal) => (
-              <a
-                key={portal.name}
-                href={portal.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`shrink-0 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50/70 text-xs font-semibold transition ${portal.color}`}
-              >
-                <span>{portal.name}</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/80 text-slate-500 border border-slate-200/60">
-                  {portal.category}
-                </span>
-                <ExternalLink className="w-3 h-3 opacity-60" />
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* 대시보드 요약 카드 6종 (내 진행 현황 포함) */}
-        <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {/* 1. 내가 진행 중인 활동 카드 */}
-          <button
-            type="button"
-            onClick={() => setViewMode('my-progress')}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'my-progress'
-                ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
-                : 'bg-emerald-50/60 text-slate-900 border-emerald-200 hover:border-emerald-400'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-bold ${
-                  viewMode === 'my-progress' ? 'text-emerald-100' : 'text-emerald-800'
-                }`}
-              >
-                내가 진행 중
-              </span>
-              <FolderKanban
-                className={`w-4 h-4 ${
-                  viewMode === 'my-progress' ? 'text-emerald-100' : 'text-emerald-600'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{progressEntries.length}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'my-progress' ? 'text-emerald-100' : 'text-emerald-700'
-              }`}
-            >
-              지원/참여 중인 목록 보기
-            </div>
-          </button>
-
-          {/* 2. 전체 활성 공고 */}
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('list');
-              setSelectedCategory('all');
-              setOnlyUrgent(false);
-            }}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'list' && selectedCategory === 'all' && !onlyUrgent
-                ? 'bg-indigo-600 text-white border-indigo-600 shadow-md'
-                : 'bg-white text-slate-900 border-slate-200 hover:border-indigo-300'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-semibold ${
-                  viewMode === 'list' && selectedCategory === 'all' && !onlyUrgent
-                    ? 'text-indigo-100'
-                    : 'text-slate-500'
-                }`}
-              >
-                전체 활성 공고
-              </span>
-              <CheckCircle2
-                className={`w-4 h-4 ${
-                  viewMode === 'list' && selectedCategory === 'all' && !onlyUrgent
-                    ? 'text-indigo-200'
-                    : 'text-indigo-600'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{stats.activeCount}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'list' && selectedCategory === 'all' && !onlyUrgent
-                  ? 'text-indigo-100'
-                  : 'text-slate-400'
-              }`}
-            >
-              {studentOnly ? '비연계 인턴 · 대회만' : '안 볼 공고 제외 전체'}
-            </div>
-          </button>
-
-          {/* 3. 마감 임박 */}
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('list');
-              setOnlyUrgent((prev) => !prev);
-            }}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'list' && onlyUrgent
-                ? 'bg-red-600 text-white border-red-600 shadow-md'
-                : 'bg-white text-slate-900 border-slate-200 hover:border-red-300'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-semibold ${
-                  viewMode === 'list' && onlyUrgent ? 'text-red-100' : 'text-slate-500'
-                }`}
-              >
-                마감 임박 (D-7)
-              </span>
-              <Flame
-                className={`w-4 h-4 ${
-                  viewMode === 'list' && onlyUrgent ? 'text-red-200' : 'text-red-500'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{stats.urgentCount}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'list' && onlyUrgent ? 'text-red-100' : 'text-slate-400'
-              }`}
-            >
-              이번 주 마감 공고
-            </div>
-          </button>
-
-          {/* 4. IT 인턴/신입 */}
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('list');
-              setSelectedCategory('intern');
-              setOnlyUrgent(false);
-            }}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'list' && selectedCategory === 'intern'
-                ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-                : 'bg-white text-slate-900 border-slate-200 hover:border-blue-300'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-semibold ${
-                  viewMode === 'list' && selectedCategory === 'intern'
-                    ? 'text-blue-100'
-                    : 'text-slate-500'
-                }`}
-              >
-                IT 인턴 · 신입
-              </span>
-              <Briefcase
-                className={`w-4 h-4 ${
-                  viewMode === 'list' && selectedCategory === 'intern'
-                    ? 'text-blue-200'
-                    : 'text-blue-600'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{stats.internCount}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'list' && selectedCategory === 'intern'
-                  ? 'text-blue-100'
-                  : 'text-slate-400'
-              }`}
-            >
-              개발·AI 신입/인턴십
-            </div>
-          </button>
-
-          {/* 5. 해커톤/공모전 */}
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('list');
-              setSelectedCategory('hackathon');
-              setOnlyUrgent(false);
-            }}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'list' &&
-              (selectedCategory === 'hackathon' || selectedCategory === 'contest')
-                ? 'bg-violet-600 text-white border-violet-600 shadow-md'
-                : 'bg-white text-slate-900 border-slate-200 hover:border-violet-300'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-semibold ${
-                  viewMode === 'list' &&
-                  (selectedCategory === 'hackathon' || selectedCategory === 'contest')
-                    ? 'text-violet-100'
-                    : 'text-slate-500'
-                }`}
-              >
-                해커톤 · 공모전
-              </span>
-              <Trophy
-                className={`w-4 h-4 ${
-                  viewMode === 'list' &&
-                  (selectedCategory === 'hackathon' || selectedCategory === 'contest')
-                    ? 'text-violet-200'
-                    : 'text-violet-600'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{stats.hackathonContestCount}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'list' &&
-                (selectedCategory === 'hackathon' || selectedCategory === 'contest')
-                  ? 'text-violet-100'
-                  : 'text-slate-400'
-              }`}
-            >
-              AI 경진대회 · SW 공모전
-            </div>
-          </button>
-
-          {/* 6. 금융권 채용 (금융투자협회 회원사 + 링커리어 금융기관) */}
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('list');
-              setSelectedCategory('kofia');
-              setOnlyUrgent(false);
-            }}
-            className={`p-4 rounded-2xl border text-left transition ${
-              viewMode === 'list' && selectedCategory === 'kofia'
-                ? 'bg-amber-500 text-white border-amber-500 shadow-md'
-                : 'bg-white text-slate-900 border-slate-200 hover:border-amber-300'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span
-                className={`text-xs font-semibold ${
-                  viewMode === 'list' && selectedCategory === 'kofia'
-                    ? 'text-amber-50'
-                    : 'text-slate-500'
-                }`}
-              >
-                금융권 채용
-              </span>
-              <Landmark
-                className={`w-4 h-4 ${
-                  viewMode === 'list' && selectedCategory === 'kofia'
-                    ? 'text-amber-100'
-                    : 'text-amber-600'
-                }`}
-              />
-            </div>
-            <div className="text-2xl font-extrabold">{stats.kofiaCount}건</div>
-            <div
-              className={`text-[11px] mt-1 ${
-                viewMode === 'list' && selectedCategory === 'kofia'
-                  ? 'text-amber-50'
-                  : 'text-slate-400'
-              }`}
-            >
-              증권·자산운용·은행
-            </div>
-          </button>
-        </section>
-
+      <main className="site-shell flex-1 w-full py-6 sm:py-10 space-y-5">
         {/* "자소서 치트시트" 뷰일 때는 전용 치트시트 저장소 렌더링 */}
         {viewMode === 'cheatsheet' ? (
           <ResumeCheatsheetView />
@@ -945,10 +493,13 @@ export function App() {
           />
         ) : (
           <>
-            {/* 검색 및 필터 컨트롤 박스 (공고 탐색 & 캘린더 공통) */}
-            <section className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs space-y-4">
+            <div className="board-heading">
+              <h1>{viewMode === 'calendar' ? '채용·공모전 캘린더' : '채용·공모전'}</h1>
+              {data?.updatedAt && <p>최근 수집 {data.updatedAt}</p>}
+            </div>
+            <section aria-label="공고 필터" className="space-y-4">
               {/* 분야별 카테고리 탭 */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-1">
+              <div className="category-nav">
                 {(
                   ['all', 'intern', 'hackathon', 'contest', 'kofia', 'activity'] as CategoryType[]
                 ).map((catId) => {
@@ -959,19 +510,10 @@ export function App() {
                       key={catId}
                       type="button"
                       onClick={() => setSelectedCategory(catId)}
-                      className={`shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition ${
-                        isSelected
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
-                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                      }`}
+                      aria-pressed={isSelected}
                     >
-                      <span className={`w-2 h-2 rounded-full ${meta.dotClass}`} />
                       <span>{meta.label}</span>
-                      <span
-                        className={`px-1.5 py-0.5 rounded-md text-[11px] ${
-                          isSelected ? 'bg-slate-700 text-slate-100' : 'bg-slate-100 text-slate-600'
-                        }`}
-                      >
+                      <span className="tab-count">
                         {categoryCounts[catId] || 0}
                       </span>
                     </button>
@@ -982,7 +524,7 @@ export function App() {
               {/* 금융권 탭 세부 필터 */}
               {selectedCategory === 'kofia' && (
                 <div className="flex items-center gap-2 overflow-x-auto pb-1 -mt-1">
-                  <span className="shrink-0 text-xs font-semibold text-amber-800">세부</span>
+                  <span className="shrink-0 text-xs font-semibold text-slate-600">세부</span>
                   {FINANCE_GROUPS.map((g) => {
                     const isSelected = financeGroup === g.id;
                     return (
@@ -993,14 +535,14 @@ export function App() {
                         onClick={() => setFinanceGroup(g.id)}
                         className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
                           isSelected
-                            ? 'bg-amber-500 text-white border-amber-500'
-                            : 'bg-amber-50/60 text-amber-900 border-amber-200 hover:bg-amber-100'
+                            ? 'bg-indigo-600 text-white border-indigo-600'
+                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
                         <span>{g.label}</span>
                         <span
                           className={`px-1.5 py-0.5 rounded-md text-[11px] ${
-                            isSelected ? 'bg-amber-600 text-amber-50' : 'bg-white text-amber-800'
+                            isSelected ? 'text-white' : 'text-slate-500'
                           }`}
                         >
                           {financeGroupCounts[g.id] || 0}
@@ -1012,21 +554,23 @@ export function App() {
               )}
 
               {/* 검색창 + 출처 필터 + 정렬 옵션 */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+              <div className="filter-grid">
                 {/* 키워드 검색 입력 */}
-                <div className="md:col-span-6 relative">
+                <div className="relative col-span-2 md:col-span-1">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="기업명, 공고 제목, 기술스택(AI, 백엔드, React, 보안, 증권 등) 검색..."
-                    className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-slate-200 bg-slate-50/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                    placeholder="기업명, 공고 제목, 기술 검색"
+                    aria-label="공고 검색"
+                    className="w-full pl-10 pr-9 py-2.5 rounded-md border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                   />
                   {searchQuery && (
                     <button
                       type="button"
                       onClick={() => setSearchQuery('')}
+                      aria-label="검색어 지우기"
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                     >
                       <X className="w-4 h-4" />
@@ -1035,12 +579,12 @@ export function App() {
                 </div>
 
                 {/* 수집 출처 필터 */}
-                <div className="md:col-span-3 flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-slate-400 shrink-0 hidden sm:block" />
+                <div className="min-w-0">
                   <select
+                    aria-label="수집 출처"
                     value={selectedSource}
                     onChange={(e) => setSelectedSource(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 rounded-md border border-slate-200 bg-white text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="all">전체 수집 출처 ({scopedAllItems.length})</option>
                     {availableSources.map(([src, cnt]) => (
@@ -1052,58 +596,62 @@ export function App() {
                 </div>
 
                 {/* 정렬 방식 */}
-                <div className="md:col-span-3">
+                <div className="min-w-0">
                   <select
+                    aria-label="정렬 방식"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-indigo-200 bg-white text-sm font-semibold text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-xs"
+                    className="w-full px-3 py-2.5 rounded-md border border-slate-200 bg-white text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
-                    <option value="fit-desc">🎯 내 스택 맞춤 추천순 (적합도순)</option>
-                    <option value="deadline-asc">⚡ 마감 임박순 (D-Day)</option>
-                    <option value="latest">🆕 최신 등록순</option>
-                    <option value="deadline-desc">📅 마감 여유순</option>
+                    <option value="fit-desc">직무 적합도순</option>
+                    <option value="deadline-asc">마감 임박순</option>
+                    <option value="latest">최신 등록순</option>
+                    <option value="deadline-desc">마감 여유순</option>
                   </select>
                 </div>
               </div>
 
               {/* 인기 태그 원클릭 칩 & 보조 토글 */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-100">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="text-xs font-semibold text-slate-400 mr-1">추천 키워드:</span>
-                  {POPULAR_KEYWORDS.map((kw) => {
-                    const active = searchQuery.toLowerCase() === kw.toLowerCase();
-                    return (
-                      <button
-                        key={kw}
-                        type="button"
-                        onClick={() => setSearchQuery(active ? '' : kw)}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition ${
-                          active
-                            ? 'bg-indigo-600 text-white'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                      >
-                        #{kw}
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="flex flex-col gap-3">
+                <details className="keyword-picker">
+                  <summary>추천 키워드</summary>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {POPULAR_KEYWORDS.map((kw) => {
+                      const active = searchQuery.toLowerCase() === kw.toLowerCase();
+                      return (
+                        <button
+                          key={kw}
+                          type="button"
+                          onClick={() => setSearchQuery(active ? '' : kw)}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition ${
+                            active
+                              ? 'bg-indigo-600 text-white'
+                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          }`}
+                        >
+                          #{kw}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </details>
 
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-slate-600">
                   <button
                     type="button"
                     onClick={() => setStudentOnly((prev) => !prev)}
+                    aria-pressed={studentOnly}
                     className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-bold transition ${
                       studentOnly
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-xs'
+                        ? 'bg-indigo-50 text-indigo-800 border-indigo-200'
                         : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                     }`}
                     title="신입 정규직·채용연계/전환형 인턴·대외활동 제외 (체험형/비연계 인턴 + 해커톤/공모전만 보기)"
                   >
                     <GraduationCap
-                      className={`w-3.5 h-3.5 ${studentOnly ? 'text-emerald-600' : 'text-slate-400'}`}
+                      className={`w-3.5 h-3.5 ${studentOnly ? 'text-indigo-700' : 'text-slate-400'}`}
                     />
-                    <span>재학 중 가능만 (비연계 인턴·대회)</span>
+                    <span>재학 중 지원 가능</span>
                   </button>
                   <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
                     <input
@@ -1112,16 +660,16 @@ export function App() {
                       onChange={(e) => setHideClosed(e.target.checked)}
                       className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                     />
-                    <span>마감된 공고 숨기기</span>
+                    <span>마감 공고 숨기기</span>
                   </label>
                   <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
                     <input
                       type="checkbox"
                       checked={onlyUrgent}
                       onChange={(e) => setOnlyUrgent(e.target.checked)}
-                      className="rounded border-slate-300 text-red-600 focus:ring-red-500"
+                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                     />
-                    <span className="text-red-600 font-semibold">마감임박(D-7)만</span>
+                    <span>7일 이내 마감</span>
                   </label>
                 </div>
               </div>
@@ -1133,17 +681,17 @@ export function App() {
                 <h2 className="text-base sm:text-lg font-bold text-slate-900">
                   {CATEGORY_META[selectedCategory].label}
                 </h2>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+                <span className="text-xs font-medium text-slate-600 tabular-nums">
                   {filteredItems.length}건
                 </span>
                 {studentOnly && hiddenByStudentFilterCount > 0 && (
                   <button
                     type="button"
                     onClick={() => setStudentOnly(false)}
-                    className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition"
+                    className="inline-flex flex-wrap items-center gap-1 text-xs text-slate-600 hover:text-indigo-700 transition"
                     title="클릭하면 신입·채용연계형·대외활동까지 모두 표시합니다"
                   >
-                    <span>신입·채용연계·대외활동 {hiddenByStudentFilterCount}건 제외됨</span>
+                    <span>재학 필터로 {hiddenByStudentFilterCount}건 제외</span>
                     <span className="underline font-bold">전체 보기</span>
                   </button>
                 )}
@@ -1163,28 +711,11 @@ export function App() {
                 )}
               </div>
 
-              <span className="text-xs text-slate-500 hidden sm:inline">
-                카드 우측 상단의 <strong>[+ 진행중]</strong>으로 내 일정에 담거나, <strong>[눈 아이콘(숨김)]</strong>으로 영구 삭제할 수 있습니다
-              </span>
             </div>
 
             {/* 로딩 / 에러 / 본문 영역 */}
             {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div
-                    key={n}
-                    className="h-56 rounded-2xl bg-white border border-slate-200 p-5 animate-pulse flex flex-col justify-between"
-                  >
-                    <div className="space-y-3">
-                      <div className="w-24 h-5 bg-slate-200 rounded" />
-                      <div className="w-3/4 h-6 bg-slate-200 rounded" />
-                      <div className="w-full h-12 bg-slate-100 rounded" />
-                    </div>
-                    <div className="w-1/2 h-4 bg-slate-200 rounded" />
-                  </div>
-                ))}
-              </div>
+              <p role="status" className="py-10 text-sm text-slate-500">공고를 불러오는 중입니다.</p>
             ) : error ? (
               <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
                 <p className="text-red-700 font-bold mb-1">데이터 로드 실패</p>
@@ -1229,215 +760,47 @@ export function App() {
                 </div>
               </div>
             ) : (
-              /* 카드 그리드 (리스트 뷰) */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="opportunity-list">
                 {filteredItems.map((item) => {
                   const meta = CATEGORY_META[item.category] || CATEGORY_META.intern;
                   const dday = getDdayInfo(item.deadline, item.isAlwaysOpen);
                   const isBookmarked = bookmarkedIds.includes(item.id);
                   const progressEntry = progressMap.get(item.id);
-                  const inProgress = Boolean(progressEntry);
                   const fit = analyzeOpportunityFit(item);
+                  const urgent = dday.daysLeft !== null && dday.daysLeft >= 0 && dday.daysLeft <= 7;
 
                   return (
-                    <article
-                      key={item.id}
-                      onClick={() => setActiveItem(item)}
-                      className={`group bg-white rounded-2xl border transition-all p-5 flex flex-col justify-between cursor-pointer relative ${
-                        inProgress
-                          ? 'border-2 border-emerald-400 bg-emerald-50/10 shadow-xs'
-                          : 'border-slate-200 hover:border-indigo-300 hover:shadow-md'
-                      }`}
-                    >
-                      <div>
-                        {/* 상단 뱃지 & 액션 버튼(+진행중 / 찜 / 안볼래요 삭제) */}
-                        <div className="flex items-center justify-between gap-2 mb-3">
-                          <div className="flex flex-wrap items-center gap-1.5">
-                            <span
-                              className={`px-2 py-0.5 text-xs font-semibold rounded-lg border ${meta.badgeClass}`}
-                            >
-                              {meta.shortLabel}
-                            </span>
-                            <span
-                              className={`px-2 py-0.5 text-xs rounded-lg border ${dday.badgeStyle}`}
-                            >
-                              {dday.label}
-                            </span>
-                            <span
-                              className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-lg border ${
-                                fit.matchScore >= 78
-                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                  : fit.matchScore >= 68
-                                  ? 'bg-blue-50 text-blue-700 border-blue-200'
-                                  : fit.matchScore >= 50
-                                  ? 'bg-amber-50 text-amber-800 border-amber-200'
-                                  : 'bg-slate-100 text-slate-600 border-slate-200'
-                              }`}
-                              title={`내 스택 맞춤 직무: ${fit.targetRole} (${fit.matchLevel})`}
-                            >
-                              <Sparkles
-                                className={`w-3 h-3 ${
-                                  fit.matchScore >= 78
-                                    ? 'text-emerald-600'
-                                    : fit.matchScore >= 68
-                                    ? 'text-blue-600'
-                                    : 'text-amber-600'
-                                }`}
-                              />
-                              <span>매칭 {fit.matchScore}%</span>
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-1">
-                            {/* 진행중 토글 버튼 */}
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleToggleProgress(item);
-                              }}
-                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold border transition ${
-                                inProgress
-                                  ? 'bg-emerald-600 text-white border-emerald-600'
-                                  : 'bg-white text-indigo-600 border-indigo-200 hover:bg-indigo-50'
-                              }`}
-                              title="내가 진행 중인 목록에 추가/제거"
-                            >
-                              {inProgress ? (
-                                <>
-                                  <CheckCircle2 className="w-3.5 h-3.5" />
-                                  <span>
-                                    {PROGRESS_STAGE_META[progressEntry!.stage].label.split(' ')[0]}
-                                  </span>
-                                </>
-                              ) : (
-                                <>
-                                  <Plus className="w-3.5 h-3.5" />
-                                  <span>진행중</span>
-                                </>
-                              )}
-                            </button>
-
-                            {/* 찜하기 버튼 */}
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleToggleBookmark(item.id);
-                              }}
-                              className={`p-1.5 rounded-lg border transition ${
-                                isBookmarked
-                                  ? 'bg-amber-50 border-amber-200 text-amber-500'
-                                  : 'bg-white border-transparent text-slate-400 hover:bg-slate-100 hover:text-slate-600'
-                              }`}
-                              title="관심 공고 찜"
-                            >
-                              <Bookmark
-                                className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`}
-                              />
-                            </button>
-
-                            {/* 이미 확인했거나 안 할 공고 영구 삭제(숨기기) 버튼 */}
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleDismissItem(item);
-                              }}
-                              className="p-1.5 rounded-lg border border-transparent text-slate-400 hover:bg-red-50 hover:border-red-100 hover:text-red-600 transition"
-                              title="이미 확인했거나 안 할 공고 지우기 (다시 안 뜸)"
-                            >
-                              <EyeOff className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* 기업/주최기관 및 출처 */}
-                        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 mb-1.5">
-                          <Building2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                          <span className="truncate text-slate-700">{item.organization}</span>
-                          <span className="text-slate-300">•</span>
-                          <span className="text-slate-400 shrink-0">{item.source}</span>
-                        </div>
-
-                        {/* 내 맞춤 추천 직무 */}
-                        <div className="mb-2">
-                          <span
-                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[11px] font-semibold ${
-                              fit.matchScore >= 78
-                                ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-                                : fit.matchScore >= 68
-                                ? 'bg-indigo-50 border-indigo-200 text-indigo-800'
-                                : fit.matchScore >= 50
-                                ? 'bg-amber-50 border-amber-200 text-amber-800'
-                                : 'bg-slate-100 border-slate-200 text-slate-600'
-                            }`}
-                          >
-                            <Sparkles className="w-3 h-3 shrink-0" />
-                            <span className="truncate max-w-[220px]">맞춤: {fit.targetRole}</span>
-                          </span>
-                        </div>
-
-                        {/* 공고 제목 */}
-                        <h3 className="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition line-clamp-2 leading-snug mb-2">
-                          {item.title}
+                    <article key={item.id} className="opportunity-row">
+                      <div className="opportunity-main">
+                        <p className="opportunity-company">{item.organization}</p>
+                        <h3>
+                          <button type="button" onClick={() => setActiveItem(item)}>{item.title}</button>
                         </h3>
-
-                        {/* 요약 설명 */}
-                        {item.summary && (
-                          <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
-                            {item.summary}
-                          </p>
-                        )}
+                        <p className="opportunity-meta">
+                          <span>{meta.shortLabel}</span><span>{item.source}</span>
+                          {item.location && <span>{item.location}</span>}
+                          <span title={fit.targetRole}>직무 적합도 {fit.matchScore}%</span>
+                        </p>
                       </div>
-
-                      <div className="pt-3 border-t border-slate-100 space-y-2.5">
-                        {/* 태그 목록 */}
-                        {item.tags && item.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1">
-                            {item.tags.slice(0, 4).map((tag) => (
-                              <span
-                                key={tag}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setSearchQuery(tag);
-                                }}
-                                className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 transition"
-                              >
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* 마감일 및 원문 이동 버튼 */}
-                        <div className="flex items-center justify-between text-xs text-slate-500 pt-0.5">
-                          <div className="flex items-center gap-2 truncate">
-                            <span className="inline-flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5 text-slate-400" />
-                              {item.isAlwaysOpen || !item.deadline
-                                ? '상시'
-                                : `신청마감: ~ ${item.deadline}`}
-                            </span>
-                            {item.location && (
-                              <span className="hidden sm:inline-flex items-center gap-0.5 text-slate-400 truncate">
-                                <MapPin className="w-3 h-3" />
-                                {item.location}
-                              </span>
-                            )}
-                          </div>
-
-                          <a
-                            href={item.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="shrink-0 inline-flex items-center gap-1 font-semibold text-indigo-600 hover:text-indigo-800"
-                          >
-                            <span>원문 보기</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-                        </div>
+                      <div className="opportunity-date">
+                        <strong className={urgent ? 'deadline-urgent' : undefined}>{dday.label}</strong>
+                        {!item.isAlwaysOpen && item.deadline && <time dateTime={item.deadline}>{item.deadline}</time>}
+                      </div>
+                      <div className="row-actions">
+                        <button type="button" aria-pressed={Boolean(progressEntry)}
+                          aria-label={progressEntry ? '내 지원에서 제거' : '내 지원에 추가'}
+                          title={progressEntry ? PROGRESS_STAGE_META[progressEntry.stage].label : '내 지원에 추가'}
+                          onClick={() => handleToggleProgress(item)}>
+                          {progressEntry ? <CheckCircle2 /> : <Plus />}
+                        </button>
+                        <button type="button" aria-label="공고 저장" title="공고 저장" aria-pressed={isBookmarked}
+                          onClick={() => handleToggleBookmark(item.id)}>
+                          <Bookmark className={isBookmarked ? 'fill-current' : undefined} />
+                        </button>
+                        <button type="button" aria-label="공고 숨기기" title="공고 숨기기"
+                          onClick={() => handleDismissItem(item)}><EyeOff /></button>
+                        <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer"
+                          aria-label="공고 원문 (새 탭)" title="공고 원문"><ExternalLink /></a>
                       </div>
                     </article>
                   );
@@ -1468,28 +831,17 @@ export function App() {
         onRestoreAll={handleRestoreAllDismissed}
       />
 
-      {/* 푸터 */}
-      <footer className="bg-white border-t border-slate-200 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-800">CareerRadar</span>
-            <span>—</span>
-            <span>
-              IT·SW 및 금융권 인턴, 신입 채용, 해커톤, 공모전 알림 허브 (하루 3회 자동 업데이트)
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setIsDismissedModalOpen(true)}
-              className="hover:text-slate-800 underline"
-            >
-              숨긴 공고 관리 ({dismissedEntries.length}건)
-            </button>
-            <span>
-              수동 공고: <code className="text-slate-700">public/data/manual.json</code>
-            </span>
-          </div>
+      <footer className="site-footer">
+        <div className="site-shell">
+          <details>
+            <summary>채용 사이트 바로가기</summary>
+            <div className="portal-links">
+              {QUICK_PORTALS.map((portal) => (
+                <a key={portal.name} href={portal.url} target="_blank" rel="noopener noreferrer">{portal.name}</a>
+              ))}
+            </div>
+          </details>
+          <span>CareerRadar</span>
         </div>
       </footer>
     </div>

@@ -286,32 +286,21 @@ export const ResumeCheatsheetView: React.FC = () => {
 
   return (
     <div className="space-y-6 animate-fadeIn pb-16">
-      {/* 상단 헤더 배너 */}
-      <div className="bg-slate-900 rounded-3xl p-6 sm:p-7 text-white shadow-lg border border-slate-800">
+      <section className="border-b border-slate-200 pb-5">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold mb-2">
-              <FileText className="w-3.5 h-3.5" />
-              <span>포트폴리오 자소서·면접 정리 (총 {PROJECTS_STRUCTURED.length}개 프로젝트)</span>
-            </div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-              지원 직무를 고르고, 30초 · 2분 · 상세 · 꼬리질문 · 지원서 경험란 중 필요한 형태로 꺼내 쓰기
-            </h1>
-            <p className="mt-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              직무를 고르면 프로젝트 주력/보조 구분과 스토리라인이 표시되고, 역량 칩으로 해당 사례만 모아 볼 수 있습니다.
-              상세 보기는 [포트폴리오 가이드] + [계기] ➔ [요약] ➔ [위험상황·해결] ➔ [한계] ➔ [꼬리질문 Q&A] 구성입니다.
-            </p>
-            <p className="mt-2 text-[11px] text-slate-400">
-              최종 정리 {CHEATSHEET_UPDATED_AT} · 근거: 각 저장소 README·문서와 작업 기록
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">자소서 치트시트</h1>
+            <p className="mt-2 text-sm text-slate-600">
+              프로젝트 {PROJECTS_STRUCTURED.length}개 · 최종 정리 {CHEATSHEET_UPDATED_AT}
             </p>
           </div>
 
-          <div className="flex sm:flex-col items-stretch gap-2 shrink-0">
+          <div className="flex flex-wrap items-stretch gap-2 shrink-0">
             <a
               href="https://github.com/rhwhdgks"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-white border border-slate-200 hover:border-indigo-300 text-slate-700 text-xs font-semibold transition"
             >
               <FolderGit2 className="w-4 h-4" />
               <span>GitHub @rhwhdgks</span>
@@ -321,7 +310,7 @@ export const ResumeCheatsheetView: React.FC = () => {
               <button
                 type="button"
                 onClick={toggleAll}
-                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-500/90 hover:bg-indigo-500 text-white text-xs font-semibold transition"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-indigo-700 hover:bg-indigo-800 text-white text-xs font-semibold transition"
               >
                 {allExpanded ? <ChevronsDownUp className="w-4 h-4" /> : <ChevronsUpDown className="w-4 h-4" />}
                 <span>{allExpanded ? '모두 접기' : '모두 펼치기'}</span>
@@ -331,10 +320,10 @@ export const ResumeCheatsheetView: React.FC = () => {
               <button
                 type="button"
                 onClick={toggleHideAnswers}
-                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
+                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md text-xs font-semibold transition ${
                   hideAnswers
-                    ? 'bg-amber-400 text-amber-950 hover:bg-amber-300'
-                    : 'bg-indigo-500/90 hover:bg-indigo-500 text-white'
+                    ? 'bg-indigo-100 text-indigo-900 hover:bg-indigo-200'
+                    : 'bg-indigo-700 hover:bg-indigo-800 text-white'
                 }`}
               >
                 {hideAnswers ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
@@ -347,7 +336,7 @@ export const ResumeCheatsheetView: React.FC = () => {
         {/* 지원 직무 */}
         <div className="mt-5 space-y-3">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 mr-1">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 mr-1">
               <Briefcase className="w-3.5 h-3.5" /> 지원 직무
             </span>
             {[{ id: null as TrackId | null, label: '전체', desc: '직무 구분 없이 기본 순서' }, ...JOB_TRACKS].map((t) => {
@@ -360,8 +349,8 @@ export const ResumeCheatsheetView: React.FC = () => {
                   onClick={() => selectTrack(t.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
                     active
-                      ? 'bg-amber-400 text-amber-950 border-amber-400'
-                      : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/15'
+                      ? 'bg-indigo-700 text-white border-indigo-700'
+                      : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-300'
                   }`}
                 >
                   {t.label}
@@ -372,7 +361,7 @@ export const ResumeCheatsheetView: React.FC = () => {
 
           {/* 보기 길이 */}
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 mr-1">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 mr-1">
               <Mic className="w-3.5 h-3.5" /> 보기
             </span>
             {VIEW_LEVELS.map((v) => {
@@ -385,8 +374,8 @@ export const ResumeCheatsheetView: React.FC = () => {
                   onClick={() => setViewLevel(v.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
                     active
-                      ? 'bg-indigo-500 text-white border-indigo-500'
-                      : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/15'
+                      ? 'bg-indigo-700 text-white border-indigo-700'
+                      : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-300'
                   }`}
                 >
                   {v.label}
@@ -397,7 +386,7 @@ export const ResumeCheatsheetView: React.FC = () => {
 
           {/* 역량 칩 */}
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 mr-1">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 mr-1">
               <Target className="w-3.5 h-3.5" /> {track ? `${track.label} 핵심 역량` : '역량으로 사례 찾기'}
             </span>
             {visibleCompetencies.map((c) => {
@@ -410,8 +399,8 @@ export const ResumeCheatsheetView: React.FC = () => {
                   onClick={() => selectCompetency(c)}
                   className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-semibold border transition ${
                     active
-                      ? 'bg-white text-slate-900 border-white'
-                      : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/15'
+                      ? 'bg-indigo-50 text-indigo-900 border-indigo-300'
+                      : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-300'
                   }`}
                 >
                   <span>{COMPETENCIES[c].label}</span>
@@ -423,23 +412,23 @@ export const ResumeCheatsheetView: React.FC = () => {
         </div>
 
         {/* 프로젝트 목차 */}
-        <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap gap-1.5">
+        <div className="mt-5 pt-4 border-t border-slate-200 flex flex-wrap gap-x-4 gap-y-1">
           {projects.map((p, idx) => (
             <button
               key={p.id}
               type="button"
               onClick={() => jumpTo(p.id)}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-[11px] sm:text-xs text-slate-200 transition"
+              className="inline-flex items-center gap-1 py-1 text-xs text-slate-700 hover:text-indigo-700 hover:underline"
             >
-              <span className="font-bold text-indigo-300">#{idx + 1}</span>
+              <span className="tabular-nums text-slate-500">{idx + 1}.</span>
               {track && track.order.indexOf(p.id) < track.mainCount && (
-                <span className="px-1 py-0.2 rounded bg-emerald-400/20 text-emerald-300 text-[10px] font-bold">주력</span>
+                <span className="text-indigo-800 text-[10px] font-semibold">주력</span>
               )}
               <span>{p.shortTitle}</span>
             </button>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* 직무별 포트폴리오 스토리라인 안내 */}
       {track && (
