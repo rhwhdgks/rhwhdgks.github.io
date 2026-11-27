@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-27 05:01 KST",
-  "totalCount": 150,
+  "updatedAt": "2026-11-27 16:26 KST",
+  "totalCount": 149,
   "sourceCounts": {
     "금융사 채용사이트": 12,
     "기업 채용사이트": 30,
-    "링커리어": 77,
-    "금융투자협회(KOFIA)": 14,
-    "점핏(Jumpit)": 14,
+    "링커리어": 79,
+    "금융투자협회(KOFIA)": 11,
     "위비티(Wevity)": 2,
+    "점핏(Jumpit)": 14,
     "토스 채용": 1
   },
   "items": [
@@ -299,6 +299,24 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-367506",
+      "title": "[PFCT] (인턴십 연계) AI 신용평가 아카데미 5기",
+      "organization": "피에프씨테크놀로지스",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367506",
+      "startDate": "2026-11-27",
+      "deadline": "2026-11-30",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "피에프씨테크놀로지스 | [PFCT] (인턴십 연계) AI 신용평가 아카데미 5기",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-366183",
       "title": "AI 신용평가 아카데미 5기",
       "organization": "피에프씨테크놀로지스",
@@ -542,22 +560,23 @@
       "isFeatured": true
     },
     {
-      "id": "kofia-43232",
-      "title": "[이지스자산운용] 리얼에셋부문 투자3그룹 단기계약직 모집",
-      "organization": "이지스자산운용",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43232",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-03",
+      "id": "linkareer-367503",
+      "title": "2026년 보건의료 빅데이터 미래포럼",
+      "organization": "건강보험심사평가원",
+      "category": "activity",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367503",
+      "startDate": "2026-11-27",
+      "deadline": "2026-12-02",
       "isAlwaysOpen": false,
       "tags": [
-        "금융권",
-        "신입 가능"
+        "대외활동/교육",
+        "기타",
+        "강연"
       ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "IGIS자산운용 리얼에셋부문 투자3그룹 단기계약직 모집에 많은 관심과 지원 바랍니다 . 1. 모집부문 : - 리얼에셋부문 투자3그룹 - 단기계약직 O명 2. 담당업무 : - 국내 부동산 개발사업 및 투자검토 관련 리서치 지원 - 부동산 시장자료 및 투자 관련 데이터 취합·가공·분석 - 사업성 검토 및 투자 관련 보고서 작성 지원 - 기타 부동산 투자·개발 관련 업무 보조 3. 지원자격 및 우...",
+      "location": "국내",
+      "reward": "대외활동/교육",
+      "summary": "건강보험심사평가원 | 2026년 보건의료 빅데이터 미래포럼 | 직무: 기타, 강연",
       "isFeatured": true
     },
     {
@@ -760,6 +779,25 @@
       "isFeatured": true
     },
     {
+      "id": "linkareer-367359",
+      "title": "사운드 오브 어스 - 2026 장애인식개선 AI 음원 공모전",
+      "organization": "스터닝",
+      "category": "contest",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367359",
+      "startDate": "2026-11-27",
+      "deadline": "2026-12-04",
+      "isAlwaysOpen": false,
+      "tags": [
+        "공모전",
+        "예체능/패션"
+      ],
+      "location": "국내",
+      "reward": "공모전",
+      "summary": "스터닝 | 사운드 오브 어스 - 2026 장애인식개선 AI 음원 공모전 | 직무: 예체능/패션",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-364802",
       "title": "현대모비스 로보틱스 경진대회 참가자 모집(2027 MOBIS Robotics Challenge)",
       "organization": "현대모비스",
@@ -799,27 +837,6 @@
       "location": "서울",
       "reward": "인턴십",
       "summary": "트러스톤자산운용(주) 동계 체험형 인턴 채용공고 ■ 모집 내용: 첨부파일 참조 ■ 채용 절차: 1차 서류전형 - 2차 면접 - 최종합격 ■ 접 수 1. 접수기간: 2026년 11월 25일부터 2026년 12월 6일까지 2. 접 수 처: 당사 홈페이지 온라인 접수 3. 문 의: 이메일 문의요망(hr@trustonasset.com) 4. 기타사항 - 장애인 및 취업지원대상자는 관련 법률에 의거하...",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43227",
-      "title": "[에프앤자산평가] 주식파생실, 금리파생실 정규직원 채용(~12/06)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43227",
-      "startDate": "2026-11-20",
-      "deadline": "2026-12-06",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입 가능",
-        "퀀트/파생",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
       "isFeatured": true
     },
     {
@@ -1206,47 +1223,23 @@
       "isFeatured": true
     },
     {
-      "id": "jumpit-55558812",
-      "title": "정밀도로지도 데이터 가공·검수 및 3D 모델링(신입 가능)",
-      "organization": "스타마타",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55558812",
+      "id": "wevity-112438",
+      "title": "2026년 서울교육 AI 활용 공모전",
+      "organization": "서울특별시동부교육지원청",
+      "category": "hackathon",
+      "source": "위비티(Wevity)",
+      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
       "startDate": "2026-11-27",
       "deadline": "2026-12-11",
       "isAlwaysOpen": false,
       "tags": [
-        "신입/인턴",
-        "인공지능/머신러닝",
-        "SW/솔루션",
-        "PostGIS",
-        "3D Rendering"
+        "해커톤/경진대회",
+        "AI/데이터",
+        "SW개발"
       ],
-      "location": "서울 강남구",
-      "reward": "IT 신입/인턴",
-      "summary": "스타마타 | 정밀도로지도 데이터 가공·검수 및 3D 모델링(신입 가능) | 기술스택: PostGIS, 3D Rendering, ArcGIS, Packagist",
-      "isFeatured": true
-    },
-    {
-      "id": "jumpit-55558168",
-      "title": "ML Systems Runtime Engineer [신입/병특]",
-      "organization": "보스반도체",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55558168",
-      "startDate": "2026-11-27",
-      "deadline": "2026-12-11",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "devops/시스템 엔지니어",
-        "Android OS",
-        "Linux",
-        "DeepLearning"
-      ],
-      "location": "경기 성남시 분당구",
-      "reward": "IT 신입/인턴",
-      "summary": "보스반도체 | ML Systems Runtime Engineer [신입/병특] | 기술스택: Android OS, Linux, DeepLearning, AI/인공지능, Transformers",
+      "location": "온/오프라인",
+      "reward": "시상금 및 상장",
+      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
       "isFeatured": true
     },
     {
@@ -1269,67 +1262,6 @@
       "location": "경기 성남시 수정구",
       "reward": "IT 신입/인턴",
       "summary": "톤28 | AI Builder(AI 빌더) [신입] | 기술스택: Figma, Git, GitHub, Python, AI/인공지능, Airtable, Notion",
-      "isFeatured": true
-    },
-    {
-      "id": "jumpit-55569265",
-      "title": "제품설계 신입사원 채용",
-      "organization": "인텍에프에이",
-      "category": "intern",
-      "source": "점핏(Jumpit)",
-      "sourceUrl": "https://jumpit.saramin.co.kr/position/55569265",
-      "startDate": "2026-11-27",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입/인턴",
-        "SW/솔루션",
-        "ERP",
-        "Autocad"
-      ],
-      "location": "경기 용인시",
-      "reward": "IT 신입/인턴",
-      "summary": "인텍에프에이 | 제품설계 신입사원 채용 | 기술스택: ERP, Autocad",
-      "isFeatured": true
-    },
-    {
-      "id": "wevity-112438",
-      "title": "2026년 서울교육 AI 활용 공모전",
-      "organization": "서울특별시동부교육지원청",
-      "category": "hackathon",
-      "source": "위비티(Wevity)",
-      "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112438",
-      "startDate": "2026-11-27",
-      "deadline": "2026-12-12",
-      "isAlwaysOpen": false,
-      "tags": [
-        "해커톤/경진대회",
-        "AI/데이터",
-        "SW개발"
-      ],
-      "location": "온/오프라인",
-      "reward": "시상금 및 상장",
-      "summary": "서울특별시동부교육지원청 주최 | 2026년 서울교육 AI 활용 공모전",
-      "isFeatured": true
-    },
-    {
-      "id": "kofia-43272",
-      "title": "[에프앤자산평가] 평가사업본부(외화채권실) 정규직원 채용(~12/13)",
-      "organization": "에프앤자산평가",
-      "category": "kofia",
-      "source": "금융투자협회(KOFIA)",
-      "sourceUrl": "https://www.kofia.or.kr/brd/m_96/view.do?seq=43272",
-      "startDate": "2026-11-24",
-      "deadline": "2026-12-13",
-      "isAlwaysOpen": false,
-      "tags": [
-        "금융권",
-        "신입 가능",
-        "운용/리서치"
-      ],
-      "location": "서울",
-      "reward": "신입/인턴 채용",
-      "summary": "㈜에프앤자산평가 채용공고 국내 최고 수준의 금융정보를 제공하는 에프앤가이드와 한국경제신문, 그리고 *국내 4대 시중은행(국민, 신한, 하나, 우리)*의 공동 출자로 설립된 에프앤자산평가는 금융위원회의 인가를 받아 금융감독원의 지도 아래 운영되고 있습니다. 당사는 국내외에서 발행되는 채권 및 구조화 상품의 공정가치를 산출하며, 금융 시장의 신뢰를 구축하는 데 앞장서고 있습니다. 에프앤자산평가는...",
       "isFeatured": true
     },
     {
@@ -1467,12 +1399,16 @@
         "금융권",
         "은행",
         "인턴",
-        "체험형"
+        "체험형",
+        "교육기획/교재개발"
       ],
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | 교육/문화 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-367473"
+      ]
     },
     {
       "id": "recruiter-kakaobank-273585",
@@ -1488,12 +1424,16 @@
         "금융권",
         "은행",
         "인턴",
-        "체험형"
+        "체험형",
+        "서비스기획/운영"
       ],
       "location": "국내",
       "reward": "은행 채용",
       "summary": "카카오뱅크 | 문화 콘텐츠 어시스턴트 (체험형 인턴)",
-      "isFeatured": true
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-367466"
+      ]
     },
     {
       "id": "linkareer-365945",
@@ -1585,7 +1525,7 @@
       "source": "위비티(Wevity)",
       "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=20&gbn=view&gp=1&ix=112285",
       "startDate": "2026-11-27",
-      "deadline": "2026-12-21",
+      "deadline": "2026-12-20",
       "isAlwaysOpen": false,
       "tags": [
         "해커톤/경진대회",
@@ -1752,6 +1692,72 @@
       "isFeatured": true
     },
     {
+      "id": "jumpit-55690503",
+      "title": "S/W 개발자 채용[신입]",
+      "organization": "건강누리",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55690503",
+      "startDate": "2026-11-27",
+      "deadline": "2026-12-26",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "SW/솔루션",
+        "C",
+        "C++",
+        "Qt"
+      ],
+      "location": "서울 영등포구",
+      "reward": "IT 신입/인턴",
+      "summary": "건강누리 | S/W 개발자 채용[신입] | 기술스택: C, C++, Qt, SW, Mfc",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55690449",
+      "title": "웹 개발자 채용[신입]",
+      "organization": "건강누리",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55690449",
+      "startDate": "2026-11-27",
+      "deadline": "2026-12-26",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "서버/백엔드 개발자",
+        "프론트엔드 개발자",
+        "HTML5",
+        "JavaScript"
+      ],
+      "location": "서울 영등포구",
+      "reward": "IT 신입/인턴",
+      "summary": "건강누리 | 웹 개발자 채용[신입] | 기술스택: HTML5, JavaScript, Uniform CSS",
+      "isFeatured": true
+    },
+    {
+      "id": "jumpit-55688458",
+      "title": "백엔드 개발자 (신입)",
+      "organization": "티엔에이치",
+      "category": "intern",
+      "source": "점핏(Jumpit)",
+      "sourceUrl": "https://jumpit.saramin.co.kr/position/55688458",
+      "startDate": "2026-11-27",
+      "deadline": "2026-12-26",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입/인턴",
+        "서버/백엔드 개발자",
+        "Amazon EMR",
+        "Docker",
+        "Git"
+      ],
+      "location": "경기 성남시 분당구",
+      "reward": "IT 신입/인턴",
+      "summary": "티엔에이치 | 백엔드 개발자 (신입) | 기술스택: Amazon EMR, Docker, Git, JavaScript, Jira, Node.js, PostgreSQL, TypeScript, SQL",
+      "isFeatured": true
+    },
+    {
       "id": "linkareer-367316",
       "title": "[채용전환형/월 500만원] 모두닥 Problem Solver (Engineering Focused) 인턴",
       "organization": "모두닥 주식회사",
@@ -1885,45 +1891,6 @@
       "location": "국내",
       "reward": "인턴/신입",
       "summary": "인피니언테크놀로지스코리아 | [인피니언테크놀로지스코리아] Internship - Engineering (AI & Embedded Solutions) | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-357837",
-      "title": "메이아이 머신러닝 엔지니어 (ML Engineer) 채용",
-      "organization": "(주)메이아이",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/357837",
-      "startDate": "2026-11-27",
-      "deadline": "2027-01-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "신입",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "(주)메이아이 | 메이아이 머신러닝 엔지니어 (ML Engineer) 채용 | 직무: AI/ML엔지니어",
-      "isFeatured": true
-    },
-    {
-      "id": "linkareer-357809",
-      "title": "[LG경영개발원] AI Engineer Internship - Agentic AI (Backend)",
-      "organization": "LG경영개발원",
-      "category": "intern",
-      "source": "링커리어",
-      "sourceUrl": "https://linkareer.com/activity/357809",
-      "startDate": "2026-11-27",
-      "deadline": "2027-01-17",
-      "isAlwaysOpen": false,
-      "tags": [
-        "인턴",
-        "백엔드/서버개발",
-        "AI/ML엔지니어"
-      ],
-      "location": "국내",
-      "reward": "인턴/신입",
-      "summary": "LG경영개발원 | [LG경영개발원] AI Engineer Internship - Agentic AI (Backend) | 직무: 백엔드/서버개발, AI/ML엔지니어",
       "isFeatured": true
     },
     {
@@ -2664,6 +2631,74 @@
       "isFeatured": true
     },
     {
+      "id": "kakao-P-14593",
+      "title": "Foundation Model Research Engineer_인턴",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14593",
+      "startDate": "2026-11-27",
+      "deadline": "2027-02-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "대기업",
+        "시스템/ERP개발",
+        "AI/ML엔지니어"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | Foundation Model Research Engineer_인턴 | 인턴",
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-367446"
+      ]
+    },
+    {
+      "id": "kakao-P-14595",
+      "title": "Multimodal LLM Application Research Engineer_인턴",
+      "organization": "카카오",
+      "category": "intern",
+      "source": "기업 채용사이트",
+      "sourceUrl": "https://careers.kakao.com/jobs/P-14595",
+      "startDate": "2026-11-27",
+      "deadline": "2027-02-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "인턴",
+        "AI/데이터",
+        "대기업",
+        "시스템/ERP개발",
+        "AI/ML엔지니어"
+      ],
+      "location": "판교",
+      "reward": "인턴/신입",
+      "summary": "카카오 | Multimodal LLM Application Research Engineer_인턴 | 인턴",
+      "isFeatured": true,
+      "aliases": [
+        "linkareer-367450"
+      ]
+    },
+    {
+      "id": "linkareer-367500",
+      "title": "[무하유] AI 서비스 품질 및 운영 매니저",
+      "organization": "무하유",
+      "category": "intern",
+      "source": "링커리어",
+      "sourceUrl": "https://linkareer.com/activity/367500",
+      "startDate": "2026-11-27",
+      "deadline": "2027-02-25",
+      "isAlwaysOpen": false,
+      "tags": [
+        "신입",
+        "AI/ML엔지니어"
+      ],
+      "location": "국내",
+      "reward": "인턴/신입",
+      "summary": "무하유 | [무하유] AI 서비스 품질 및 운영 매니저 | 직무: AI/ML엔지니어",
+      "isFeatured": true
+    },
+    {
       "id": "lg-1002176",
       "title": "[CDO] AI/빅데이터 분야 상시 모집",
       "organization": "LG에너지솔루션",
@@ -2785,45 +2820,6 @@
       "location": "국내",
       "reward": "핀테크 채용",
       "summary": "토스 | Treasury Manager(Junior) | 주니어",
-      "isFeatured": true
-    },
-    {
-      "id": "kakao-P-14593",
-      "title": "Foundation Model Research Engineer_인턴",
-      "organization": "카카오",
-      "category": "intern",
-      "source": "기업 채용사이트",
-      "sourceUrl": "https://careers.kakao.com/jobs/P-14593",
-      "startDate": "2026-11-27",
-      "deadline": null,
-      "isAlwaysOpen": true,
-      "tags": [
-        "인턴",
-        "대기업"
-      ],
-      "location": "판교",
-      "reward": "인턴/신입",
-      "summary": "카카오 | Foundation Model Research Engineer_인턴 | 인턴",
-      "isFeatured": true
-    },
-    {
-      "id": "kakao-P-14595",
-      "title": "Multimodal LLM Application Research Engineer_인턴",
-      "organization": "카카오",
-      "category": "intern",
-      "source": "기업 채용사이트",
-      "sourceUrl": "https://careers.kakao.com/jobs/P-14595",
-      "startDate": "2026-11-27",
-      "deadline": null,
-      "isAlwaysOpen": true,
-      "tags": [
-        "인턴",
-        "AI/데이터",
-        "대기업"
-      ],
-      "location": "판교",
-      "reward": "인턴/신입",
-      "summary": "카카오 | Multimodal LLM Application Research Engineer_인턴 | 인턴",
       "isFeatured": true
     },
     {
